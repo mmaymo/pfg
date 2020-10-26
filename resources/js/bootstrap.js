@@ -1,3 +1,4 @@
+require('vue-showdown');
 window._ = require('lodash');
 
 /**
