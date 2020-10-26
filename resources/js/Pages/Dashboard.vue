@@ -9,7 +9,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <itinerary />
+                    <text-task></text-task>
                 </div>
             </div>
         </div>
@@ -18,12 +18,15 @@
 
 <script>
     import AppLayout from './../Layouts/AppLayout'
-    import Itinerary from './../Jetstream/Itinerary'
+    import Quiz from '../Jetstream/QuizTask'
+    import TextTask from '../Jetstream/TextTask'
+
 
     export default {
         components: {
             AppLayout,
-            Itinerary,
+            Quiz,
+            TextTask
         },
     }
 </script>
