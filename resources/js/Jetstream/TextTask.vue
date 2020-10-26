@@ -8,7 +8,7 @@
             <section class="container" >
 
 
-                <VueShowdown markdown="# Hello, world!"/>
+                <VueShowdown :markdown="this.textContent"/>
             </section>
             <!--/container-->
         </div>
@@ -28,11 +28,18 @@
         data() {
             return {
                 chapter: "nombre del capítulo",
-                textContent:
-                    ["<p>lorem ipsum dolor sit amet</p>" +
-                    "<cite>esto es una cita</cite>" +
-                    "<img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fslate.com%2Fculture%2F2019%2F05%2Fgifs-on-tv-shows-the-simpsons-homer-backing-into-bushes.html&psig=AOvVaw0D9jkXNBQfutQHF8pMTS0U&ust=1603653543343000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPimmJD5zewCFQAAAAAdAAAAABAJ' alt='imagen'>"]
-                ,
+                textContent:"Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor\n" +
+                    "  - Type some Markdown on the left\n" +
+                    "  - See HTML in the right\n" +
+                    "  - Magic\n" +
+                    "\n" +
+                    "# New Features!\n" +
+                    "\n" +
+                    "  - Import a HTML file and watch it magically convert to Markdown\n" +
+                    "  - Drag and drop images (requires your Dropbox account be linked)\n" +
+                    "> The overriding design goal for Markdown's\n" +
+                    "> formatting syntax is to make it as readable\n" +
+                    "\n![esto es un gif](https://media.giphy.com/media/xT5LMzIK1AdZJ4cYW4/giphy.gif)"
             }
         },
         methods: {

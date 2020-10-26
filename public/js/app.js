@@ -2873,7 +2873,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       chapter: "nombre del capítulo",
-      textContent: ["<p>lorem ipsum dolor sit amet</p>" + "<cite>esto es una cita</cite>" + "<img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fslate.com%2Fculture%2F2019%2F05%2Fgifs-on-tv-shows-the-simpsons-homer-backing-into-bushes.html&psig=AOvVaw0D9jkXNBQfutQHF8pMTS0U&ust=1603653543343000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPimmJD5zewCFQAAAAAdAAAAABAJ' alt='imagen'>"]
+      textContent: "Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor\n" + "  - Type some Markdown on the left\n" + "  - See HTML in the right\n" + "  - Magic\n" + "\n" + "# New Features!\n" + "\n" + "  - Import a HTML file and watch it magically convert to Markdown\n" + "  - Drag and drop images (requires your Dropbox account be linked)\n" + "> The overriding design goal for Markdown's\n" + "> formatting syntax is to make it as readable\n" + "\n![esto es un gif](https://media.giphy.com/media/xT5LMzIK1AdZJ4cYW4/giphy.gif)"
     };
   },
   methods: {
@@ -30868,7 +30868,7 @@ var render = function() {
         _c(
           "section",
           { staticClass: "container" },
-          [_c("VueShowdown", { attrs: { markdown: "# Hello, world!" } })],
+          [_c("VueShowdown", { attrs: { markdown: this.textContent } })],
           1
         )
       ]
@@ -48538,15 +48538,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/js/Jetstream/TextTask.vue ***!
   \*********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TextTask_vue_vue_type_template_id_0ab40186___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TextTask.vue?vue&type=template&id=0ab40186& */ "./resources/js/Jetstream/TextTask.vue?vue&type=template&id=0ab40186&");
 /* harmony import */ var _TextTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextTask.vue?vue&type=script&lang=js& */ "./resources/js/Jetstream/TextTask.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _TextTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _TextTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -48576,7 +48575,7 @@ component.options.__file = "resources/js/Jetstream/TextTask.vue"
 /*!**********************************************************************!*\
   !*** ./resources/js/Jetstream/TextTask.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49869,8 +49868,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfgUned/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfgUned/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfg/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfg/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
