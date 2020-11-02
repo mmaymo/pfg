@@ -2865,6 +2865,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2872,7 +2892,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      chapter: "nombre del capítulo",
+      chapter: "Nombre del Capítulo",
+      taskName: "Nombre tarea",
       textContent: "Dillinger is a cloud-enabled, mobile-ready, offline-storage, AngularJS powered HTML5 Markdown editor\n" + "  - Type some Markdown on the left\n" + "  - See HTML in the right\n" + "  - Magic\n" + "\n" + "# New Features!\n" + "\n" + "  - Import a HTML file and watch it magically convert to Markdown\n" + "  - Drag and drop images (requires your Dropbox account be linked)\n" + "> The overriding design goal for Markdown's\n" + "> formatting syntax is to make it as readable\n" + "\n![esto es un gif](https://media.giphy.com/media/xT5LMzIK1AdZJ4cYW4/giphy.gif)"
     };
   },
@@ -3498,6 +3519,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3506,6 +3547,44 @@ __webpack_require__.r(__webpack_exports__);
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     Quiz: _Jetstream_QuizTask__WEBPACK_IMPORTED_MODULE_1__["default"],
     TextTask: _Jetstream_TextTask__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      course: "Nombre del Capítulo",
+      teacher: "Nombre profesor",
+      itinerary: [{
+        name: "Task name 1",
+        type: "document"
+      }, {
+        name: "Task name 2",
+        type: "quiz"
+      }, {
+        name: "Task name 3",
+        type: "code"
+      }, {
+        name: "Task name 4",
+        type: "card"
+      }]
+    };
+  },
+  template: '<div>DEsde aQui</div>',
+  methods: {
+    //convertir a component el svg
+    iconType: function iconType(type) {
+      switch (type) {
+        case "document":
+          return;
+
+        case "quiz":
+          return;
+
+        case "code":
+          return;
+
+        case "card":
+          return;
+      }
+    }
   }
 });
 
@@ -30846,26 +30925,110 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200" },
-      [
-        _c("div", { staticClass: "mt-8 text-2xl" }, [
-          _vm._v("\n            " + _vm._s(this.chapter) + "\n        ")
-        ]),
-        _vm._v(" "),
+  return _c("div", { staticClass: "flex", attrs: { id: "task" } }, [
+    _c("div", { staticClass: "pb-4 w-full pt-8 lg:pt-8" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 "
+        },
+        [
+          _c("div", { staticClass: "flex items-center" }, [
+            _c("h1", { staticClass: "text-xl font-bold capitalize" }, [
+              _vm._v(_vm._s(this.chapter))
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "h2",
+            {
+              staticClass: "group flex whitespace-pre-wrap relative capitalize"
+            },
+            [_vm._v(_vm._s(this.taskName))]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex" }, [
         _c(
-          "section",
-          { staticClass: "container" },
-          [_c("VueShowdown", { attrs: { markdown: this.textContent } })],
-          1
+          "div",
+          {
+            staticClass:
+              "px-6 xl:px-12 w-full max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-3/4"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "mt-0  overflow-hidden relative" },
+              [_c("VueShowdown", { attrs: { markdown: this.textContent } })],
+              1
+            )
+          ]
         )
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "flex border-b border-gray-300 p-8 pt-16",
+        attrs: { id: "bottomTaskButtons" }
+      },
+      [
+        _c("div", { staticClass: "w-2/4" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+            },
+            [_vm._v("Atrás")]
+          ),
+          _vm._v(" "),
+          _c("p", [_vm._v("Task name anterior")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-2/4 text-right" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+            },
+            [_vm._v("Siguiente")]
+          ),
+          _vm._v(" "),
+          _c("p", [_vm._v("Task name siguiente")])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pt-8", attrs: { id: "footer" } }, [
+      _c("div", { staticClass: "text-right w-full pr-8" }, [
+        _c("p", [_vm._v("Issue")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-right w-full pr-8" }, [
+        _c("p", [_vm._v("Dudas")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -32261,19 +32424,67 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("app-layout", [
-    _c("div", { staticClass: "py-12" }, [
-      _c(
-        "div",
-        { staticClass: "bg-red-400 overflow-hidden shadow-xl sm:rounded-lg" },
-        [_c("p", [_vm._v("sidebar")])]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
+    _c("div", { staticClass: "w-full max-w-screen-xl mx-auto px-6" }, [
+      _c("div", { staticClass: "lg:flex -mx-6" }, [
         _c(
           "div",
-          { staticClass: "bg-white overflow-hidden shadow-xl sm:rounded-lg" },
-          [_c("text-task")],
-          1
+          {
+            staticClass:
+              "fixed inset-0 h-full bg-white z-90 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5 hidden pt-16",
+            attrs: { id: "sidebar" }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:relative lg:sticky lg:bg-transparent overflow-hidden lg:top-16 bg-white",
+                attrs: { id: "navWrapper" }
+              },
+              [
+                _c("div", [_vm._v(_vm._s(this.course))]),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(this.teacher))]),
+                _vm._v(" "),
+                _c(
+                  "nav",
+                  {
+                    staticClass:
+                      "px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)",
+                    attrs: { id: "nav" }
+                  },
+                  _vm._l(this.itinerary, function(task) {
+                    return _c("div", { staticClass: "mb-10" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-gray-900",
+                          attrs: { href: "#" }
+                        },
+                        [
+                          _c("span", { staticClass: "ml-3" }, [
+                            _vm._v(_vm._s(task.name))
+                          ])
+                        ]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5",
+            attrs: { id: "mainContentWrap" }
+          },
+          [_c("div", { attrs: { id: "mainContent" } }, [_c("text-task")], 1)]
         )
       ])
     ])
