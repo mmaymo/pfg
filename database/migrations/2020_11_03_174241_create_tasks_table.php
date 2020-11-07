@@ -18,6 +18,8 @@ class CreateTasksTable extends Migration
             $table->string('name');
             $table->foreignId('course_id')->constrained();
             $table->string('type');
+            $table->integer('position');
+            $table->integer('points');
             $table->json('properties');
             $table->timestamps();
             $table->index(['id', 'type']);
