@@ -26,6 +26,8 @@ class TaskFactory extends Factory
             'name'=>$this->faker->sentence,
             'course_id'=>Course::all()->random(),
             'type'=>$this->faker->randomElement(['document','quiz','card','code']),
+            'position'=>$this->faker->numberBetween(0,100),
+            'points'=>$this->faker->numberBetween(1,20),
             'properties'=>json_encode('esto va a ser json')
         ];
     }
