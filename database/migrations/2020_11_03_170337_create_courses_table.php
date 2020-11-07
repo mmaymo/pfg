@@ -16,7 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('team_id')->constrained();
             $table->string('degree');
             $table->boolean('semester');
             $table->string('pic')->default('/images/unedDefault.jpg');
