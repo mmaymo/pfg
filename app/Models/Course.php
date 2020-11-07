@@ -9,6 +9,19 @@ class Course extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'team_id',
+        'degree',
+        'semeste',
+        'pic'
+    ];
+
     public function team()
     {
         return $this->belongsTo('App\Models\Team', 'team_id');
