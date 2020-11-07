@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,10 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->sentence,
+            'course_id'=>Course::all()->random(),
+            'type'=>$this->faker->randomElement(['document','quiz','card','code']),
+            'properties'=>json_encode('esto va a ser json')
         ];
     }
 }
