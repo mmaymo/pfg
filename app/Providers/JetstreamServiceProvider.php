@@ -59,5 +59,8 @@ class JetstreamServiceProvider extends ServiceProvider
             'create',
             'update',
         ])->description(__('Editor users have the ability to read, create, and update.'));
+        Jetstream::role('student', __('Student'), [
+            'read'
+        ])->description(__('Student users have the ability to read.'));
     }
 }
