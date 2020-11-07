@@ -13,4 +13,9 @@ class Course extends Model
     {
         return $this->belongsTo('App\Models\Team', 'team_id');
     }
+
+    public function tasks()
+    {
+        return $this->hasOne('App\Models\Task', 'course_id');
+    }
 }
