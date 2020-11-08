@@ -14,13 +14,14 @@ class Course extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'team_id',
-        'degree',
-        'semeste',
-        'pic'
-    ];
+    protected $fillable
+        = [
+            'name',
+            'team_id',
+            'degree',
+            'semester',
+            'pic'
+        ];
 
     public function team()
     {
@@ -29,6 +30,19 @@ class Course extends Model
 
     public function tasks()
     {
-        return $this->hasOne('App\Models\Task', 'course_id');
+        return $this->hasMany('App\Models\Task', 'course_id');
+    }
+
+    public function itinerary()
+    {
+        $tasks = $this->tasks;
+        return $tasks->sortBy('position');
+    }
+
+    public function rankingStudentsCoursePoints()
+    {
+        $team = $this->team;
+        return $team->belongsToMany('App\Models\User', 'users_course_progress')
+            ->withPivot('points')->orderBy('points', 'desc');
     }
 }
