@@ -1,11 +1,11 @@
 <template>
     <jet-form-section @submitted="createTeam">
         <template #title>
-            Team Details
+            Detalles del curso
         </template>
 
         <template #description>
-            Create a new team to collaborate with others on projects.
+            Crea un nuevo curso
         </template>
 
         <template #form>
