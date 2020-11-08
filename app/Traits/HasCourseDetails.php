@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 trait HasCourseDetails
 {
+    public function allCourses()
+    {
+        return $this->belongsToMany('App\Models\Team', 'users_course_progress');
+    }
 
     public function allCoursesWithPoints()
     {

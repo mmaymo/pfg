@@ -31,6 +31,12 @@ class AddTeamMember implements AddsTeamMembers
             ['role' => $role]
         );
 
+        $user->allCourses()->attach(
+            $team->id,
+            ['points' => 0, 'progress'=>0]
+        );
+
+
         TeamMemberAdded::dispatch($team, $newTeamMember);
     }
 

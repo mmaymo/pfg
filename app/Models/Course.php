@@ -16,7 +16,6 @@ class Course extends Model
      */
     protected $fillable
         = [
-            'name',
             'team_id',
             'degree',
             'semester',
@@ -39,7 +38,7 @@ class Course extends Model
         return $tasks->sortBy('position');
     }
 
-    public function rankingStudentsCoursePoints()
+    public function rankingTeamCoursePoints()
     {
         $team = $this->team;
         return $team->belongsToMany('App\Models\User', 'users_course_progress')

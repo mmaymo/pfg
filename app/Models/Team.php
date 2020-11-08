@@ -38,4 +38,12 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    /**
+     * Get the course record associated with the team.
+     */
+    public function course()
+    {
+        return $this->hasOne('App\Models\Course');
+    }
 }
