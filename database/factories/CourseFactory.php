@@ -33,7 +33,6 @@ class CourseFactory extends Factory
             ]
         );
         return [
-           'name'=> $team->name,
             'team_id' => $team->id,
             'degree'=> 'Ingeniería Informática',
             'semester'=>$this->faker->boolean,
