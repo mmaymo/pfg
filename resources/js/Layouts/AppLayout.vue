@@ -15,7 +15,7 @@
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <jet-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
-                                Dashboard
+                                Cursos
                             </jet-nav-link>
                         </div>
                     </div>
@@ -43,11 +43,11 @@
                                 <template #content>
                                     <!-- Account Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        Manage Account
+                                        Configuración del perfil
                                     </div>
 
                                     <jet-dropdown-link :href="route('profile.show')">
-                                        Profile
+                                        Perfil
                                     </jet-dropdown-link>
 
                                     <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
@@ -59,23 +59,23 @@
                                     <!-- Team Management -->
                                     <template v-if="$page.jetstream.hasTeamFeatures">
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Manage Team
+                                            Configuración del curso
                                         </div>
 
                                         <!-- Team Settings -->
-                                        <jet-dropdown-link :href="route('teams.show', $page.user.current_team)">
-                                            Team Settings
+                                        <jet-dropdown-link :href="route('courses.show', $page.user.current_team)">
+                                            Ajustes del curso
                                         </jet-dropdown-link>
 
-                                        <jet-dropdown-link :href="route('teams.create')" v-if="$page.jetstream.canCreateTeams">
-                                            Create New Team
+                                        <jet-dropdown-link :href="route('courses.create')" v-if="$page.jetstream.canCreateTeams">
+                                            Crear nuevo curso
                                         </jet-dropdown-link>
 
                                         <div class="border-t border-gray-100"></div>
 
                                         <!-- Team Switcher -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Switch Teams
+                                            Cambiar de curso
                                         </div>
 
                                         <template v-for="team in $page.user.all_teams">
@@ -95,7 +95,7 @@
                                     <!-- Authentication -->
                                     <form @submit.prevent="logout">
                                         <jet-dropdown-link as="button">
-                                            Logout
+                                            Salir
                                         </jet-dropdown-link>
                                     </form>
                                 </template>
@@ -119,7 +119,7 @@
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
                     <jet-responsive-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
-                        Dashboard
+                        Cursos
                     </jet-responsive-nav-link>
                 </div>
 
@@ -138,7 +138,7 @@
 
                     <div class="mt-3 space-y-1">
                         <jet-responsive-nav-link :href="route('profile.show')" :active="$page.currentRouteName == 'profile.show'">
-                            Profile
+                            Perfil
                         </jet-responsive-nav-link>
 
                         <jet-responsive-nav-link :href="route('api-tokens.index')" :active="$page.currentRouteName == 'api-tokens.index'" v-if="$page.jetstream.hasApiFeatures">
@@ -148,7 +148,7 @@
                         <!-- Authentication -->
                         <form method="POST" @submit.prevent="logout">
                             <jet-responsive-nav-link as="button">
-                                Logout
+                                Salir
                             </jet-responsive-nav-link>
                         </form>
 
@@ -157,23 +157,23 @@
                             <div class="border-t border-gray-200"></div>
 
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                Manage Team
+                                Configuración del curso
                             </div>
 
                             <!-- Team Settings -->
-                            <jet-responsive-nav-link :href="route('teams.show', $page.user.current_team)" :active="$page.currentRouteName == 'teams.show'">
-                                Team Settings
+                            <jet-responsive-nav-link :href="route('courses.show', $page.user.current_team)" :active="$page.currentRouteName == 'courses.show'">
+                                Ajustes del curso
                             </jet-responsive-nav-link>
 
-                            <jet-responsive-nav-link :href="route('teams.create')" :active="$page.currentRouteName == 'teams.create'">
-                                Create New Team
+                            <jet-responsive-nav-link :href="route('courses.create')" :active="$page.currentRouteName == 'courses.create'">
+                                Crear nuevo curso
                             </jet-responsive-nav-link>
 
                             <div class="border-t border-gray-200"></div>
 
                             <!-- Team Switcher -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                Switch Teams
+                                Cambiar curso
                             </div>
 
                             <template v-for="team in $page.user.all_teams">

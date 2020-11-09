@@ -4,76 +4,119 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
-use Inertia\Response;
+use Laravel\Jetstream\Actions\ValidateTeamDeletion;
+use Laravel\Jetstream\Contracts\CreatesTeams;
+use Laravel\Jetstream\Contracts\DeletesTeams;
+use Laravel\Jetstream\Jetstream;
 
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Show the course contents management screen.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $teamId
+     * @return \Inertia\Response
      */
-    public function index()
+    public function show(Request $request, $teamId)
     {
-        $data = Course::all();
 
-        return Inertia::render('courses', ['data' => $data]);
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $course = $team->course;
+
+        if (! $request->user()->belongsToTeam($team)) {
+            abort(403);
+        }
+
+        return Jetstream::inertia()->render($request, 'Courses/Show', [
+            'team' => $team->load('owner', 'users'),
+            'course'=> $course,
+            'availableRoles' => array_values(Jetstream::$roles),
+            'availablePermissions' => Jetstream::$permissions,
+            'defaultPermissions' => Jetstream::$defaultPermissions,
+            'permissions' => [
+                'canAddTeamMembers' => Gate::check('addTeamMember', $team),
+                'canDeleteTeam' => Gate::check('delete', $team),
+                'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
+                'canUpdateTeam' => Gate::check('update', $team),
+            ],
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Show the team creation screen.
      *
-     * @param Request $request
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Inertia\Response
+     */
+    public function create(Request $request)
+    {
+        return Inertia::render('Courses/Create');
+    }
+
+    /**
+     * Create a new team.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        app(CreatesTeams::class)->create($request->user(), $request->all());
 
-
-        ])->validate();
-
-        Course::create($request->all());
-
-        return redirect()->back()
-            ->with('message', 'Course Created Successfully.');
+        return redirect(config('fortify.home'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the given team's name.
      *
-     * @param Request              $request
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $teamId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function update(Request $request, $teamId)
     {
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $course = Course::where('team_id', '=', $teamId);
+
+        Gate::forUser($request->user())->authorize('update', $team);
+
         Validator::make($request->all(), [
+            'degree' => ['string', 'max:255'],
+            'semester' => ['boolean'],
+            'pic' => ['string', 'max:255'],
 
-        ])->validate();
+        ])->validateWithBag('updateCourseDetails');
+        $input = $request->all();
+        $course->update(
+            [
+                'degree' => $input['degree'],
+                'semester' => $input['semester'],
+                'pic' => $input['pic'],
+            ]
+        );
 
-        if ($request->has('id')) {
-            Course::find($request->input('id'))->update($request->all());
-            return redirect()->back()
-                ->with('message', 'Course Updated Successfully.');
-        }
+        return back(303);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete the given team.
      *
-     *
-     * @param Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $teamId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $teamId)
     {
-        if ($request->has('id')) {
-            Course::find($request->input('id'))->delete();
-            return redirect()->back();
-        }
+        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+
+        app(ValidateTeamDeletion::class)->validate($request->user(), $team);
+
+        app(DeletesTeams::class)->delete($team);
+
+        return redirect(config('fortify.home'));
     }
 }

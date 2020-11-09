@@ -31,8 +31,7 @@ class CreateTeam implements CreatesTeams
                                                    'personal_team' => false,
                                                ]);
 
-        Course::create(['name'=>$newTeam->name, 'team_id'=>$newTeam->id]);
-
+        Course::create(['team_id'=>$newTeam->id]);
 
         return $newTeam;
     }
