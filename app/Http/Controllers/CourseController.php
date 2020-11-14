@@ -23,10 +23,10 @@ class CourseController extends Controller
      */
     public function show(Request $request, $teamId)
     {
-
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
         $course = $team->course;
-
+        $coursePoints = $course->rankingTeamCoursePoints;
+        $courseProgress = $course->courseProgress;
         if (! $request->user()->belongsToTeam($team)) {
             abort(403);
         }
@@ -34,6 +34,8 @@ class CourseController extends Controller
         return Jetstream::inertia()->render($request, 'Courses/Show', [
             'team' => $team->load('owner', 'users'),
             'course'=> $course,
+            'coursePoints'=>$coursePoints,
+            'courseProgress'=>$courseProgress,
             'availableRoles' => array_values(Jetstream::$roles),
             'availablePermissions' => Jetstream::$permissions,
             'defaultPermissions' => Jetstream::$defaultPermissions,

@@ -14,6 +14,8 @@
 
                 <team-member-manager class="mt-10 sm:mt-0"
                             :team="team"
+                            :course-points="coursePoints"
+                            :course-progress="courseProgress"
                             :available-roles="availableRoles"
                             :user-permissions="permissions" />
 
@@ -41,6 +43,8 @@
             'course',
             'availableRoles',
             'permissions',
+            'coursePoints',
+            'courseProgress'
         ],
 
         components: {

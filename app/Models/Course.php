@@ -41,7 +41,13 @@ class Course extends Model
     public function rankingTeamCoursePoints()
     {
         $team = $this->team;
-        return $team->belongsToMany('App\Models\User', 'users_course_progress')
+        return  $team->belongsToMany('App\Models\User', 'users_course_progress')
             ->withPivot('points')->orderBy('points', 'desc');
+    }
+    public function courseProgress()
+    {
+        $team = $this->team;
+        return $team->belongsToMany('App\Models\User', 'users_course_progress')
+            ->withPivot('progress');
     }
 }

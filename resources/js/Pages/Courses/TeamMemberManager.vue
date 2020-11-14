@@ -92,6 +92,12 @@
                                 <img class="w-8 h-8 rounded-full" :src="user.profile_photo_url" :alt="user.name">
                                 <div class="ml-4">{{ user.name }}</div>
                             </div>
+                            <div class="flex items-center">
+                                <div class="ml-4">{{ userPoints(user.id) }} Puntos</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="ml-4">Progreso: {{ userProgress(user.id) }}%</div>
+                            </div>
 
                             <div class="flex items-center">
                                 <!-- Manage Team Member Role -->
@@ -248,7 +254,9 @@
         props: [
             'team',
             'availableRoles',
-            'userPermissions'
+            'userPermissions',
+            'coursePoints',
+            'courseProgress'
         ],
 
         data() {
@@ -332,6 +340,26 @@
             displayableRole(role) {
                 return this.availableRoles.find(r => r.key == role).name
             },
+
+            userPoints(userId){
+                let points = 0;
+                this.coursePoints.forEach(function (user) {
+                    if (user.id === userId){
+                       points = user.pivot.points;
+                    }
+                });
+                return points;
+            },
+
+            userProgress(userId){
+                let progress = 0;
+                this.courseProgress.forEach(function (user) {
+                    if (user.id === userId){
+                        progress = user.pivot.progress;
+                    }
+                });
+                return progress;
+            }
         },
     }
 </script>
