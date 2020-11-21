@@ -33,8 +33,8 @@
 
                     </div>
                     <div id="footer" class="pt-8">
-                        <div class="text-right w-full pr-8"><p>Issue</p></div>
-                        <div class="text-right w-full pr-8"><p>Dudas</p></div>
+                        <div class="text-right w-full pr-8"><a :href="this.mailLink" target="_blank" rel="noopener noreferrer">Informa de un problema en la tarea</a></div>
+                        <div class="text-right w-full pr-8"><a href="http://portal.uned.es/" target="_blank">Dudas</a></div>
                     </div>
                 </div>
             </div>
@@ -71,6 +71,12 @@
         },
         methods: {
 
+        },
+        data() {
+            return {
+                mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
+
+            }
         },
     }
 </script>
