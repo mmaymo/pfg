@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -14,6 +15,16 @@ use Laravel\Jetstream\Jetstream;
 
 class CourseController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        $courses = $user->allCoursesWithDetails;
+
+        return Inertia::render( 'Courses/Index', [
+            'courses'=>$courses
+        ]);
+
+    }
     /**
      * Show the course contents management screen.
      *

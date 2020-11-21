@@ -32,6 +32,12 @@ trait HasCourseDetails
             ->withPivot('progress');
     }
 
+    public function allCoursesWithDetails()
+    {
+        return $this->belongsToMany('App\Models\Team', 'users_course_progress')
+            ->withPivot('points','progress')->with('owner');
+    }
+
     public function courseProgress($courseId)
     {
         $collection = DB::table('users_course_progress')->where(
