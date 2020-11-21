@@ -1,28 +1,26 @@
 <template>
     <div>
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-            <div class="mt-8 text-2xl">
-                {{this.quiz.chapter}}
+
+              <div>
+                 <progress id="progress" :value="this.questionIndex" :max="this.quiz.questions.length"> </progress>
             </div>
-            <div>
-                <progress id="progress" :value="this.questionIndex" :max="this.quiz.questions.length"> </progress>
-            </div>
-            <!--container-->
+
             <section class="container" >
                 <form id="myForm" @submit.prevent="$emit('submitted')">
-                    <div class="shadow overflow-hidden sm:rounded-md">
+
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="grid grid-cols-6 gap-6">
+                            <div class="grid ">
                                 <ul>
                                     <p>{{quiz.questions[questionIndex].text}}</p>
                                     <li v-for="(response, answerIndex) in quiz.questions[questionIndex].responses">
-                                        <label :for="answerIndex">{{response.text}}</label>
                                         <input type="radio" :id="answerIndex"  :value="answerIndex" v-model="picked" ref="answer">
+                                        <label :for="answerIndex">{{response.text}}</label>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
+
                     <button type="submit" id="answerButton" v-on:click="computeAnswer();">Enviar Respuesta</button>
                     <button v-if="(this.quiz.questions.length > questionIndex+1) && isSubmitted" type="button" id="next" v-on:click="next();">Siguiente</button>
                 </form>
@@ -40,45 +38,14 @@
             JetApplicationLogo,
 
         },
+        props: {
+            quiz: {
+                type: Object,
+                default: '',
+            },
+        },
         data() {
             return {
-                quiz: {
-                    user: "Dave",
-                    chapter: "nombre del capítulo",
-                    questions: [
-                        {
-                            text: "What is the full form of HTTP?",
-                            responses: [
-                                {text: "Hyper text transfer package"},
-                                {text: "Hyper text transfer protocol", correct: true},
-                                {text: "Hyphenation text test program"},
-                                {text: "None of the above"}
-                            ],
-                            correctAnswerIndex: 1
-                        },
-                        {
-                            text: "HTML document start and end with which tag pairs?",
-                            responses: [
-                                {text: "HTML", correct: true},
-                                {text: "WEB"},
-                                {text: "HEAD"},
-                                {text: "BODY"}
-                            ],
-                            correctAnswerIndex: 0
-                        },
-                        {
-                            text: "Which tag is used to create body text in HTML?",
-                            responses: [
-                                {text: "HEAD"},
-                                {text: "BODY", correct: true},
-                                {text: "TITLE"},
-                                {text: "TEXT"}
-                            ],
-                            correctAnswerIndex: 1
-                        }
-                    ]
-                },
-
                 questionIndex: 0,
                 userResponses: [],
                 score:0,
