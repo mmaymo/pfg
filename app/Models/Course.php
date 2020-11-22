@@ -29,7 +29,7 @@ class Course extends Model
 
     public function tasks()
     {
-        return $this->hasMany('App\Models\Task', 'course_id');
+        return $this->hasMany('App\Models\Task', 'course_id')->orderBy('position');
     }
 
     public function itinerary()

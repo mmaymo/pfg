@@ -3,13 +3,14 @@
          class="fixed inset-0 h-full bg-white z-90 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5 hidden pt-16">
         <div id="navWrapper"
              class="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:relative lg:sticky lg:bg-transparent overflow-hidden lg:top-16 bg-white">
-            <div class="w-full text-right mt-8 pr-4 font-bold">{{ this.course }}</div>
+            <div class="w-full text-right mt-8 pr-4 font-bold">{{ this.courseName }}</div>
             <div class="w-full text-right mb-4 pr-4 font-light">{{ this.teacher }}</div>
+
+
             <nav id="nav"
                  class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)">
                 <div v-for="task in this.itinerary" class="mb-10">
-                    <a href="#"
-                       class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
+                    <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
                         <base-svg :icon-name=task.type :width=20 :height=20
                                   :d=iconType(task.type)></base-svg>
                         <span class="ml-3">{{ task.name }}</span>
@@ -30,7 +31,11 @@
 
         },
         props: {
-            course: {
+            courseId: {
+                type: Number,
+                default: '',
+            },
+            courseName: {
                 type: String,
                 default: '',
             },
@@ -59,6 +64,12 @@
 
             },
 
+        },
+        data() {
+            return {
+                mailLink: "route('courses.tasks.show', {'course':".concat("2",", 'task': ", "1", "})")
+
+            }
         },
     }
 </script>

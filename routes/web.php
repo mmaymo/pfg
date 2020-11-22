@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseContent;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::resource('courses', CourseController::class);
+Route::resource('courses.tasks', TaskController::class)->scoped(
+    [
+        'task' => 'name',
+    ]
+);
 
 Route::get('course/{id}', CourseContent::class)->name('course');

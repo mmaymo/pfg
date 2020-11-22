@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Laravel\Jetstream\Jetstream;
 
@@ -20,20 +21,23 @@ class CourseContent extends Controller
     {
         $team = Jetstream::newTeamModel()->findOrFail($id);
         $course = $team->course;
+        $tasks = $course->tasks;
+
         $coursePoints = $course->rankingTeamCoursePoints;
         $courseProgress = $course->courseProgress;
+
         if (! $request->user()->belongsToTeam($team)) {
             abort(403);
         }
 
         return Jetstream::inertia()->render($request, 'Courses/ShowContent', [
             'team' => $team->load('owner', 'users'),
-            'course'=> $course,
+            'tasks'=>$tasks,
+
+            'courseName'=> $team->name,
+            'courseId'=> $course->id,
             'coursePoints'=>$coursePoints,
             'courseProgress'=>$courseProgress,
-            'availableRoles' => array_values(Jetstream::$roles),
-            'availablePermissions' => Jetstream::$permissions,
-            'defaultPermissions' => Jetstream::$defaultPermissions,
         ]);
     }
 }

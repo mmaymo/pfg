@@ -4,7 +4,7 @@
             <div class="lg:flex -mx-6">
                 <course-sidebar :courseId="this.courseId" :courseName="this.courseName" :teacher="this.teacher"
                                 :itinerary="this.tasks"></course-sidebar>
-                <p>Aquí tengo que presentar el curso o algo, o quitar esta página e ir directamente al último task</p>
+                <task :courseId="this.courseId" :task="this.task"></task>
             </div>
         </div>
     </app-layout>
@@ -22,7 +22,7 @@ export default {
         CourseSidebar
     },
     props: [
-        'team',
+        'teacher',
         'courseName',
         'courseId',
         'courseProgress',

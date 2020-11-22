@@ -8,33 +8,37 @@
                         class="max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 ">
                         <div class="flex items-center">
                             <h1 class="text-xl font-bold capitalize">
-                                {{ this.itinerary[0].chapter }}</h1>
+                                {{ this.task.chapter }}</h1>
                         </div>
                         <h2 class="group flex whitespace-pre-wrap relative capitalize">
-                            {{ this.itinerary[0].name }}</h2>
+                            {{ this.task.name }}</h2>
                     </div>
-                    <text-task :textContent="this.itinerary[0].textContent"></text-task>
+
+                    <text-task :textContent="this.task.content"></text-task>
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">
                         <div class="w-2/4">
                             <button
                                 class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                                Atrás
+                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':previousTask})">Anterior</a>
                             </button>
                             <p>Task name anterior</p>
                         </div>
                         <div class="w-2/4 text-right">
                             <button
                                 class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                                Siguiente
+                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':nextTask})">Sieguiente</a>
                             </button>
                             <p>Task name siguiente</p>
                         </div>
 
                     </div>
                     <div id="footer" class="pt-8">
-                        <div class="text-right w-full pr-8"><a :href="this.mailLink" target="_blank" rel="noopener noreferrer">Informa de un problema en la tarea</a></div>
-                        <div class="text-right w-full pr-8"><a href="http://portal.uned.es/" target="_blank">Dudas</a></div>
+                        <div class="text-right w-full pr-8"><a :href="this.mailLink" target="_blank"
+                                                               rel="noopener noreferrer">Informa de
+                            un problema en la tarea</a></div>
+                        <div class="text-right w-full pr-8"><a href="http://portal.uned.es/"
+                                                               target="_blank">Dudas</a></div>
                     </div>
                 </div>
             </div>
@@ -45,38 +49,60 @@
 <script>
 
 
+import Quiz from "./QuizTask";
+import TextTask from "./TextTask";
 
-    import Quiz from "./QuizTask";
-    import TextTask from "./TextTask";
+export default {
+    components: {
+        Quiz,
+        TextTask,
 
-    export default {
-        components: {
-            Quiz,
-            TextTask,
-
+    },
+    props: {
+        courseId: {
+            type: Number,
+            default: '',
         },
-        props: {
-            course: {
-                type: String,
-                default: '',
-            },
-            teacher: {
-                type: String,
-                default: '',
-            },
-            itinerary: {
-                type: Array,
-                default: [],
-            },
+        task: {
+            type: Object,
+            default: []
         },
-        methods: {
-
+    },
+    methods: {
+        currentIndex() {
+            let positions = this.task.orderedIds;
+            let currentPosition = this.task.id;
+            return this.getKeyByValue(positions, currentPosition)
         },
-        data() {
-            return {
-                mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
-
+        getKeyByValue(object, value) {
+            return parseInt(Object.keys(object).find(key => object[key] === value))
+        },
+        getNextTask(){
+            let nextIndex= this.currentIndex() + 1;
+            let arr = this.task.orderedIds;
+            if(arr.length < nextIndex){
+                return false;
             }
+            return arr[nextIndex];
         },
-    }
+        getPrevTask(){
+            let prevIndex= this.currentIndex() -1;
+            let arr = this.task.orderedIds;
+            if(prevIndex < 0){
+                return false;
+            }
+            return arr[prevIndex];
+        }
+
+    },
+    data() {
+        return {
+            nextTask: this.getNextTask(),
+            previousTask: this.getPrevTask(),
+            mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
+
+        }
+    },
+
+}
 </script>
