@@ -16,27 +16,30 @@ class TaskController extends Controller
      * @param int                      $teamId
      * @param int                      $taskId
      *
-     * @return \Inertia\Response
+     * @return \Inertia\Response |\Illuminate\Http\RedirectResponse
      */
     public function show(Request $request, $teamId, $taskId)
     {
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
-        $teacher = $team->owner->name;
-        $course = $team->course;
-        $user = Auth::user();
-        $tasks = $course->tasks;
-        $positions = $tasks->pluck('id');
-        $task = Task::find($taskId);
-        $coursePoints = $user->coursePoints($course->id);
-        $courseProgress = $user->courseProgress($course->id);
 
         if (! $request->user()->belongsToTeam($team)) {
             abort(403);
         }
+        if (! $request->user()->canSeeTask($teamId, $taskId)) {
+            return back();
+        }
+        $teacher = $team->owner->name;
+        $course = $team->course;
+        $tasks = $course->tasks;
+        $positions = $tasks->pluck('id');
+        $task = Task::find($taskId);
+        $coursePoints = $request->user()->coursePoints($course->id);
+        $courseProgress = $request->user()->courseProgress($course->id);//todo progress from position
 
         return Jetstream::inertia()->render($request, 'Tasks/Show', [
             'teacher' => $teacher,
             'tasks'=>$tasks,
+            'allowedIds'=>[12,8],
             'task'=>[
                 'chapter'=>'Tengo que migrar la db!!',
                 'name'=>$task->name,
@@ -44,7 +47,8 @@ class TaskController extends Controller
                 'type'=> $task->type,
                 'content' =>$task->properties,
                 'points'=>$task->points,
-                'orderedIds'=>$positions,
+                'previousId'=>12,
+                'nextId'=>13
             ],
             'courseName'=> $team->name,
             'courseId'=> $course->id,

@@ -20,16 +20,14 @@
                         <div class="w-2/4">
                             <button
                                 class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':previousTask})">Anterior</a>
+                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.previousId})">Anterior</a>
                             </button>
-                            <p>Task name anterior</p>
                         </div>
                         <div class="w-2/4 text-right">
                             <button
                                 class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':nextTask})">Sieguiente</a>
+                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
                             </button>
-                            <p>Task name siguiente</p>
                         </div>
 
                     </div>
@@ -69,36 +67,10 @@ export default {
         },
     },
     methods: {
-        currentIndex() {
-            let positions = this.task.orderedIds;
-            let currentPosition = this.task.id;
-            return this.getKeyByValue(positions, currentPosition)
-        },
-        getKeyByValue(object, value) {
-            return parseInt(Object.keys(object).find(key => object[key] === value))
-        },
-        getNextTask(){
-            let nextIndex= this.currentIndex() + 1;
-            let arr = this.task.orderedIds;
-            if(arr.length < nextIndex){
-                return false;
-            }
-            return arr[nextIndex];
-        },
-        getPrevTask(){
-            let prevIndex= this.currentIndex() -1;
-            let arr = this.task.orderedIds;
-            if(prevIndex < 0){
-                return false;
-            }
-            return arr[prevIndex];
-        }
 
     },
     data() {
         return {
-            nextTask: this.getNextTask(),
-            previousTask: this.getPrevTask(),
             mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
 
         }

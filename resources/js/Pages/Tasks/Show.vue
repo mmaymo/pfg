@@ -3,7 +3,7 @@
         <div class="w-full max-w-screen-xl mx-auto px-6">
             <div class="lg:flex -mx-6">
                 <course-sidebar :courseId="this.courseId" :courseName="this.courseName" :teacher="this.teacher"
-                                :itinerary="this.tasks"></course-sidebar>
+                                :itinerary="this.tasks" :allowedIds="this.allowedIds"></course-sidebar>
                 <task :courseId="this.courseId" :task="this.task"></task>
             </div>
         </div>
@@ -28,7 +28,8 @@ export default {
         'courseProgress',
         'coursePoints',
         'tasks',
-        'task'
+        'task',
+        'allowedIds'
     ],
     data() {
         return {
