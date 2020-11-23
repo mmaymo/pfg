@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration
             $table->integer('position');
             $table->integer('points');
             $table->json('properties');
+            $table->string('chapter');
             $table->timestamps();
             $table->index(['id', 'type']);
         });
