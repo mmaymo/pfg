@@ -8,11 +8,18 @@
 
                         <div v-for="course in this.courses" class="pt-4">
                             <div class="border-4 m-4 p-4">
-                                <nav-link :href="route('courses.tasks.show', {'course':course.id, 'task':8})" :active="$page.currentRouteName == 'course'">
+                                <nav-link v-if="course.activeTaskId !== null" :href="route('courses.tasks.show', {'course':course.id, 'task':course.activeTaskId})">
                                     {{ course.name }}
                                 </nav-link>
-                                <p>Profesor: {{ course.owner.name }}</p>
-                                <p>Progreso: {{course.pivot.progress}}</p>
+                                <div v-else>
+                                    <h2>{{ course.name }}</h2>
+                                    <nav-link :href="route('courses.show', {'course':course.id})">
+                                         Este curso no contiene ninguna tarea
+                                    </nav-link>
+                                </div>
+
+                                <p>Profesor: {{ course.owner }}</p>
+                                <p>Progreso: {{course.progress.position}}/{{course.progress.total}}</p>
                             </div>
                         </div>
                     </div>
@@ -36,7 +43,6 @@ export default {
     },
 
     data() {
-
         return {}
     },
 

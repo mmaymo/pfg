@@ -24,7 +24,7 @@ trait HasCourseDetails
         $collection = DB::table('users_course_progress')->where(
             [['user_id', '=', $this->id], ['team_id', '=', $courseId]]
         )->get();
-        return $collection->first()->points;
+        return $collection->first()?$collection->first()->points:0;
     }
 
     public function allCoursesWithProgress()
@@ -44,7 +44,7 @@ trait HasCourseDetails
         $collection = DB::table('users_course_progress')->where(
             [['user_id', '=', $this->id], ['team_id', '=', $courseId]]
         )->get();
-        return $collection->first()->progress;
+        return $collection->first()?$collection->first()->progress:0;
     }
 
     public function canSeeTask($courseId, $taskId)

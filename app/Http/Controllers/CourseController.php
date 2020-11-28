@@ -18,12 +18,41 @@ class CourseController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $courses = $user->allCoursesWithDetails;
-        //foreach course I need the task that should be active
-        //[course.name, course.pivot.owner, course.pivot.progress, course.pivot.points, course.tasks.enabledTask]
+        $teams = $user->allTeams();
 
+        $coursesData = [];
+        foreach ($teams as $team){
+
+            $course = Course::find($team->id);
+
+            if($course->hasTasks()){
+                $userPositionInCourse = $user->courseProgress($team->id);
+                $progress = $course->progressFromPosition($userPositionInCourse);
+                $points = $user->coursePoints($team->id);
+                $coursesData[]=[
+                    "id"=>$team->id,
+                    "name"=>$team->name,
+                    "owner"=>$team->owner->name,
+                    "progress"=>$progress,
+                    "points"=>$points,
+                    "activeTaskId"=>$progress["activeTaskId"]
+                ];
+            }else{
+                $coursesData[]=[
+                    "id"=>$team->id,
+                    "name"=>$team->name,
+                    "owner"=>$team->owner->name,
+                    "progress"=>[
+                        "position" => 0,
+                        "total" => 0
+                    ],
+                    "points"=>0,
+                    "activeTaskId"=>null
+                ];
+            }
+        }
         return Inertia::render( 'Courses/Index', [
-            'courses'=>$courses
+            'courses'=>$coursesData,
         ]);
 
     }

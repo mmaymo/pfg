@@ -50,4 +50,34 @@ class Course extends Model
         return $team->belongsToMany('App\Models\User', 'users_course_progress')
             ->withPivot('progress');
     }
+
+    public function progressFromPosition($taskPosition)
+    {
+        $tasks = $this->tasks;
+        $tasksLenght = $tasks->count();
+
+        if ($taskPosition === 0) {
+            return [
+                "position" => 0,
+                "total" => $tasksLenght,
+                "activeTaskId" => $tasks->first()->id
+            ];
+        }
+        $num = $tasks->search(
+            function ($item, $key) use ($taskPosition) {
+                return $item->position == $taskPosition;
+            }
+        );
+        $taskId = $tasks[$num]->id;
+
+
+        return [
+            "position" => $num + 1,
+            "total" => $tasksLenght,
+            "activeTaskId" => $taskId
+        ];
+    }
+    public function hasTasks(){
+        return !$this->tasks->isEmpty();
+    }
 }
