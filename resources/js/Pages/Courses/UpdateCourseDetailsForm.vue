@@ -1,7 +1,7 @@
 <template>
     <jet-form-section @submitted="updateCourseDetails">
         <template #title>
-            Detalles del curso
+            Detalles del curso editado
         </template>
 
         <template #description>
@@ -47,7 +47,14 @@
 
                 <jet-input-error :message="form.error('pic')" class="mt-2" />
             </div>
+            <!-- Tasks -->
+            <div class="col-span-6 sm:col-span-4">
+                <nav-link :href="route('courses.tasks.index', {'course':course.id})" >
+                    Tareas del curso
+                </nav-link>
+            </div>
         </template>
+
 
         <template #actions v-if="permissions.canUpdateTeam">
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
@@ -68,6 +75,7 @@
     import JetInput from './../../Jetstream/Input'
     import JetInputError from './../../Jetstream/InputError'
     import JetLabel from './../../Jetstream/Label'
+    import NavLink from "../../Jetstream/NavLink";
 
     export default {
         components: {
@@ -77,6 +85,7 @@
             JetInput,
             JetInputError,
             JetLabel,
+            NavLink
         },
 
         props: ['team','course', 'permissions'],

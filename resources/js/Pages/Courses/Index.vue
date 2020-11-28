@@ -8,11 +8,11 @@
 
                         <div v-for="course in this.courses" class="pt-4">
                             <div class="border-4 m-4 p-4">
-                                <nav-link :href="route('course', course.id)" :active="$page.currentRouteName == 'course'">
+                                <nav-link :href="route('courses.tasks.show', {'course':course.id, 'task':8})" :active="$page.currentRouteName == 'course'">
                                     {{ course.name }}
                                 </nav-link>
-                                <p>{{ course.owner.name }}</p>
-                                <p>{{course.pivot.progress}}</p>
+                                <p>Profesor: {{ course.owner.name }}</p>
+                                <p>Progreso: {{course.pivot.progress}}</p>
                             </div>
                         </div>
                     </div>

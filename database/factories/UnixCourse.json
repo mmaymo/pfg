@@ -1,0 +1,15 @@
+{
+    "name": "Diseño y Administración de Sistemas Operativos",
+    "degree": "Ingeniería Informática",
+    "semester": 1,
+    "pic": "/images/unedDefault.jpg",
+    "tasks": {
+        "0": {
+            "chapter": "capítulo 1",
+            "name": "primera tarea. El 0 es su posición",
+            "type": "document, code, quiz, card",
+            "points": 30,
+            "properties": "content json markdown"
+        }
+    }
+}

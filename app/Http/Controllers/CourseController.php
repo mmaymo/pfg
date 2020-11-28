@@ -19,6 +19,8 @@ class CourseController extends Controller
     {
         $user = Auth::user();
         $courses = $user->allCoursesWithDetails;
+        //foreach course I need the task that should be active
+        //[course.name, course.pivot.owner, course.pivot.progress, course.pivot.points, course.tasks.enabledTask]
 
         return Inertia::render( 'Courses/Index', [
             'courses'=>$courses
