@@ -80,4 +80,13 @@ class Course extends Model
     public function hasTasks(){
         return !$this->tasks->isEmpty();
     }
+
+    public function taskIndexInCourse($taskId){
+        $tasks = $this->tasks;
+        return $tasks->search(
+            function ($item, $key) use ($taskId) {
+                return $item->id == $taskId;
+            }
+        );
+    }
 }

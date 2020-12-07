@@ -63,15 +63,19 @@ class TaskController extends Controller
         $teacher = $team->owner->name;
         $course = $team->course;
         $tasks = $course->tasks;
-        $positions = $tasks->pluck('id');
         $task = Task::find($taskId);
+        $userPositionInCourse = $request->user()->courseProgress($team->id);
         $coursePoints = $request->user()->coursePoints($course->id);
-        $courseProgress = $request->user()->courseProgress($course->id);//todo progress from position
+        $courseProgress = $course->progressFromPosition($userPositionInCourse);
+        $allowedIds = $tasks->slice(0, $courseProgress['position'])->pluck('id');
+        $taskIndexInCourse = $course->taskIndexInCourse($taskId);
+        $previous = $taskIndexInCourse>0? $tasks[$taskIndexInCourse-1]->id: null;
+        $next = $taskIndexInCourse<=$tasks->count()? $tasks[$taskIndexInCourse+1]->id: null;
 
         return Jetstream::inertia()->render($request, 'Tasks/Show', [
             'teacher' => $teacher,
             'tasks'=>$tasks,
-            'allowedIds'=>[12,8],
+            'allowedIds'=>$allowedIds,
             'task'=>[
                 'chapter'=>'Tengo que migrar la db!!',
                 'name'=>$task->name,
@@ -79,8 +83,8 @@ class TaskController extends Controller
                 'type'=> $task->type,
                 'content' =>$task->properties,
                 'points'=>$task->points,
-                'previousId'=>12,
-                'nextId'=>13
+                'previousId'=>$previous,
+                'nextId'=>$next
             ],
             'courseName'=> $team->name,
             'courseId'=> $course->id,
