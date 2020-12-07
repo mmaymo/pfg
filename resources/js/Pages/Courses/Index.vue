@@ -20,6 +20,10 @@
 
                                 <p>Profesor: {{ course.owner }}</p>
                                 <p>Progreso: {{course.progress.position}}/{{course.progress.total}}</p>
+                                <div v-if="course.owner === $page.user.name">
+                                    <button><a :href="route('courses.show', course.id)">Edita curso</a></button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
