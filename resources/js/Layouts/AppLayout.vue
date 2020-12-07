@@ -42,9 +42,6 @@
 
                                 <template #content>
                                     <!-- Account Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        Configuración del perfil
-                                    </div>
 
                                     <jet-dropdown-link :href="route('profile.show')">
                                         Perfil
@@ -58,15 +55,8 @@
 
                                     <!-- Team Management -->
                                     <template v-if="$page.jetstream.hasTeamFeatures">
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Configuración del curso
-                                        </div>
 
                                         <!-- Team Settings -->
-                                        <jet-dropdown-link :href="route('courses.show', $page.user.current_team)">
-                                            Ajustes del curso
-                                        </jet-dropdown-link>
-
                                         <jet-dropdown-link :href="route('courses.create')" v-if="$page.jetstream.canCreateTeams">
                                             Crear nuevo curso
                                         </jet-dropdown-link>
