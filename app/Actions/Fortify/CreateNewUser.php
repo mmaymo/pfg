@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
-                $this->addToNonAssigned($user);
+                $this->createTeam($user);
             });
         });
     }
@@ -51,18 +51,5 @@ class CreateNewUser implements CreatesNewUsers
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
-    }
-
-    /**
-     * Add to no course added team.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    protected function addToUnassigned(User $user)
-    {
-        $unassignedTeam = Team::firstOrCreate(['name' => 'Unassigned', 'personal_team'=>true]);
-
-        $user->teams()->attach($unassignedTeam->id, ['role'=>'student']);
     }
 }
