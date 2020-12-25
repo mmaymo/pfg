@@ -16,12 +16,10 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('course_id')->constrained();
+            $table->foreignId('chapter_id')->constrained();
             $table->string('type');
-            $table->integer('position');
             $table->integer('points');
             $table->json('properties');
-            $table->string('chapter');
             $table->timestamps();
             $table->index(['id', 'type']);
         });

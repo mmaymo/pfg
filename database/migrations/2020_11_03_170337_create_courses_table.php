@@ -16,9 +16,11 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->constrained();
+            $table->string('name');
             $table->string('degree')->default('Ingeniería Informática');
             $table->boolean('semester')->default(false);
             $table->string('pic')->default('/images/unedDefault.jpg');
+            $table->string('chaptersPositionArray');
             $table->timestamps();
         });
     }
