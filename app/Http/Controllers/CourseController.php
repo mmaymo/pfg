@@ -205,28 +205,27 @@ class CourseController extends Controller
      * Update the given team's name.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $teamId
+     * @param  int  $courseId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $teamId)
+    public function update(Request $request, $courseId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
-        $course = Course::where('team_id', '=', $teamId);
+        $course = Course::find($courseId);
+        //Gate::forUser($request->user())->authorize('update', $course);
 
-        Gate::forUser($request->user())->authorize('update', $team);
+        $validated = Validator::make($request->all(), [
+            'name' => ['string', 'max:255'],
+            'degree' => ['nullable','string', 'max:255'],
+            'semester' => ['nullable','boolean'],
+            'pic' => ['nullable','string']
+        ])->validateWithBag('updateCourseMain');
 
-        Validator::make($request->all(), [
-            'degree' => ['string', 'max:255'],
-            'semester' => ['boolean'],
-            'pic' => ['string', 'max:255'],
-
-        ])->validateWithBag('updateCourseDetails');
-        $input = $request->all();
-        $course->update(
+        $response = $course->update(
             [
-                'degree' => $input['degree'],
-                'semester' => $input['semester'],
-                'pic' => $input['pic'],
+                'name' => $validated['name'],
+                'degree' => $validated['degree'],
+                'semester' => $validated['semester'],
+                'pic' => $validated['pic'],
             ]
         );
 

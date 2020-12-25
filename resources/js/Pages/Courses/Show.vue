@@ -10,9 +10,8 @@
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <page-separator :title="'Información básica'" />
-                <update-team-name-form :team="team" :permissions="permissions" />
+                <update-course-form :course="course.courseDetails" />
                 <jet-section-border />
-                <update-course-details-form :team="team" :course="course" :permissions="permissions" />
 
                <!-- <course-member-manager class="mt-10 sm:mt-0"
                             :team="team"
@@ -36,19 +35,12 @@
     import AppLayout from './../../Layouts/AppLayout'
     import DeleteTeamForm from './DeleteTeamForm'
     import JetSectionBorder from './../../Jetstream/SectionBorder'
-    import UpdateTeamNameForm from './UpdateTeamNameForm'
-    import UpdateCourseDetailsForm from "./UpdateCourseDetailsForm"
-
+    import UpdateCourseForm from './UpdateCourseForm'
     import PageSeparator from '../../Ui/PageSeparator.vue'
 
     export default {
         props: [
-            'team',
             'course',
-            'availableRoles',
-            'permissions',
-            'coursePoints',
-            'courseProgress'
         ],
 
         components: {
@@ -56,8 +48,7 @@
             DeleteTeamForm,
             JetSectionBorder,
             CourseMemberManager,
-            UpdateTeamNameForm,
-            UpdateCourseDetailsForm,
+            UpdateCourseForm,
             PageSeparator
         },
     }

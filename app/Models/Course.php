@@ -17,6 +17,7 @@ class Course extends Model
     protected $fillable
         = [
             'team_id',
+            'name',
             'degree',
             'semester',
             'pic'

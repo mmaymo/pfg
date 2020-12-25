@@ -40093,6 +40093,373 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
+/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
+/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
+/* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
+/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_0__["default"],
+    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_5__["default"],
+    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_7__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_8__["default"],
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_9__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_10__["default"],
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_11__["default"]
+  },
+  props: ['course'],
+  data: function data() {
+    return {
+      addTeamMemberForm: this.$inertia.form({
+        email: '',
+        role: null
+      }, {
+        bag: 'addTeamMember',
+        resetOnSuccess: true
+      }),
+      updateRoleForm: this.$inertia.form({
+        role: null
+      }, {
+        bag: 'updateRole',
+        resetOnSuccess: false
+      }),
+      leaveTeamForm: this.$inertia.form({//
+      }, {
+        bag: 'leaveTeam'
+      }),
+      removeTeamMemberForm: this.$inertia.form({//
+      }, {
+        bag: 'removeTeamMember'
+      }),
+      currentlyManagingRole: false,
+      managingRoleFor: null,
+      confirmingLeavingTeam: false,
+      teamMemberBeingRemoved: null
+    };
+  },
+  methods: {
+    addTeamMember: function addTeamMember() {
+      this.addTeamMemberForm.post(route('team-members.store', this.team), {
+        preserveScroll: true
+      });
+    },
+    manageRole: function manageRole(teamMember) {
+      this.managingRoleFor = teamMember;
+      this.updateRoleForm.role = teamMember.membership.role;
+      this.currentlyManagingRole = true;
+    },
+    updateRole: function updateRole() {
+      var _this = this;
+
+      this.updateRoleForm.put(route('team-members.update', [this.team, this.managingRoleFor]), {
+        preserveScroll: true
+      }).then(function () {
+        _this.currentlyManagingRole = false;
+      });
+    },
+    confirmLeavingTeam: function confirmLeavingTeam() {
+      this.confirmingLeavingTeam = true;
+    },
+    leaveTeam: function leaveTeam() {
+      this.leaveTeamForm["delete"](route('team-members.destroy', [this.team, this.$page.user]));
+    },
+    confirmTeamMemberRemoval: function confirmTeamMemberRemoval(teamMember) {
+      this.teamMemberBeingRemoved = teamMember;
+    },
+    removeTeamMember: function removeTeamMember() {
+      var _this2 = this;
+
+      this.removeTeamMemberForm["delete"](route('team-members.destroy', [this.team, this.teamMemberBeingRemoved]), {
+        preserveScroll: true,
+        preserveState: true
+      }).then(function () {
+        _this2.teamMemberBeingRemoved = null;
+      });
+    },
+    displayableRole: function displayableRole(role) {
+      return this.availableRoles.find(function (r) {
+        return r.key == role;
+      }).name;
+    },
+    userPoints: function userPoints(userId) {
+      var points = 0;
+      this.coursePoints.forEach(function (user) {
+        if (user.id === userId) {
+          points = user.pivot.points;
+        }
+      });
+      return points;
+    },
+    userProgress: function userProgress(userId) {
+      var progress = 0;
+      this.courseProgress.forEach(function (user) {
+        if (user.id === userId) {
+          progress = user.pivot.progress;
+        }
+      });
+      return progress;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/CourseNameFields.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/CourseNameFields.vue?vue&type=script&lang=js& ***!
@@ -40105,18 +40472,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -40158,6 +40513,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _CreateCourseForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateCourseForm */ "./resources/js/Pages/Courses/CreateCourseForm.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+/* harmony import */ var _CourseMemberManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CourseMemberManager */ "./resources/js/Pages/Courses/CourseMemberManager.vue");
 //
 //
 //
@@ -40174,15 +40530,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['team'],
+  props: ['course'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     CreateCourseForm: _CreateCourseForm__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_2__["default"]
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_2__["default"],
+    CourseMemberManager: _CourseMemberManager__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
@@ -40508,13 +40866,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TeamMemberManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TeamMemberManager */ "./resources/js/Pages/Courses/TeamMemberManager.vue");
+/* harmony import */ var _CourseMemberManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CourseMemberManager */ "./resources/js/Pages/Courses/CourseMemberManager.vue");
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _DeleteTeamForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DeleteTeamForm */ "./resources/js/Pages/Courses/DeleteTeamForm.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-/* harmony import */ var _UpdateTeamNameForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateTeamNameForm */ "./resources/js/Pages/Courses/UpdateTeamNameForm.vue");
-/* harmony import */ var _UpdateCourseDetailsForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./UpdateCourseDetailsForm */ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue");
-/* harmony import */ var _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Ui/PageSeparator.vue */ "./resources/js/Ui/PageSeparator.vue");
+/* harmony import */ var _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./UpdateCourseForm */ "./resources/js/Pages/Courses/UpdateCourseForm.vue");
+/* harmony import */ var _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Ui/PageSeparator.vue */ "./resources/js/Ui/PageSeparator.vue");
 //
 //
 //
@@ -40547,9 +40904,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-
 
 
 
@@ -40557,15 +40911,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['team', 'course', 'availableRoles', 'permissions', 'coursePoints', 'courseProgress'],
+  props: ['course'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
     DeleteTeamForm: _DeleteTeamForm__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"],
-    TeamMemberManager: _TeamMemberManager__WEBPACK_IMPORTED_MODULE_0__["default"],
-    UpdateTeamNameForm: _UpdateTeamNameForm__WEBPACK_IMPORTED_MODULE_4__["default"],
-    UpdateCourseDetailsForm: _UpdateCourseDetailsForm__WEBPACK_IMPORTED_MODULE_5__["default"],
-    PageSeparator: _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    CourseMemberManager: _CourseMemberManager__WEBPACK_IMPORTED_MODULE_0__["default"],
+    UpdateCourseForm: _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_6__["default"],
+    PageSeparator: _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
 
@@ -40607,374 +40960,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ['team', 'courseName', 'courseId', 'courseProgress', 'coursePoints', 'tasks', 'task'],
   data: function data() {
     return {};
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
-/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
-/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
-/* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
-/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
-/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
-/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
-/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
-    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_3__["default"],
-    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_5__["default"],
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_6__["default"],
-    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_7__["default"],
-    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_8__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_9__["default"],
-    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_10__["default"],
-    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_11__["default"]
-  },
-  props: ['team', 'availableRoles', 'userPermissions', 'coursePoints', 'courseProgress'],
-  data: function data() {
-    return {
-      addTeamMemberForm: this.$inertia.form({
-        email: '',
-        role: null
-      }, {
-        bag: 'addTeamMember',
-        resetOnSuccess: true
-      }),
-      updateRoleForm: this.$inertia.form({
-        role: null
-      }, {
-        bag: 'updateRole',
-        resetOnSuccess: false
-      }),
-      leaveTeamForm: this.$inertia.form({//
-      }, {
-        bag: 'leaveTeam'
-      }),
-      removeTeamMemberForm: this.$inertia.form({//
-      }, {
-        bag: 'removeTeamMember'
-      }),
-      currentlyManagingRole: false,
-      managingRoleFor: null,
-      confirmingLeavingTeam: false,
-      teamMemberBeingRemoved: null
-    };
-  },
-  methods: {
-    addTeamMember: function addTeamMember() {
-      this.addTeamMemberForm.post(route('team-members.store', this.team), {
-        preserveScroll: true
-      });
-    },
-    manageRole: function manageRole(teamMember) {
-      this.managingRoleFor = teamMember;
-      this.updateRoleForm.role = teamMember.membership.role;
-      this.currentlyManagingRole = true;
-    },
-    updateRole: function updateRole() {
-      var _this = this;
-
-      this.updateRoleForm.put(route('team-members.update', [this.team, this.managingRoleFor]), {
-        preserveScroll: true
-      }).then(function () {
-        _this.currentlyManagingRole = false;
-      });
-    },
-    confirmLeavingTeam: function confirmLeavingTeam() {
-      this.confirmingLeavingTeam = true;
-    },
-    leaveTeam: function leaveTeam() {
-      this.leaveTeamForm["delete"](route('team-members.destroy', [this.team, this.$page.user]));
-    },
-    confirmTeamMemberRemoval: function confirmTeamMemberRemoval(teamMember) {
-      this.teamMemberBeingRemoved = teamMember;
-    },
-    removeTeamMember: function removeTeamMember() {
-      var _this2 = this;
-
-      this.removeTeamMemberForm["delete"](route('team-members.destroy', [this.team, this.teamMemberBeingRemoved]), {
-        preserveScroll: true,
-        preserveState: true
-      }).then(function () {
-        _this2.teamMemberBeingRemoved = null;
-      });
-    },
-    displayableRole: function displayableRole(role) {
-      return this.availableRoles.find(function (r) {
-        return r.key == role;
-      }).name;
-    },
-    userPoints: function userPoints(userId) {
-      var points = 0;
-      this.coursePoints.forEach(function (user) {
-        if (user.id === userId) {
-          points = user.pivot.points;
-        }
-      });
-      return points;
-    },
-    userProgress: function userProgress(userId) {
-      var progress = 0;
-      this.courseProgress.forEach(function (user) {
-        if (user.id === userId) {
-          progress = user.pivot.progress;
-        }
-      });
-      return progress;
-    }
   }
 });
 
@@ -41053,10 +41038,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -41068,6 +41053,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _CourseNameFields__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CourseNameFields */ "./resources/js/Pages/Courses/CourseNameFields.vue");
+/* harmony import */ var _DetailsCourseFields__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DetailsCourseFields */ "./resources/js/Pages/Courses/DetailsCourseFields.vue");
 //
 //
 //
@@ -41088,30 +41075,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 
@@ -41125,22 +41090,29 @@ __webpack_require__.r(__webpack_exports__);
     JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__["default"]
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__["default"],
+    CourseNameFields: _CourseNameFields__WEBPACK_IMPORTED_MODULE_6__["default"],
+    DetailsCourseFields: _DetailsCourseFields__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
-  props: ['team', 'permissions'],
+  props: ['course'],
   data: function data() {
     return {
       form: this.$inertia.form({
-        name: this.team.name
+        name: this.course.name,
+        degree: this.course.degree,
+        semester: this.course.semester,
+        pic: this.course.pic
       }, {
-        bag: 'updateTeamName',
+        bag: 'updateCourseMain',
         resetOnSuccess: false
       })
     };
   },
   methods: {
     updateTeamName: function updateTeamName() {
-      this.form.put(route('teams.update', this.team), {
+      this.form.put(route('courses.update', {
+        'course': this.course.id
+      }), {
         preserveScroll: true
       });
     }
@@ -85093,6 +85065,429 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=template&id=cdd82670&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=template&id=cdd82670& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        [
+          _c("jet-section-border"),
+          _vm._v(" "),
+          _c("jet-form-section", {
+            on: { submitted: _vm.addTeamMember },
+            scopedSlots: _vm._u([
+              {
+                key: "title",
+                fn: function() {
+                  return [
+                    _vm._v("\n                Añadir Alumno\n            ")
+                  ]
+                },
+                proxy: true
+              },
+              {
+                key: "description",
+                fn: function() {
+                  return [
+                    _vm._v(
+                      "\n                Añadir un alumno a este curso\n            "
+                    )
+                  ]
+                },
+                proxy: true
+              },
+              {
+                key: "form",
+                fn: function() {
+                  return [
+                    _c("div", { staticClass: "col-span-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "max-w-xl text-sm text-gray-600" },
+                        [
+                          _vm._v(
+                            "\n                        Introduzca el email de la persona que desee añadir. El email debe estar ya asociado a una cuenta.\n                    "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-span-6 sm:col-span-4" },
+                      [
+                        _c("jet-label", {
+                          attrs: { for: "email", value: "Email" }
+                        }),
+                        _vm._v(" "),
+                        _c("jet-input", {
+                          staticClass: "mt-1 block w-full",
+                          attrs: { id: "email", type: "text" },
+                          model: {
+                            value: _vm.addTeamMemberForm.email,
+                            callback: function($$v) {
+                              _vm.$set(_vm.addTeamMemberForm, "email", $$v)
+                            },
+                            expression: "addTeamMemberForm.email"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("jet-input-error", {
+                          staticClass: "mt-2",
+                          attrs: {
+                            message: _vm.addTeamMemberForm.error("email")
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                },
+                proxy: true
+              },
+              {
+                key: "actions",
+                fn: function() {
+                  return [
+                    _c(
+                      "jet-action-message",
+                      {
+                        staticClass: "mr-3",
+                        attrs: { on: _vm.addTeamMemberForm.recentlySuccessful }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Añadido.\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "jet-button",
+                      {
+                        class: {
+                          "opacity-25": _vm.addTeamMemberForm.processing
+                        },
+                        attrs: { disabled: _vm.addTeamMemberForm.processing }
+                      },
+                      [_vm._v("\n                    Añadir\n                ")]
+                    )
+                  ]
+                },
+                proxy: true
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.course.students && _vm.course.students.length > 0
+        ? _c(
+            "div",
+            [
+              _c("jet-section-border"),
+              _vm._v(" "),
+              _c("jet-action-section", {
+                staticClass: "mt-10 sm:mt-0",
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "title",
+                      fn: function() {
+                        return [
+                          _vm._v(
+                            "\n                Alumnos registrados\n            "
+                          )
+                        ]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "description",
+                      fn: function() {
+                        return [
+                          _vm._v(
+                            "\n                todos los alumnos registrados en el curso\n            "
+                          )
+                        ]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "content",
+                      fn: function() {
+                        return [
+                          _c(
+                            "div",
+                            { staticClass: "space-y-6" },
+                            _vm._l(_vm.course.students, function(user) {
+                              return _c(
+                                "div",
+                                {
+                                  key: user.id,
+                                  staticClass:
+                                    "flex items-center justify-between"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex items-center" },
+                                    [
+                                      _c("img", {
+                                        staticClass: "w-8 h-8 rounded-full",
+                                        attrs: {
+                                          src: user.profile_photo_url,
+                                          alt: user.name
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "ml-4" }, [
+                                        _vm._v(_vm._s(user.name))
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex items-center" },
+                                    [
+                                      _c("div", { staticClass: "ml-4" }, [
+                                        _vm._v(_vm._s(user.points) + " Puntos")
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex items-center" },
+                                    [
+                                      _c("div", { staticClass: "ml-4" }, [
+                                        _vm._v(
+                                          "Progreso: " +
+                                            _vm._s(user.progress / 100) +
+                                            "%"
+                                        )
+                                      ])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "flex items-center" },
+                                    [
+                                      _vm.$page.user.id === user.id
+                                        ? _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                                              on: {
+                                                click: _vm.confirmLeavingTeam
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                Abandonar curso\n                            "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e(),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.confirmTeamMemberRemoval(
+                                                user
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                Eliminar\n                            "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ],
+                  null,
+                  false,
+                  3206865931
+                )
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("jet-confirmation-modal", {
+        attrs: { show: _vm.confirmingLeavingTeam },
+        on: {
+          close: function($event) {
+            _vm.confirmingLeavingTeam = false
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v("\n            Dejar curso\n        ")]
+            },
+            proxy: true
+          },
+          {
+            key: "content",
+            fn: function() {
+              return [
+                _vm._v(
+                  "\n            ¿Está seguro de que quiere abandonar este curso?\n        "
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "footer",
+            fn: function() {
+              return [
+                _c(
+                  "jet-secondary-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        _vm.confirmingLeavingTeam = false
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Cerrar sin cambios\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-danger-button",
+                  {
+                    staticClass: "ml-2",
+                    class: { "opacity-25": _vm.leaveTeamForm.processing },
+                    attrs: { disabled: _vm.leaveTeamForm.processing },
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.leaveTeam($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Abandonar curso\n            ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c("jet-confirmation-modal", {
+        attrs: { show: _vm.teamMemberBeingRemoved },
+        on: {
+          close: function($event) {
+            _vm.teamMemberBeingRemoved = null
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v("\n            Eliminar alumno\n        ")]
+            },
+            proxy: true
+          },
+          {
+            key: "content",
+            fn: function() {
+              return [
+                _vm._v(
+                  "\n            ¿Está seguro de que quiere eliminar a este alumno del curso?\n        "
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "footer",
+            fn: function() {
+              return [
+                _c(
+                  "jet-secondary-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        _vm.teamMemberBeingRemoved = null
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Cerrar sin guardar\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-danger-button",
+                  {
+                    staticClass: "ml-2",
+                    class: {
+                      "opacity-25": _vm.removeTeamMemberForm.processing
+                    },
+                    attrs: { disabled: _vm.removeTeamMemberForm.processing },
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.removeTeamMember($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Eliminar\n            ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/CourseNameFields.vue?vue&type=template&id=6ea02a42&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/CourseNameFields.vue?vue&type=template&id=6ea02a42& ***!
@@ -85109,33 +85504,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "col-span-6" },
-      [
-        _c("jet-label", { attrs: { value: "Responsable del curso" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-center mt-2" }, [
-          _c("img", {
-            staticClass: "w-12 h-12 rounded-full object-cover",
-            attrs: {
-              src: _vm.$page.user.profile_photo_url,
-              alt: _vm.$page.user.name
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "ml-4 leading-tight" }, [
-            _c("div", [_vm._v(_vm._s(_vm.$page.user.name))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-gray-700 text-sm" }, [
-              _vm._v(_vm._s(_vm.$page.user.email))
-            ])
-          ])
-        ])
-      ],
-      1
-    ),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "col-span-6 sm:col-span-4" },
@@ -85738,43 +86106,13 @@ var render = function() {
           [
             _c("page-separator", { attrs: { title: "Información básica" } }),
             _vm._v(" "),
-            _c("update-team-name-form", {
-              attrs: { team: _vm.team, permissions: _vm.permissions }
+            _c("update-course-form", {
+              attrs: { course: _vm.course.courseDetails }
             }),
             _vm._v(" "),
-            _c("jet-section-border"),
-            _vm._v(" "),
-            _c("update-course-details-form", {
-              attrs: {
-                team: _vm.team,
-                course: _vm.course,
-                permissions: _vm.permissions
-              }
-            }),
-            _vm._v(" "),
-            _c("team-member-manager", {
-              staticClass: "mt-10 sm:mt-0",
-              attrs: {
-                team: _vm.team,
-                "course-points": _vm.coursePoints,
-                "course-progress": _vm.courseProgress,
-                "available-roles": _vm.availableRoles,
-                "user-permissions": _vm.permissions
-              }
-            }),
-            _vm._v(" "),
-            _vm.permissions.canDeleteTeam && !_vm.team.personal_team
-              ? [
-                  _c("jet-section-border"),
-                  _vm._v(" "),
-                  _c("delete-team-form", {
-                    staticClass: "mt-10 sm:mt-0",
-                    attrs: { team: _vm.team }
-                  })
-                ]
-              : _vm._e()
+            _c("jet-section-border")
           ],
-          2
+          1
         )
       ])
     ]
@@ -85835,806 +86173,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=template&id=b9862674&":
-/*!***********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=template&id=b9862674& ***!
-  \***********************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.userPermissions.canAddTeamMembers
-        ? _c(
-            "div",
-            [
-              _c("jet-section-border"),
-              _vm._v(" "),
-              _c("jet-form-section", {
-                on: { submitted: _vm.addTeamMember },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "title",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                Añadir Alumno\n            "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "description",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                Añadir un alumno a este curso\n            "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "form",
-                      fn: function() {
-                        return [
-                          _c("div", { staticClass: "col-span-6" }, [
-                            _c(
-                              "div",
-                              { staticClass: "max-w-xl text-sm text-gray-600" },
-                              [
-                                _vm._v(
-                                  "\n                        Introduzca el email de la persona que desee añadir. El email debe estar ya asociado a una cuenta.\n                    "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "col-span-6 sm:col-span-4" },
-                            [
-                              _c("jet-label", {
-                                attrs: { for: "email", value: "Email" }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input", {
-                                staticClass: "mt-1 block w-full",
-                                attrs: { id: "email", type: "text" },
-                                model: {
-                                  value: _vm.addTeamMemberForm.email,
-                                  callback: function($$v) {
-                                    _vm.$set(
-                                      _vm.addTeamMemberForm,
-                                      "email",
-                                      $$v
-                                    )
-                                  },
-                                  expression: "addTeamMemberForm.email"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("jet-input-error", {
-                                staticClass: "mt-2",
-                                attrs: {
-                                  message: _vm.addTeamMemberForm.error("email")
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _vm.availableRoles.length > 0
-                            ? _c(
-                                "div",
-                                { staticClass: "col-span-6 lg:col-span-4" },
-                                [
-                                  _c("jet-label", {
-                                    attrs: { for: "roles", value: "Role" }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("jet-input-error", {
-                                    staticClass: "mt-2",
-                                    attrs: {
-                                      message: _vm.addTeamMemberForm.error(
-                                        "role"
-                                      )
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "mt-1 border border-gray-200 rounded-lg cursor-pointer"
-                                    },
-                                    _vm._l(_vm.availableRoles, function(
-                                      role,
-                                      i
-                                    ) {
-                                      return _c(
-                                        "div",
-                                        {
-                                          key: i,
-                                          staticClass: "px-4 py-3",
-                                          class: {
-                                            "border-t border-gray-200": i > 0
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.addTeamMemberForm.role =
-                                                role.key
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              class: {
-                                                "opacity-50":
-                                                  _vm.addTeamMemberForm.role &&
-                                                  _vm.addTeamMemberForm.role !=
-                                                    role.key
-                                              }
-                                            },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "flex items-center"
-                                                },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "text-sm text-gray-600",
-                                                      class: {
-                                                        "font-semibold":
-                                                          _vm.addTeamMemberForm
-                                                            .role == role.key
-                                                      }
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                                        " +
-                                                          _vm._s(role.name) +
-                                                          "\n                                    "
-                                                      )
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _vm.addTeamMemberForm.role ==
-                                                  role.key
-                                                    ? _c(
-                                                        "svg",
-                                                        {
-                                                          staticClass:
-                                                            "ml-2 h-5 w-5 text-green-400",
-                                                          attrs: {
-                                                            fill: "none",
-                                                            "stroke-linecap":
-                                                              "round",
-                                                            "stroke-linejoin":
-                                                              "round",
-                                                            "stroke-width": "2",
-                                                            stroke:
-                                                              "currentColor",
-                                                            viewBox: "0 0 24 24"
-                                                          }
-                                                        },
-                                                        [
-                                                          _c("path", {
-                                                            attrs: {
-                                                              d:
-                                                                "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                            }
-                                                          })
-                                                        ]
-                                                      )
-                                                    : _vm._e()
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "mt-2 text-xs text-gray-600"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    "\n                                    " +
-                                                      _vm._s(role.description) +
-                                                      "\n                                "
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
-                                    }),
-                                    0
-                                  )
-                                ],
-                                1
-                              )
-                            : _vm._e()
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "actions",
-                      fn: function() {
-                        return [
-                          _c(
-                            "jet-action-message",
-                            {
-                              staticClass: "mr-3",
-                              attrs: {
-                                on: _vm.addTeamMemberForm.recentlySuccessful
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Añadido.\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "jet-button",
-                            {
-                              class: {
-                                "opacity-25": _vm.addTeamMemberForm.processing
-                              },
-                              attrs: {
-                                disabled: _vm.addTeamMemberForm.processing
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Añadir\n                "
-                              )
-                            ]
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  ],
-                  null,
-                  false,
-                  137111120
-                )
-              })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.team.users.length > 0
-        ? _c(
-            "div",
-            [
-              _c("jet-section-border"),
-              _vm._v(" "),
-              _c("jet-action-section", {
-                staticClass: "mt-10 sm:mt-0",
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "title",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                Alumnos registrados\n            "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "description",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                todos los alumnos registrados en el curso\n            "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "content",
-                      fn: function() {
-                        return [
-                          _c(
-                            "div",
-                            { staticClass: "space-y-6" },
-                            _vm._l(_vm.team.users, function(user) {
-                              return _c(
-                                "div",
-                                {
-                                  key: user.id,
-                                  staticClass:
-                                    "flex items-center justify-between"
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    { staticClass: "flex items-center" },
-                                    [
-                                      _c("img", {
-                                        staticClass: "w-8 h-8 rounded-full",
-                                        attrs: {
-                                          src: user.profile_photo_url,
-                                          alt: user.name
-                                        }
-                                      }),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "ml-4" }, [
-                                        _vm._v(_vm._s(user.name))
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "flex items-center" },
-                                    [
-                                      _c("div", { staticClass: "ml-4" }, [
-                                        _vm._v(
-                                          _vm._s(_vm.userPoints(user.id)) +
-                                            " Puntos"
-                                        )
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "flex items-center" },
-                                    [
-                                      _c("div", { staticClass: "ml-4" }, [
-                                        _vm._v(
-                                          "Progreso: " +
-                                            _vm._s(_vm.userProgress(user.id)) +
-                                            "%"
-                                        )
-                                      ])
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "flex items-center" },
-                                    [
-                                      _vm.userPermissions.canAddTeamMembers &&
-                                      _vm.availableRoles.length
-                                        ? _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "ml-2 text-sm text-gray-400 underline",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.manageRole(user)
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                " +
-                                                  _vm._s(
-                                                    _vm.displayableRole(
-                                                      user.membership.role
-                                                    )
-                                                  ) +
-                                                  "\n                            "
-                                              )
-                                            ]
-                                          )
-                                        : _vm.availableRoles.length
-                                        ? _c(
-                                            "div",
-                                            {
-                                              staticClass:
-                                                "ml-2 text-sm text-gray-400"
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                " +
-                                                  _vm._s(
-                                                    _vm.displayableRole(
-                                                      user.membership.role
-                                                    )
-                                                  ) +
-                                                  "\n                            "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.$page.user.id === user.id
-                                        ? _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                                              on: {
-                                                click: _vm.confirmLeavingTeam
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                Abandonar curso\n                            "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e(),
-                                      _vm._v(" "),
-                                      _vm.userPermissions.canRemoveTeamMembers
-                                        ? _c(
-                                            "button",
-                                            {
-                                              staticClass:
-                                                "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                                              on: {
-                                                click: function($event) {
-                                                  return _vm.confirmTeamMemberRemoval(
-                                                    user
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                Eliminar\n                            "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  )
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  ],
-                  null,
-                  false,
-                  2398353194
-                )
-              })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("jet-dialog-modal", {
-        attrs: { show: _vm.currentlyManagingRole },
-        on: {
-          close: function($event) {
-            _vm.currentlyManagingRole = false
-          }
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "title",
-            fn: function() {
-              return [_vm._v("\n            Gestión de permisos\n        ")]
-            },
-            proxy: true
-          },
-          {
-            key: "content",
-            fn: function() {
-              return [
-                _vm.managingRoleFor
-                  ? _c("div", [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "mt-1 border border-gray-200 rounded-lg cursor-pointer"
-                        },
-                        _vm._l(_vm.availableRoles, function(role, i) {
-                          return _c(
-                            "div",
-                            {
-                              key: i,
-                              staticClass: "px-4 py-3",
-                              class: { "border-t border-gray-200": i > 0 },
-                              on: {
-                                click: function($event) {
-                                  _vm.updateRoleForm.role = role.key
-                                }
-                              }
-                            },
-                            [
-                              _c(
-                                "div",
-                                {
-                                  class: {
-                                    "opacity-50":
-                                      _vm.updateRoleForm.role &&
-                                      _vm.updateRoleForm.role != role.key
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "div",
-                                    { staticClass: "flex items-center" },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "text-sm text-gray-600",
-                                          class: {
-                                            "font-semibold":
-                                              _vm.updateRoleForm.role ==
-                                              role.key
-                                          }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                    " +
-                                              _vm._s(role.name) +
-                                              "\n                                "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm.updateRoleForm.role == role.key
-                                        ? _c(
-                                            "svg",
-                                            {
-                                              staticClass:
-                                                "ml-2 h-5 w-5 text-green-400",
-                                              attrs: {
-                                                fill: "none",
-                                                "stroke-linecap": "round",
-                                                "stroke-linejoin": "round",
-                                                "stroke-width": "2",
-                                                stroke: "currentColor",
-                                                viewBox: "0 0 24 24"
-                                              }
-                                            },
-                                            [
-                                              _c("path", {
-                                                attrs: {
-                                                  d:
-                                                    "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                }
-                                              })
-                                            ]
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass: "mt-2 text-xs text-gray-600"
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(role.description) +
-                                          "\n                            "
-                                      )
-                                    ]
-                                  )
-                                ]
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ])
-                  : _vm._e()
-              ]
-            },
-            proxy: true
-          },
-          {
-            key: "footer",
-            fn: function() {
-              return [
-                _c(
-                  "jet-secondary-button",
-                  {
-                    nativeOn: {
-                      click: function($event) {
-                        _vm.currentlyManagingRole = false
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Cerrar sin cambios\n            ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "jet-button",
-                  {
-                    staticClass: "ml-2",
-                    class: { "opacity-25": _vm.updateRoleForm.processing },
-                    attrs: { disabled: _vm.updateRoleForm.processing },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.updateRole($event)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Guardar\n            ")]
-                )
-              ]
-            },
-            proxy: true
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c("jet-confirmation-modal", {
-        attrs: { show: _vm.confirmingLeavingTeam },
-        on: {
-          close: function($event) {
-            _vm.confirmingLeavingTeam = false
-          }
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "title",
-            fn: function() {
-              return [_vm._v("\n            Dejar curso\n        ")]
-            },
-            proxy: true
-          },
-          {
-            key: "content",
-            fn: function() {
-              return [
-                _vm._v(
-                  "\n            ¿Está seguro de que quiere abandonar este curso?\n        "
-                )
-              ]
-            },
-            proxy: true
-          },
-          {
-            key: "footer",
-            fn: function() {
-              return [
-                _c(
-                  "jet-secondary-button",
-                  {
-                    nativeOn: {
-                      click: function($event) {
-                        _vm.confirmingLeavingTeam = false
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Cerrar sin cambios\n            ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "jet-danger-button",
-                  {
-                    staticClass: "ml-2",
-                    class: { "opacity-25": _vm.leaveTeamForm.processing },
-                    attrs: { disabled: _vm.leaveTeamForm.processing },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.leaveTeam($event)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Abandonar curso\n            ")]
-                )
-              ]
-            },
-            proxy: true
-          }
-        ])
-      }),
-      _vm._v(" "),
-      _c("jet-confirmation-modal", {
-        attrs: { show: _vm.teamMemberBeingRemoved },
-        on: {
-          close: function($event) {
-            _vm.teamMemberBeingRemoved = null
-          }
-        },
-        scopedSlots: _vm._u([
-          {
-            key: "title",
-            fn: function() {
-              return [_vm._v("\n            Eliminar alumno\n        ")]
-            },
-            proxy: true
-          },
-          {
-            key: "content",
-            fn: function() {
-              return [
-                _vm._v(
-                  "\n            ¿Está seguro de que quiere eliminar a este alumno del curso?\n        "
-                )
-              ]
-            },
-            proxy: true
-          },
-          {
-            key: "footer",
-            fn: function() {
-              return [
-                _c(
-                  "jet-secondary-button",
-                  {
-                    nativeOn: {
-                      click: function($event) {
-                        _vm.teamMemberBeingRemoved = null
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Cerrar sin guardar\n            ")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "jet-danger-button",
-                  {
-                    staticClass: "ml-2",
-                    class: {
-                      "opacity-25": _vm.removeTeamMemberForm.processing
-                    },
-                    attrs: { disabled: _vm.removeTeamMemberForm.processing },
-                    nativeOn: {
-                      click: function($event) {
-                        return _vm.removeTeamMember($event)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Eliminar\n            ")]
-                )
-              ]
-            },
-            proxy: true
-          }
-        ])
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c& ***!
@@ -86652,68 +86190,62 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("jet-form-section", {
     on: { submitted: _vm.updateCourseDetails },
-    scopedSlots: _vm._u(
-      [
-        {
-          key: "title",
-          fn: function() {
-            return [_vm._v("\n        Detalles del curso editado\n    ")]
-          },
-          proxy: true
+    scopedSlots: _vm._u([
+      {
+        key: "title",
+        fn: function() {
+          return [_vm._v("\n        Detalles del curso editado\n    ")]
         },
-        {
-          key: "description",
-          fn: function() {
-            return [_vm._v("\n        Grado, Semestre y foto del curso.\n    ")]
-          },
-          proxy: true
+        proxy: true
+      },
+      {
+        key: "description",
+        fn: function() {
+          return [_vm._v("\n        Grado, Semestre y foto del curso.\n    ")]
         },
-        {
-          key: "form",
-          fn: function() {
-            return [
-              _c("details-course-fields", {
-                attrs: {
-                  course: _vm.course,
-                  form: _vm.form,
-                  permissions: _vm.permissions
-                }
-              })
-            ]
-          },
-          proxy: true
+        proxy: true
+      },
+      {
+        key: "form",
+        fn: function() {
+          return [
+            _c("details-course-fields", {
+              attrs: {
+                course: _vm.course,
+                form: _vm.form,
+                permissions: _vm.permissions
+              }
+            })
+          ]
         },
-        _vm.permissions.canUpdateTeam
-          ? {
-              key: "actions",
-              fn: function() {
-                return [
-                  _c(
-                    "jet-action-message",
-                    {
-                      staticClass: "mr-3",
-                      attrs: { on: _vm.form.recentlySuccessful }
-                    },
-                    [_vm._v("\n            Salvado.\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-button",
-                    {
-                      class: { "opacity-25": _vm.form.processing },
-                      attrs: { disabled: _vm.form.processing }
-                    },
-                    [_vm._v("\n            Guardar\n        ")]
-                  )
-                ]
+        proxy: true
+      },
+      {
+        key: "actions",
+        fn: function() {
+          return [
+            _c(
+              "jet-action-message",
+              {
+                staticClass: "mr-3",
+                attrs: { on: _vm.form.recentlySuccessful }
               },
-              proxy: true
-            }
-          : null
-      ],
-      null,
-      true
-    )
+              [_vm._v("\n            Salvado.\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "jet-button",
+              {
+                class: { "opacity-25": _vm.form.processing },
+                attrs: { disabled: _vm.form.processing }
+              },
+              [_vm._v("\n            Guardar\n        ")]
+            )
+          ]
+        },
+        proxy: true
+      }
+    ])
   })
 }
 var staticRenderFns = []
@@ -86723,10 +86255,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=template&id=749da5d6&":
-/*!************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=template&id=749da5d6& ***!
-  \************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=template&id=3df71fe8&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=template&id=3df71fe8& ***!
+  \**********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -86740,107 +86272,44 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("jet-form-section", {
     on: { submitted: _vm.updateTeamName },
-    scopedSlots: _vm._u(
-      [
-        {
-          key: "form",
-          fn: function() {
-            return [
-              _c(
-                "div",
-                { staticClass: "col-span-6" },
-                [
-                  _c("jet-label", {
-                    attrs: { value: "Responsable del curso" }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex items-center mt-2" }, [
-                    _c("img", {
-                      staticClass: "w-12 h-12 rounded-full object-cover",
-                      attrs: {
-                        src: _vm.team.owner.profile_photo_url,
-                        alt: _vm.team.owner.name
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "ml-4 leading-tight" }, [
-                      _c("div", [_vm._v(_vm._s(_vm.team.owner.name))]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "text-gray-700 text-sm" }, [
-                        _vm._v(_vm._s(_vm.team.owner.email))
-                      ])
-                    ])
-                  ])
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-span-6 sm:col-span-4" },
-                [
-                  _c("jet-label", {
-                    attrs: { for: "name", value: "Nombre del curso" }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input", {
-                    staticClass: "mt-1 block w-full",
-                    attrs: {
-                      id: "name",
-                      type: "text",
-                      disabled: !_vm.permissions.canUpdateTeam
-                    },
-                    model: {
-                      value: _vm.form.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "name", $$v)
-                      },
-                      expression: "form.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input-error", {
-                    staticClass: "mt-2",
-                    attrs: { message: _vm.form.error("name") }
-                  })
-                ],
-                1
-              )
-            ]
-          },
-          proxy: true
+    scopedSlots: _vm._u([
+      {
+        key: "form",
+        fn: function() {
+          return [
+            _c("courseNameFields", { attrs: { form: _vm.form } }),
+            _vm._v(" "),
+            _c("details-course-fields", { attrs: { form: _vm.form } })
+          ]
         },
-        _vm.permissions.canUpdateTeam
-          ? {
-              key: "actions",
-              fn: function() {
-                return [
-                  _c(
-                    "jet-action-message",
-                    {
-                      staticClass: "mr-3",
-                      attrs: { on: _vm.form.recentlySuccessful }
-                    },
-                    [_vm._v("\n            Saved.\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-button",
-                    {
-                      class: { "opacity-25": _vm.form.processing },
-                      attrs: { disabled: _vm.form.processing }
-                    },
-                    [_vm._v("\n            Guardar\n        ")]
-                  )
-                ]
+        proxy: true
+      },
+      {
+        key: "actions",
+        fn: function() {
+          return [
+            _c(
+              "jet-action-message",
+              {
+                staticClass: "mr-3",
+                attrs: { on: _vm.form.recentlySuccessful }
               },
-              proxy: true
-            }
-          : null
-      ],
-      null,
-      true
-    )
+              [_vm._v("\n            Saved.\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "jet-button",
+              {
+                class: { "opacity-25": _vm.form.processing },
+                attrs: { disabled: _vm.form.processing }
+              },
+              [_vm._v("\n            Guardar\n        ")]
+            )
+          ]
+        },
+        proxy: true
+      }
+    ])
   })
 }
 var staticRenderFns = []
@@ -107156,6 +106625,8 @@ var map = {
 	"./API/ApiTokenManager.vue": "./resources/js/Pages/API/ApiTokenManager.vue",
 	"./API/Index": "./resources/js/Pages/API/Index.vue",
 	"./API/Index.vue": "./resources/js/Pages/API/Index.vue",
+	"./Courses/CourseMemberManager": "./resources/js/Pages/Courses/CourseMemberManager.vue",
+	"./Courses/CourseMemberManager.vue": "./resources/js/Pages/Courses/CourseMemberManager.vue",
 	"./Courses/CourseNameFields": "./resources/js/Pages/Courses/CourseNameFields.vue",
 	"./Courses/CourseNameFields.vue": "./resources/js/Pages/Courses/CourseNameFields.vue",
 	"./Courses/Create": "./resources/js/Pages/Courses/Create.vue",
@@ -107172,12 +106643,10 @@ var map = {
 	"./Courses/Show.vue": "./resources/js/Pages/Courses/Show.vue",
 	"./Courses/ShowContent": "./resources/js/Pages/Courses/ShowContent.vue",
 	"./Courses/ShowContent.vue": "./resources/js/Pages/Courses/ShowContent.vue",
-	"./Courses/TeamMemberManager": "./resources/js/Pages/Courses/TeamMemberManager.vue",
-	"./Courses/TeamMemberManager.vue": "./resources/js/Pages/Courses/TeamMemberManager.vue",
 	"./Courses/UpdateCourseDetailsForm": "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue",
 	"./Courses/UpdateCourseDetailsForm.vue": "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue",
-	"./Courses/UpdateTeamNameForm": "./resources/js/Pages/Courses/UpdateTeamNameForm.vue",
-	"./Courses/UpdateTeamNameForm.vue": "./resources/js/Pages/Courses/UpdateTeamNameForm.vue",
+	"./Courses/UpdateCourseForm": "./resources/js/Pages/Courses/UpdateCourseForm.vue",
+	"./Courses/UpdateCourseForm.vue": "./resources/js/Pages/Courses/UpdateCourseForm.vue",
 	"./Dashboard": "./resources/js/Pages/Dashboard.vue",
 	"./Dashboard.vue": "./resources/js/Pages/Dashboard.vue",
 	"./Profile/DeleteUserForm": "./resources/js/Pages/Profile/DeleteUserForm.vue",
@@ -107371,6 +106840,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_df56dab8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_df56dab8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Courses/CourseMemberManager.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/Pages/Courses/CourseMemberManager.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CourseMemberManager_vue_vue_type_template_id_cdd82670___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CourseMemberManager.vue?vue&type=template&id=cdd82670& */ "./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=template&id=cdd82670&");
+/* harmony import */ var _CourseMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CourseMemberManager.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CourseMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CourseMemberManager_vue_vue_type_template_id_cdd82670___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CourseMemberManager_vue_vue_type_template_id_cdd82670___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Courses/CourseMemberManager.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./CourseMemberManager.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=template&id=cdd82670&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=template&id=cdd82670& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseMemberManager_vue_vue_type_template_id_cdd82670___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CourseMemberManager.vue?vue&type=template&id=cdd82670& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/CourseMemberManager.vue?vue&type=template&id=cdd82670&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseMemberManager_vue_vue_type_template_id_cdd82670___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CourseMemberManager_vue_vue_type_template_id_cdd82670___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -107928,75 +107466,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Courses/TeamMemberManager.vue":
-/*!**********************************************************!*\
-  !*** ./resources/js/Pages/Courses/TeamMemberManager.vue ***!
-  \**********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TeamMemberManager_vue_vue_type_template_id_b9862674___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TeamMemberManager.vue?vue&type=template&id=b9862674& */ "./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=template&id=b9862674&");
-/* harmony import */ var _TeamMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TeamMemberManager.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _TeamMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TeamMemberManager_vue_vue_type_template_id_b9862674___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TeamMemberManager_vue_vue_type_template_id_b9862674___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/Pages/Courses/TeamMemberManager.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TeamMemberManager.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamMemberManager_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=template&id=b9862674&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=template&id=b9862674& ***!
-  \*****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamMemberManager_vue_vue_type_template_id_b9862674___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TeamMemberManager.vue?vue&type=template&id=b9862674& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/TeamMemberManager.vue?vue&type=template&id=b9862674&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamMemberManager_vue_vue_type_template_id_b9862674___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeamMemberManager_vue_vue_type_template_id_b9862674___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue":
 /*!****************************************************************!*\
   !*** ./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue ***!
@@ -108066,17 +107535,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Courses/UpdateTeamNameForm.vue":
-/*!***********************************************************!*\
-  !*** ./resources/js/Pages/Courses/UpdateTeamNameForm.vue ***!
-  \***********************************************************/
+/***/ "./resources/js/Pages/Courses/UpdateCourseForm.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/Pages/Courses/UpdateCourseForm.vue ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UpdateTeamNameForm_vue_vue_type_template_id_749da5d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateTeamNameForm.vue?vue&type=template&id=749da5d6& */ "./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=template&id=749da5d6&");
-/* harmony import */ var _UpdateTeamNameForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateTeamNameForm.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _UpdateCourseForm_vue_vue_type_template_id_3df71fe8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateCourseForm.vue?vue&type=template&id=3df71fe8& */ "./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=template&id=3df71fe8&");
+/* harmony import */ var _UpdateCourseForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateCourseForm.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -108086,9 +107555,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UpdateTeamNameForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UpdateTeamNameForm_vue_vue_type_template_id_749da5d6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UpdateTeamNameForm_vue_vue_type_template_id_749da5d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _UpdateCourseForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateCourseForm_vue_vue_type_template_id_3df71fe8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateCourseForm_vue_vue_type_template_id_3df71fe8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -108098,38 +107567,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/Pages/Courses/UpdateTeamNameForm.vue"
+component.options.__file = "resources/js/Pages/Courses/UpdateCourseForm.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=script&lang=js&":
-/*!************************************************************************************!*\
-  !*** ./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
+/***/ "./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateTeamNameForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateTeamNameForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateTeamNameForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateCourseForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=template&id=749da5d6&":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=template&id=749da5d6& ***!
-  \******************************************************************************************/
+/***/ "./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=template&id=3df71fe8&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=template&id=3df71fe8& ***!
+  \****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateTeamNameForm_vue_vue_type_template_id_749da5d6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateTeamNameForm.vue?vue&type=template&id=749da5d6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateTeamNameForm.vue?vue&type=template&id=749da5d6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateTeamNameForm_vue_vue_type_template_id_749da5d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseForm_vue_vue_type_template_id_3df71fe8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateCourseForm.vue?vue&type=template&id=3df71fe8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseForm.vue?vue&type=template&id=3df71fe8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseForm_vue_vue_type_template_id_3df71fe8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateTeamNameForm_vue_vue_type_template_id_749da5d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseForm_vue_vue_type_template_id_3df71fe8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

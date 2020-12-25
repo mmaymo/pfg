@@ -11,7 +11,7 @@
         <details-course-fields :course="course" :form="form" :permissions="permissions"/>
         </template>
 
-        <template #actions v-if="permissions.canUpdateTeam">
+        <template #actions >
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
                 Salvado.
             </jet-action-message>
