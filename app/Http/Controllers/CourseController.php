@@ -60,33 +60,93 @@ class CourseController extends Controller
      * Show the course contents management screen.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $teamId
+     * @param  int  $courseId
      * @return \Inertia\Response
      */
-    public function show(Request $request, $teamId)
+    public function show(Request $request, $courseId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
-        $course = $team->course;
-        $coursePoints = $course->rankingTeamCoursePoints;
-        $courseProgress = $course->courseProgress;
-        if (! $request->user()->belongsToTeam($team)) {
+        $course = Course::find($courseId);
+        $students = [];
+        $itinerary = [
+            [
+                'id' => 1,
+                'name' => 'chapterName1',
+                'tasks' => [
+                    ['id' => 1,
+                        'name' => 'taskName1',
+                        'points' => 'taskPoints',
+                        'type' => 'Document',
+                        'properties' => [
+                            'type' => "markdown",
+                            'content' => "texto del Documento"
+                        ]
+                    ],
+                    ['id' => 2,
+                        'name' => 'taskName2',
+                        'points' => 'taskPoints',
+                        'type' => 'card',
+                        'properties' => [
+                            'type' => "card",
+                            'content' => [
+                                "front"=>"pregunta flashcard",
+                                "back"=>"respuesta flashcard"
+                            ]
+                        ]
+                    ],
+                ]
+            ],
+            [
+                'id' => 2,
+                'name' => 'chapterName2',
+                'tasks' => [
+                    ['id' => 3,
+                        'name' => 'taskName3',
+                        'points' => 'taskPoints',
+                        'type' => 'code',
+                        'properties' => [
+                            'type' => "code",
+                            'code_url'=>"codeUrl",
+                            'content' => "texto del code"
+                        ]
+                    ],
+                    ['id' => 4,
+                        'name' => 'taskName4',
+                        'points' => 'taskPoints',
+                        'type' => 'quiz',
+                        'properties' => [
+                            'type' => "quiz",
+                            'content' => [
+                                "questions"=>[
+                                    [
+                                        "question"=>"question 1",
+                                        "responses"=>[
+                                            "text"=>"posibilidad 1",
+                                            "text"=>"posibilidad 2",
+                                            "text"=>"posibilidad 3",
+                                            "text"=>"posibilidad 4",
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                ]
+            ],
+
+
+            ];
+        $course = [
+            'courseDetails' => ['id'=>$course->id, 'name'=>$course->name, 'degree'=>$course->degree, 'semester'=>$course->semester, 'pic'=>$course->pic],
+            'students'=>$students,
+            'itinerary'=>[],
+        ];
+
+       /* if (! $request->user()->belongsToTeam($team)) {
             abort(403);
-        }
+        }*/
 
         return Jetstream::inertia()->render($request, 'Courses/Show', [
-            'team' => $team->load('owner', 'users'),
             'course'=> $course,
-            'coursePoints'=>$coursePoints,
-            'courseProgress'=>$courseProgress,
-            'availableRoles' => array_values(Jetstream::$roles),
-            'availablePermissions' => Jetstream::$permissions,
-            'defaultPermissions' => Jetstream::$defaultPermissions,
-            'permissions' => [
-                'canAddTeamMembers' => Gate::check('addTeamMember', $team),
-                'canDeleteTeam' => Gate::check('delete', $team),
-                'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
-                'canUpdateTeam' => Gate::check('update', $team),
-            ],
         ]);
     }
 
@@ -138,7 +198,7 @@ class CourseController extends Controller
 
         //Course::create($validated);
 
-        return back();
+        return redirect()->route('courses.show',[$course]);
     }
 
     /**

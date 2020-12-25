@@ -18,14 +18,16 @@
     import AppLayout from './../../Layouts/AppLayout'
     import CreateCourseForm from './CreateCourseForm'
     import JetSectionBorder from './../../Jetstream/SectionBorder'
+    import CourseMemberManager from './CourseMemberManager'
 
     export default {
-        props: ['team'],
+        props: ['course'],
 
         components: {
             AppLayout,
             CreateCourseForm,
             JetSectionBorder,
+            CourseMemberManager
         },
     }
 </script>

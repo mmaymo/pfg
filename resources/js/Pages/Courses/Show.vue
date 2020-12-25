@@ -9,13 +9,12 @@
         </template>
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-
                 <page-separator :title="'Información básica'" />
                 <update-team-name-form :team="team" :permissions="permissions" />
                 <jet-section-border />
                 <update-course-details-form :team="team" :course="course" :permissions="permissions" />
 
-                <team-member-manager class="mt-10 sm:mt-0"
+               <!-- <course-member-manager class="mt-10 sm:mt-0"
                             :team="team"
                             :course-points="coursePoints"
                             :course-progress="courseProgress"
@@ -26,14 +25,14 @@
                     <jet-section-border />
 
                     <delete-team-form class="mt-10 sm:mt-0" :team="team" />
-                </template>
+                </template>-->
             </div>
         </div>
     </app-layout>
 </template>
 
 <script>
-    import TeamMemberManager from './TeamMemberManager'
+    import CourseMemberManager from './CourseMemberManager'
     import AppLayout from './../../Layouts/AppLayout'
     import DeleteTeamForm from './DeleteTeamForm'
     import JetSectionBorder from './../../Jetstream/SectionBorder'
@@ -56,7 +55,7 @@
             AppLayout,
             DeleteTeamForm,
             JetSectionBorder,
-            TeamMemberManager,
+            CourseMemberManager,
             UpdateTeamNameForm,
             UpdateCourseDetailsForm,
             PageSeparator
