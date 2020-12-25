@@ -8,7 +8,7 @@
 
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <create-team-form />
+                <create-course-form />
             </div>
         </div>
     </app-layout>
@@ -16,7 +16,7 @@
 
 <script>
     import AppLayout from './../../Layouts/AppLayout'
-    import CreateTeamForm from './CreateTeamForm'
+    import CreateCourseForm from './CreateCourseForm'
     import JetSectionBorder from './../../Jetstream/SectionBorder'
 
     export default {
@@ -24,7 +24,7 @@
 
         components: {
             AppLayout,
-            CreateTeamForm,
+            CreateCourseForm,
             JetSectionBorder,
         },
     }

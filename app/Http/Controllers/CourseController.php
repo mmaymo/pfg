@@ -102,16 +102,43 @@ class CourseController extends Controller
     }
 
     /**
-     * Create a new team.
+     * Create a new course.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        app(CreatesTeams::class)->create($request->user(), $request->all());
 
-        return redirect(config('fortify.home'));
+        $validated = Validator::make($request->all(), [
+            'name' => ['string', 'max:255'],
+            'degree' => ['nullable','string', 'max:255'],
+            'semester' => ['nullable','boolean'],
+            'pic' => ['nullable','string']
+        ])->validateWithBag('createCourse');
+
+        $validated['team_id'] = 1;
+        $validated['chaptersPositionArray'] = "position";
+
+        $course = new Course();
+        $course->name = $validated['name'];
+        $course->team_id = $validated['team_id'];
+        $course->chaptersPositionArray = $validated['chaptersPositionArray'];
+        if($validated['degree']){
+            $course->degree = $validated['degree'];
+        }
+        if($validated['semester']){
+            $course->semester = $validated['semester'];
+        }
+        if($validated['pic']){
+            $course->pic = $validated['pic'];
+        }
+
+        $course->save();
+
+        //Course::create($validated);
+
+        return back();
     }
 
     /**
