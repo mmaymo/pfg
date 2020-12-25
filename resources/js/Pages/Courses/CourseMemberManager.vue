@@ -1,8 +1,6 @@
 <template>
     <div>
         <div>
-            <jet-section-border />
-
             <!-- Add Team Member -->
             <jet-form-section @submitted="addTeamMember">
                 <template #title>
@@ -71,7 +69,7 @@
             </jet-form-section>
         </div>
 
-        <div v-if="course.students && course.students.length > 0">
+        <div v-if="students.length > 0">
             <jet-section-border />
 
             <!-- Manage Team Members -->
@@ -87,16 +85,16 @@
                 <!-- Team Member List -->
                 <template #content>
                     <div class="space-y-6">
-                        <div class="flex items-center justify-between" v-for="user in course.students" :key="user.id">
+                        <div class="flex items-center justify-between" v-for="user in students" :key="user.id">
                             <div class="flex items-center">
-                                <img class="w-8 h-8 rounded-full" :src="user.profile_photo_url" :alt="user.name">
+
                                 <div class="ml-4">{{ user.name }}</div>
                             </div>
                             <div class="flex items-center">
                                 <div class="ml-4">{{ user.points }} Puntos</div>
                             </div>
                             <div class="flex items-center">
-                                <div class="ml-4">Progreso: {{ user.progress/100 }}%</div>
+                                <div class="ml-4">Progreso: {{ user.progress }}%</div>
                             </div>
 
                             <div class="flex items-center">
@@ -120,7 +118,7 @@
 
                                 <!-- Remove Team Member -->
                                 <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                    @click="confirmTeamMemberRemoval(user)">
+                                                    @click="confirmTeamMemberRemoval(user.id)">
                                     Eliminar
                                 </button>
                             </div>
@@ -251,7 +249,8 @@
         },
 
         props: [
-            'course'
+            'students',
+            'courseId'
         ],
 
         data() {
@@ -260,7 +259,7 @@
                     email: '',
                     role: null,
                 }, {
-                    bag: 'addTeamMember',
+                    bag: 'addCourseMember',
                     resetOnSuccess: true,
                 }),
 
@@ -292,7 +291,7 @@
 
         methods: {
             addTeamMember() {
-                this.addTeamMemberForm.post(route('team-members.store', this.team), {
+                this.addTeamMemberForm.post(route('courses.users.store', this.courseId), {
                     preserveScroll: true
                 });
             },
@@ -316,7 +315,7 @@
             },
 
             leaveTeam() {
-                this.leaveTeamForm.delete(route('team-members.destroy', [this.team, this.$page.user]))
+                this.leaveTeamForm.delete(route('courses.users.destroy', [this.courseId, this.$page.user.id]))
             },
 
             confirmTeamMemberRemoval(teamMember) {
@@ -324,7 +323,7 @@
             },
 
             removeTeamMember() {
-                this.removeTeamMemberForm.delete(route('team-members.destroy', [this.team, this.teamMemberBeingRemoved]), {
+                this.removeTeamMemberForm.delete(route('courses.users.destroy', [this.courseId, this.teamMemberBeingRemoved]), {
                     preserveScroll: true,
                     preserveState: true,
                 }).then(() => {

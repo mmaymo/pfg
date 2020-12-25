@@ -51,7 +51,7 @@
     import JetSecondaryButton from './../../Jetstream/SecondaryButton'
 
     export default {
-        props: ['team'],
+        props: ['courseId'],
 
         components: {
             JetActionSection,
@@ -69,7 +69,7 @@
                 form: this.$inertia.form({
                     //
                 }, {
-                    bag: 'deleteTeam'
+                    bag: 'deleteCourse'
                 })
             }
         },
@@ -80,7 +80,7 @@
             },
 
             deleteTeam() {
-                this.form.delete(route('courses.destroy', this.team), {
+                this.form.delete(route('courses.destroy', this.courseId), {
                     preserveScroll: true
                 });
             },

@@ -28,6 +28,22 @@ class Course extends Model
         return $this->belongsTo('App\Models\Team', 'team_id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'users_course_progress')
+            ->withPivot('points');
+    }
+
+    public function getMembersDetails(){
+        $users = $this->users;
+        $members = [];
+        $progress = "userProgressToDo";
+        foreach ($users as $user){
+            $members[] = ['id'=>$user->id, 'name'=>$user->name, 'points'=>$user->pivot->points, 'profile_photo_url'=>$user->profile_photo_path, 'progress'=>$progress];
+        }
+        return $members;
+    }
+
     public function tasks()
     {
         return $this->hasMany('App\Models\Task', 'course_id')->orderBy('position');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
@@ -66,7 +67,9 @@ class CourseController extends Controller
     public function show(Request $request, $courseId)
     {
         $course = Course::find($courseId);
-        $students = [];
+
+        $students = $course->getMembersDetails();
+
         $itinerary = [
             [
                 'id' => 1,
@@ -236,16 +239,18 @@ class CourseController extends Controller
      * Delete the given team.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $teamId
+     * @param  int  $courseId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, $teamId)
+    public function destroy(Request $request, $courseId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $course = Course::find($courseId);
 
-        app(ValidateTeamDeletion::class)->validate($request->user(), $team);
+        //app(ValidateTeamDeletion::class)->validate($request->user(), $course);
 
-        app(DeletesTeams::class)->delete($team);
+        DB::transaction(function () use ($course) {
+            $course->delete();
+        });
 
         return redirect(config('fortify.home'));
     }

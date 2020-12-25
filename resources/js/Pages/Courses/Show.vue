@@ -13,18 +13,14 @@
                 <update-course-form :course="course.courseDetails" />
                 <jet-section-border />
 
-               <!-- <course-member-manager class="mt-10 sm:mt-0"
-                            :team="team"
-                            :course-points="coursePoints"
-                            :course-progress="courseProgress"
-                            :available-roles="availableRoles"
-                            :user-permissions="permissions" />
+                <course-member-manager class="mt-10 sm:mt-0"
+                            :students="course.students" :courseId="course.courseDetails.id"/>
 
-                <template v-if="permissions.canDeleteTeam && ! team.personal_team">
+                <template>
                     <jet-section-border />
 
-                    <delete-team-form class="mt-10 sm:mt-0" :team="team" />
-                </template>-->
+                    <delete-team-form class="mt-10 sm:mt-0" :courseId="course.courseDetails.id" />
+                </template>
             </div>
         </div>
     </app-layout>

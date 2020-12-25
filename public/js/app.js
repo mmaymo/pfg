@@ -40334,8 +40334,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -40363,14 +40361,14 @@ __webpack_require__.r(__webpack_exports__);
     JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_10__["default"],
     JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
-  props: ['course'],
+  props: ['students', 'courseId'],
   data: function data() {
     return {
       addTeamMemberForm: this.$inertia.form({
         email: '',
         role: null
       }, {
-        bag: 'addTeamMember',
+        bag: 'addCourseMember',
         resetOnSuccess: true
       }),
       updateRoleForm: this.$inertia.form({
@@ -40395,7 +40393,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addTeamMember: function addTeamMember() {
-      this.addTeamMemberForm.post(route('team-members.store', this.team), {
+      this.addTeamMemberForm.post(route('courses.users.store', this.courseId), {
         preserveScroll: true
       });
     },
@@ -40417,7 +40415,7 @@ __webpack_require__.r(__webpack_exports__);
       this.confirmingLeavingTeam = true;
     },
     leaveTeam: function leaveTeam() {
-      this.leaveTeamForm["delete"](route('team-members.destroy', [this.team, this.$page.user]));
+      this.leaveTeamForm["delete"](route('courses.users.destroy', [this.courseId, this.$page.user.id]));
     },
     confirmTeamMemberRemoval: function confirmTeamMemberRemoval(teamMember) {
       this.teamMemberBeingRemoved = teamMember;
@@ -40425,7 +40423,7 @@ __webpack_require__.r(__webpack_exports__);
     removeTeamMember: function removeTeamMember() {
       var _this2 = this;
 
-      this.removeTeamMemberForm["delete"](route('team-members.destroy', [this.team, this.teamMemberBeingRemoved]), {
+      this.removeTeamMemberForm["delete"](route('courses.users.destroy', [this.courseId, this.teamMemberBeingRemoved]), {
         preserveScroll: true,
         preserveState: true
       }).then(function () {
@@ -40691,7 +40689,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['team'],
+  props: ['courseId'],
   components: {
     JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_0__["default"],
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -40705,7 +40703,7 @@ __webpack_require__.r(__webpack_exports__);
       deleting: false,
       form: this.$inertia.form({//
       }, {
-        bag: 'deleteTeam'
+        bag: 'deleteCourse'
       })
     };
   },
@@ -40714,7 +40712,7 @@ __webpack_require__.r(__webpack_exports__);
       this.confirmingTeamDeletion = true;
     },
     deleteTeam: function deleteTeam() {
-      this.form["delete"](route('courses.destroy', this.team), {
+      this.form["delete"](route('courses.destroy', this.courseId), {
         preserveScroll: true
       });
     }
@@ -40870,12 +40868,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _DeleteTeamForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DeleteTeamForm */ "./resources/js/Pages/Courses/DeleteTeamForm.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-/* harmony import */ var _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./UpdateCourseForm */ "./resources/js/Pages/Courses/UpdateCourseForm.vue");
+/* harmony import */ var _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateCourseForm */ "./resources/js/Pages/Courses/UpdateCourseForm.vue");
 /* harmony import */ var _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Ui/PageSeparator.vue */ "./resources/js/Ui/PageSeparator.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -40917,7 +40911,7 @@ __webpack_require__.r(__webpack_exports__);
     DeleteTeamForm: _DeleteTeamForm__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"],
     CourseMemberManager: _CourseMemberManager__WEBPACK_IMPORTED_MODULE_0__["default"],
-    UpdateCourseForm: _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_6__["default"],
+    UpdateCourseForm: _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_4__["default"],
     PageSeparator: _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   }
 });
@@ -85086,8 +85080,6 @@ var render = function() {
       _c(
         "div",
         [
-          _c("jet-section-border"),
-          _vm._v(" "),
           _c("jet-form-section", {
             on: { submitted: _vm.addTeamMember },
             scopedSlots: _vm._u([
@@ -85197,7 +85189,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.course.students && _vm.course.students.length > 0
+      _vm.students.length > 0
         ? _c(
             "div",
             [
@@ -85236,7 +85228,7 @@ var render = function() {
                           _c(
                             "div",
                             { staticClass: "space-y-6" },
-                            _vm._l(_vm.course.students, function(user) {
+                            _vm._l(_vm.students, function(user) {
                               return _c(
                                 "div",
                                 {
@@ -85249,14 +85241,6 @@ var render = function() {
                                     "div",
                                     { staticClass: "flex items-center" },
                                     [
-                                      _c("img", {
-                                        staticClass: "w-8 h-8 rounded-full",
-                                        attrs: {
-                                          src: user.profile_photo_url,
-                                          alt: user.name
-                                        }
-                                      }),
-                                      _vm._v(" "),
                                       _c("div", { staticClass: "ml-4" }, [
                                         _vm._v(_vm._s(user.name))
                                       ])
@@ -85280,7 +85264,7 @@ var render = function() {
                                       _c("div", { staticClass: "ml-4" }, [
                                         _vm._v(
                                           "Progreso: " +
-                                            _vm._s(user.progress / 100) +
+                                            _vm._s(user.progress) +
                                             "%"
                                         )
                                       ])
@@ -85317,7 +85301,7 @@ var render = function() {
                                           on: {
                                             click: function($event) {
                                               return _vm.confirmTeamMemberRemoval(
-                                                user
+                                                user.id
                                               )
                                             }
                                           }
@@ -85342,7 +85326,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  3206865931
+                  3684885083
                 )
               })
             ],
@@ -86110,9 +86094,26 @@ var render = function() {
               attrs: { course: _vm.course.courseDetails }
             }),
             _vm._v(" "),
-            _c("jet-section-border")
+            _c("jet-section-border"),
+            _vm._v(" "),
+            _c("course-member-manager", {
+              staticClass: "mt-10 sm:mt-0",
+              attrs: {
+                students: _vm.course.students,
+                courseId: _vm.course.courseDetails.id
+              }
+            }),
+            _vm._v(" "),
+            [
+              _c("jet-section-border"),
+              _vm._v(" "),
+              _c("delete-team-form", {
+                staticClass: "mt-10 sm:mt-0",
+                attrs: { courseId: _vm.course.courseDetails.id }
+              })
+            ]
           ],
-          1
+          2
         )
       ])
     ]

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseContent;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MembersController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,11 @@ Route::resource('courses', CourseController::class);
 Route::resource('courses.tasks', TaskController::class)->scoped(
     [
         'task' => 'name',
+    ]
+);
+Route::resource('courses.users', MembersController::class)->scoped(
+    [
+        'user' => 'id',
     ]
 );
 
