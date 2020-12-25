@@ -249,6 +249,7 @@ class CourseController extends Controller
         //app(ValidateTeamDeletion::class)->validate($request->user(), $course);
 
         DB::transaction(function () use ($course) {
+            $course->users()->detach();
             $course->delete();
         });
 
