@@ -1,12 +1,5 @@
 <template>
     <jet-form-section @submitted="updateTeamName">
-        <template #title>
-            Nombre del curso
-        </template>
-
-        <template #description>
-            Nombre del curso y su responsable.
-        </template>
 
         <template #form>
             <!-- Team Owner Information -->

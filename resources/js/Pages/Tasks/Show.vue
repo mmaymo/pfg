@@ -4,7 +4,7 @@
             <div class="lg:flex -mx-6">
                 <course-sidebar :courseId="this.courseId" :courseName="this.courseName" :teacher="this.teacher"
                                 :itinerary="this.tasks" :allowedIds="this.allowedIds"></course-sidebar>
-                <task :courseId="this.courseId" :task="this.task"></task>
+                <task :courseId="this.courseId" :task="this.task" ></task>
             </div>
         </div>
     </app-layout>

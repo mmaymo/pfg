@@ -26,6 +26,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "vue-showdown": "^2.4.1"
+        "@toast-ui/vue-editor": "^2.5.1",
+        "vue-showdown": "^2.4.1",
+        "vuedraggable": "^2.24.3"
     }
 }

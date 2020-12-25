@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-gray-100">
-        <nav class="bg-white border-b border-gray-100 fixed top-0 inset-x-0 z-40 h-16">
+        <nav class="bg-red-300 border-b border-gray-100 absolute top-0 left-0 w-screen h-16">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -165,27 +165,28 @@
 
 
         <!-- Page Content -->
-        <main class="mt-16 relative">
+        <main class="mt-24 p-2 relative bg-green-300">
 
-            <slot name="header"></slot><slot ></slot>
+                <slot name="header"></slot>
+
+                <slot></slot>
 
         </main>
 
         <!-- Modal Portal -->
-        <portal-target name="modal" multiple>
-        </portal-target>
+        <portal-target name="modal" multiple></portal-target>
     </div>
 </template>
 
 <script>
-    import JetApplicationLogo from './../Jetstream/ApplicationLogo'
-    import JetApplicationMark from './../Jetstream/ApplicationMark'
-    import JetDropdown from './../Jetstream/Dropdown'
-    import JetDropdownLink from './../Jetstream/DropdownLink'
-    import JetNavLink from './../Jetstream/NavLink'
-    import JetResponsiveNavLink from './../Jetstream/ResponsiveNavLink'
+import JetApplicationLogo from './../Jetstream/ApplicationLogo'
+import JetApplicationMark from './../Jetstream/ApplicationMark'
+import JetDropdown from './../Jetstream/Dropdown'
+import JetDropdownLink from './../Jetstream/DropdownLink'
+import JetNavLink from './../Jetstream/NavLink'
+import JetResponsiveNavLink from './../Jetstream/ResponsiveNavLink'
 
-    export default {
+export default {
         components: {
             JetApplicationLogo,
             JetApplicationMark,

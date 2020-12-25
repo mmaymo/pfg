@@ -98,9 +98,12 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, $course)
     {
-        return Inertia::render('Tasks/Create');
+
+        $course = Team::find($course);
+
+        return Inertia::render('Tasks/Create', ['courseName'=>$course->name, 'courseId'=>$course->id]);
     }
 
     /**
@@ -153,7 +156,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Delete the given team.
+     * Delete the given task.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $teamId

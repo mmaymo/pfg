@@ -15,18 +15,21 @@
 
                 <!-- Team Member List -->
                 <template #content>
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between" v-for="task in tasks" :key="task.id">
+                    <draggable tag="ul" :list="tasks" :animation="200" ghost-class="moving-card" filter=".action-button" class="space-y-6" @change="log">
+                        <li class="flex items-center justify-between" v-for="task in tasks"
+                            :key="task.id">
                             <div class="flex items-center" v-if="taskEdited === task.id">
-                                <update-task-form :permissions="userPermissions" :task="task" :course="course.id"></update-task-form>
+                                <update-task-form :permissions="userPermissions" :task="task"
+                                                  :course="course.id"></update-task-form>
 
                                 <jet-secondary-button @click.native="taskEdited = null">
                                     Cerrar
                                 </jet-secondary-button>
                             </div>
-                            <div v-else><div class="flex items-center">
-                                <div class="ml-4">{{ task.name }}</div>
-                            </div>
+                            <div v-else>
+                                <div class="flex items-center">
+                                    <span class="ml-4">{{ task.name }}</span>
+                                </div>
 
                                 <div class="flex items-center">
                                     <!-- Edit task -->
@@ -37,14 +40,16 @@
                                     </button>
 
                                     <!-- Remove Task -->
-                                    <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                            @click="confirmTeamMemberRemoval(task.id)"
-                                            v-if="userPermissions.canRemoveTeamMembers">
+                                    <button
+                                        class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
+                                        @click="confirmTeamMemberRemoval(task.id)"
+                                        v-if="userPermissions.canRemoveTeamMembers">
                                         Eliminar
                                     </button>
-                                </div></div>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </draggable>
                 </template>
             </jet-action-section>
         </div>
@@ -86,40 +91,39 @@
                             Introduzca el contenido que desea añadir
                         </div>
                     </div>
-                    <div class="col-span-6 sm:col-span-4">
-                        <jet-label for="name" value="Nombre" />
-                        <jet-input id="name" type="text" class="mt-1 block w-full" v-model="addTeamMemberForm.name" />
-                        <jet-input-error :message="addTeamMemberForm.error('name')" class="mt-2" />
+                    <div class="col-span-6">
+                        <button @click="changeTaskType('Document')">Documento</button>
+                        <button @click="changeTaskType('Code')">Código</button>
+                        <button @click="changeTaskType('Quiz')">Test</button>
+                        <button @click="changeTaskType('Card')">Flashcards</button>
                     </div>
-                    <div class="col-span-6 sm:col-span-4">
-                        <jet-label for="points" value="Puntos" />
-                        <jet-input id="points" type="number" class="mt-1 block w-full" v-model="addTeamMemberForm.points" />
-                        <jet-input-error :message="addTeamMemberForm.error('name')" class="mt-2" />
+                    <div v-if="type === 'Document'">
+                        <div class="col-span-6 sm:col-span-4">
+                            <jet-label for="name" value="Nombre" />
+                            <jet-input id="name" type="text" class="mt-1 block w-full" v-model="addTaskDocForm.name" />
+                            <jet-input-error :message="addTaskDocForm.error('name')" class="mt-2" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <jet-label for="points" value="Puntos" />
+                            <jet-input id="points" type="number" class="mt-1 block w-full" v-model="addTaskDocForm.points" />
+                            <jet-input-error :message="addTaskDocForm.error('name')" class="mt-2" />
+                        </div>
+                        <div class="col-span-6 sm:col-span-4">
+                            <jet-label for="properties" value="Contenido" />
+                            <jet-input id="properties" type="text" class="mt-1 block w-full" v-model="addTaskDocForm.properties" />
+                            <jet-input-error :message="addTaskDocForm.error('properties')" class="mt-2" />
+                        </div>
                     </div>
-                    <div class="col-span-6 sm:col-span-4">
-                        <jet-label for="type" value="Tipo" />
-                        <select id="type"  class="mt-1 block w-full rounded-md shadow-sm" v-model="addTeamMemberForm.type">
-                            <option value="document">Texto</option>
-                            <option value="card">Tarjeta</option>
-                            <option value="quiz">Test</option>
-                            <option value="code">Codigo</option>
-                        </select>
-                        <jet-input-error :message="addTeamMemberForm.error('name')" class="mt-2" />
-                    </div>
-                    <div class="col-span-6 sm:col-span-4">
-                        <jet-label for="properties" value="Contenido" />
-                        <jet-input id="properties" type="text" class="mt-1 block w-full" v-model="addTeamMemberForm.properties" />
-                        <jet-input-error :message="addTeamMemberForm.error('properties')" class="mt-2" />
-                    </div>
+
 
                 </template>
 
                 <template #actions>
-                    <jet-action-message :on="addTeamMemberForm.recentlySuccessful" class="mr-3">
+                    <jet-action-message :on="addTaskDocForm.recentlySuccessful" class="mr-3">
                         Añadido.
                     </jet-action-message>
 
-                    <jet-button :class="{ 'opacity-25': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
+                    <jet-button :class="{ 'opacity-25': addTaskDocForm.processing }" :disabled="addTaskDocForm.processing">
                         Añadir
                     </jet-button>
                 </template>
@@ -146,6 +150,8 @@ import JetLabel from "../../Jetstream/Label";
 import JetSecondaryButton from "../../Jetstream/SecondaryButton";
 import JetSectionBorder from "../../Jetstream/SectionBorder";
 import UpdateTaskForm from "./UpdateTaskForm";
+import Draggable from 'vuedraggable';
+
 
 export default {
     props:[
@@ -168,20 +174,51 @@ export default {
         JetLabel,
         JetSecondaryButton,
         JetSectionBorder,
-        UpdateTaskForm
+        UpdateTaskForm,
+        Draggable
     },
 
     data() {
 
         return {
-            addTeamMemberForm: this.$inertia.form({
+            addTaskDocForm: this.$inertia.form({
                 name:'',
                 type:'',
                 position:150,
                 points:'',
                 properties: ''
             }, {
-                bag: 'addTeamMember',
+                bag: 'addDocumentTask',
+                resetOnSuccess: true,
+            }),
+            addTaskCodeForm: this.$inertia.form({
+                name:'',
+                type:'',
+                position:150,
+                points:'',
+                properties: ''
+            }, {
+                bag: 'addCodeTask',
+                resetOnSuccess: true,
+            }),
+            addTaskQuizForm: this.$inertia.form({
+                name:'',
+                type:'',
+                position:150,
+                points:'',
+                properties: ''
+            }, {
+                bag: 'addQuizTask',
+                resetOnSuccess: true,
+            }),
+            addTaskCardForm: this.$inertia.form({
+                name:'',
+                type:'',
+                position:150,
+                points:'',
+                properties: ''
+            }, {
+                bag: 'addCardTask',
                 resetOnSuccess: true,
             }),
             removeTeamMemberForm: this.$inertia.form({
@@ -190,7 +227,8 @@ export default {
                 bag: 'removeTeamMember',
             }),
             teamMemberBeingRemoved: null,
-            taskEdited: null
+            taskEdited: null,
+            type:"Card"
         }
     },
     methods:{
@@ -213,6 +251,17 @@ export default {
         showEdit(taskId) {
             this.taskEdited = taskId
         },
+        log(event){
+            //algo se ha movido, enseñar el boton por si lo quieren guardar
+            //ahora this.tasks está ordenada como quiere el usuario
+            //tengo que modificar el valor de position de cada elemento cambiado
+            console.log(event)
+            console.log(this.tasks)
+        },
+        changeTaskType(type){
+            this.type = type
+        }
+
     }
 
 }

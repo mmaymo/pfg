@@ -1,4 +1,5 @@
 require('vue-showdown');
+require('vuedraggable');
 window._ = require('lodash');
 
 /**

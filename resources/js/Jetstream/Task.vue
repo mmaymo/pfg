@@ -14,7 +14,13 @@
                             {{ this.task.name }}</h2>
                     </div>
 
-                    <text-task :textContent="this.task.content"></text-task>
+
+                    <!--<code-task></code-task>-->
+                   <!-- <text-task :textContent="this.task.content"></text-task>-->
+                    <button v-on:click="addPoints"
+                        class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
+                        Completada
+                    </button>
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">
                         <div class="w-2/4">
@@ -24,10 +30,13 @@
                             </button>
                         </div>
                         <div class="w-2/4 text-right">
-                            <button
-                                class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
-                            </button>
+                            <div v-if="this.taskCompleted">
+                                <button
+                                    class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
+                                    <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
+                                </button>
+                            </div>
+
                         </div>
 
                     </div>
@@ -49,11 +58,13 @@
 
 import Quiz from "./QuizTask";
 import TextTask from "./TextTask";
+import CodeTask from "./CodeTask";
 
 export default {
     components: {
         Quiz,
         TextTask,
+        CodeTask
 
     },
     props: {
@@ -67,10 +78,17 @@ export default {
         },
     },
     methods: {
+        addPoints(){
+//boton que envia a post puntos y recibe un ok
+        this.taskCompleted = true;
+
+        },
 
     },
     data() {
         return {
+//esto tiene que venir de arriba, si ya esta en allowed entonces esto está a true
+            taskCompleted: false,
             mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
 
         }
