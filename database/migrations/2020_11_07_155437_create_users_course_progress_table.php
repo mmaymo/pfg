@@ -15,8 +15,8 @@ class CreateUsersCourseProgressTable extends Migration
     {
         Schema::create('users_course_progress', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('course_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->integer('points');
             $table->timestamps();
             $table->unique(['course_id', 'user_id']);
