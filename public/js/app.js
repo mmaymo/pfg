@@ -42004,6 +42004,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
 /* harmony import */ var _Components_MarkdownEditorSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Components/MarkdownEditorSection */ "./resources/js/Components/MarkdownEditorSection.vue");
 /* harmony import */ var _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Components/BasicDetailsTaskForm */ "./resources/js/Components/BasicDetailsTaskForm.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 //
 //
 //
@@ -42031,6 +42034,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
@@ -42042,7 +42103,10 @@ __webpack_require__.r(__webpack_exports__);
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__["default"],
     MarkdownEditorSection: _Components_MarkdownEditorSection__WEBPACK_IMPORTED_MODULE_3__["default"],
-    BasicDetailsTaskForm: _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_4__["default"]
+    BasicDetailsTaskForm: _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_5__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   props: ['courseId', 'chapters', 'availableTypes'],
   data: function data() {
@@ -42053,11 +42117,24 @@ __webpack_require__.r(__webpack_exports__);
         type: '',
         chapter_id: '',
         points: '',
-        properties: [{
-          sectionName: "",
-          type: "markdown",
-          content: ""
-        }]
+        properties: {
+          content: '',
+          code_url: '',
+          quiz: {
+            question: '',
+            responses: {
+              t1: '',
+              t2: '',
+              t3: '',
+              t4: ''
+            },
+            correctAnswer: 0
+          },
+          card: {
+            front: '',
+            back: ''
+          }
+        }
       }, {
         bag: 'createTask',
         resetOnSuccess: false
@@ -87874,14 +87951,342 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _c("markdown-editor-section", {
-              attrs: { properties: _vm.form.properties[0].content },
-              on: {
-                "update:properties": function($event) {
-                  return _vm.$set(_vm.form.properties[0], "content", $event)
-                }
-              }
-            })
+            _vm.form.type == "code"
+              ? _c(
+                  "div",
+                  { staticClass: "col-span-6 sm:col-span-4" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "code_url", value: "Nombre del archivo" }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      staticClass: "mt-1 block w-full",
+                      attrs: { id: "code_url", type: "text" },
+                      model: {
+                        value: _vm.form.properties.code_url,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form.properties, "code_url", $$v)
+                        },
+                        expression: "form.properties.code_url"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("code_url") }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.form.type == "quiz"
+              ? _c("div", [
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: {
+                          for: "question",
+                          value: "Texto de la pregunta"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "question", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.question,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form.properties.quiz, "question", $$v)
+                          },
+                          expression: "form.properties.quiz.question"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("question") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer1", value: "Respuesta 1" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer1", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t1,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t1",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer1") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer2", value: "Respuesta 2" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer2", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t2,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t2",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t2"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer2") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer3", value: "Respuesta 3" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer3", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t3,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t3",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t3"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer3") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer4", value: "Respuesta 4" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer4", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t4,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t4",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t4"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer4") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: {
+                          for: "correctAnswer",
+                          value: "Respuesta Correcta"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.properties.quiz.correctAnswer,
+                              expression: "form.properties.quiz.correctAnswer"
+                            }
+                          ],
+                          attrs: { name: "type", id: "correctAnswer" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form.properties.quiz,
+                                "correctAnswer",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Respuesta 1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Respuesta 2")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("Respuesta 3")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "4" } }, [
+                            _vm._v("Respuesta 4")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("correctAnswer") }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.form.type == "card"
+              ? _c("div", [
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: {
+                          for: "cardQuestion",
+                          value: "Texto de la pregunta"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "cardQuestion", type: "text" },
+                        model: {
+                          value: _vm.form.properties.card.front,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form.properties.card, "front", $$v)
+                          },
+                          expression: "form.properties.card.front"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("cardQuestion") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer", value: "Respuesta" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer", type: "text" },
+                        model: {
+                          value: _vm.form.properties.card.back,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form.properties.card, "back", $$v)
+                          },
+                          expression: "form.properties.card.back"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer") }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.form.type == "document" || _vm.form.type == "code"
+              ? _c("markdown-editor-section", {
+                  attrs: { properties: _vm.form.properties.content },
+                  on: {
+                    "update:properties": function($event) {
+                      return _vm.$set(_vm.form.properties, "content", $event)
+                    }
+                  }
+                })
+              : _vm._e()
           ]
         },
         proxy: true

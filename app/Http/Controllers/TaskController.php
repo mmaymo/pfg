@@ -96,38 +96,37 @@ class TaskController extends Controller
     public function store(Request $request, $course)
     {
         $validated = $request->validate([
-                               'name' => 'required',
-                               'type' => 'required',
-                               'chapter_id' => 'required',
-            'points'=>'required',
-            'properties'=>'required'
-                           ]);
-        $validated['course_id'] = $course;
+            'name' => 'required',
+            'type' => 'required',
+            'chapter_id' => 'required',
+            'points' => 'required',
+            'properties' => 'required'
+        ]);
 
         Task::create($validated);
 
 
-        return back();
+        return redirect()->route('courses.show',[$course]);
     }
 
     /**
      * Update the given task.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $teamId
+     * @param \Illuminate\Http\Request $request
+     * @param  int $task
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $course, $task)
+    public function update(Request $request, $task)
     {
-        $teamAuth = Team::find($course);
-        Gate::forUser($request->user())->authorize('update', $teamAuth);
+
+        //Gate::forUser($request->user())->authorize('update', $teamAuth);
 
         $validated = Validator::make($request->all(), [
             'name' => 'required',
             'type' => 'required',
-            'position' => 'required',
-            'points'=>'required',
-            'properties'=>'required'
+            'chapter_id' => 'required',
+            'points' => 'required',
+            'properties' => 'required'
 
         ])->validateWithBag('updateTask');
         $task = Task::find($task);
