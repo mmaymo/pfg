@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="tasks.length > 0">
-            <jet-section-border />
+            <jet-section-border/>
             <!-- Manage Team Members -->
             <jet-action-section class="mt-10 sm:mt-0">
                 <template #title>
@@ -14,33 +14,8 @@
 
                 <!-- Team Member List -->
                 <template #content>
-                    <draggable tag="ul" :list="tasks" :animation="200" ghost-class="moving-card" filter=".action-button"
-                               class="space-y-6" @change="log">
-                        <li class="flex items-center justify-between" v-for="task in tasks"
-                            :key="task.id">
 
-                            <div>
-                                <div class="flex items-center">
-                                    <span class="ml-4">{{ task.name }}</span>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <!-- Edit task -->
-                                    <button class="ml-2 text-sm text-gray-400 underline"
-                                            @click="showEdit(task.id)">
-                                        Editar todavía no está
-                                    </button>
-
-                                    <!-- Remove Task -->
-                                    <button
-                                        class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                        @click="confirmTeamMemberRemoval(task.id)">
-                                        Eliminar
-                                    </button>
-                                </div>
-                            </div>
-                        </li>
-                    </draggable>
+                    <nested-draggable :tasks="tasks"/>
                 </template>
             </jet-action-section>
         </div>
@@ -66,7 +41,7 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
-        <jet-section-border />
+        <jet-section-border/>
         <jet-action-section class="mt-10 sm:mt-0">
             <template #title>
                 Añadir nuevas tareas
@@ -143,34 +118,24 @@
 </template>
 
 <script>
-    import AppLayout from '../../Layouts/AppLayout'
     import JetButton from "../../Jetstream/Button";
     import JetDangerButton from "../../Jetstream/DangerButton";
-    import JetActionMessage from "../../Jetstream/ActionMessage";
     import JetConfirmationModal from "../../Jetstream/ConfirmationModal";
-    import JetFormSection from "../../Jetstream/FormSection";
-    import JetInput from "../../Jetstream/Input";
-    import JetInputError from "../../Jetstream/InputError";
-    import JetLabel from "../../Jetstream/Label";
     import JetSecondaryButton from "../../Jetstream/SecondaryButton";
     import JetSectionBorder from "../../Jetstream/SectionBorder";
-    import JetActionSection from "../../Jetstream/ActionSection"
+    import JetActionSection from "../../Jetstream/ActionSection";
+    import NestedDraggable from "./NestedDraggable";
 
 
     export default {
         props: [
-            'tasks','courseId'
+            'tasks', 'courseId'
         ],
         components: {
-            AppLayout,
-            JetActionMessage,
+            NestedDraggable,
             JetButton,
             JetConfirmationModal,
             JetDangerButton,
-            JetFormSection,
-            JetInput,
-            JetInputError,
-            JetLabel,
             JetSecondaryButton,
             JetSectionBorder,
             JetActionSection

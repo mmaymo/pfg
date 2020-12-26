@@ -6,6 +6,7 @@ import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 import VueShowdown from 'vue-showdown';
+import Draggable from 'vuedraggable';
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
@@ -21,6 +22,7 @@ Vue.use(VueShowdown, {
         emoji: false,
     },
 })
+Vue.use(Draggable);
 
 new Vue({
     render: (h) =>

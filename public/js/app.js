@@ -42164,18 +42164,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
-/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
-/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
-/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
-/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
-/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
-/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
+/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
+/* harmony import */ var _NestedDraggable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./NestedDraggable */ "./resources/js/Pages/Tasks/NestedDraggable.vue");
 //
 //
 //
@@ -42295,36 +42290,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
 
 
 
@@ -42335,18 +42300,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['tasks', 'courseId'],
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__["default"],
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_5__["default"],
-    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_6__["default"],
-    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_7__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_8__["default"],
-    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_9__["default"],
-    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_10__["default"],
-    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_11__["default"]
+    NestedDraggable: _NestedDraggable__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__["default"],
+    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -42436,6 +42396,60 @@ __webpack_require__.r(__webpack_exports__);
     changeTaskType: function changeTaskType(type) {
       this.type = type;
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'nested-draggable',
+  components: {
+    Draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
+  props: {
+    tasks: {}
   }
 });
 
@@ -88380,88 +88394,9 @@ var render = function() {
                       key: "content",
                       fn: function() {
                         return [
-                          _c(
-                            "draggable",
-                            {
-                              staticClass: "space-y-6",
-                              attrs: {
-                                tag: "ul",
-                                list: _vm.tasks,
-                                animation: 200,
-                                "ghost-class": "moving-card",
-                                filter: ".action-button"
-                              },
-                              on: { change: _vm.log }
-                            },
-                            _vm._l(_vm.tasks, function(task) {
-                              return _c(
-                                "li",
-                                {
-                                  key: task.id,
-                                  staticClass:
-                                    "flex items-center justify-between"
-                                },
-                                [
-                                  _c("div", [
-                                    _c(
-                                      "div",
-                                      { staticClass: "flex items-center" },
-                                      [
-                                        _c("span", { staticClass: "ml-4" }, [
-                                          _vm._v(_vm._s(task.name))
-                                        ])
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "flex items-center" },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "ml-2 text-sm text-gray-400 underline",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.showEdit(task.id)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    Editar todavía no está\n                                "
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.confirmTeamMemberRemoval(
-                                                  task.id
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    Eliminar\n                                "
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ])
-                                ]
-                              )
-                            }),
-                            0
-                          )
+                          _c("nested-draggable", {
+                            attrs: { tasks: _vm.tasks }
+                          })
                         ]
                       },
                       proxy: true
@@ -88469,7 +88404,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  969634788
+                  3014365223
                 )
               })
             ],
@@ -88590,6 +88525,84 @@ var render = function() {
       })
     ],
     1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=template&id=6264955c&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=template&id=6264955c& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "draggable",
+    {
+      staticClass: "space-y-6",
+      attrs: {
+        tag: "ul",
+        list: _vm.tasks,
+        group: { name: "g1" },
+        animation: 200,
+        "ghost-class": "moving-card",
+        filter: ".action-button"
+      },
+      on: { change: function($event) {} }
+    },
+    _vm._l(_vm.tasks, function(chapter) {
+      return _c(
+        "li",
+        { key: chapter.id, staticClass: "flex items-center justify-between" },
+        [
+          _c("div", [
+            _c("div", { staticClass: "flex items-center" }, [
+              _c("span", { staticClass: "ml-4" }, [
+                _vm._v(_vm._s(chapter.name))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex items-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "ml-2 text-sm text-gray-400 underline",
+                  on: { click: function($event) {} }
+                },
+                [_vm._v("\n                    Editar\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                  on: { click: function($event) {} }
+                },
+                [_vm._v("\n                    Eliminar\n                ")]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("nested-draggable", { attrs: { tasks: chapter.tasks } })
+        ],
+        1
+      )
+    }),
+    0
   )
 }
 var staticRenderFns = []
@@ -106938,6 +106951,8 @@ var map = {
 	"./Tasks/DocumentTaskForm.vue": "./resources/js/Pages/Tasks/DocumentTaskForm.vue",
 	"./Tasks/Index": "./resources/js/Pages/Tasks/Index.vue",
 	"./Tasks/Index.vue": "./resources/js/Pages/Tasks/Index.vue",
+	"./Tasks/NestedDraggable": "./resources/js/Pages/Tasks/NestedDraggable.vue",
+	"./Tasks/NestedDraggable.vue": "./resources/js/Pages/Tasks/NestedDraggable.vue",
 	"./Tasks/Show": "./resources/js/Pages/Tasks/Show.vue",
 	"./Tasks/Show.vue": "./resources/js/Pages/Tasks/Show.vue",
 	"./Tasks/UpdateTaskForm": "./resources/js/Pages/Tasks/UpdateTaskForm.vue",
@@ -108496,6 +108511,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Tasks/NestedDraggable.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Tasks/NestedDraggable.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NestedDraggable_vue_vue_type_template_id_6264955c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NestedDraggable.vue?vue&type=template&id=6264955c& */ "./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=template&id=6264955c&");
+/* harmony import */ var _NestedDraggable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NestedDraggable.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NestedDraggable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NestedDraggable_vue_vue_type_template_id_6264955c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NestedDraggable_vue_vue_type_template_id_6264955c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Tasks/NestedDraggable.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NestedDraggable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./NestedDraggable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NestedDraggable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=template&id=6264955c&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=template&id=6264955c& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NestedDraggable_vue_vue_type_template_id_6264955c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./NestedDraggable.vue?vue&type=template&id=6264955c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/NestedDraggable.vue?vue&type=template&id=6264955c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NestedDraggable_vue_vue_type_template_id_6264955c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NestedDraggable_vue_vue_type_template_id_6264955c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Tasks/Show.vue":
 /*!*******************************************!*\
   !*** ./resources/js/Pages/Tasks/Show.vue ***!
@@ -109136,7 +109220,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(portal_vue__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_showdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-showdown */ "./node_modules/vue-showdown/dist/vue-showdown.min.js");
 /* harmony import */ var vue_showdown__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_showdown__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_5__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -109160,6 +109247,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_showdown__WEBPACK_IMPORTED_MO
     emoji: false
   }
 });
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuedraggable__WEBPACK_IMPORTED_MODULE_5___default.a);
 new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   render: function render(h) {
     return h(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_1__["InertiaApp"], {

@@ -132,10 +132,12 @@ class CourseController extends Controller
 
 
             ];
+        $itinerary = $course->itinerary;
+
         $course = [
             'courseDetails' => ['id'=>$course->id, 'name'=>$course->name, 'degree'=>$course->degree, 'semester'=>$course->semester, 'pic'=>$course->pic],
             'students'=>$students,
-            'tasks'=>[],
+            'tasks'=>$itinerary,
         ];
 
        /* if (! $request->user()->belongsToTeam($team)) {

@@ -15,4 +15,8 @@ class Chapter extends Model
             'name',
             'tasksPositionArray'
         ];
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Task', 'chapter_id');
+    }
 }
