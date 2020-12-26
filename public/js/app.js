@@ -40870,6 +40870,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
 /* harmony import */ var _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UpdateCourseForm */ "./resources/js/Pages/Courses/UpdateCourseForm.vue");
 /* harmony import */ var _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Ui/PageSeparator.vue */ "./resources/js/Ui/PageSeparator.vue");
+/* harmony import */ var _Tasks_Index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Tasks/Index */ "./resources/js/Pages/Tasks/Index.vue");
 //
 //
 //
@@ -40896,8 +40897,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 
 
 
@@ -40912,7 +40912,8 @@ __webpack_require__.r(__webpack_exports__);
     JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"],
     CourseMemberManager: _CourseMemberManager__WEBPACK_IMPORTED_MODULE_0__["default"],
     UpdateCourseForm: _UpdateCourseForm__WEBPACK_IMPORTED_MODULE_4__["default"],
-    PageSeparator: _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+    PageSeparator: _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    TaskIndex: _Tasks_Index__WEBPACK_IMPORTED_MODULE_6__["default"]
   }
 });
 
@@ -40954,79 +40955,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ['team', 'courseName', 'courseId', 'courseProgress', 'coursePoints', 'tasks', 'task'],
   data: function data() {
     return {};
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
-/* harmony import */ var _DetailsCourseFields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DetailsCourseFields */ "./resources/js/Pages/Courses/DetailsCourseFields.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    DetailsCourseFields: _DetailsCourseFields__WEBPACK_IMPORTED_MODULE_3__["default"],
-    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  props: ['team', 'course', 'permissions'],
-  data: function data() {
-    return {
-      form: this.$inertia.form({
-        degree: this.course.degree,
-        semester: this.course.semester,
-        pic: this.course.pic
-      }, {
-        bag: 'updateCourseDetails',
-        resetOnSuccess: false
-      })
-    };
-  },
-  methods: {
-    updateCourseDetails: function updateCourseDetails() {
-      this.form.put(route('courses.update', this.team), {
-        preserveScroll: true
-      });
-    }
   }
 });
 
@@ -42099,22 +42027,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
-/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
-/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
-/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
-/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
-/* harmony import */ var _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Jetstream/DialogModal */ "./resources/js/Jetstream/DialogModal.vue");
-/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
-/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
-/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
-/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
-/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-/* harmony import */ var _UpdateTaskForm__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./UpdateTaskForm */ "./resources/js/Pages/Tasks/UpdateTaskForm.vue");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
+/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
+/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
+/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
 //
 //
 //
@@ -42251,10 +42174,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42268,24 +42195,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tasks', 'course', 'userPermissions'],
+  props: ['tasks', 'courseId'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    NavLink: _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_5__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_2__["default"],
-    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_6__["default"],
-    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__["default"],
-    JetDialogModal: _Jetstream_DialogModal__WEBPACK_IMPORTED_MODULE_7__["default"],
-    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_8__["default"],
-    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_9__["default"],
-    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_10__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_11__["default"],
-    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_12__["default"],
-    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_13__["default"],
-    UpdateTaskForm: _UpdateTaskForm__WEBPACK_IMPORTED_MODULE_14__["default"],
-    Draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_15___default.a
+    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_5__["default"],
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_7__["default"],
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_8__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_9__["default"],
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_10__["default"],
+    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
   data: function data() {
     return {
@@ -86094,6 +86017,13 @@ var render = function() {
               attrs: { course: _vm.course.courseDetails }
             }),
             _vm._v(" "),
+            _c("task-index", {
+              attrs: {
+                tasks: _vm.course.tasks,
+                courseId: _vm.course.courseDetails.id
+              }
+            }),
+            _vm._v(" "),
             _c("jet-section-border"),
             _vm._v(" "),
             _c("course-member-manager", {
@@ -86166,88 +86096,6 @@ var render = function() {
       )
     ])
   ])
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c&":
-/*!*****************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c& ***!
-  \*****************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("jet-form-section", {
-    on: { submitted: _vm.updateCourseDetails },
-    scopedSlots: _vm._u([
-      {
-        key: "title",
-        fn: function() {
-          return [_vm._v("\n        Detalles del curso editado\n    ")]
-        },
-        proxy: true
-      },
-      {
-        key: "description",
-        fn: function() {
-          return [_vm._v("\n        Grado, Semestre y foto del curso.\n    ")]
-        },
-        proxy: true
-      },
-      {
-        key: "form",
-        fn: function() {
-          return [
-            _c("details-course-fields", {
-              attrs: {
-                course: _vm.course,
-                form: _vm.form,
-                permissions: _vm.permissions
-              }
-            })
-          ]
-        },
-        proxy: true
-      },
-      {
-        key: "actions",
-        fn: function() {
-          return [
-            _c(
-              "jet-action-message",
-              {
-                staticClass: "mr-3",
-                attrs: { on: _vm.form.recentlySuccessful }
-              },
-              [_vm._v("\n            Salvado.\n        ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "jet-button",
-              {
-                class: { "opacity-25": _vm.form.processing },
-                attrs: { disabled: _vm.form.processing }
-              },
-              [_vm._v("\n            Guardar\n        ")]
-            )
-          ]
-        },
-        proxy: true
-      }
-    ])
-  })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -87816,12 +87664,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "app-layout",
+    "div",
     [
       _vm.tasks.length > 0
         ? _c(
             "div",
             [
+              _c("jet-section-border"),
+              _vm._v(" "),
               _c("jet-action-section", {
                 staticClass: "mt-10 sm:mt-0",
                 scopedSlots: _vm._u(
@@ -87874,102 +87724,61 @@ var render = function() {
                                     "flex items-center justify-between"
                                 },
                                 [
-                                  _vm.taskEdited === task.id
-                                    ? _c(
-                                        "div",
-                                        { staticClass: "flex items-center" },
-                                        [
-                                          _c("update-task-form", {
-                                            attrs: {
-                                              permissions: _vm.userPermissions,
-                                              task: task,
-                                              course: _vm.course.id
-                                            }
-                                          }),
-                                          _vm._v(" "),
-                                          _c(
-                                            "jet-secondary-button",
-                                            {
-                                              nativeOn: {
-                                                click: function($event) {
-                                                  _vm.taskEdited = null
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _vm._v(
-                                                "\n                                Cerrar\n                            "
-                                              )
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    : _c("div", [
+                                  _c("div", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "flex items-center" },
+                                      [
+                                        _c("span", { staticClass: "ml-4" }, [
+                                          _vm._v(_vm._s(task.name))
+                                        ])
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "flex items-center" },
+                                      [
                                         _c(
-                                          "div",
-                                          { staticClass: "flex items-center" },
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "ml-2 text-sm text-gray-400 underline",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.showEdit(task.id)
+                                              }
+                                            }
+                                          },
                                           [
-                                            _c(
-                                              "span",
-                                              { staticClass: "ml-4" },
-                                              [_vm._v(_vm._s(task.name))]
+                                            _vm._v(
+                                              "\n                                    Editar todavía no está\n                                "
                                             )
                                           ]
                                         ),
                                         _vm._v(" "),
                                         _c(
-                                          "div",
-                                          { staticClass: "flex items-center" },
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.confirmTeamMemberRemoval(
+                                                  task.id
+                                                )
+                                              }
+                                            }
+                                          },
                                           [
-                                            _vm.userPermissions
-                                              .canAddTeamMembers
-                                              ? _c(
-                                                  "button",
-                                                  {
-                                                    staticClass:
-                                                      "ml-2 text-sm text-gray-400 underline",
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.showEdit(
-                                                          task.id
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                    Editar todavía no está\n                                "
-                                                    )
-                                                  ]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            _vm.userPermissions
-                                              .canRemoveTeamMembers
-                                              ? _c(
-                                                  "button",
-                                                  {
-                                                    staticClass:
-                                                      "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                                                    on: {
-                                                      click: function($event) {
-                                                        return _vm.confirmTeamMemberRemoval(
-                                                          task.id
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                    Eliminar\n                                "
-                                                    )
-                                                  ]
-                                                )
-                                              : _vm._e()
+                                            _vm._v(
+                                              "\n                                    Eliminar\n                                "
+                                            )
                                           ]
                                         )
-                                      ])
+                                      ]
+                                    )
+                                  ])
                                 ]
                               )
                             }),
@@ -87982,7 +87791,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  3531249057
+                  969634788
                 )
               })
             ],
@@ -88055,267 +87864,52 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _vm.userPermissions.canAddTeamMembers
-        ? _c(
-            "div",
-            [
-              _c("jet-section-border"),
-              _vm._v(" "),
-              _c("jet-form-section", {
-                on: { submitted: _vm.addTeamMember },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "title",
-                      fn: function() {
-                        return [
-                          _vm._v("\n                Añadir Tarea\n            ")
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "description",
-                      fn: function() {
-                        return [
-                          _vm._v(
-                            "\n                Añadir una nueva tarea a este cuso\n            "
-                          )
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "form",
-                      fn: function() {
-                        return [
-                          _c("div", { staticClass: "col-span-6" }, [
-                            _c(
-                              "div",
-                              { staticClass: "max-w-xl text-sm text-gray-600" },
-                              [
-                                _vm._v(
-                                  "\n                        Introduzca el contenido que desea añadir\n                    "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-span-6" }, [
-                            _c(
-                              "button",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    return _vm.changeTaskType("Document")
-                                  }
-                                }
-                              },
-                              [_vm._v("Documento")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    return _vm.changeTaskType("Code")
-                                  }
-                                }
-                              },
-                              [_vm._v("Código")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    return _vm.changeTaskType("Quiz")
-                                  }
-                                }
-                              },
-                              [_vm._v("Test")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    return _vm.changeTaskType("Card")
-                                  }
-                                }
-                              },
-                              [_vm._v("Flashcards")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _vm.type === "Document"
-                            ? _c("div", [
-                                _c(
-                                  "div",
-                                  { staticClass: "col-span-6 sm:col-span-4" },
-                                  [
-                                    _c("jet-label", {
-                                      attrs: { for: "name", value: "Nombre" }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("jet-input", {
-                                      staticClass: "mt-1 block w-full",
-                                      attrs: { id: "name", type: "text" },
-                                      model: {
-                                        value: _vm.addTaskDocForm.name,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.addTaskDocForm,
-                                            "name",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "addTaskDocForm.name"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("jet-input-error", {
-                                      staticClass: "mt-2",
-                                      attrs: {
-                                        message: _vm.addTaskDocForm.error(
-                                          "name"
-                                        )
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col-span-6 sm:col-span-4" },
-                                  [
-                                    _c("jet-label", {
-                                      attrs: { for: "points", value: "Puntos" }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("jet-input", {
-                                      staticClass: "mt-1 block w-full",
-                                      attrs: { id: "points", type: "number" },
-                                      model: {
-                                        value: _vm.addTaskDocForm.points,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.addTaskDocForm,
-                                            "points",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "addTaskDocForm.points"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("jet-input-error", {
-                                      staticClass: "mt-2",
-                                      attrs: {
-                                        message: _vm.addTaskDocForm.error(
-                                          "name"
-                                        )
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "col-span-6 sm:col-span-4" },
-                                  [
-                                    _c("jet-label", {
-                                      attrs: {
-                                        for: "properties",
-                                        value: "Contenido"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("jet-input", {
-                                      staticClass: "mt-1 block w-full",
-                                      attrs: { id: "properties", type: "text" },
-                                      model: {
-                                        value: _vm.addTaskDocForm.properties,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.addTaskDocForm,
-                                            "properties",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "addTaskDocForm.properties"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("jet-input-error", {
-                                      staticClass: "mt-2",
-                                      attrs: {
-                                        message: _vm.addTaskDocForm.error(
-                                          "properties"
-                                        )
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ])
-                            : _vm._e()
-                        ]
-                      },
-                      proxy: true
-                    },
-                    {
-                      key: "actions",
-                      fn: function() {
-                        return [
-                          _c(
-                            "jet-action-message",
-                            {
-                              staticClass: "mr-3",
-                              attrs: {
-                                on: _vm.addTaskDocForm.recentlySuccessful
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Añadido.\n                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "jet-button",
-                            {
-                              class: {
-                                "opacity-25": _vm.addTaskDocForm.processing
-                              },
-                              attrs: { disabled: _vm.addTaskDocForm.processing }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    Añadir\n                "
-                              )
-                            ]
-                          )
-                        ]
-                      },
-                      proxy: true
-                    }
-                  ],
-                  null,
-                  false,
-                  2154560581
+      _c("jet-section-border"),
+      _vm._v(" "),
+      _c("jet-action-section", {
+        staticClass: "mt-10 sm:mt-0",
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v("\n            Añadir nuevas tareas\n        ")]
+            },
+            proxy: true
+          },
+          {
+            key: "description",
+            fn: function() {
+              return [
+                _vm._v(
+                  "\n            Las tareas pueden ser de 4 tipos\n        "
                 )
-              })
-            ],
-            1
-          )
-        : _vm._e()
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "content",
+            fn: function() {
+              return [
+                _c("jet-button", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: _vm.route("courses.tasks.create", {
+                          course: _vm.courseId
+                        })
+                      }
+                    },
+                    [_vm._v("Añadir")]
+                  )
+                ])
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
     ],
     1
   )
@@ -106644,8 +106238,6 @@ var map = {
 	"./Courses/Show.vue": "./resources/js/Pages/Courses/Show.vue",
 	"./Courses/ShowContent": "./resources/js/Pages/Courses/ShowContent.vue",
 	"./Courses/ShowContent.vue": "./resources/js/Pages/Courses/ShowContent.vue",
-	"./Courses/UpdateCourseDetailsForm": "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue",
-	"./Courses/UpdateCourseDetailsForm.vue": "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue",
 	"./Courses/UpdateCourseForm": "./resources/js/Pages/Courses/UpdateCourseForm.vue",
 	"./Courses/UpdateCourseForm.vue": "./resources/js/Pages/Courses/UpdateCourseForm.vue",
 	"./Dashboard": "./resources/js/Pages/Dashboard.vue",
@@ -107462,75 +107054,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowContent_vue_vue_type_template_id_1d6ee3a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ShowContent_vue_vue_type_template_id_1d6ee3a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue":
-/*!****************************************************************!*\
-  !*** ./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue ***!
-  \****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UpdateCourseDetailsForm_vue_vue_type_template_id_db12cc9c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c& */ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c&");
-/* harmony import */ var _UpdateCourseDetailsForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateCourseDetailsForm.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UpdateCourseDetailsForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UpdateCourseDetailsForm_vue_vue_type_template_id_db12cc9c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UpdateCourseDetailsForm_vue_vue_type_template_id_db12cc9c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/Pages/Courses/UpdateCourseDetailsForm.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************!*\
-  !*** ./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseDetailsForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateCourseDetailsForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseDetailsForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c&":
-/*!***********************************************************************************************!*\
-  !*** ./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c& ***!
-  \***********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseDetailsForm_vue_vue_type_template_id_db12cc9c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/UpdateCourseDetailsForm.vue?vue&type=template&id=db12cc9c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseDetailsForm_vue_vue_type_template_id_db12cc9c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateCourseDetailsForm_vue_vue_type_template_id_db12cc9c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

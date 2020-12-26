@@ -141,7 +141,7 @@ class CourseController extends Controller
         $course = [
             'courseDetails' => ['id'=>$course->id, 'name'=>$course->name, 'degree'=>$course->degree, 'semester'=>$course->semester, 'pic'=>$course->pic],
             'students'=>$students,
-            'itinerary'=>[],
+            'tasks'=>[],
         ];
 
        /* if (! $request->user()->belongsToTeam($team)) {

@@ -1,7 +1,5 @@
 <template>
     <app-layout>
-
-
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Editar Curso
@@ -11,11 +9,11 @@
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <page-separator :title="'Información básica'" />
                 <update-course-form :course="course.courseDetails" />
-                <jet-section-border />
 
+                <task-index  :tasks="course.tasks" :courseId="course.courseDetails.id"/>
+                <jet-section-border />
                 <course-member-manager class="mt-10 sm:mt-0"
                             :students="course.students" :courseId="course.courseDetails.id"/>
-
                 <template>
                     <jet-section-border />
 
@@ -33,10 +31,11 @@
     import JetSectionBorder from './../../Jetstream/SectionBorder'
     import UpdateCourseForm from './UpdateCourseForm'
     import PageSeparator from '../../Ui/PageSeparator.vue'
+    import TaskIndex from "../Tasks/Index";
 
     export default {
         props: [
-            'course',
+            'course'
         ],
 
         components: {
@@ -45,7 +44,8 @@
             JetSectionBorder,
             CourseMemberManager,
             UpdateCourseForm,
-            PageSeparator
+            PageSeparator,
+            TaskIndex
         },
     }
 </script>

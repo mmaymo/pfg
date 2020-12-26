@@ -17,30 +17,7 @@ use Laravel\Jetstream\Jetstream;
 
 class TaskController extends Controller
 {
-    public function index(Course $course)
-    {
 
-        $user = Auth::user();
-        $team = Team::find($course->id);
-        Gate::forUser($user)->authorize('update', $team);
-        $tasks = $course->tasks;
-
-        return Inertia::render( 'Tasks/Index', [
-            'course'=>[
-                'id'=>$team->id,
-                'name'=>$team->name
-            ],
-
-            'tasks'=>$tasks,
-            'userPermissions' => [
-                'canAddTeamMembers' => Gate::check('addTeamMember', $team),
-                'canDeleteTeam' => Gate::check('delete', $team),
-                'canRemoveTeamMembers' => Gate::check('removeTeamMember', $team),
-                'canUpdateTeam' => Gate::check('update', $team),
-            ],
-        ]);
-
-    }
     /**
      * Show the task contents.
      *
