@@ -10,11 +10,7 @@
 
         <template #form>
            <basic-details-task-form :form.sync="form" :chapters="chapters" :availableTypes="availableTypes" :courseId="courseId"></basic-details-task-form>
-            //listen to type change and change fields down here
-            <markdown-editor-section :properties.sync="form.properties[0].content">
-
-            </markdown-editor-section>
-
+            <markdown-editor-section :properties.sync="form.properties[0].content"></markdown-editor-section>
         </template>
 
         <template #actions>
@@ -53,10 +49,9 @@
                 sections: 1,
                 form: this.$inertia.form({
                     name:'',
-                    type:'Document',
-                    position:'200',
+                    type:'',
+                    chapter_id:'',
                     points:'',
-                    time:'',
                     properties: [
                         {
                             sectionName:"",

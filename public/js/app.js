@@ -38297,6 +38297,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42024,10 +42031,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -42047,10 +42050,9 @@ __webpack_require__.r(__webpack_exports__);
       sections: 1,
       form: this.$inertia.form({
         name: '',
-        type: 'Document',
-        position: '200',
+        type: '',
+        chapter_id: '',
         points: '',
-        time: '',
         properties: [{
           sectionName: "",
           type: "markdown",
@@ -81916,19 +81918,65 @@ var render = function() {
     "div",
     { staticClass: "col-span-1 sm:col-span-6" },
     [
-      _vm.chapters.length > 0
-        ? _c(
-            "select",
-            { attrs: { name: "chapters" } },
-            _vm._l(_vm.chapters, function(chapter) {
-              return _c("option", { domProps: { value: chapter.id } }, [
-                _vm._v(_vm._s(chapter.name) + " "),
-                _c("button", [_vm._v("Editar  nombre")])
-              ])
-            }),
-            0
-          )
-        : _vm._e(),
+      _c(
+        "div",
+        { staticClass: "col-span-3 sm:col-span-2" },
+        [
+          _c("h2", [_vm._v("Capítulo")]),
+          _vm._v(" "),
+          _c("jet-label", {
+            attrs: {
+              for: "chapter",
+              value: "Capítulo en el que añadir esta tarea"
+            }
+          }),
+          _vm._v(" "),
+          _vm.chapters.length > 0
+            ? _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.chapter_id,
+                      expression: "form.chapter_id"
+                    }
+                  ],
+                  attrs: { id: "chapter" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form,
+                        "chapter_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.chapters, function(chapter) {
+                  return _c("option", { domProps: { value: chapter.id } }, [
+                    _vm._v(_vm._s(chapter.name))
+                  ])
+                }),
+                0
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c("jet-button", [_vm._v("\n            Editar capítulos\n        ")])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("jet-section-border"),
       _vm._v(" "),
@@ -81938,7 +81986,7 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [_vm._v("\n           Crear nuevo capítulo\n        ")]
+              return [_vm._v("\n            Crear nuevo capítulo\n        ")]
             },
             proxy: true
           },
@@ -82081,7 +82129,34 @@ var render = function() {
           _vm._v(" "),
           _c(
             "select",
-            { attrs: { name: "availableTypes" } },
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.type,
+                  expression: "form.type"
+                }
+              ],
+              attrs: { name: "type", id: "type" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "type",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
             _vm._l(_vm.availableTypes, function(type) {
               return _c("option", { domProps: { value: type } }, [
                 _vm._v(_vm._s(type))
@@ -87798,9 +87873,7 @@ var render = function() {
                 }
               }
             }),
-            _vm._v(
-              "\n        //listen to type change and change fields down here\n        "
-            ),
+            _vm._v(" "),
             _c("markdown-editor-section", {
               attrs: { properties: _vm.form.properties[0].content },
               on: {

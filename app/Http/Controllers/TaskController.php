@@ -98,7 +98,7 @@ class TaskController extends Controller
         $validated = $request->validate([
                                'name' => 'required',
                                'type' => 'required',
-                               'position' => 'required',
+                               'chapter_id' => 'required',
             'points'=>'required',
             'properties'=>'required'
                            ]);
