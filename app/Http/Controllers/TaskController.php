@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\Task;
 use App\Models\Team;
@@ -103,8 +104,13 @@ class TaskController extends Controller
             'properties' => 'required'
         ]);
 
-        Task::create($validated);
+        $task = Task::create($validated);
 
+        $chapter = Chapter::find($validated['chapter_id']);
+        $positions = unserialize($chapter->tasksPositionArray);
+        array_push($positions, $task->id);
+        $chapter->tasksPositionArray = serialize($positions);
+        $chapter->save();
 
         return redirect()->route('courses.show',[$course]);
     }

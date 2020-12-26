@@ -80,7 +80,6 @@ class CourseController extends Controller
                         'points' => 'taskPoints',
                         'type' => 'Document',
                         'properties' => [
-                            'type' => "markdown",
                             'content' => "texto del Documento"
                         ]
                     ],
@@ -89,8 +88,7 @@ class CourseController extends Controller
                         'points' => 'taskPoints',
                         'type' => 'card',
                         'properties' => [
-                            'type' => "card",
-                            'content' => [
+                            'card' => [
                                 "front"=>"pregunta flashcard",
                                 "back"=>"respuesta flashcard"
                             ]
@@ -107,7 +105,6 @@ class CourseController extends Controller
                         'points' => 'taskPoints',
                         'type' => 'code',
                         'properties' => [
-                            'type' => "code",
                             'code_url'=>"codeUrl",
                             'content' => "texto del code"
                         ]
@@ -117,17 +114,14 @@ class CourseController extends Controller
                         'points' => 'taskPoints',
                         'type' => 'quiz',
                         'properties' => [
-                            'type' => "quiz",
-                            'content' => [
-                                "questions"=>[
-                                    [
-                                        "question"=>"question 1",
-                                        "responses"=>[
-                                            "text"=>"posibilidad 1",
-                                            "text"=>"posibilidad 2",
-                                            "text"=>"posibilidad 3",
-                                            "text"=>"posibilidad 4",
-                                        ]
+                            "quiz"=>[
+                                [
+                                    "question"=>"question 1",
+                                    "responses"=>[
+                                        "text"=>"posibilidad 1",
+                                        "text"=>"posibilidad 2",
+                                        "text"=>"posibilidad 3",
+                                        "text"=>"posibilidad 4",
                                     ]
                                 ]
                             ]
