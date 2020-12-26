@@ -29,7 +29,7 @@ class Task extends Model
      * @var array
      */
     protected $casts = [
-        'properties' => 'json',
+        'properties' => 'array',
     ];
 
 
@@ -37,4 +37,20 @@ class Task extends Model
     {
         return $this->belongsTo('App\Models\Course', 'course_id');
     }
+     public function getCleanTaskAttribute(){
+         $attributes = $this->properties;
+        if($this->type== 'quiz'){
+            $attributes['questions']['correctAnswer'] = NULL;
+        }
+
+        $cleanTask = collect(
+            ['id' => $this->id,
+            'name' => $this->name,
+            'points' => $this->points,
+            'type' => $this->type,
+            'properties' => $attributes]
+        );
+        return $cleanTask;
+
+     }
 }
