@@ -38238,6 +38238,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Jetstream/FormSection */ "./resources/js/Jetstream/FormSection.vue");
+/* harmony import */ var _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Jetstream/ActionMessage */ "./resources/js/Jetstream/ActionMessage.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
 //
 //
 //
@@ -38253,25 +38257,82 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    form: {
-      name: '',
-      points: ''
-    }
-  },
+  props: ['form', 'chapters', 'availableTypes', 'courseId'],
   data: function data() {
-    return {};
+    return {
+      formChapter: this.$inertia.form({
+        name: '',
+        courseId: this.courseId
+      }, {
+        bag: 'chapterForm',
+        resetOnSuccess: true
+      })
+    };
   },
   components: {
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_0__["default"],
     JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_1__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_2__["default"]
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetActionMessage: _Jetstream_ActionMessage__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__["default"],
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  methods: {}
+  methods: {
+    addChapter: function addChapter() {
+      this.formChapter.post(route('chapters.store'), {
+        preserveScroll: true
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -41912,7 +41973,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['courseName', 'courseId'],
+  props: ['courseName', 'courseId', 'chapters', 'availableTypes'],
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     DocumentTaskForm: _DocumentTaskForm__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -41967,7 +42028,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -41981,7 +42041,7 @@ __webpack_require__.r(__webpack_exports__);
     MarkdownEditorSection: _Components_MarkdownEditorSection__WEBPACK_IMPORTED_MODULE_3__["default"],
     BasicDetailsTaskForm: _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  props: ['courseId'],
+  props: ['courseId', 'chapters', 'availableTypes'],
   data: function data() {
     return {
       sections: 1,
@@ -42004,7 +42064,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createTask: function createTask() {
-      console.log("APRETADO");
       var algo = this.form.post(route('courses.tasks.store', {
         'course': this.courseId
       }), {
@@ -81853,61 +81912,189 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-span-1 sm:col-span-6" }, [
-    _c(
-      "div",
-      { staticClass: "col-span-6 sm:col-span-4" },
-      [
-        _c("jet-label", {
-          attrs: { for: "name", value: "Titulo de la tarea" }
-        }),
-        _vm._v(" "),
-        _c("jet-input", {
-          staticClass: "mt-1 block w-full",
-          attrs: { id: "name", type: "text" },
-          model: {
-            value: _vm.form.name,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "name", $$v)
+  return _c(
+    "div",
+    { staticClass: "col-span-1 sm:col-span-6" },
+    [
+      _vm.chapters.length > 0
+        ? _c(
+            "select",
+            { attrs: { name: "chapters" } },
+            _vm._l(_vm.chapters, function(chapter) {
+              return _c("option", { domProps: { value: chapter.id } }, [
+                _vm._v(_vm._s(chapter.name) + " "),
+                _c("button", [_vm._v("Editar  nombre")])
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("jet-section-border"),
+      _vm._v(" "),
+      _c("jet-form-section", {
+        on: { submitted: _vm.addChapter },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v("\n           Crear nuevo capítulo\n        ")]
             },
-            expression: "form.name"
-          }
-        }),
-        _vm._v(" "),
-        _c("jet-input-error", {
-          staticClass: "mt-2",
-          attrs: { message: _vm.form.error("name") }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-span-3 sm:col-span-2" },
-      [
-        _c("jet-label", { attrs: { for: "points", value: "Puntos" } }),
-        _vm._v(" "),
-        _c("jet-input", {
-          staticClass: "mt-1 block w-full",
-          attrs: { id: "points", type: "number" },
-          model: {
-            value: _vm.form.points,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "points", $$v)
+            proxy: true
+          },
+          {
+            key: "description",
+            fn: function() {
+              return undefined
             },
-            expression: "form.points"
+            proxy: true
+          },
+          {
+            key: "form",
+            fn: function() {
+              return [
+                _c(
+                  "div",
+                  { staticClass: "col-span-6 sm:col-span-4" },
+                  [
+                    _c("jet-label", {
+                      attrs: {
+                        for: "chapterName",
+                        value: "Titulo del capítulo"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      staticClass: "mt-1 block w-full",
+                      attrs: { id: "chapterName", type: "text" },
+                      model: {
+                        value: _vm.formChapter.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.formChapter, "name", $$v)
+                        },
+                        expression: "formChapter.name"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.formChapter.error("name") }
+                    })
+                  ],
+                  1
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "actions",
+            fn: function() {
+              return [
+                _c(
+                  "jet-action-message",
+                  {
+                    staticClass: "mr-3",
+                    attrs: { on: _vm.formChapter.recentlySuccessful }
+                  },
+                  [_vm._v("\n                Guardado.\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-button",
+                  {
+                    class: { "opacity-25": _vm.formChapter.processing },
+                    attrs: { disabled: _vm.formChapter.processing }
+                  },
+                  [_vm._v("\n                Guardar\n            ")]
+                )
+              ]
+            },
+            proxy: true
           }
-        }),
-        _vm._v(" "),
-        _c("jet-input-error", {
-          staticClass: "mt-2",
-          attrs: { message: _vm.form.error("name") }
-        })
-      ],
-      1
-    )
-  ])
+        ])
+      }),
+      _vm._v(" "),
+      _c("jet-section-border"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-span-6 sm:col-span-4" },
+        [
+          _c("jet-label", {
+            attrs: { for: "name", value: "Titulo de la tarea" }
+          }),
+          _vm._v(" "),
+          _c("jet-input", {
+            staticClass: "mt-1 block w-full",
+            attrs: { id: "name", type: "text" },
+            model: {
+              value: _vm.form.name,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "name", $$v)
+              },
+              expression: "form.name"
+            }
+          }),
+          _vm._v(" "),
+          _c("jet-input-error", {
+            staticClass: "mt-2",
+            attrs: { message: _vm.form.error("name") }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-span-3 sm:col-span-2" },
+        [
+          _c("jet-label", { attrs: { for: "points", value: "Puntos" } }),
+          _vm._v(" "),
+          _c("jet-input", {
+            staticClass: "mt-1 block w-full",
+            attrs: { id: "points", type: "number" },
+            model: {
+              value: _vm.form.points,
+              callback: function($$v) {
+                _vm.$set(_vm.form, "points", $$v)
+              },
+              expression: "form.points"
+            }
+          }),
+          _vm._v(" "),
+          _c("jet-input-error", {
+            staticClass: "mt-2",
+            attrs: { message: _vm.form.error("points") }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-span-3 sm:col-span-2" },
+        [
+          _c("jet-label", {
+            attrs: { for: "availableTypes", value: "Tipo de tarea" }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
+            { attrs: { name: "availableTypes" } },
+            _vm._l(_vm.availableTypes, function(type) {
+              return _c("option", { domProps: { value: type } }, [
+                _vm._v(_vm._s(type))
+              ])
+            }),
+            0
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -87540,7 +87727,15 @@ var render = function() {
         _c(
           "div",
           {},
-          [_c("document-task-form", { attrs: { courseId: _vm.courseId } })],
+          [
+            _c("document-task-form", {
+              attrs: {
+                courseId: _vm.courseId,
+                chapters: _vm.chapters,
+                availableTypes: _vm.availableTypes
+              }
+            })
+          ],
           1
         )
       ])
@@ -87591,14 +87786,21 @@ var render = function() {
         fn: function() {
           return [
             _c("basic-details-task-form", {
-              attrs: { form: _vm.form },
+              attrs: {
+                form: _vm.form,
+                chapters: _vm.chapters,
+                availableTypes: _vm.availableTypes,
+                courseId: _vm.courseId
+              },
               on: {
                 "update:form": function($event) {
                   _vm.form = $event
                 }
               }
             }),
-            _vm._v(" "),
+            _vm._v(
+              "\n        //listen to type change and change fields down here\n        "
+            ),
             _c("markdown-editor-section", {
               attrs: { properties: _vm.form.properties[0].content },
               on: {
@@ -87606,9 +87808,7 @@ var render = function() {
                   return _vm.$set(_vm.form.properties[0], "content", $event)
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("jet-button", [_vm._v("\n            Añadir sección\n        ")])
+            })
           ]
         },
         proxy: true

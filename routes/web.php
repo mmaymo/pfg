@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\CourseContent;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MembersController;
@@ -38,3 +39,4 @@ Route::resource('courses.users', MembersController::class)->scoped(
 );
 
 Route::get('course/{id}', CourseContent::class)->name('course');
+Route::resource('chapters', ChapterController::class);

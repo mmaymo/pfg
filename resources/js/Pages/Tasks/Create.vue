@@ -8,7 +8,7 @@
 
         <div>
             <div class="">
-                <document-task-form :courseId="courseId"/>
+                <document-task-form :courseId="courseId" :chapters="chapters" :availableTypes="availableTypes"/>
             </div>
         </div>
     </app-layout>
@@ -20,7 +20,7 @@
     import JetSectionBorder from './../../Jetstream/SectionBorder'
 
     export default {
-        props: ['courseName', 'courseId'],
+        props: ['courseName', 'courseId', 'chapters', 'availableTypes'],
 
         components: {
             AppLayout,

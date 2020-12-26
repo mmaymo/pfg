@@ -17,6 +17,7 @@ use Laravel\Jetstream\Jetstream;
 
 class TaskController extends Controller
 {
+    const AVAILABLE_TASK_TYPES = ['document', 'quiz', 'card', 'code', 'introCourse'];
 
     /**
      * Show the task contents.
@@ -69,18 +70,21 @@ class TaskController extends Controller
             'courseProgress'=>$courseProgress,
         ]);
     }
+
     /**
      * Show the task creation screen.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param int $course
      * @return \Inertia\Response
      */
     public function create(Request $request, $course)
     {
+        $course = Course::find($course);
+        $chapters = $course->chapters;
+        $availableTypes = self::AVAILABLE_TASK_TYPES;
 
-        $course = Team::find($course);
-
-        return Inertia::render('Tasks/Create', ['courseName'=>$course->name, 'courseId'=>$course->id]);
+        return Inertia::render('Tasks/Create', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes]);
     }
 
     /**

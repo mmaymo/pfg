@@ -9,13 +9,12 @@
         </template>
 
         <template #form>
-           <basic-details-task-form :form.sync="form"></basic-details-task-form>
+           <basic-details-task-form :form.sync="form" :chapters="chapters" :availableTypes="availableTypes" :courseId="courseId"></basic-details-task-form>
+            //listen to type change and change fields down here
             <markdown-editor-section :properties.sync="form.properties[0].content">
 
             </markdown-editor-section>
-            <jet-button  >
-                Añadir sección
-            </jet-button>
+
         </template>
 
         <template #actions>
@@ -47,7 +46,7 @@
             BasicDetailsTaskForm
         },
         props:[
-            'courseId'
+            'courseId','chapters', 'availableTypes'
         ],
         data() {
             return {
@@ -74,7 +73,6 @@
 
         methods: {
             createTask() {
-                console.log("APRETADO")
                 let algo = this.form.post(route('courses.tasks.store', {'course':this.courseId}), {
                     preserveScroll: true
                 });

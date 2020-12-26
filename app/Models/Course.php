@@ -34,6 +34,7 @@ class Course extends Model
             ->withPivot('points');
     }
 
+
     public function getMembersDetails(){
         $users = $this->users;
         $members = [];
@@ -43,7 +44,10 @@ class Course extends Model
         }
         return $members;
     }
-
+    public function chapters()
+    {
+        return $this->hasMany('App\Models\Chapter', 'course_id');
+    }
     public function tasks()
     {
         return $this->hasMany('App\Models\Task', 'course_id')->orderBy('position');
