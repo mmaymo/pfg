@@ -107,9 +107,9 @@ class TaskController extends Controller
         $task = Task::create($validated);
 
         $chapter = Chapter::find($validated['chapter_id']);
-        $positions = unserialize($chapter->tasksPositionArray);
+        $positions = $chapter->tasksPositionArray;
         array_push($positions, $task->id);
-        $chapter->tasksPositionArray = serialize($positions);
+        $chapter->tasksPositionArray = $positions;
         $chapter->save();
 
         return redirect()->route('courses.show',[$course]);

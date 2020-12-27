@@ -67,73 +67,8 @@ class CourseController extends Controller
     public function show(Request $request, $courseId)
     {
         $course = Course::find($courseId);
-
         $students = $course->getMembersDetails();
-
-        $itinerary = [
-            [
-                'id' => 1,
-                'name' => 'chapterName1',
-                'tasks' => [
-                    ['id' => 1,
-                        'name' => 'taskName1',
-                        'points' => 'taskPoints',
-                        'type' => 'Document',
-                        'properties' => [
-                            'content' => "texto del Documento"
-                        ]
-                    ],
-                    ['id' => 2,
-                        'name' => 'taskName2',
-                        'points' => 'taskPoints',
-                        'type' => 'card',
-                        'properties' => [
-                            'card' => [
-                                "front"=>"pregunta flashcard",
-                                "back"=>"respuesta flashcard"
-                            ]
-                        ]
-                    ],
-                ]
-            ],
-            [
-                'id' => 2,
-                'name' => 'chapterName2',
-                'tasks' => [
-                    ['id' => 3,
-                        'name' => 'taskName3',
-                        'points' => 'taskPoints',
-                        'type' => 'code',
-                        'properties' => [
-                            'code_url'=>"codeUrl",
-                            'content' => "texto del code"
-                        ]
-                    ],
-                    ['id' => 4,
-                        'name' => 'taskName4',
-                        'points' => 'taskPoints',
-                        'type' => 'quiz',
-                        'properties' => [
-                            "quiz"=>[
-                                [
-                                    "question"=>"question 1",
-                                    "responses"=>[
-                                        "text"=>"posibilidad 1",
-                                        "text"=>"posibilidad 2",
-                                        "text"=>"posibilidad 3",
-                                        "text"=>"posibilidad 4",
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                ]
-            ],
-
-
-            ];
-        $itinerary = $course->itinerary;
-
+        $itinerary = $course->getOrderedChaptersWithTasks();
         $course = [
             'courseDetails' => ['id'=>$course->id, 'name'=>$course->name, 'degree'=>$course->degree, 'semester'=>$course->semester, 'pic'=>$course->pic],
             'students'=>$students,

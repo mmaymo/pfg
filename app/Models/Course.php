@@ -22,6 +22,14 @@ class Course extends Model
             'semester',
             'pic'
         ];
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'chaptersPositionArray' => 'array',
+    ];
 
     public function team()
     {
@@ -50,9 +58,27 @@ class Course extends Model
     }
 
 
-    public function itinerary()
+    public function getOrderedChaptersWithTasks()
     {
-        return $this->chapters()->with('tasks');
+        $chapters = $this->chaptersPositionArray;
+        $orderedChapters = collect();
+
+        foreach ($chapters as $chapter=>$tasks){
+            $selectedChapter = Chapter::find($chapter);
+            $selectedChapter->tasks = collect();
+            foreach ($tasks as $taskId){
+                $task = Task::find($taskId);
+                $task = $task->clean_task;
+                $selectedChapter->tasks->push($task);
+            }
+            $orderedChapters->push($selectedChapter);
+        }
+        return $orderedChapters;
+    }
+
+    public function insertPositions(array $positions){
+        $this->chaptersPositionArray = $positions;
+        $this->save();
     }
 
     public function rankingTeamCoursePoints()

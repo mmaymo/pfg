@@ -15,6 +15,15 @@ class Chapter extends Model
             'name',
             'tasksPositionArray'
         ];
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'tasksPositionArray' => 'array',
+    ];
+
     public function tasks()
     {
         return $this->hasMany('App\Models\Task', 'chapter_id');
