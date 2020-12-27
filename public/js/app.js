@@ -38299,11 +38299,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -42083,6 +42078,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -42517,6 +42518,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
 /* harmony import */ var _Components_MarkdownEditorSection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/MarkdownEditorSection */ "./resources/js/Components/MarkdownEditorSection.vue");
 /* harmony import */ var _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Components/BasicDetailsTaskForm */ "./resources/js/Components/BasicDetailsTaskForm.vue");
+//
 //
 //
 //
@@ -82267,55 +82269,6 @@ var render = function() {
           })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-span-3 sm:col-span-2" },
-        [
-          _c("jet-label", {
-            attrs: { for: "availableTypes", value: "Tipo de tarea" }
-          }),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.type,
-                  expression: "form.type"
-                }
-              ],
-              attrs: { name: "type", id: "type" },
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.form,
-                    "type",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
-            _vm._l(_vm.availableTypes, function(type) {
-              return _c("option", { domProps: { value: type } }, [
-                _vm._v(_vm._s(type))
-              ])
-            }),
-            0
-          )
-        ],
-        1
       )
     ],
     1
@@ -88024,6 +87977,57 @@ var render = function() {
               }
             }),
             _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-span-3 sm:col-span-2" },
+              [
+                _c("jet-label", {
+                  attrs: { for: "availableTypes", value: "Tipo de tarea" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.type,
+                        expression: "form.type"
+                      }
+                    ],
+                    attrs: { name: "type", id: "type" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.form,
+                          "type",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  _vm._l(_vm.availableTypes, function(type) {
+                    return _c("option", { domProps: { value: type } }, [
+                      _vm._v(_vm._s(type))
+                    ])
+                  }),
+                  0
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
             _vm.form.type == "code"
               ? _c(
                   "div",
@@ -88864,6 +88868,8 @@ var render = function() {
                 }
               }
             }),
+            _vm._v(" "),
+            _c("h2", [_vm._v("Tipo tarea: " + _vm._s(_vm.form.type))]),
             _vm._v(" "),
             _vm.form.type == "code"
               ? _c(

@@ -51,12 +51,7 @@
             <jet-input id="points" type="number" class="mt-1 block w-full" v-model="form.points"/>
             <jet-input-error :message="form.error('points')" class="mt-2"/>
         </div>
-        <div class="col-span-3 sm:col-span-2">
-            <jet-label for="availableTypes" value="Tipo de tarea"/>
-            <select name="type" id="type" v-model="form.type">
-                <option v-for="type in availableTypes" :value="type">{{type}}</option>
-            </select>
-        </div>
+
     </div>
 </template>
 

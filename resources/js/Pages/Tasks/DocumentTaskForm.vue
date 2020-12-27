@@ -10,6 +10,12 @@
 
         <template #form>
            <basic-details-task-form :form.sync="form" :chapters="chapters" :availableTypes="availableTypes" :courseId="courseId"></basic-details-task-form>
+            <div class="col-span-3 sm:col-span-2">
+                <jet-label for="availableTypes" value="Tipo de tarea"/>
+                <select name="type" id="type" v-model="form.type">
+                    <option v-for="type in availableTypes" :value="type">{{type}}</option>
+                </select>
+            </div>
             <div  v-if="form.type == 'code'"  class="col-span-6 sm:col-span-4">
                 <jet-label for="code_url" value="Nombre del archivo"/>
                 <jet-input id="code_url" type="text" class="mt-1 block w-full" v-model="form.properties.code_url"/>
