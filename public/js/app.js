@@ -42290,6 +42290,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -42310,53 +42313,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      addTaskDocForm: this.$inertia.form({
-        name: '',
-        type: '',
-        position: 150,
-        points: '',
-        properties: ''
+      updateOrderForm: this.$inertia.form({
+        orderedContentIds: this.tasks
       }, {
-        bag: 'addDocumentTask',
-        resetOnSuccess: true
-      }),
-      addTaskCodeForm: this.$inertia.form({
-        name: '',
-        type: '',
-        position: 150,
-        points: '',
-        properties: ''
-      }, {
-        bag: 'addCodeTask',
-        resetOnSuccess: true
-      }),
-      addTaskQuizForm: this.$inertia.form({
-        name: '',
-        type: '',
-        position: 150,
-        points: '',
-        properties: ''
-      }, {
-        bag: 'addQuizTask',
-        resetOnSuccess: true
-      }),
-      addTaskCardForm: this.$inertia.form({
-        name: '',
-        type: '',
-        position: 150,
-        points: '',
-        properties: ''
-      }, {
-        bag: 'addCardTask',
+        bag: 'updateOrder',
         resetOnSuccess: true
       }),
       removeTeamMemberForm: this.$inertia.form({//
       }, {
         bag: 'removeTeamMember'
       }),
-      teamMemberBeingRemoved: null,
-      taskEdited: null,
-      type: "Card"
+      teamMemberBeingRemoved: null
     };
   },
   methods: {
@@ -42386,15 +42353,12 @@ __webpack_require__.r(__webpack_exports__);
     showEdit: function showEdit(taskId) {
       this.taskEdited = taskId;
     },
-    log: function log(event) {
-      //algo se ha movido, enseñar el boton por si lo quieren guardar
-      //ahora this.tasks está ordenada como quiere el usuario
-      //tengo que modificar el valor de position de cada elemento cambiado
-      console.log(event);
-      console.log(this.tasks);
-    },
-    changeTaskType: function changeTaskType(type) {
-      this.type = type;
+    persistContentPositions: function persistContentPositions() {
+      this.updateOrderForm.post(route('updateOrderContent', {
+        'course': this.courseId
+      }), {
+        preserveScroll: true
+      });
     }
   }
 });
@@ -42412,7 +42376,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
-//
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 //
 //
 //
@@ -42443,13 +42407,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'nested-draggable',
   components: {
-    Draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
+    Draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a,
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   props: {
-    tasks: {}
+    tasks: {},
+    courseId: Number
+  },
+  methods: {
+    linkToEdit: function linkToEdit() {}
   }
 });
 
@@ -88395,8 +88365,24 @@ var render = function() {
                       fn: function() {
                         return [
                           _c("nested-draggable", {
-                            attrs: { tasks: _vm.tasks }
-                          })
+                            attrs: { tasks: _vm.tasks, courseId: _vm.courseId }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "jet-button",
+                            {
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.persistContentPositions($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                    Guardar este orden\n                "
+                              )
+                            ]
+                          )
                         ]
                       },
                       proxy: true
@@ -88404,7 +88390,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  3014365223
+                  3954726160
                 )
               })
             ],
@@ -88563,41 +88549,52 @@ var render = function() {
       },
       on: { change: function($event) {} }
     },
-    _vm._l(_vm.tasks, function(chapter) {
+    _vm._l(_vm.tasks, function(item) {
       return _c(
         "li",
-        { key: chapter.id, staticClass: "flex items-center justify-between" },
+        { key: item.id, staticClass: "flex items-center justify-between" },
         [
           _c("div", [
             _c("div", { staticClass: "flex items-center" }, [
-              _c("span", { staticClass: "ml-4" }, [
-                _vm._v(_vm._s(chapter.name))
-              ])
+              _c("span", { staticClass: "ml-4" }, [_vm._v(_vm._s(item.name))])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "flex items-center" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "ml-2 text-sm text-gray-400 underline",
-                  on: { click: function($event) {} }
-                },
-                [_vm._v("\n                    Editar\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                  on: { click: function($event) {} }
-                },
-                [_vm._v("\n                    Eliminar\n                ")]
-              )
-            ])
+            _c(
+              "div",
+              { staticClass: "flex items-center" },
+              [
+                _c("jet-button", [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: _vm.route("courses.tasks.edit", {
+                          course: _vm.courseId,
+                          task: item.id
+                        })
+                      }
+                    },
+                    [_vm._v("Editar")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
+                    on: { click: function($event) {} }
+                  },
+                  [_vm._v("\n                    Eliminar\n                ")]
+                )
+              ],
+              1
+            )
           ]),
           _vm._v(" "),
-          _c("nested-draggable", { attrs: { tasks: chapter.tasks } })
+          _c("nested-draggable", {
+            attrs: { tasks: item.tasks, courseId: _vm.courseId }
+          })
         ],
         1
       )

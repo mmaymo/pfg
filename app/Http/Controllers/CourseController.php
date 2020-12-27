@@ -186,4 +186,31 @@ class CourseController extends Controller
 
         return redirect(config('fortify.home'));
     }
+
+    /**
+     * updateOrderContent.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $courseId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateOrderContent(Request $request, $courseId)
+    {
+        $course = Course::find($courseId);
+
+        $validated = Validator::make($request->all(), [
+            'orderedContentIds' => ['array'],
+        ])->validateWithBag('updateOrder');
+        $wholeObject = $validated['orderedContentIds'];
+        $newOrder = [];
+        foreach ($wholeObject as $content){
+            $newOrder[$content['id']]= [];
+            foreach ($content['tasks'] as $task){
+                array_push($newOrder[$content['id']], $task['id']);
+            }
+        }
+        $course->insertPositions($newOrder);
+
+        return back(303);
+    }
 }

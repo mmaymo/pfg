@@ -15,7 +15,10 @@
                 <!-- Team Member List -->
                 <template #content>
 
-                    <nested-draggable :tasks="tasks"/>
+                    <nested-draggable :tasks="tasks" :courseId="courseId"/>
+                    <jet-button @click.native="persistContentPositions">
+                        Guardar este orden
+                    </jet-button>
                 </template>
             </jet-action-section>
         </div>
@@ -144,44 +147,10 @@
         data() {
 
             return {
-                addTaskDocForm: this.$inertia.form({
-                    name: '',
-                    type: '',
-                    position: 150,
-                    points: '',
-                    properties: ''
+                updateOrderForm: this.$inertia.form({
+                    orderedContentIds: this.tasks
                 }, {
-                    bag: 'addDocumentTask',
-                    resetOnSuccess: true,
-                }),
-                addTaskCodeForm: this.$inertia.form({
-                    name: '',
-                    type: '',
-                    position: 150,
-                    points: '',
-                    properties: ''
-                }, {
-                    bag: 'addCodeTask',
-                    resetOnSuccess: true,
-                }),
-                addTaskQuizForm: this.$inertia.form({
-                    name: '',
-                    type: '',
-                    position: 150,
-                    points: '',
-                    properties: ''
-                }, {
-                    bag: 'addQuizTask',
-                    resetOnSuccess: true,
-                }),
-                addTaskCardForm: this.$inertia.form({
-                    name: '',
-                    type: '',
-                    position: 150,
-                    points: '',
-                    properties: ''
-                }, {
-                    bag: 'addCardTask',
+                    bag: 'updateOrder',
                     resetOnSuccess: true,
                 }),
                 removeTeamMemberForm: this.$inertia.form({
@@ -190,8 +159,6 @@
                     bag: 'removeTeamMember',
                 }),
                 teamMemberBeingRemoved: null,
-                taskEdited: null,
-                type: "Card"
             }
         },
         methods: {
@@ -217,17 +184,11 @@
             showEdit(taskId) {
                 this.taskEdited = taskId
             },
-            log(event) {
-                //algo se ha movido, enseñar el boton por si lo quieren guardar
-                //ahora this.tasks está ordenada como quiere el usuario
-                //tengo que modificar el valor de position de cada elemento cambiado
-                console.log(event)
-                console.log(this.tasks)
-            },
-            changeTaskType(type) {
-                this.type = type
+            persistContentPositions(){
+                this.updateOrderForm.post(route('updateOrderContent', {'course': this.courseId}), {
+                    preserveScroll: true
+                });
             }
-
         }
 
     }
