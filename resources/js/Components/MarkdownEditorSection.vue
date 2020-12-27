@@ -1,7 +1,7 @@
 <template>
     <div class="col-span-1 sm:col-span-6">
 
-        <editor :initialValue="editorText" ref="toastuiEditor" height="500px"></editor>
+        <editor :initialValue="properties" ref="toastuiEditor" height="500px"></editor>
         <button @click="getMarkdown">Guardar</button>
     </div>
 
@@ -13,12 +13,9 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 
 import { Editor } from '@toast-ui/vue-editor';
     export default {
-        props:{
-            properties:{default:'hola'}
-        },
+        props:['properties'],
         data(){
             return {
-                editorText:'hola'
             }
         },
         components: {

@@ -38372,15 +38372,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    properties: {
-      "default": 'hola'
-    }
-  },
+  props: ['properties'],
   data: function data() {
-    return {
-      editorText: 'hola'
-    };
+    return {};
   },
   components: {
     Editor: _toast_ui_vue_editor__WEBPACK_IMPORTED_MODULE_2__["Editor"]
@@ -42111,7 +42105,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ['courseId', 'chapters', 'availableTypes'],
   data: function data() {
     return {
-      sections: 1,
       form: this.$inertia.form({
         name: '',
         type: '',
@@ -42143,13 +42136,54 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createTask: function createTask() {
-      var algo = this.form.post(route('courses.tasks.store', {
+      this.form.post(route('courses.tasks.store', {
         'course': this.courseId
       }), {
         preserveScroll: true
       });
-      console.log(algo);
     }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/Edit.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Tasks/Edit.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+/* harmony import */ var _UpdateTaskForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UpdateTaskForm */ "./resources/js/Pages/Tasks/UpdateTaskForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['courseName', 'courseId', 'chapters', 'availableTypes', 'task'],
+  components: {
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    UpdateTaskForm: _UpdateTaskForm__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -42481,6 +42515,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Jetstream/Label */ "./resources/js/Jetstream/Label.vue");
+/* harmony import */ var _Components_MarkdownEditorSection__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/MarkdownEditorSection */ "./resources/js/Components/MarkdownEditorSection.vue");
+/* harmony import */ var _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Components/BasicDetailsTaskForm */ "./resources/js/Components/BasicDetailsTaskForm.vue");
 //
 //
 //
@@ -42531,6 +42567,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -42544,17 +42614,36 @@ __webpack_require__.r(__webpack_exports__);
     JetFormSection: _Jetstream_FormSection__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_4__["default"],
-    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__["default"]
+    JetLabel: _Jetstream_Label__WEBPACK_IMPORTED_MODULE_5__["default"],
+    MarkdownEditorSection: _Components_MarkdownEditorSection__WEBPACK_IMPORTED_MODULE_6__["default"],
+    BasicDetailsTaskForm: _Components_BasicDetailsTaskForm__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
-  props: ['task', 'permissions', 'course'],
+  props: ['courseName', 'courseId', 'chapters', 'availableTypes', 'task'],
   data: function data() {
     return {
       form: this.$inertia.form({
         name: this.task.name,
         type: this.task.type,
-        position: this.task.position,
+        chapter_id: this.task.chapter_id,
         points: this.task.points,
-        properties: this.task.properties
+        properties: {
+          content: this.task.properties.content,
+          code_url: this.task.properties.code_url,
+          quiz: {
+            question: this.task.properties.quiz.question,
+            responses: {
+              t1: this.task.properties.quiz.responses.t1,
+              t2: this.task.properties.quiz.responses.t2,
+              t3: this.task.properties.quiz.responses.t3,
+              t4: this.task.properties.quiz.responses.t4
+            },
+            correctAnswer: this.task.properties.quiz.correctAnswer
+          },
+          card: {
+            front: this.task.properties.card.front,
+            back: this.task.properties.card.back
+          }
+        }
       }, {
         bag: 'updateTask',
         resetOnSuccess: false
@@ -42564,7 +42653,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     updateTask: function updateTask() {
       this.form.put(route('courses.tasks.update', {
-        'course': this.course,
+        'course': this.courseId,
         'task': this.task.id
       }), {
         preserveScroll: true
@@ -82260,7 +82349,7 @@ var render = function() {
     [
       _c("editor", {
         ref: "toastuiEditor",
-        attrs: { initialValue: _vm.editorText, height: "500px" }
+        attrs: { initialValue: _vm.properties, height: "500px" }
       }),
       _vm._v(" "),
       _c("button", { on: { click: _vm.getMarkdown } }, [_vm._v("Guardar")])
@@ -88310,6 +88399,78 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/Edit.vue?vue&type=template&id=155c6e18&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Tasks/Edit.vue?vue&type=template&id=155c6e18& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "app-layout",
+    {
+      scopedSlots: _vm._u([
+        {
+          key: "header",
+          fn: function() {
+            return [
+              _c(
+                "h2",
+                {
+                  staticClass:
+                    "font-semibold text-xl text-gray-800 leading-tight"
+                },
+                [
+                  _vm._v(
+                    "\n            Crear tarea para " +
+                      _vm._s(_vm.courseName) +
+                      "\n        "
+                  )
+                ]
+              )
+            ]
+          },
+          proxy: true
+        }
+      ])
+    },
+    [
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "div",
+          {},
+          [
+            _c("update-task-form", {
+              attrs: {
+                courseId: _vm.courseId,
+                chapters: _vm.chapters,
+                availableTypes: _vm.availableTypes,
+                task: _vm.task
+              }
+            })
+          ],
+          1
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/Index.vue?vue&type=template&id=12c1e150&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Tasks/Index.vue?vue&type=template&id=12c1e150& ***!
@@ -88671,210 +88832,405 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("jet-form-section", {
     on: { submitted: _vm.updateTask },
-    scopedSlots: _vm._u(
-      [
-        {
-          key: "title",
-          fn: function() {
-            return [_vm._v("\n        Editar tarea\n    ")]
-          },
-          proxy: true
+    scopedSlots: _vm._u([
+      {
+        key: "title",
+        fn: function() {
+          return [_vm._v("\n        Tarea tipo Documento\n    ")]
         },
-        {
-          key: "description",
-          fn: function() {
-            return [
-              _vm._v("\n        Nombre del curso y su responsable.\n    ")
-            ]
-          },
-          proxy: true
+        proxy: true
+      },
+      {
+        key: "description",
+        fn: function() {
+          return undefined
         },
-        {
-          key: "form",
-          fn: function() {
-            return [
-              _c(
-                "div",
-                { staticClass: "col-span-6 sm:col-span-4" },
-                [
-                  _c("jet-label", { attrs: { for: "name", value: "Nombre" } }),
-                  _vm._v(" "),
-                  _c("jet-input", {
-                    staticClass: "mt-1 block w-full",
-                    attrs: { id: "name", type: "text" },
-                    model: {
-                      value: _vm.form.name,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "name", $$v)
-                      },
-                      expression: "form.name"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input-error", {
-                    staticClass: "mt-2",
-                    attrs: { message: _vm.form.error("name") }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-span-6 sm:col-span-4" },
-                [
-                  _c("jet-label", {
-                    attrs: { for: "points", value: "Puntos" }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input", {
-                    staticClass: "mt-1 block w-full",
-                    attrs: { id: "points", type: "number" },
-                    model: {
-                      value: _vm.form.points,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "points", $$v)
-                      },
-                      expression: "form.points"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input-error", {
-                    staticClass: "mt-2",
-                    attrs: { message: _vm.form.error("name") }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-span-6 sm:col-span-4" },
-                [
-                  _c("jet-label", { attrs: { for: "type", value: "Tipo" } }),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.type,
-                          expression: "form.type"
-                        }
-                      ],
-                      staticClass: "mt-1 block w-full rounded-md shadow-sm",
-                      attrs: { id: "type" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "type",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "document" } }, [
-                        _vm._v("Texto")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "card" } }, [
-                        _vm._v("Tarjeta")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "quiz" } }, [
-                        _vm._v("Test")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "code" } }, [
-                        _vm._v("Codigo")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("jet-input-error", {
-                    staticClass: "mt-2",
-                    attrs: { message: _vm.form.error("name") }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-span-6 sm:col-span-4" },
-                [
-                  _c("jet-label", {
-                    attrs: { for: "properties", value: "Contenido" }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input", {
-                    staticClass: "mt-1 block w-full",
-                    attrs: { id: "properties", type: "text" },
-                    model: {
-                      value: _vm.form.properties,
-                      callback: function($$v) {
-                        _vm.$set(_vm.form, "properties", $$v)
-                      },
-                      expression: "form.properties"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("jet-input-error", {
-                    staticClass: "mt-2",
-                    attrs: { message: _vm.form.error("properties") }
-                  })
-                ],
-                1
-              )
-            ]
-          },
-          proxy: true
-        },
-        _vm.permissions.canUpdateTeam
-          ? {
-              key: "actions",
-              fn: function() {
-                return [
-                  _c(
-                    "jet-action-message",
-                    {
-                      staticClass: "mr-3",
-                      attrs: { on: _vm.form.recentlySuccessful }
-                    },
-                    [_vm._v("\n            Saved.\n        ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-button",
-                    {
-                      class: { "opacity-25": _vm.form.processing },
-                      attrs: { disabled: _vm.form.processing }
-                    },
-                    [_vm._v("\n            Guardar\n        ")]
-                  )
-                ]
+        proxy: true
+      },
+      {
+        key: "form",
+        fn: function() {
+          return [
+            _c("basic-details-task-form", {
+              attrs: {
+                form: _vm.form,
+                chapters: _vm.chapters,
+                availableTypes: _vm.availableTypes,
+                courseId: _vm.courseId
               },
-              proxy: true
-            }
-          : null
-      ],
-      null,
-      true
-    )
+              on: {
+                "update:form": function($event) {
+                  _vm.form = $event
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.form.type == "code"
+              ? _c(
+                  "div",
+                  { staticClass: "col-span-6 sm:col-span-4" },
+                  [
+                    _c("jet-label", {
+                      attrs: { for: "code_url", value: "Nombre del archivo" }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input", {
+                      staticClass: "mt-1 block w-full",
+                      attrs: { id: "code_url", type: "text" },
+                      model: {
+                        value: _vm.form.properties.code_url,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form.properties, "code_url", $$v)
+                        },
+                        expression: "form.properties.code_url"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      staticClass: "mt-2",
+                      attrs: { message: _vm.form.error("code_url") }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.form.type == "quiz"
+              ? _c("div", [
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: {
+                          for: "question",
+                          value: "Texto de la pregunta"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "question", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.question,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form.properties.quiz, "question", $$v)
+                          },
+                          expression: "form.properties.quiz.question"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("question") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer1", value: "Respuesta 1" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer1", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t1,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t1",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t1"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer1") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer2", value: "Respuesta 2" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer2", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t2,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t2",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t2"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer2") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer3", value: "Respuesta 3" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer3", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t3,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t3",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t3"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer3") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer4", value: "Respuesta 4" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer4", type: "text" },
+                        model: {
+                          value: _vm.form.properties.quiz.responses.t4,
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.form.properties.quiz.responses,
+                              "t4",
+                              $$v
+                            )
+                          },
+                          expression: "form.properties.quiz.responses.t4"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer4") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: {
+                          for: "correctAnswer",
+                          value: "Respuesta Correcta"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.properties.quiz.correctAnswer,
+                              expression: "form.properties.quiz.correctAnswer"
+                            }
+                          ],
+                          attrs: { name: "type", id: "correctAnswer" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form.properties.quiz,
+                                "correctAnswer",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "1" } }, [
+                            _vm._v("Respuesta 1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2" } }, [
+                            _vm._v("Respuesta 2")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "3" } }, [
+                            _vm._v("Respuesta 3")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "4" } }, [
+                            _vm._v("Respuesta 4")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("correctAnswer") }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.form.type == "card"
+              ? _c("div", [
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: {
+                          for: "cardQuestion",
+                          value: "Texto de la pregunta"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "cardQuestion", type: "text" },
+                        model: {
+                          value: _vm.form.properties.card.front,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form.properties.card, "front", $$v)
+                          },
+                          expression: "form.properties.card.front"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("cardQuestion") }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-span-6 sm:col-span-4" },
+                    [
+                      _c("jet-label", {
+                        attrs: { for: "answer", value: "Respuesta" }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input", {
+                        staticClass: "mt-1 block w-full",
+                        attrs: { id: "answer", type: "text" },
+                        model: {
+                          value: _vm.form.properties.card.back,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form.properties.card, "back", $$v)
+                          },
+                          expression: "form.properties.card.back"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("jet-input-error", {
+                        staticClass: "mt-2",
+                        attrs: { message: _vm.form.error("answer") }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.form.type == "document" || _vm.form.type == "code"
+              ? _c("markdown-editor-section", {
+                  attrs: { properties: _vm.form.properties.content },
+                  on: {
+                    "update:properties": function($event) {
+                      return _vm.$set(_vm.form.properties, "content", $event)
+                    }
+                  }
+                })
+              : _vm._e()
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "actions",
+        fn: function() {
+          return [
+            _c(
+              "jet-action-message",
+              {
+                staticClass: "mr-3",
+                attrs: { on: _vm.form.recentlySuccessful }
+              },
+              [_vm._v("\n            Guardado.\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "jet-button",
+              {
+                class: { "opacity-25": _vm.form.processing },
+                attrs: { disabled: _vm.form.processing }
+              },
+              [_vm._v("\n            Guardar\n        ")]
+            )
+          ]
+        },
+        proxy: true
+      }
+    ])
   })
 }
 var staticRenderFns = []
@@ -106946,6 +107302,8 @@ var map = {
 	"./Tasks/Create.vue": "./resources/js/Pages/Tasks/Create.vue",
 	"./Tasks/DocumentTaskForm": "./resources/js/Pages/Tasks/DocumentTaskForm.vue",
 	"./Tasks/DocumentTaskForm.vue": "./resources/js/Pages/Tasks/DocumentTaskForm.vue",
+	"./Tasks/Edit": "./resources/js/Pages/Tasks/Edit.vue",
+	"./Tasks/Edit.vue": "./resources/js/Pages/Tasks/Edit.vue",
 	"./Tasks/Index": "./resources/js/Pages/Tasks/Index.vue",
 	"./Tasks/Index.vue": "./resources/js/Pages/Tasks/Index.vue",
 	"./Tasks/NestedDraggable": "./resources/js/Pages/Tasks/NestedDraggable.vue",
@@ -108434,6 +108792,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DocumentTaskForm_vue_vue_type_template_id_0f92ade4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DocumentTaskForm_vue_vue_type_template_id_0f92ade4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Tasks/Edit.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Tasks/Edit.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_155c6e18___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=155c6e18& */ "./resources/js/Pages/Tasks/Edit.vue?vue&type=template&id=155c6e18&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Tasks/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_155c6e18___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_155c6e18___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Tasks/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Tasks/Edit.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/Pages/Tasks/Edit.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Tasks/Edit.vue?vue&type=template&id=155c6e18&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/Pages/Tasks/Edit.vue?vue&type=template&id=155c6e18& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_155c6e18___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=155c6e18& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Tasks/Edit.vue?vue&type=template&id=155c6e18&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_155c6e18___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_155c6e18___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

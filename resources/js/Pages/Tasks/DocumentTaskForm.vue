@@ -107,7 +107,6 @@
         ],
         data() {
             return {
-                sections: 1,
                 form: this.$inertia.form({
                     name:'',
                     type:'',
@@ -141,10 +140,9 @@
 
         methods: {
             createTask() {
-                let algo = this.form.post(route('courses.tasks.store', {'course':this.courseId}), {
+                this.form.post(route('courses.tasks.store', {'course':this.courseId}), {
                     preserveScroll: true
                 });
-                console.log(algo)
             },
         },
     }

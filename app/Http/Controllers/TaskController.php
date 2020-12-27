@@ -87,6 +87,22 @@ class TaskController extends Controller
 
         return Inertia::render('Tasks/Create', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes]);
     }
+    /**
+     * Show the task edit screen.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $course
+     * @return \Inertia\Response
+     */
+    public function edit(Request $request, $course, $taskId)
+    {
+        $course = Course::find($course);
+        $task = Task::find($taskId);
+        $chapters = $course->chapters;
+        $availableTypes = self::AVAILABLE_TASK_TYPES;
+
+        return Inertia::render('Tasks/Edit', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes, 'task'=>$task]);
+    }
 
     /**
      * Create a new task.
