@@ -63,16 +63,19 @@ class Course extends Model
         $chapters = $this->positionArray;
         $orderedChapters = collect();
 
-        foreach ($chapters as $chapter=>$tasks){
+        foreach ($chapters as $chapter => $value){
             $selectedTask = Task::find($chapter);
             $selectedTask->tasks = collect();
-            foreach ($tasks as $taskId){
-                $task = Task::find($taskId);
-                $task = $task->clean_task;
-                $selectedTask->tasks->push($task);
+            if(!empty($value)){
+                foreach ($value as $taskId){
+                    $task = Task::find($taskId);
+                    $task = $task->clean_task;
+                    $selectedTask->tasks->push($task);
+                }
             }
             $orderedChapters->push($selectedTask);
         }
+
         return $orderedChapters;
     }
 
