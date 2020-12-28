@@ -129,7 +129,7 @@ class TaskController extends Controller
         $positions = $course->positionArray;
         $chapter_id = isset($validated['chapter_id'])? $validated['chapter_id']: false;
         if($chapter_id){
-            $positions[$chapter_id]? array_push($positions[$chapter_id], $task->id):array_push($positions, $task->id);
+            array_push($positions[$chapter_id], $task->id);
         }else{
             array_push($positions, $task->id);
             $positions[$task->id] = [];
