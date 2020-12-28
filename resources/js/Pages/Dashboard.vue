@@ -7,7 +7,7 @@
                     <div id="mainContent" class="grid grid-cols-3 gap-4">
                         <div v-for="team in $page.user.all_teams" class="pt-4">
                             <div class="border-4 m-4 p-4">
-                                <nav-link :href="route('course', team.id)" :active="$page.currentRouteName == 'course'">
+                                <nav-link :href="route('courses.index')" :active="$page.currentRouteName == 'courses'">
                                     {{ team.name }}
                                 </nav-link>
                                 <p></p>

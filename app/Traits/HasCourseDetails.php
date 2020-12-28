@@ -10,39 +10,39 @@ trait HasCourseDetails
 {
     public function allCourses()
     {
-        return $this->belongsToMany('App\Models\Team', 'users_course_progress');
+        return $this->belongsToMany('App\Models\Course', 'users_course_progress');
     }
 
     public function allCoursesWithPoints()
     {
-        return $this->belongsToMany('App\Models\Team', 'users_course_progress')
+        return $this->belongsToMany('App\Models\Course', 'users_course_progress')
             ->withPivot('points');
     }
 
     public function coursePoints($courseId)
     {
         $collection = DB::table('users_course_progress')->where(
-            [['user_id', '=', $this->id], ['team_id', '=', $courseId]]
+            [['user_id', '=', $this->id], ['course_id', '=', $courseId]]
         )->get();
         return $collection->first()?$collection->first()->points:0;
     }
 
     public function allCoursesWithProgress()
     {
-        return $this->belongsToMany('App\Models\Team', 'users_course_progress')
+        return $this->belongsToMany('App\Models\Course', 'users_course_progress')
             ->withPivot('progress');
     }
 
     public function allCoursesWithDetails()
     {
-        return $this->belongsToMany('App\Models\Team', 'users_course_progress')
+        return $this->belongsToMany('App\Models\Course', 'users_course_progress')
             ->withPivot('points','progress')->with('owner');
     }
 
     public function courseProgress($courseId)
     {
         $collection = DB::table('users_course_progress')->where(
-            [['user_id', '=', $this->id], ['team_id', '=', $courseId]]
+            [['user_id', '=', $this->id], ['course_id', '=', $courseId]]
         )->get();
         return $collection->first()?$collection->first()->progress:0;
     }

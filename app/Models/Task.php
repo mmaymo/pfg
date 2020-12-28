@@ -16,7 +16,7 @@ class Task extends Model
      */
     protected $fillable = [
         'name',
-        'chapter_id',
+        'course_id',
         'type',
         'position',
         'points',

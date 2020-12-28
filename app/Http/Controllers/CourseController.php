@@ -111,13 +111,12 @@ class CourseController extends Controller
             'pic' => ['nullable','string']
         ])->validateWithBag('createCourse');
 
-        $validated['team_id'] = 1;
-        $validated['chaptersPositionArray'] = "position";
+        $validated['positionArray'] = [];
 
         $course = new Course();
         $course->name = $validated['name'];
-        $course->team_id = $validated['team_id'];
-        $course->chaptersPositionArray = $validated['chaptersPositionArray'];
+        $course->user_id = Auth::user()->id;
+        $course->positionArray = $validated['positionArray'];
         if($validated['degree']){
             $course->degree = $validated['degree'];
         }

@@ -1,20 +1,20 @@
 <template>
     <div class="col-span-1 sm:col-span-6">
         <div class="col-span-3 sm:col-span-2">
-            <h2>Capítulo</h2>
-            <jet-label for="chapter" value="Capítulo en el que añadir esta tarea"/>
+            <h2>Sección</h2>
+            <jet-label for="chapter" value="Sección en la que añadir esta tarea"/>
             <select v-if="chapters.length > 0" id="chapter" v-model="form.chapter_id">
                 <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
             </select>
             <jet-button >
-                Editar capítulos
+                Editar sección
             </jet-button>
         </div>
 
         <jet-section-border/>
         <jet-form-section @submitted="addChapter">
             <template #title>
-                Crear nuevo capítulo
+                Crear nueva sección
             </template>
 
             <template #description>
@@ -23,7 +23,7 @@
 
             <template #form>
                 <div class="col-span-6 sm:col-span-4">
-                    <jet-label for="chapterName" value="Titulo del capítulo"/>
+                    <jet-label for="chapterName" value="Nombre de la sección"/>
                     <jet-input id="chapterName" type="text" class="mt-1 block w-full" v-model="formChapter.name"/>
                     <jet-input-error :message="formChapter.error('name')" class="mt-2"/>
                 </div>
@@ -73,7 +73,8 @@
             return {
                 formChapter: this.$inertia.form({
                     name: '',
-                    courseId: this.courseId
+                    type: 'chapter',
+
                 }, {
                     bag: 'chapterForm',
                     resetOnSuccess: true,
@@ -91,7 +92,7 @@
         },
         methods: {
             addChapter() {
-                this.formChapter.post(route('chapters.store'), {
+                this.formChapter.post(route('courses.tasks.store', {'course':this.courseId}), {
                     preserveScroll: true
                 });
             },

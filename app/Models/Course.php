@@ -16,7 +16,7 @@ class Course extends Model
      */
     protected $fillable
         = [
-            'team_id',
+            'user_id',
             'name',
             'degree',
             'semester',
@@ -28,7 +28,7 @@ class Course extends Model
      * @var array
      */
     protected $casts = [
-        'chaptersPositionArray' => 'array',
+        'positionArray' => 'array',
     ];
 
     public function team()
@@ -52,26 +52,26 @@ class Course extends Model
         }
         return $members;
     }
-    public function chapters()
+    public function tasks()
     {
-        return $this->hasMany('App\Models\Chapter', 'course_id');
+        return $this->hasMany('App\Models\Task', 'course_id');
     }
 
 
     public function getOrderedChaptersWithTasks()
     {
-        $chapters = $this->chaptersPositionArray;
+        $chapters = $this->positionArray;
         $orderedChapters = collect();
 
         foreach ($chapters as $chapter=>$tasks){
-            $selectedChapter = Chapter::find($chapter);
-            $selectedChapter->tasks = collect();
+            $selectedTask = Task::find($chapter);
+            $selectedTask->tasks = collect();
             foreach ($tasks as $taskId){
                 $task = Task::find($taskId);
                 $task = $task->clean_task;
-                $selectedChapter->tasks->push($task);
+                $selectedTask->tasks->push($task);
             }
-            $orderedChapters->push($selectedChapter);
+            $orderedChapters->push($selectedTask);
         }
         return $orderedChapters;
     }

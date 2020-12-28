@@ -15,6 +15,7 @@ use Laravel\Jetstream\Actions\ValidateTeamDeletion;
 use Laravel\Jetstream\Contracts\CreatesTeams;
 use Laravel\Jetstream\Contracts\DeletesTeams;
 use Laravel\Jetstream\Jetstream;
+use function PHPUnit\Framework\isEmpty;
 
 class TaskController extends Controller
 {
@@ -24,26 +25,28 @@ class TaskController extends Controller
      * Show the task contents.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $teamId
+     * @param int                      $courseId
      * @param int                      $taskId
      *
      * @return \Inertia\Response |\Illuminate\Http\RedirectResponse
      */
-    public function show(Request $request, $teamId, $taskId)
+    public function show(Request $request, $courseId, $taskId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $course = Course::find($courseId);
 
-        if (! $request->user()->belongsToTeam($team)) {
+        /*if (! $request->user()->belongsToTeam($course)) {
             abort(403);
         }
-        if (! $request->user()->canSeeTask($teamId, $taskId)) {
+        if (! $request->user()->canSeeTask($courseId, $taskId)) {
             return back();
-        }
-        $teacher = $team->owner->name;
-        $course = $team->course;
+        }*/
+
+        $teacher = User::find($course->user_id);
+        $itinerary = $course->getOrderedChaptersWithTasks();
+
         $tasks = $course->tasks;
         $task = Task::find($taskId);
-        $userPositionInCourse = $request->user()->courseProgress($team->id);
+        $userPositionInCourse = $request->user()->courseProgress($course->id);
         $coursePoints = $request->user()->coursePoints($course->id);
         $courseProgress = $course->progressFromPosition($userPositionInCourse);
         $allowedIds = $tasks->slice(0, $courseProgress['position'])->pluck('id');
@@ -52,21 +55,20 @@ class TaskController extends Controller
         $next = $taskIndexInCourse<=$tasks->count()? $tasks[$taskIndexInCourse+1]->id: null;
 
         return Jetstream::inertia()->render($request, 'Tasks/Show', [
-            'teacher' => $teacher,
-            'tasks'=>$tasks,
+            'courseDetails' => [
+                'id'=>$course->id,
+                'name'=>$course->name,
+                'degree'=>$course->degree,
+                'semester'=>$course->semester,
+                'pic'=>$course->pic,
+                'teacher'=>$teacher],
+            'tasks'=>$itinerary,
             'allowedIds'=>$allowedIds,
             'task'=>[
-                'chapter'=>'Tengo que migrar la db!!',
-                'name'=>$task->name,
-                'id' =>$task->id,
-                'type'=> $task->type,
-                'content' =>$task->properties,
-                'points'=>$task->points,
+
                 'previousId'=>$previous,
                 'nextId'=>$next
             ],
-            'courseName'=> $team->name,
-            'courseId'=> $course->id,
             'coursePoints'=>$coursePoints,
             'courseProgress'=>$courseProgress,
         ]);
@@ -82,7 +84,8 @@ class TaskController extends Controller
     public function create(Request $request, $course)
     {
         $course = Course::find($course);
-        $chapters = $course->chapters;
+        $chapters = $course->tasks;
+
         $availableTypes = self::AVAILABLE_TASK_TYPES;
 
         return Inertia::render('Tasks/Create', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes]);
@@ -115,18 +118,25 @@ class TaskController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'type' => 'required',
-            'chapter_id' => 'required',
-            'points' => 'required',
-            'properties' => 'required'
+            'chapter_id'=>'',
+            'points' => '',
+            'properties' => ''
         ]);
+        $validated['course_id'] = $course;
 
         $task = Task::create($validated);
+        $course = Course::find($course);
+        $positions = $course->positionArray;
+        $chapter_id = isset($validated['chapter_id'])? $validated['chapter_id']: false;
+        if($chapter_id){
+            $positions[$chapter_id]? array_push($positions[$chapter_id], $task->id):array_push($positions, $task->id);
+        }else{
+            array_push($positions, $task->id);
+            $positions[$task->id] = [];
+        }
 
-        $chapter = Chapter::find($validated['chapter_id']);
-        $positions = $chapter->tasksPositionArray;
-        array_push($positions, $task->id);
-        $chapter->tasksPositionArray = $positions;
-        $chapter->save();
+        $course->positionArray = $positions;
+        $course->save();
 
         return redirect()->route('courses.show',[$course]);
     }

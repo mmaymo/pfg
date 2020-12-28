@@ -38,6 +38,4 @@ Route::resource('courses.users', MembersController::class)->scoped(
     ]
 );
 
-Route::get('course/{id}', CourseContent::class)->name('course');
-Route::resource('chapters', ChapterController::class);
 Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent');
