@@ -6,6 +6,7 @@ use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\Task;
 use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -44,15 +45,18 @@ class TaskController extends Controller
         $teacher = User::find($course->user_id);
         $itinerary = $course->getOrderedChaptersWithTasks();
 
-        $tasks = $course->tasks;
         $task = Task::find($taskId);
-        $userPositionInCourse = $request->user()->courseProgress($course->id);
-        $coursePoints = $request->user()->coursePoints($course->id);
-        $courseProgress = $course->progressFromPosition($userPositionInCourse);
-        $allowedIds = $tasks->slice(0, $courseProgress['position'])->pluck('id');
-        $taskIndexInCourse = $course->taskIndexInCourse($taskId);
-        $previous = $taskIndexInCourse>0? $tasks[$taskIndexInCourse-1]->id: null;
-        $next = $taskIndexInCourse<=$tasks->count()? $tasks[$taskIndexInCourse+1]->id: null;
+
+        $coursePoints = Auth::user()->coursePoints($courseId);
+        $courseProgress = Auth::user()->courseProgress($courseId);
+        $allowedIds = Auth::user()->completedTasks($courseId)->pluck('task_id');
+        $flatItineray = $course->orderedTaskIdsFlat();
+        $tasksLenght = $course->taskCount();
+        $currentTaskPositionIndex = array_search($taskId, $flatItineray);
+        $nextIndex = ($currentTaskPositionIndex + 1)<= $tasksLenght?$currentTaskPositionIndex + 1:$currentTaskPositionIndex;
+        $next = $flatItineray[$nextIndex];
+        $previousIndex = ($currentTaskPositionIndex -1)<=0?$currentTaskPositionIndex - 1:$currentTaskPositionIndex;
+        $previous = $flatItineray[$previousIndex];
 
         return Jetstream::inertia()->render($request, 'Tasks/Show', [
             'courseDetails' => [
@@ -65,6 +69,7 @@ class TaskController extends Controller
             'tasks'=>$itinerary,
             'allowedIds'=>$allowedIds,
             'task'=>[
+                'name'=>$task->name,
 
                 'previousId'=>$previous,
                 'nextId'=>$next
@@ -131,7 +136,6 @@ class TaskController extends Controller
         if($chapter_id){
             array_push($positions[$chapter_id], $task->id);
         }else{
-            array_push($positions, $task->id);
             $positions[$task->id] = [];
         }
 

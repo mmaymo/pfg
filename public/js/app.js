@@ -39498,10 +39498,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -83852,17 +83848,8 @@ var render = function() {
                   "max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 "
               },
               [
-                _c("div", { staticClass: "flex items-center" }, [
-                  _c("h1", { staticClass: "text-xl font-bold capitalize" }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(this.task.chapter)
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
                 _c(
-                  "h2",
+                  "h1",
                   {
                     staticClass:
                       "group flex whitespace-pre-wrap relative capitalize"

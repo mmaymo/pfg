@@ -6,12 +6,8 @@
                 <div class="pb-4 w-full pt-8 lg:pt-8">
                     <div
                         class="max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 ">
-                        <div class="flex items-center">
-                            <h1 class="text-xl font-bold capitalize">
-                                {{ this.task.chapter }}</h1>
-                        </div>
-                        <h2 class="group flex whitespace-pre-wrap relative capitalize">
-                            {{ this.task.name }}</h2>
+                        <h1 class="group flex whitespace-pre-wrap relative capitalize">
+                            {{ this.task.name }}</h1>
                     </div>
 
 

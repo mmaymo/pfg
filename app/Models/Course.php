@@ -56,6 +56,19 @@ class Course extends Model
         return $this->hasMany('App\Models\Task', 'course_id');
     }
 
+    public function orderedTaskIdsFlat(){
+        $positions = $this->positionArray;
+        $keysChapters = array_keys ($positions );
+        $flattenArray = array();
+        for($i = 0; $i <count($positions); $i++){
+            $flattenArray[] = $keysChapters[$i];
+            foreach($positions[$keysChapters[$i]] as $chapterItem){
+                $flattenArray[] = $chapterItem;
+            }
+        }
+        return $flattenArray;
+    }
+
 
     public function getOrderedChaptersWithTasks()
     {
