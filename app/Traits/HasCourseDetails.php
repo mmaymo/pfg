@@ -19,6 +19,16 @@ trait HasCourseDetails
             ->withPivot('points');
     }
 
+    public function completedTasks($courseId){
+        return DB::table('task_user')->where(
+            [['user_id', '=', $this->id], ['course_id', '=', $courseId]]
+        )->get();
+    }
+
+    public function completedTasksCount($courseId){
+        return $this->completedTasks($courseId)->count();
+    }
+
     public function coursePoints($courseId)
     {
         $collection = DB::table('users_course_progress')->where(
@@ -27,25 +37,13 @@ trait HasCourseDetails
         return $collection->first()?$collection->first()->points:0;
     }
 
-    public function allCoursesWithProgress()
-    {
-        return $this->belongsToMany('App\Models\Course', 'users_course_progress')
-            ->withPivot('progress');
+    public function courseProgress($courseId){
+        $course = Course::find($courseId);
+        $tasksCourseCount = $course->taskCount();
+        $userTasksDone =$this->completedTasksCount($courseId);
+        return ($userTasksDone / $tasksCourseCount) * 100;
     }
 
-    public function allCoursesWithDetails()
-    {
-        return $this->belongsToMany('App\Models\Course', 'users_course_progress')
-            ->withPivot('points','progress')->with('owner');
-    }
-
-    public function courseProgress($courseId)
-    {
-        $collection = DB::table('users_course_progress')->where(
-            [['user_id', '=', $this->id], ['course_id', '=', $courseId]]
-        )->get();
-        return $collection->first()?$collection->first()->progress:0;
-    }
 
     public function canSeeTask($courseId, $taskId)
     {
