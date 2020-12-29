@@ -17,8 +17,9 @@ class CreateTaskUserTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('task_id')->constrained();
+            $table->foreignId('course_id')->constrained();
             $table->timestamps();
-            $table->unique(['task_id', 'user_id']);
+            $table->unique(['task_id', 'user_id', 'course_id']);
         });
     }
 
