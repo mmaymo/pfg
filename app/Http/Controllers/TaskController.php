@@ -72,6 +72,7 @@ class TaskController extends Controller
                 'id'=>$task->id,
                 'name'=>$task->name,
                 'type'=>$task->type,
+                'contents'=>$task->properties,
                 'previousId'=>$previous,
                 'nextId'=>$next
             ],

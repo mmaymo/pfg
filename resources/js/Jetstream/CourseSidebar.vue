@@ -10,7 +10,7 @@
 
             <nav id="nav"
                  class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)">
-                <ul v-for="task in this.itinerary" class="mb-10" @click="toggleMenu(task.id)">
+                <ul v-for="task in this.itinerary" class="mb-10" >
                     <a v-if="disableLink(task.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
                         <base-svg :icon-name=task.type :width=20 :height=20
                                   :d=iconType(task.type)></base-svg>
@@ -20,6 +20,9 @@
                         <base-svg :icon-name=subtask.type :width=20 :height=20
                                   :d=iconType(subtask.type)></base-svg>
                         <span class="ml-3">{{ subtask.name }}</span>
+                    </a>
+                    <a @click="toggleMenu(task.id)" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
+                       <>
                     </a>
                     <li  v-for="subtask in task.tasks" v-show="menuOpen === task.id" :key="task.id">
                         <a v-if="disableLink(subtask.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">

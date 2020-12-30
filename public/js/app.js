@@ -38797,6 +38797,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -39525,9 +39528,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -39556,7 +39556,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //esto tiene que venir de arriba, si ya esta en allowed entonces esto está a true
-      taskCompleted: false,
+      taskCompleted: true,
       mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
     };
   }
@@ -39573,8 +39573,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Jetstream/ApplicationLogo */ "./resources/js/Jetstream/ApplicationLogo.vue");
-/* harmony import */ var _Jetstream_QuizTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/QuizTask */ "./resources/js/Jetstream/QuizTask.vue");
 //
 //
 //
@@ -39585,24 +39583,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    JetApplicationLogo: _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Quiz: _Jetstream_QuizTask__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
+  components: {},
   props: {
     textContent: {
-      type: Array,
-      "default": ''
+      type: Object,
+      "default": {}
     }
   },
   data: function data() {
@@ -82917,14 +82903,7 @@ var render = function() {
             _vm._l(this.itinerary, function(task) {
               return _c(
                 "ul",
-                {
-                  staticClass: "mb-10",
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleMenu(task.id)
-                    }
-                  }
-                },
+                { staticClass: "mb-10" },
                 [
                   _vm.disableLink(task.id)
                     ? _c(
@@ -82978,6 +82957,20 @@ var render = function() {
                         ],
                         1
                       ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
+                      on: {
+                        click: function($event) {
+                          return _vm.toggleMenu(task.id)
+                        }
+                      }
+                    },
+                    [_vm._v("\n                   <>\n                ")]
+                  ),
                   _vm._v(" "),
                   _vm._l(task.tasks, function(subtask) {
                     return _c(
@@ -83958,122 +83951,129 @@ var render = function() {
     [
       _c("div", { attrs: { id: "mainContent" } }, [
         _c("div", { staticClass: "flex", attrs: { id: "task" } }, [
-          _c("div", { staticClass: "pb-4 w-full pt-8 lg:pt-8" }, [
-            _c(
-              "div",
-              {
-                staticClass:
-                  "max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 "
-              },
-              [
-                _c(
-                  "h1",
-                  {
-                    staticClass:
-                      "group flex whitespace-pre-wrap relative capitalize"
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " + _vm._s(this.task.name)
-                    )
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded",
-                on: { click: _vm.addPoints }
-              },
-              [_vm._v("\n                    Completada\n                ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "flex border-b border-gray-300 p-8 pt-16",
-                attrs: { id: "bottomTaskButtons" }
-              },
-              [
-                _c("div", { staticClass: "w-2/4" }, [
+          _c(
+            "div",
+            { staticClass: "pb-4 w-full pt-8 lg:pt-8" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 "
+                },
+                [
                   _c(
-                    "button",
+                    "h1",
                     {
                       staticClass:
-                        "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                        "group flex whitespace-pre-wrap relative capitalize"
                     },
                     [
-                      _c(
-                        "a",
-                        {
-                          attrs: {
-                            href: _vm.route("courses.tasks.show", {
-                              course: _vm.courseId,
-                              task: _vm.task.previousId
-                            })
-                          }
-                        },
-                        [_vm._v("Anterior")]
+                      _vm._v(
+                        "\n                        " + _vm._s(this.task.name)
+                      )
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("text-task", { attrs: { textContent: this.task.contents } }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded",
+                  on: { click: _vm.addPoints }
+                },
+                [_vm._v("\n                    Completada\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "flex border-b border-gray-300 p-8 pt-16",
+                  attrs: { id: "bottomTaskButtons" }
+                },
+                [
+                  _c("div", { staticClass: "w-2/4" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.route("courses.tasks.show", {
+                                course: _vm.courseId,
+                                task: _vm.task.previousId
+                              })
+                            }
+                          },
+                          [_vm._v("Anterior")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-2/4 text-right" }, [
+                    this.taskCompleted
+                      ? _c("div", [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  attrs: {
+                                    href: _vm.route("courses.tasks.show", {
+                                      course: _vm.courseId,
+                                      task: _vm.task.nextId
+                                    })
+                                  }
+                                },
+                                [_vm._v("Siguiente")]
+                              )
+                            ]
+                          )
+                        ])
+                      : _vm._e()
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "pt-8", attrs: { id: "footer" } }, [
+                _c("div", { staticClass: "text-right w-full pr-8" }, [
+                  _c(
+                    "a",
+                    {
+                      attrs: {
+                        href: this.mailLink,
+                        target: "_blank",
+                        rel: "noopener noreferrer"
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "Informa de\n                        un problema en la tarea"
                       )
                     ]
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "w-2/4 text-right" }, [
-                  this.taskCompleted
-                    ? _c("div", [
-                        _c(
-                          "button",
-                          {
-                            staticClass:
-                              "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                attrs: {
-                                  href: _vm.route("courses.tasks.show", {
-                                    course: _vm.courseId,
-                                    task: _vm.task.nextId
-                                  })
-                                }
-                              },
-                              [_vm._v("Siguiente")]
-                            )
-                          ]
-                        )
-                      ])
-                    : _vm._e()
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "pt-8", attrs: { id: "footer" } }, [
-              _c("div", { staticClass: "text-right w-full pr-8" }, [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: this.mailLink,
-                      target: "_blank",
-                      rel: "noopener noreferrer"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "Informa de\n                        un problema en la tarea"
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _vm._m(0)
-            ])
-          ])
+                _vm._m(0)
+              ])
+            ],
+            1
+          )
         ])
       ])
     ]
@@ -84119,26 +84119,14 @@ var render = function() {
         staticClass:
           "px-6 xl:px-12 w-full max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-3/4"
       },
-      _vm._l(_vm.textContent, function(contentBlock) {
-        return _c("div", { staticClass: "mt-0  overflow-hidden relative" }, [
-          contentBlock.type === "quiz"
-            ? _c(
-                "div",
-                [_c("quiz", { attrs: { quiz: contentBlock.content } })],
-                1
-              )
-            : _c(
-                "div",
-                [
-                  _c("VueShowdown", {
-                    attrs: { markdown: contentBlock.content }
-                  })
-                ],
-                1
-              )
-        ])
-      }),
-      0
+      [
+        _c(
+          "div",
+          { staticClass: "mt-0  overflow-hidden relative" },
+          [_c("VueShowdown", { attrs: { markdown: _vm.textContent.content } })],
+          1
+        )
+      ]
     )
   ])
 }
@@ -88823,6 +88811,10 @@ var render = function() {
               coursePoints: _vm.coursePoints,
               courseProgress: _vm.courseProgress
             }
+          }),
+          _vm._v(" "),
+          _c("task", {
+            attrs: { courseId: this.courseDetails.id, task: this.task }
           })
         ],
         1
