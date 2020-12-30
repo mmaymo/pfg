@@ -53,7 +53,7 @@ class TaskController extends Controller
         $flatItineray = $course->orderedTaskIdsFlat();
         $tasksLenght = $course->taskCount();
         $currentTaskPositionIndex = array_search($taskId, $flatItineray);
-        $nextIndex = ($currentTaskPositionIndex + 1)<= $tasksLenght?$currentTaskPositionIndex + 1:$currentTaskPositionIndex;
+        $nextIndex = ($currentTaskPositionIndex + 1)< $tasksLenght?$currentTaskPositionIndex + 1:$currentTaskPositionIndex;
         $next = $flatItineray[$nextIndex];
         $previousIndex = ($currentTaskPositionIndex -1)>=0?$currentTaskPositionIndex - 1:$currentTaskPositionIndex;
         $previous = $flatItineray[$previousIndex];

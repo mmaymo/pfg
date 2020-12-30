@@ -9,7 +9,8 @@
                         <h1 class="group flex whitespace-pre-wrap relative capitalize">
                             {{ this.task.name }}</h1>
                     </div>
-                   <text-task :textContent="this.task.contents"></text-task>
+                    <card-task :textContent="this.task.contents"/>
+                   <!--<text-task :textContent="this.task.contents"></text-task>-->
                     <button v-on:click="addPoints"
                         class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
                         Completada
@@ -52,13 +53,14 @@
 import Quiz from "./QuizTask";
 import TextTask from "./TextTask";
 import CodeTask from "./CodeTask";
+import CardTask from "./CardTask";
 
 export default {
     components: {
         Quiz,
         TextTask,
-        CodeTask
-
+        CodeTask,
+        CardTask
     },
     props: {
         courseId: {
