@@ -38783,6 +38783,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38810,11 +38824,19 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return [];
       }
+    },
+    coursePoints: {
+      type: Number,
+      "default": ''
+    },
+    courseProgress: {
+      type: Number,
+      "default": ''
     }
   },
   methods: {
     disableLink: function disableLink(taskId) {
-      return this.allowedIds.includes(taskId);
+      return true; //return this.allowedIds.includes(taskId);
     },
     iconType: function iconType(type) {
       switch (type) {
@@ -38829,11 +38851,19 @@ __webpack_require__.r(__webpack_exports__);
 
         case "card":
           return "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z";
+
+        default:
+          return;
       }
+    },
+    toggleMenu: function toggleMenu(id) {
+      this.menuOpen = id;
     }
   },
   data: function data() {
-    return {};
+    return {
+      menuOpen: false
+    };
   }
 });
 
@@ -42450,10 +42480,7 @@ __webpack_require__.r(__webpack_exports__);
     Task: _Jetstream_Task__WEBPACK_IMPORTED_MODULE_2__["default"],
     CourseSidebar: _Jetstream_CourseSidebar__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['teacher', 'courseName', 'courseId', 'courseProgress', 'coursePoints', 'tasks', 'task', 'allowedIds'],
-  data: function data() {
-    return {};
-  }
+  props: ['courseDetails', 'tasks', 'allowedIds', 'task', 'coursePoints', 'courseProgress']
 });
 
 /***/ }),
@@ -82872,6 +82899,14 @@ var render = function() {
             _vm._v(_vm._s(this.teacher))
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "w-full text-right mb-4 pr-4 font-light" }, [
+            _vm._v(_vm._s(this.coursePoints))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "w-full text-right mb-4 pr-4 font-light" }, [
+            _vm._v(_vm._s(this.courseProgress))
+          ]),
+          _vm._v(" "),
           _c(
             "nav",
             {
@@ -82880,60 +82915,143 @@ var render = function() {
               attrs: { id: "nav" }
             },
             _vm._l(this.itinerary, function(task) {
-              return _c("div", { staticClass: "mb-10" }, [
-                _vm.disableLink(task.id)
-                  ? _c(
-                      "a",
+              return _c(
+                "ul",
+                {
+                  staticClass: "mb-10",
+                  on: {
+                    click: function($event) {
+                      return _vm.toggleMenu(task.id)
+                    }
+                  }
+                },
+                [
+                  _vm.disableLink(task.id)
+                    ? _c(
+                        "a",
+                        {
+                          staticClass:
+                            "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
+                          attrs: {
+                            href: _vm.route("courses.tasks.show", {
+                              course: _vm.courseId,
+                              task: task.id
+                            })
+                          }
+                        },
+                        [
+                          _c("base-svg", {
+                            attrs: {
+                              "icon-name": task.type,
+                              width: 20,
+                              height: 20,
+                              d: _vm.iconType(task.type)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ml-3" }, [
+                            _vm._v(_vm._s(task.name))
+                          ])
+                        ],
+                        1
+                      )
+                    : _c(
+                        "a",
+                        {
+                          staticClass:
+                            "flex items-center px-2 -mx-2 py-1 font-medium text-gray-700",
+                          attrs: { href: "javascript:" }
+                        },
+                        [
+                          _c("base-svg", {
+                            attrs: {
+                              "icon-name": _vm.subtask.type,
+                              width: 20,
+                              height: 20,
+                              d: _vm.iconType(_vm.subtask.type)
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "ml-3" }, [
+                            _vm._v(_vm._s(_vm.subtask.name))
+                          ])
+                        ],
+                        1
+                      ),
+                  _vm._v(" "),
+                  _vm._l(task.tasks, function(subtask) {
+                    return _c(
+                      "li",
                       {
-                        staticClass:
-                          "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
-                        attrs: {
-                          href: _vm.route("courses.tasks.show", {
-                            course: _vm.courseId,
-                            task: task.id
-                          })
-                        }
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.menuOpen === task.id,
+                            expression: "menuOpen === task.id"
+                          }
+                        ],
+                        key: task.id
                       },
                       [
-                        _c("base-svg", {
-                          attrs: {
-                            "icon-name": task.type,
-                            width: 20,
-                            height: 20,
-                            d: _vm.iconType(task.type)
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-3" }, [
-                          _vm._v(_vm._s(task.name))
-                        ])
-                      ],
-                      1
+                        _vm.disableLink(subtask.id)
+                          ? _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
+                                attrs: {
+                                  href: _vm.route("courses.tasks.show", {
+                                    course: _vm.courseId,
+                                    task: subtask.id
+                                  })
+                                }
+                              },
+                              [
+                                _c("base-svg", {
+                                  attrs: {
+                                    "icon-name": subtask.type,
+                                    width: 20,
+                                    height: 20,
+                                    d: _vm.iconType(subtask.type)
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "ml-3" }, [
+                                  _vm._v(_vm._s(subtask.name))
+                                ])
+                              ],
+                              1
+                            )
+                          : _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "flex items-center px-2 -mx-2 py-1 font-medium text-gray-700",
+                                attrs: { href: "javascript:" }
+                              },
+                              [
+                                _c("base-svg", {
+                                  attrs: {
+                                    "icon-name": subtask.type,
+                                    width: 20,
+                                    height: 20,
+                                    d: _vm.iconType(subtask.type)
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "ml-3" }, [
+                                  _vm._v(_vm._s(subtask.name))
+                                ])
+                              ],
+                              1
+                            )
+                      ]
                     )
-                  : _c(
-                      "a",
-                      {
-                        staticClass:
-                          "flex items-center px-2 -mx-2 py-1 font-medium text-gray-700",
-                        attrs: { href: "javascript:" }
-                      },
-                      [
-                        _c("base-svg", {
-                          attrs: {
-                            "icon-name": task.type,
-                            width: 20,
-                            height: 20,
-                            d: _vm.iconType(task.type)
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "ml-3" }, [
-                          _vm._v(_vm._s(task.name))
-                        ])
-                      ],
-                      1
-                    )
-              ])
+                  })
+                ],
+                2
+              )
             }),
             0
           )
@@ -88697,15 +88815,15 @@ var render = function() {
         [
           _c("course-sidebar", {
             attrs: {
-              courseId: this.courseId,
-              courseName: this.courseName,
-              teacher: this.teacher,
+              courseId: this.courseDetails.id,
+              courseName: this.courseDetails.name,
+              teacher: this.courseDetails.teacher,
               itinerary: this.tasks,
-              allowedIds: this.allowedIds
+              allowedIds: this.allowedIds,
+              coursePoints: _vm.coursePoints,
+              courseProgress: _vm.courseProgress
             }
-          }),
-          _vm._v(" "),
-          _c("task", { attrs: { courseId: this.courseId, task: this.task } })
+          })
         ],
         1
       )

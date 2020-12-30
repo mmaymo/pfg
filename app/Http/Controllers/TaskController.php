@@ -42,7 +42,7 @@ class TaskController extends Controller
             return back();
         }*/
 
-        $teacher = User::find($course->user_id);
+        $teacher = User::find($course->user_id)->name;
         $itinerary = $course->getOrderedChaptersWithTasks();
 
         $task = Task::find($taskId);
@@ -55,7 +55,7 @@ class TaskController extends Controller
         $currentTaskPositionIndex = array_search($taskId, $flatItineray);
         $nextIndex = ($currentTaskPositionIndex + 1)<= $tasksLenght?$currentTaskPositionIndex + 1:$currentTaskPositionIndex;
         $next = $flatItineray[$nextIndex];
-        $previousIndex = ($currentTaskPositionIndex -1)<=0?$currentTaskPositionIndex - 1:$currentTaskPositionIndex;
+        $previousIndex = ($currentTaskPositionIndex -1)>=0?$currentTaskPositionIndex - 1:$currentTaskPositionIndex;
         $previous = $flatItineray[$previousIndex];
 
         return Jetstream::inertia()->render($request, 'Tasks/Show', [
@@ -69,8 +69,9 @@ class TaskController extends Controller
             'tasks'=>$itinerary,
             'allowedIds'=>$allowedIds,
             'task'=>[
+                'id'=>$task->id,
                 'name'=>$task->name,
-
+                'type'=>$task->type,
                 'previousId'=>$previous,
                 'nextId'=>$next
             ],

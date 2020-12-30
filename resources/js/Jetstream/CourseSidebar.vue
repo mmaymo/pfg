@@ -5,21 +5,35 @@
              class="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:relative lg:sticky lg:bg-transparent overflow-hidden lg:top-16 bg-white">
             <div class="w-full text-right mt-8 pr-4 font-bold">{{ this.courseName }}</div>
             <div class="w-full text-right mb-4 pr-4 font-light">{{ this.teacher }}</div>
+            <div class="w-full text-right mb-4 pr-4 font-light">{{ this.coursePoints }}</div>
+            <div class="w-full text-right mb-4 pr-4 font-light">{{ this.courseProgress }}</div>
 
             <nav id="nav"
                  class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)">
-                <div v-for="task in this.itinerary" class="mb-10">
+                <ul v-for="task in this.itinerary" class="mb-10" @click="toggleMenu(task.id)">
                     <a v-if="disableLink(task.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
                         <base-svg :icon-name=task.type :width=20 :height=20
                                   :d=iconType(task.type)></base-svg>
                         <span class="ml-3">{{ task.name }}</span>
                     </a>
                     <a v-else href="javascript:" class="flex items-center px-2 -mx-2 py-1 font-medium text-gray-700">
-                        <base-svg :icon-name=task.type :width=20 :height=20
-                                  :d=iconType(task.type)></base-svg>
-                        <span class="ml-3">{{ task.name }}</span>
+                        <base-svg :icon-name=subtask.type :width=20 :height=20
+                                  :d=iconType(subtask.type)></base-svg>
+                        <span class="ml-3">{{ subtask.name }}</span>
                     </a>
-                </div>
+                    <li  v-for="subtask in task.tasks" v-show="menuOpen === task.id" :key="task.id">
+                        <a v-if="disableLink(subtask.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
+                            <base-svg :icon-name=subtask.type :width=20 :height=20
+                                      :d=iconType(subtask.type)></base-svg>
+                            <span class="ml-3">{{ subtask.name }}</span>
+                        </a>
+                        <a v-else href="javascript:" class="flex items-center px-2 -mx-2 py-1 font-medium text-gray-700">
+                            <base-svg :icon-name=subtask.type :width=20 :height=20
+                                      :d=iconType(subtask.type)></base-svg>
+                            <span class="ml-3">{{ subtask.name }}</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
         </div>
     </div>
@@ -54,10 +68,19 @@
                 type: Array,
                 default: ()=>[],
             },
+            coursePoints: {
+                type: Number,
+                default: '',
+            },
+            courseProgress: {
+                type: Number,
+                default: '',
+            },
         },
         methods: {
             disableLink(taskId){
-                return this.allowedIds.includes(taskId);
+                return true;
+                //return this.allowedIds.includes(taskId);
             },
 
             iconType(type) {
@@ -70,13 +93,18 @@
                         return "M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z";
                     case "card":
                         return "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z";
+                    default: return;
                 }
 
             },
+            toggleMenu: function(id) {
+                this.menuOpen = id;
+            }
 
         },
         data() {
             return {
+                menuOpen: false,
 
             }
         },
