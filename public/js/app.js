@@ -38589,9 +38589,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
-  props: {},
+  props: ['textContent'],
   data: function data() {
     return {};
   },
@@ -39527,6 +39529,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TextTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextTask */ "./resources/js/Jetstream/TextTask.vue");
 /* harmony import */ var _CodeTask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CodeTask */ "./resources/js/Jetstream/CodeTask.vue");
 /* harmony import */ var _CardTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CardTask */ "./resources/js/Jetstream/CardTask.vue");
+//
 //
 //
 //
@@ -82691,27 +82694,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm.textContent.content
+      ? _c(
+          "div",
+          { staticClass: "mt-0  overflow-hidden relative" },
+          [_c("VueShowdown", { attrs: { markdown: _vm.textContent.content } })],
+          1
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", {
+      staticStyle: { height: "600px", "padding-top": "20px" },
+      attrs: {
+        id: "my-element-1",
+        "data-katacoda-env": "ubuntu",
+        "data-katacoda-layout": "editor-terminal",
+        "data-katacoda-port": "3000",
+        "data-katacoda-filename": "code.c"
+      }
+    })
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", {
-        staticStyle: { height: "600px", "padding-top": "20px" },
-        attrs: {
-          id: "my-element-1",
-          "data-katacoda-env": "ubuntu",
-          "data-katacoda-layout": "editor-terminal",
-          "data-katacoda-port": "3000",
-          "data-katacoda-filename": "code.c"
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -84084,7 +84089,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("card-task", { attrs: { textContent: this.task.contents } }),
+              _c("code-task", { attrs: { textContent: this.task.contents } }),
               _vm._v(" "),
               _c(
                 "button",
