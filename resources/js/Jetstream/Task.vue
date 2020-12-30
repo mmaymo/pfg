@@ -9,7 +9,8 @@
                         <h1 class="group flex whitespace-pre-wrap relative capitalize">
                             {{ this.task.name }}</h1>
                     </div>
-                    <code-task :textContent="this.task.contents"/>
+                    <quiz-task :quiz="this.task.contents.quiz"/>
+                    <!--<code-task :textContent="this.task.contents"/>-->
                     <!--<card-task :textContent="this.task.contents"/>-->
                    <!--<text-task :textContent="this.task.contents"></text-task>-->
                     <button v-on:click="addPoints"
@@ -51,14 +52,14 @@
 <script>
 
 
-import Quiz from "./QuizTask";
+import QuizTask from "./QuizTask";
 import TextTask from "./TextTask";
 import CodeTask from "./CodeTask";
 import CardTask from "./CardTask";
 
 export default {
     components: {
-        Quiz,
+        QuizTask,
         TextTask,
         CodeTask,
         CardTask

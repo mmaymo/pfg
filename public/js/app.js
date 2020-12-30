@@ -39401,11 +39401,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -39419,8 +39414,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      questionIndex: 0,
-      userResponses: [],
       score: 0,
       isActive: false,
       picked: null,
@@ -39447,7 +39440,6 @@ __webpack_require__.r(__webpack_exports__);
       //necesito un botón para resetearlo
     },
     next: function next() {
-      this.questionIndex++;
       this.isSubmitted = false;
       this.$refs.answer.map(function (element) {
         return element.parentNode.classList.remove("bg-green-500", "bg-red-500");
@@ -39579,13 +39571,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Quiz: _QuizTask__WEBPACK_IMPORTED_MODULE_0__["default"],
+    QuizTask: _QuizTask__WEBPACK_IMPORTED_MODULE_0__["default"],
     TextTask: _TextTask__WEBPACK_IMPORTED_MODULE_1__["default"],
     CodeTask: _CodeTask__WEBPACK_IMPORTED_MODULE_2__["default"],
     CardTask: _CardTask__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -42143,10 +42136,10 @@ __webpack_require__.r(__webpack_exports__);
           quiz: {
             question: '',
             responses: {
-              t1: '',
-              t2: '',
-              t3: '',
-              t4: ''
+              "0": '',
+              "1": '',
+              "2": '',
+              "3": ''
             },
             correctAnswer: 0
           },
@@ -83095,8 +83088,7 @@ var render = function() {
                             value: _vm.menuOpen === task.id,
                             expression: "menuOpen === task.id"
                           }
-                        ],
-                        key: task.id
+                        ]
                       },
                       [
                         _vm.disableLink(subtask.id)
@@ -83776,13 +83768,6 @@ var render = function() {
       "div",
       { staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200" },
       [
-        _c("div", [
-          _c("progress", {
-            attrs: { id: "progress", max: this.quiz.questions.length },
-            domProps: { value: this.questionIndex }
-          })
-        ]),
-        _vm._v(" "),
         _c("section", { staticClass: "container" }, [
           _c(
             "form",
@@ -83801,45 +83786,41 @@ var render = function() {
                   _c(
                     "ul",
                     [
-                      _c("p", [
-                        _vm._v(
-                          _vm._s(_vm.quiz.questions[_vm.questionIndex].text)
-                        )
-                      ]),
+                      _c("p", [_vm._v(_vm._s(_vm.quiz.question))]),
                       _vm._v(" "),
-                      _vm._l(
-                        _vm.quiz.questions[_vm.questionIndex].responses,
-                        function(response, answerIndex) {
-                          return _c("li", [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.picked,
-                                  expression: "picked"
-                                }
-                              ],
-                              ref: "answer",
-                              refInFor: true,
-                              attrs: { type: "radio", id: answerIndex },
-                              domProps: {
-                                value: answerIndex,
-                                checked: _vm._q(_vm.picked, answerIndex)
-                              },
-                              on: {
-                                change: function($event) {
-                                  _vm.picked = answerIndex
-                                }
+                      _vm._l(_vm.quiz.responses, function(
+                        response,
+                        answerIndex
+                      ) {
+                        return _c("li", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.picked,
+                                expression: "picked"
                               }
-                            }),
-                            _vm._v(" "),
-                            _c("label", { attrs: { for: answerIndex } }, [
-                              _vm._v(_vm._s(response.text))
-                            ])
+                            ],
+                            ref: "answer",
+                            refInFor: true,
+                            attrs: { type: "radio", id: answerIndex },
+                            domProps: {
+                              value: answerIndex,
+                              checked: _vm._q(_vm.picked, answerIndex)
+                            },
+                            on: {
+                              change: function($event) {
+                                _vm.picked = answerIndex
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("label", { attrs: { for: answerIndex } }, [
+                            _vm._v(_vm._s(response))
                           ])
-                        }
-                      )
+                        ])
+                      })
                     ],
                     2
                   )
@@ -83857,23 +83838,7 @@ var render = function() {
                   }
                 },
                 [_vm._v("Enviar Respuesta")]
-              ),
-              _vm._v(" "),
-              this.quiz.questions.length > _vm.questionIndex + 1 &&
-              _vm.isSubmitted
-                ? _c(
-                    "button",
-                    {
-                      attrs: { type: "button", id: "next" },
-                      on: {
-                        click: function($event) {
-                          return _vm.next()
-                        }
-                      }
-                    },
-                    [_vm._v("Siguiente")]
-                  )
-                : _vm._e()
+              )
             ]
           )
         ])
@@ -84089,7 +84054,7 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("code-task", { attrs: { textContent: this.task.contents } }),
+              _c("quiz-task", { attrs: { quiz: this.task.contents.quiz } }),
               _vm._v(" "),
               _c(
                 "button",

@@ -125,10 +125,10 @@
                             quiz: {
                                 question: '',
                                 responses: {
-                                    t1: '',
-                                    t2: '',
-                                    t3: '',
-                                    t4: ''
+                                    "0": '',
+                                    "1": '',
+                                    "2": '',
+                                    "3": ''
                                 },
                                 correctAnswer: 0
                             },

@@ -24,7 +24,7 @@
                     <a @click="toggleMenu(task.id)" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
                        <>
                     </a>
-                    <li  v-for="subtask in task.tasks" v-show="menuOpen === task.id" :key="task.id">
+                    <li  v-for="subtask in task.tasks" v-show="menuOpen === task.id">
                         <a v-if="disableLink(subtask.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
                             <base-svg :icon-name=subtask.type :width=20 :height=20
                                       :d=iconType(subtask.type)></base-svg>

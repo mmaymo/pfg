@@ -2,27 +2,22 @@
     <div>
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-              <div>
-                 <progress id="progress" :value="this.questionIndex" :max="this.quiz.questions.length"> </progress>
-            </div>
-
             <section class="container" >
                 <form id="myForm" @submit.prevent="$emit('submitted')">
 
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid ">
                                 <ul>
-                                    <p>{{quiz.questions[questionIndex].text}}</p>
-                                    <li v-for="(response, answerIndex) in quiz.questions[questionIndex].responses">
+                                    <p>{{quiz.question}}</p>
+                                    <li v-for="(response, answerIndex) in quiz.responses">
                                         <input type="radio" :id="answerIndex"  :value="answerIndex" v-model="picked" ref="answer">
-                                        <label :for="answerIndex">{{response.text}}</label>
+                                        <label :for="answerIndex">{{response}}</label>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
                     <button type="submit" id="answerButton" v-on:click="computeAnswer();">Enviar Respuesta</button>
-                    <button v-if="(this.quiz.questions.length > questionIndex+1) && isSubmitted" type="button" id="next" v-on:click="next();">Siguiente</button>
                 </form>
             </section>
             <!--/container-->
@@ -46,8 +41,6 @@
         },
         data() {
             return {
-                questionIndex: 0,
-                userResponses: [],
                 score:0,
                 isActive: false,
                 picked:null,
@@ -75,7 +68,6 @@
 
             },
             next(){
-                this.questionIndex++
                 this.isSubmitted = false
                 this.$refs.answer.map(function (element) {
                     return element.parentNode.classList.remove("bg-green-500","bg-red-500")
