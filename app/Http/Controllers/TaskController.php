@@ -205,19 +205,26 @@ class TaskController extends Controller
      */
     public function solveTask(Request $request, $courseId, $taskId)
     {
-        $validated = Validator::make($request->all(), [
-            'index' => ['required', 'digits:1'],
+        $validated = $request->validate([
+            'userAnswer' => ['required'],
         ]);
-        $task =Task::find($taskId);
-        $correctAnswer = $task->properties['quiz']['correctAnswer'];
-        if ($correctAnswer == $validated['index']) {
-            Auth::user()->allCourses()->updateExistingPivot($courseId, ['points' => $task->points]);
+
+        $message = "La tarea ya estaba completada";
+        if(!$this->isDone()){
+            $task =Task::find($taskId);
+
+            $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
+            if ($correctAnswer == $validated['userAnswer']) {
+                Auth::user()->allCourses()->updateExistingPivot($courseId, ['points' => $task->points]);
+            }
+
+            $this->markTaskAsDone($courseId, $taskId);
+            //catch error saving in db
+            $message = "Tarea completada";
         }
 
-        $this->markTaskAsDone($courseId, $taskId);
-        //catch error saving in db
 
-        return response()->json(["index"=>$correctAnswer]);
+        return response()->json(["index"=>$correctAnswer, "message"=>$message]);
     }
 
     private function markTaskAsDone(int $courseId, $taskId)
@@ -226,5 +233,9 @@ class TaskController extends Controller
         $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId]);
 
         return true;
+    }
+
+    private function isDone()
+    {
     }
 }

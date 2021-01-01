@@ -39409,26 +39409,15 @@ __webpack_require__.r(__webpack_exports__);
     return {
       picked: null,
       isSubmitted: false,
-      correctAnswer: null,
-      answer: this.$inertia.form({
-        index: this.picked
-      }, {
-        bag: 'answerQuiz',
-        resetOnSuccess: false
-      })
+      correctAnswer: null
     };
   },
   methods: {
     computeAnswer: function computeAnswer() {
-      /* let correctAnswer = this.$refs.answer[this.quiz.questions[this.questionIndex].correctAnswerIndex].parentNode
-       correctAnswer.classList.add("bg-green-500");
-       this.userResponses[this.questionIndex] = answer
-       if(answer){
-           this.score++
-       }else{
-           let userAnswer = this.$refs.answer[this.picked].parentNode
-           userAnswer.classList.add("bg-red-500");
-       }*/
+      var greenAnswer = this.$refs.answer[this.correctAnswer].parentNode;
+      greenAnswer.classList.add("bg-green-500");
+      var userAnswer = this.$refs.answer[this.picked].parentNode;
+      userAnswer.classList.add("bg-red-500");
     },
     getAnswer: function getAnswer(e) {
       e.preventDefault();
@@ -39438,10 +39427,11 @@ __webpack_require__.r(__webpack_exports__);
         'course': this.courseId,
         'task': this.taskId
       }), {
-        index: this.picked
+        userAnswer: this.picked
       }).then(function (response) {
-        currentObj.correctAnswer = response.data;
+        currentObj.correctAnswer = response.data.index;
         currentObj.isSubmitted = true;
+        currentObj.computeAnswer();
       })["catch"](function (error) {
         currentObj.correctAnswer = error;
       });

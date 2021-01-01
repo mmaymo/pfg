@@ -37,37 +37,26 @@
                 picked:null,
                 isSubmitted:false,
                 correctAnswer: null,
-                answer: this.$inertia.form({
-                    index:this.picked,
-                }, {
-                    bag: 'answerQuiz',
-                    resetOnSuccess: false,
-                })
             }
         },
         methods: {
             computeAnswer(){
+                let greenAnswer = this.$refs.answer[this.correctAnswer].parentNode;
+                greenAnswer.classList.add("bg-green-500");
 
-               /* let correctAnswer = this.$refs.answer[this.quiz.questions[this.questionIndex].correctAnswerIndex].parentNode
-                correctAnswer.classList.add("bg-green-500");
-                this.userResponses[this.questionIndex] = answer
-                if(answer){
-                    this.score++
-                }else{
-                    let userAnswer = this.$refs.answer[this.picked].parentNode
-                    userAnswer.classList.add("bg-red-500");
-                }*/
-
+                let userAnswer = this.$refs.answer[this.picked].parentNode;
+                userAnswer.classList.add("bg-red-500");
             },
             getAnswer(e) {
                 e.preventDefault();
                 let currentObj = this;
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.post(route('solveTask', {'course':this.courseId, 'task':this.taskId}), {
-                    index:this.picked
+                    userAnswer:this.picked
                 }).then(response => {
-                    currentObj.correctAnswer = response.data
-                    currentObj.isSubmitted = true
+                    currentObj.correctAnswer = response.data.index;
+                    currentObj.isSubmitted = true;
+                    currentObj.computeAnswer();
                 }).catch(function (error) {
                     currentObj.correctAnswer = error;
                 });
