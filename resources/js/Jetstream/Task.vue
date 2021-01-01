@@ -9,7 +9,7 @@
                         <h1 class="group flex whitespace-pre-wrap relative capitalize">
                             {{ this.task.name }}</h1>
                     </div>
-                    <quiz-task :quiz="this.task.contents.quiz"/>
+                    <quiz-task :quiz="this.task.contents.quiz" :courseId="this.courseId" :taskId="this.task.id"/>
                     <!--<code-task :textContent="this.task.contents"/>-->
                     <!--<card-task :textContent="this.task.contents"/>-->
                    <!--<text-task :textContent="this.task.contents"></text-task>-->

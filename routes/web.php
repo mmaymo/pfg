@@ -39,3 +39,4 @@ Route::resource('courses.users', MembersController::class)->scoped(
 );
 
 Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent');
+Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask');

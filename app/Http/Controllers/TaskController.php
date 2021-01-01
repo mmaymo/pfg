@@ -193,4 +193,23 @@ class TaskController extends Controller
 
         return back();
     }
+
+    /**
+     * Solve the given task.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     * @param                          $taskId
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function solveTask(Request $request, $courseId, $taskId)
+    {
+        //addspoints of the task
+        //returns the correct index of the quiz
+
+
+        return response()->json(["index"=>3]);
+
+    }
 }

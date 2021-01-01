@@ -27,7 +27,7 @@ export default {
         'allowedIds',
         'task',
         'coursePoints',
-        'courseProgress'
+        'courseProgress', 'index'
     ]
 }
 </script>

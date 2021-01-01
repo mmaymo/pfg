@@ -39399,50 +39399,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     JetApplicationLogo: _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: {
-    quiz: {
-      type: Object,
-      "default": ''
-    }
-  },
+  props: ['quiz', 'courseId', 'taskId'],
   data: function data() {
     return {
-      score: 0,
-      isActive: false,
       picked: null,
-      isSubmitted: false
+      isSubmitted: false,
+      correctAnswer: null,
+      answer: this.$inertia.form({
+        index: this.picked
+      }, {
+        bag: 'answerQuiz',
+        resetOnSuccess: false
+      })
     };
   },
   methods: {
     computeAnswer: function computeAnswer() {
-      var answer = this.quiz.questions[this.questionIndex].responses[this.picked].correct ? true : false;
-      var correctAnswer = this.$refs.answer[this.quiz.questions[this.questionIndex].correctAnswerIndex].parentNode;
-      correctAnswer.classList.add("bg-green-500");
-      this.userResponses[this.questionIndex] = answer;
-
-      if (answer) {
-        this.score++;
-      } else {
-        var userAnswer = this.$refs.answer[this.picked].parentNode;
-        userAnswer.classList.add("bg-red-500");
-      }
-
-      this.isSubmitted = true; //esto luego lo tengo que guardar en db para recuperarlo userResponses, score del quiz
-      //cuando se carga, si ya estaba hecho se tienen que mostrar las respuestas originales
-      //y entonces tengo que deshabilitar el poder reenviar o aumentar el número de intentos
-      //necesito un botón para resetearlo
+      /* let correctAnswer = this.$refs.answer[this.quiz.questions[this.questionIndex].correctAnswerIndex].parentNode
+       correctAnswer.classList.add("bg-green-500");
+       this.userResponses[this.questionIndex] = answer
+       if(answer){
+           this.score++
+       }else{
+           let userAnswer = this.$refs.answer[this.picked].parentNode
+           userAnswer.classList.add("bg-red-500");
+       }*/
     },
-    next: function next() {
-      this.isSubmitted = false;
-      this.$refs.answer.map(function (element) {
-        return element.parentNode.classList.remove("bg-green-500", "bg-red-500");
+    getAnswer: function getAnswer(e) {
+      e.preventDefault();
+      var currentObj = this;
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      axios.post(route('solveTask', {
+        'course': this.courseId,
+        'task': this.taskId
+      }), {
+        index: this.picked
+      }).then(function (response) {
+        currentObj.correctAnswer = response.data;
+        currentObj.isSubmitted = true;
+      })["catch"](function (error) {
+        currentObj.correctAnswer = error;
       });
     }
   }
@@ -42512,7 +42513,7 @@ __webpack_require__.r(__webpack_exports__);
     Task: _Jetstream_Task__WEBPACK_IMPORTED_MODULE_2__["default"],
     CourseSidebar: _Jetstream_CourseSidebar__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['courseDetails', 'tasks', 'allowedIds', 'task', 'coursePoints', 'courseProgress']
+  props: ['courseDetails', 'tasks', 'allowedIds', 'task', 'coursePoints', 'courseProgress', 'index']
 });
 
 /***/ }),
@@ -83771,15 +83772,7 @@ var render = function() {
         _c("section", { staticClass: "container" }, [
           _c(
             "form",
-            {
-              attrs: { id: "myForm" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.$emit("submitted")
-                }
-              }
-            },
+            { attrs: { id: "myForm" }, on: { submit: _vm.getAnswer } },
             [
               _c("div", { staticClass: "px-4 py-5 bg-white sm:p-6" }, [
                 _c("div", { staticClass: "grid " }, [
@@ -83827,18 +83820,9 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  attrs: { type: "submit", id: "answerButton" },
-                  on: {
-                    click: function($event) {
-                      return _vm.computeAnswer()
-                    }
-                  }
-                },
-                [_vm._v("Enviar Respuesta")]
-              )
+              _c("button", { attrs: { type: "submit", id: "answerButton" } }, [
+                _vm._v("Enviar Respuesta")
+              ])
             ]
           )
         ])
@@ -84054,7 +84038,13 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _c("quiz-task", { attrs: { quiz: this.task.contents.quiz } }),
+              _c("quiz-task", {
+                attrs: {
+                  quiz: this.task.contents.quiz,
+                  courseId: this.courseId,
+                  taskId: this.task.id
+                }
+              }),
               _vm._v(" "),
               _c(
                 "button",

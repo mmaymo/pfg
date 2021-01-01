@@ -3,8 +3,7 @@
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
             <section class="container" >
-                <form id="myForm" @submit.prevent="$emit('submitted')">
-
+                <form id="myForm" @submit="getAnswer">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid ">
                                 <ul>
@@ -16,8 +15,7 @@
                                 </ul>
                             </div>
                         </div>
-
-                    <button type="submit" id="answerButton" v-on:click="computeAnswer();">Enviar Respuesta</button>
+                    <button type="submit" id="answerButton">Enviar Respuesta</button>
                 </form>
             </section>
             <!--/container-->
@@ -33,24 +31,24 @@
             JetApplicationLogo,
 
         },
-        props: {
-            quiz: {
-                type: Object,
-                default: '',
-            },
-        },
+        props: ['quiz', 'courseId', 'taskId'],
         data() {
             return {
-                score:0,
-                isActive: false,
                 picked:null,
-                isSubmitted:false
+                isSubmitted:false,
+                correctAnswer: null,
+                answer: this.$inertia.form({
+                    index:this.picked,
+                }, {
+                    bag: 'answerQuiz',
+                    resetOnSuccess: false,
+                })
             }
         },
         methods: {
             computeAnswer(){
-                let answer = this.quiz.questions[this.questionIndex].responses[this.picked].correct?true:false
-                let correctAnswer = this.$refs.answer[this.quiz.questions[this.questionIndex].correctAnswerIndex].parentNode
+
+               /* let correctAnswer = this.$refs.answer[this.quiz.questions[this.questionIndex].correctAnswerIndex].parentNode
                 correctAnswer.classList.add("bg-green-500");
                 this.userResponses[this.questionIndex] = answer
                 if(answer){
@@ -58,22 +56,22 @@
                 }else{
                     let userAnswer = this.$refs.answer[this.picked].parentNode
                     userAnswer.classList.add("bg-red-500");
-                }
-                this.isSubmitted = true
-
-                //esto luego lo tengo que guardar en db para recuperarlo userResponses, score del quiz
-                //cuando se carga, si ya estaba hecho se tienen que mostrar las respuestas originales
-                //y entonces tengo que deshabilitar el poder reenviar o aumentar el número de intentos
-                //necesito un botón para resetearlo
+                }*/
 
             },
-            next(){
-                this.isSubmitted = false
-                this.$refs.answer.map(function (element) {
-                    return element.parentNode.classList.remove("bg-green-500","bg-red-500")
-                })
+            getAnswer(e) {
+                e.preventDefault();
+                let currentObj = this;
+                axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                axios.post(route('solveTask', {'course':this.courseId, 'task':this.taskId}), {
+                    index:this.picked
+                }).then(response => {
+                    currentObj.correctAnswer = response.data
+                    currentObj.isSubmitted = true
+                }).catch(function (error) {
+                    currentObj.correctAnswer = error;
+                });
             },
-
         },
     }
 </script>
