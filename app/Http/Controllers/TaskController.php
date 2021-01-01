@@ -205,11 +205,26 @@ class TaskController extends Controller
      */
     public function solveTask(Request $request, $courseId, $taskId)
     {
-        //addspoints of the task
-        //returns the correct index of the quiz
+        $validated = Validator::make($request->all(), [
+            'index' => ['required', 'digits:1'],
+        ]);
+        $task =Task::find($taskId);
+        $correctAnswer = $task->properties['quiz']['correctAnswer'];
+        if ($correctAnswer == $validated['index']) {
+            Auth::user()->allCourses()->updateExistingPivot($courseId, ['points' => $task->points]);
+        }
 
+        $this->markTaskAsDone($courseId, $taskId);
+        //catch error saving in db
 
-        return response()->json(["index"=>3]);
+        return response()->json(["index"=>$correctAnswer]);
+    }
 
+    private function markTaskAsDone(int $courseId, $taskId)
+    {
+        $task =Task::find($taskId);
+        $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId]);
+
+        return true;
     }
 }

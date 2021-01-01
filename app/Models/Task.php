@@ -37,6 +37,10 @@ class Task extends Model
     {
         return $this->belongsTo('App\Models\Course', 'course_id');
     }
+    public function userTasksCompleted()
+    {
+        return $this->belongsToMany('App\Models\User', 'task_user');
+    }
      public function getCleanTaskAttribute(){
          $attributes = $this->properties;
         if($this->type== 'quiz'){
