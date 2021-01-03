@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "ext-json": "*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -17,8 +18,8 @@
         "laravel/jetstream": "^1.4",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.0",
-        "tightenco/ziggy": "^0.9.4",
-        "ext-json": "*"
+        "spatie/laravel-permission": "^3.18",
+        "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ChapterController;
-use App\Http\Controllers\CourseContent;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\TaskController;
@@ -26,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::resource('courses', CourseController::class);
+Route::resource('courses', CourseController::class)->middleware('permission:edit courses');
 Route::resource('courses.tasks', TaskController::class)->scoped(
     [
         'task' => 'name',
@@ -36,7 +34,7 @@ Route::resource('courses.users', MembersController::class)->scoped(
     [
         'user' => 'id',
     ]
-);
+)->middleware('permission:edit courses');
 
 Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent');
 Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask');

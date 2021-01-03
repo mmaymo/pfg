@@ -35,10 +35,10 @@ class TaskController extends Controller
     {
         $course = Course::find($courseId);
 
-        /*if (! $request->user()->belongsToTeam($course)) {
+        if (! $request->user()->can('view courses')) {
             abort(403);
         }
-        if (! $request->user()->canSeeTask($courseId, $taskId)) {
+        /*if (! $request->user()->canSeeTask($courseId, $taskId)) {
             return back();
         }*/
 
@@ -90,6 +90,9 @@ class TaskController extends Controller
      */
     public function create(Request $request, $course)
     {
+        if (! $request->user()->can('edit courses')) {
+            abort(403);
+        }
         $course = Course::find($course);
         $chapters = $course->tasks;
 
@@ -106,6 +109,9 @@ class TaskController extends Controller
      */
     public function edit(Request $request, $course, $taskId)
     {
+        if (! $request->user()->can('edit courses')) {
+            abort(403);
+        }
         $course = Course::find($course);
         $task = Task::find($taskId);
         $chapters = $course->chapters;
@@ -122,6 +128,9 @@ class TaskController extends Controller
      */
     public function store(Request $request, $course)
     {
+        if (! $request->user()->can('edit courses')) {
+            abort(403);
+        }
         $validated = $request->validate([
             'name' => 'required',
             'type' => 'required',
@@ -156,7 +165,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, $task)
     {
-
+        if (! $request->user()->can('edit courses')) {
+            abort(403);
+        }
         //Gate::forUser($request->user())->authorize('update', $teamAuth);
 
         $validated = Validator::make($request->all(), [
@@ -184,6 +195,9 @@ class TaskController extends Controller
      */
     public function destroy(Request $request, $teamId, $taskId)
     {
+        if (! $request->user()->can('edit courses')) {
+            abort(403);
+        }
         $team = Jetstream::newTeamModel()->findOrFail($teamId);
 
         app(ValidateTeamDeletion::class)->validate($request->user(), $team);

@@ -6,12 +6,8 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
-use Laravel\Jetstream\Actions\ValidateTeamDeletion;
-use Laravel\Jetstream\Contracts\CreatesTeams;
-use Laravel\Jetstream\Contracts\DeletesTeams;
 use Laravel\Jetstream\Jetstream;
 
 class CourseController extends Controller
@@ -66,6 +62,7 @@ class CourseController extends Controller
      */
     public function show(Request $request, $courseId)
     {
+
         $course = Course::find($courseId);
         $students = $course->getMembersDetails();
         $itinerary = $course->getOrderedChaptersWithTasks();
