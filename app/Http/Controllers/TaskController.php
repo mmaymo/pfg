@@ -210,7 +210,7 @@ class TaskController extends Controller
         ]);
 
         $message = "La tarea ya estaba completada";
-        if(!$this->isDone()){
+        if(!$this->isDone($courseId, $taskId)){
             $task =Task::find($taskId);
 
             $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
@@ -223,7 +223,6 @@ class TaskController extends Controller
             $message = "Tarea completada";
         }
 
-
         return response()->json(["index"=>$correctAnswer, "message"=>$message]);
     }
 
@@ -235,7 +234,8 @@ class TaskController extends Controller
         return true;
     }
 
-    private function isDone()
+    private function isDone($courseId, $taskId)
     {
+        return Auth::user()->isCompletedTask($courseId, $taskId);
     }
 }

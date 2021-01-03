@@ -98,11 +98,4 @@ class Course extends Model
     public function taskCount(){
         return $this->tasks()->count();
     }
-
-    public function rankingTeamCoursePoints()
-    {
-        $team = $this->team;
-        return  $team->belongsToMany('App\Models\User', 'users_course_progress')
-            ->withPivot('points')->orderBy('points', 'desc');
-    }
 }
