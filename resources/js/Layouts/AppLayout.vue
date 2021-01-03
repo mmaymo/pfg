@@ -53,15 +53,6 @@
 
                                     <div class="border-t border-gray-100"></div>
 
-                                    <!-- Team Management -->
-                                    <template v-if="$page.jetstream.hasTeamFeatures">
-
-                                        <!-- Team Settings -->
-                                        <jet-dropdown-link :href="route('courses.create')" v-if="$page.jetstream.canCreateTeams">
-                                            Crear nuevo curso
-                                        </jet-dropdown-link>
-
-                                    </template>
 
                                     <!-- Authentication -->
                                     <form @submit.prevent="logout">
@@ -123,41 +114,6 @@
                             </jet-responsive-nav-link>
                         </form>
 
-                        <!-- Team Management -->
-                        <template v-if="$page.jetstream.hasTeamFeatures">
-                            <div class="border-t border-gray-200"></div>
-
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                Configuración del curso
-                            </div>
-
-                            <!-- Team Settings -->
-                            <jet-responsive-nav-link :href="route('courses.show', $page.user.current_team)" :active="$page.currentRouteName == 'courses.show'">
-                                Ajustes del curso
-                            </jet-responsive-nav-link>
-
-                            <jet-responsive-nav-link :href="route('courses.create')" :active="$page.currentRouteName == 'courses.create'">
-                                Crear nuevo curso
-                            </jet-responsive-nav-link>
-
-                            <div class="border-t border-gray-200"></div>
-
-                            <!-- Team Switcher -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                Cambiar curso
-                            </div>
-
-                            <template v-for="team in $page.user.all_teams">
-                                <form @submit.prevent="switchToTeam(team)" :key="team.id">
-                                    <jet-responsive-nav-link as="button">
-                                        <div class="flex items-center">
-                                            <svg v-if="team.id == $page.user.current_team_id" class="mr-2 h-5 w-5 text-green-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                            <div>{{ team.name }}</div>
-                                        </div>
-                                    </jet-responsive-nav-link>
-                                </form>
-                            </template>
-                        </template>
                     </div>
                 </div>
             </div>
