@@ -8,15 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 trait HasCourseDetails
 {
-    public function allCourses()
+    public function coursesEnrolled()
     {
         return $this->belongsToMany('App\Models\Course', 'users_course_progress');
     }
 
-    public function allCoursesWithPoints()
+    public function coursesEnrolledWithPoints()
     {
         return $this->belongsToMany('App\Models\Course', 'users_course_progress')
             ->withPivot('points');
+    }
+    public function courses(){
+        return $this->hasMany('App\Models\Course');
     }
 
     public function completedTasks($courseId){

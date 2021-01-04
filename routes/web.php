@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,12 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
+    $user = Auth::user();
+    $isTeacher = $user->hasRole('profesor');
+    $ownedCourses = $user->courses;
+    $isEnrolled = $user->hasRole('alumno');
+    $enrolledCourses = $user->coursesEnrolled;
+    return Inertia\Inertia::render('Dashboard',['isTeacher'=>$isTeacher, 'isEnrolled'=>$isEnrolled, 'ownedCourses'=>$ownedCourses, 'enrolledCourses'=>$enrolledCourses]);
 })->name('dashboard');
 
 Route::resource('courses', CourseController::class)->middleware('permission:edit courses');

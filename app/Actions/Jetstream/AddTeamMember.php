@@ -31,7 +31,7 @@ class AddTeamMember implements AddsTeamMembers
             ['role' => $role]
         );
 
-        $user->allCourses()->attach(
+        $user->coursesEnrolled()->attach(
             $team->id,
             ['points' => 0, 'progress'=>0]
         );

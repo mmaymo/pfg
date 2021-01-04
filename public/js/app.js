@@ -41076,7 +41076,23 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
-/* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -41105,7 +41121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    NavLink: _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_1__["default"]
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {};
@@ -86429,38 +86445,119 @@ var render = function() {
                 staticClass: "grid grid-cols-3 gap-4",
                 attrs: { id: "mainContent" }
               },
-              _vm._l(_vm.$page.user.all_teams, function(team) {
-                return _c("div", { staticClass: "pt-4" }, [
-                  _c(
-                    "div",
-                    { staticClass: "border-4 m-4 p-4" },
-                    [
-                      _c(
-                        "nav-link",
-                        {
-                          attrs: {
-                            href: _vm.route("courses.index"),
-                            active: _vm.$page.currentRouteName == "courses"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                " +
-                              _vm._s(team.name) +
-                              "\n                            "
+              [
+                _vm.$page.isTeacher
+                  ? _c(
+                      "div",
+                      [
+                        _vm._l(_vm.$page.ownedCourses, function(course) {
+                          return _c("ul", [
+                            _c(
+                              "li",
+                              [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(course.name) +
+                                    "\n                                "
+                                ),
+                                _c("jet-button", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href: _vm.route("courses.show", {
+                                          course: course.id
+                                        })
+                                      }
+                                    },
+                                    [_vm._v("Editar")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("jet-button", [
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href: _vm.route("courses.tasks.show", {
+                                          course: course.id,
+                                          task: Object.keys(
+                                            course.positionArray
+                                          )[0]
+                                        })
+                                      }
+                                    },
+                                    [_vm._v("Ver")]
+                                  )
+                                ])
+                              ],
+                              1
+                            )
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          [
+                            _c("jet-button", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: _vm.route("courses.create") }
+                                },
+                                [_vm._v("Crear Curso")]
+                              )
+                            ])
+                          ],
+                          1
+                        )
+                      ],
+                      2
+                    )
+                  : _vm.$page.isEnrolled
+                  ? _c(
+                      "div",
+                      _vm._l(_vm.$page.enrolledCourses, function(course) {
+                        return _c("ul", [
+                          _c(
+                            "li",
+                            [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(course.name) +
+                                  "\n\n                                "
+                              ),
+                              _c("jet-button", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: _vm.route("courses.tasks.show", {
+                                        course: course.id,
+                                        task: Object.keys(
+                                          course.positionArray
+                                        )[0]
+                                      })
+                                    }
+                                  },
+                                  [_vm._v("Ver")]
+                                )
+                              ])
+                            ],
+                            1
                           )
-                        ]
-                      ),
+                        ])
+                      }),
+                      0
+                    )
+                  : _c("div", [
+                      _c("p", [
+                        _vm._v("Todavía no ha sido inscrito a ningún curso")
+                      ]),
                       _vm._v(" "),
-                      _c("p"),
-                      _vm._v(" "),
-                      _c("p")
-                    ],
-                    1
-                  )
-                ])
-              }),
-              0
+                      _c("p", [_vm._v("Enlace de contacto")])
+                    ])
+              ]
             )
           ]
         )
