@@ -61,62 +61,6 @@
                 </jet-button>
             </template>
         </jet-action-section>
-        <!-- <div >
-             <jet-section-border />
-
-             <jet-form-section @submitted="addTeamMember">
-                 <template #title>
-                     Añadir Tarea
-                 </template>
-
-                 <template #description>
-                     Añadir una nueva tarea a este cuso
-                 </template>
-
-                 <template #form>
-                     <div class="col-span-6">
-                         <div class="max-w-xl text-sm text-gray-600">
-                             Introduzca el contenido que desea añadir
-                         </div>
-                     </div>
-                     <div class="col-span-6">
-                         <button @click="changeTaskType('Document')">Documento</button>
-                         <button @click="changeTaskType('Code')">Código</button>
-                         <button @click="changeTaskType('Quiz')">Test</button>
-                         <button @click="changeTaskType('Card')">Flashcards</button>
-                     </div>
-                     <div v-if="type === 'Document'">
-                         <div class="col-span-6 sm:col-span-4">
-                             <jet-label for="name" value="Nombre" />
-                             <jet-input id="name" type="text" class="mt-1 block w-full" v-model="addTaskDocForm.name" />
-                             <jet-input-error :message="addTaskDocForm.error('name')" class="mt-2" />
-                         </div>
-                         <div class="col-span-6 sm:col-span-4">
-                             <jet-label for="points" value="Puntos" />
-                             <jet-input id="points" type="number" class="mt-1 block w-full" v-model="addTaskDocForm.points" />
-                             <jet-input-error :message="addTaskDocForm.error('name')" class="mt-2" />
-                         </div>
-                         <div class="col-span-6 sm:col-span-4">
-                             <jet-label for="properties" value="Contenido" />
-                             <jet-input id="properties" type="text" class="mt-1 block w-full" v-model="addTaskDocForm.properties" />
-                             <jet-input-error :message="addTaskDocForm.error('properties')" class="mt-2" />
-                         </div>
-                     </div>
-
-
-                 </template>
-
-                 <template #actions>
-                     <jet-action-message :on="addTaskDocForm.recentlySuccessful" class="mr-3">
-                         Añadido.
-                     </jet-action-message>
-
-                     <jet-button :class="{ 'opacity-25': addTaskDocForm.processing }" :disabled="addTaskDocForm.processing">
-                         Añadir
-                     </jet-button>
-                 </template>
-             </jet-form-section>
-         </div>-->
     </div>
 </template>
 

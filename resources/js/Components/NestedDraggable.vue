@@ -15,11 +15,10 @@
                     </jet-button>
 
                     <!-- Remove Task -->
-                    <button
-                            class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
+                    <danger-button
                             @click="">
                         Eliminar
-                    </button>
+                    </danger-button>
                 </div>
             </div>
             <nested-draggable :tasks="item.tasks" :courseId="courseId"></nested-draggable>
@@ -30,10 +29,11 @@
 <script>
     import Draggable from 'vuedraggable'
     import JetButton from "../Jetstream/Button";
+    import DangerButton from "../Jetstream/DangerButton";
 
     export default {
         name: 'nested-draggable',
-        components: {Draggable, JetButton},
+        components: {Draggable, JetButton, DangerButton},
         props: {
             tasks: {},
             courseId: Number,

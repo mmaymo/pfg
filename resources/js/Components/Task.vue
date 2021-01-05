@@ -20,17 +20,15 @@
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">
                         <div class="w-2/4">
-                            <button
-                                class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
+                            <jet-button>
                                 <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.previousId})">Anterior</a>
-                            </button>
+                            </jet-button>
                         </div>
                         <div class="w-2/4 text-right">
                             <div v-if="this.taskCompleted">
-                                <button
-                                    class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
+                                <jet-button>
                                     <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
-                                </button>
+                                </jet-button>
                             </div>
 
                         </div>
@@ -56,13 +54,15 @@ import QuizTask from "./QuizTask";
 import TextTask from "./TextTask";
 import CodeTask from "./CodeTask";
 import CardTask from "./CardTask";
+import JetButton from "../Jetstream/Button";
 
 export default {
     components: {
         QuizTask,
         TextTask,
         CodeTask,
-        CardTask
+        CardTask,
+        JetButton,
     },
     props: {
         courseId: {

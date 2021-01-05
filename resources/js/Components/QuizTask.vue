@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-
             <section class="container" >
                 <form id="myForm" @submit="getAnswer">
                         <div class="px-4 py-5 bg-white sm:p-6">
@@ -15,21 +14,19 @@
                                 </ul>
                             </div>
                         </div>
-                    <button type="submit" id="answerButton">Enviar Respuesta</button>
+                    <jet-button type="submit" id="answerButton">Enviar Respuesta</jet-button>
                 </form>
             </section>
-            <!--/container-->
         </div>
     </div>
 </template>
 
 <script>
-    import JetApplicationLogo from '../Jetstream/ApplicationLogo'
+    import JetButton from "../Jetstream/Button";
 
     export default {
         components: {
-            JetApplicationLogo,
-
+            JetButton,
         },
         props: ['quiz', 'courseId', 'taskId'],
         data() {

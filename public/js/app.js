@@ -38401,6 +38401,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 //
 //
 //
@@ -38416,8 +38417,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
+  components: {
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: {
     textContent: {
       type: Object,
@@ -38613,6 +38617,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _toast_ui_editor_dist_toastui_editor_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_toast_ui_editor_dist_toastui_editor_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _toast_ui_vue_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @toast-ui/vue-editor */ "./node_modules/@toast-ui/vue-editor/dist/toastui-vue-editor.js");
 /* harmony import */ var _toast_ui_vue_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_toast_ui_vue_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 //
 //
 //
@@ -38622,6 +38627,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -38631,7 +38637,8 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   components: {
-    Editor: _toast_ui_vue_editor__WEBPACK_IMPORTED_MODULE_2__["Editor"]
+    Editor: _toast_ui_vue_editor__WEBPACK_IMPORTED_MODULE_2__["Editor"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
     getMarkdown: function getMarkdown() {
@@ -38655,6 +38662,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
 /* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
 //
 //
 //
@@ -38683,14 +38691,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'nested-draggable',
   components: {
     Draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a,
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"]
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
+    DangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: {
     tasks: {},
@@ -38712,9 +38721,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Jetstream/ApplicationLogo */ "./resources/js/Jetstream/ApplicationLogo.vue");
-//
-//
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 //
 //
 //
@@ -38741,7 +38748,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    JetApplicationLogo: _Jetstream_ApplicationLogo__WEBPACK_IMPORTED_MODULE_0__["default"]
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: ['quiz', 'courseId', 'taskId'],
   data: function data() {
@@ -38793,6 +38800,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TextTask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextTask */ "./resources/js/Components/TextTask.vue");
 /* harmony import */ var _CodeTask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CodeTask */ "./resources/js/Components/CodeTask.vue");
 /* harmony import */ var _CardTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CardTask */ "./resources/js/Components/CardTask.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 //
 //
 //
@@ -38842,8 +38850,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 
 
 
@@ -38853,7 +38860,8 @@ __webpack_require__.r(__webpack_exports__);
     QuizTask: _QuizTask__WEBPACK_IMPORTED_MODULE_0__["default"],
     TextTask: _TextTask__WEBPACK_IMPORTED_MODULE_1__["default"],
     CodeTask: _CodeTask__WEBPACK_IMPORTED_MODULE_2__["default"],
-    CardTask: _CardTask__WEBPACK_IMPORTED_MODULE_3__["default"]
+    CardTask: _CardTask__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   props: {
     courseId: {
@@ -42248,62 +42256,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
 /* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
 /* harmony import */ var _Components_NestedDraggable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/NestedDraggable */ "./resources/js/Components/NestedDraggable.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -82330,13 +82282,18 @@ var render = function() {
           "px-6 xl:px-12 w-full max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-3/4"
       },
       [
-        _c("div", { staticClass: "mt-0  overflow-hidden relative" }, [
-          _c("h2", [_vm._v(_vm._s(_vm.textContent.card.front))]),
-          _vm._v(" "),
-          _c("button", { on: { click: _vm.answer } }, [
-            _vm._v("Muestra respuesta")
-          ])
-        ]),
+        _c(
+          "div",
+          { staticClass: "mt-0  overflow-hidden relative" },
+          [
+            _c("h2", [_vm._v(_vm._s(_vm.textContent.card.front))]),
+            _vm._v(" "),
+            _c("jet-button", { on: { click: _vm.answer } }, [
+              _vm._v("Muestra respuesta")
+            ])
+          ],
+          1
+        ),
         _vm._v(" "),
         _c(
           "div",
@@ -82645,7 +82602,7 @@ var render = function() {
         attrs: { initialValue: _vm.properties, height: "500px" }
       }),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.getMarkdown } }, [_vm._v("Guardar")])
+      _c("jet-button", { on: { click: _vm.getMarkdown } }, [_vm._v("Guardar")])
     ],
     1
   )
@@ -82715,15 +82672,9 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "cursor-pointer ml-6 text-sm text-red-500 focus:outline-none",
-                    on: { click: function($event) {} }
-                  },
-                  [_vm._v("\n                    Eliminar\n                ")]
-                )
+                _c("danger-button", { on: { click: function($event) {} } }, [
+                  _vm._v("\n                    Eliminar\n                ")
+                ])
               ],
               1
             )
@@ -82817,10 +82768,13 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("button", { attrs: { type: "submit", id: "answerButton" } }, [
-                _vm._v("Enviar Respuesta")
-              ])
-            ]
+              _c(
+                "jet-button",
+                { attrs: { type: "submit", id: "answerButton" } },
+                [_vm._v("Enviar Respuesta")]
+              )
+            ],
+            1
           )
         ])
       ]
@@ -82910,14 +82864,11 @@ var render = function() {
                   attrs: { id: "bottomTaskButtons" }
                 },
                 [
-                  _c("div", { staticClass: "w-2/4" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                      },
-                      [
+                  _c(
+                    "div",
+                    { staticClass: "w-2/4" },
+                    [
+                      _c("jet-button", [
                         _c(
                           "a",
                           {
@@ -82930,20 +82881,17 @@ var render = function() {
                           },
                           [_vm._v("Anterior")]
                         )
-                      ]
-                    )
-                  ]),
+                      ])
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "w-2/4 text-right" }, [
                     this.taskCompleted
-                      ? _c("div", [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
-                            },
-                            [
+                      ? _c(
+                          "div",
+                          [
+                            _c("jet-button", [
                               _c(
                                 "a",
                                 {
@@ -82956,9 +82904,10 @@ var render = function() {
                                 },
                                 [_vm._v("Siguiente")]
                               )
-                            ]
-                          )
-                        ])
+                            ])
+                          ],
+                          1
+                        )
                       : _vm._e()
                   ])
                 ]
