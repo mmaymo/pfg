@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-span-6 sm:col-span-4">
+        <div>
             <jet-label for="name" value="Nombre del curso *"/>
             <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus/>
             <jet-input-error :message="form.error('name')" class="mt-2"/>

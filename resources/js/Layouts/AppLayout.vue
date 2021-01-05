@@ -1,20 +1,20 @@
 <template>
     <div class="min-h-screen bg-gray-100">
-        <nav class="bg-red-300 border-b border-gray-100 absolute top-0 left-0 w-screen h-16">
+        <nav class="border-b border-gray-100 absolute top-0 left-0 w-screen h-16">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
                         <div class="flex-shrink-0 flex items-center">
-                            <inertia-link :href="route('courses.index')">
+                            <inertia-link :href="route('dashboard')">
                                 <jet-application-mark class="block h-9 w-auto" />
                             </inertia-link>
                         </div>
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('courses.index')" :active="$page.currentRouteName == 'courses.index'">
+                            <jet-nav-link :href="route('dashboard')" >
                                 Mis Cursos
                             </jet-nav-link>
                         </div>
@@ -121,12 +121,9 @@
 
 
         <!-- Page Content -->
-        <main class="mt-24 p-2 relative bg-green-300">
-
+        <main class="mt-16 p-2 relative bg-white">
                 <slot name="header"></slot>
-
                 <slot></slot>
-
         </main>
 
         <!-- Modal Portal -->
@@ -135,7 +132,6 @@
 </template>
 
 <script>
-import JetApplicationLogo from './../Jetstream/ApplicationLogo'
 import JetApplicationMark from './../Jetstream/ApplicationMark'
 import JetDropdown from './../Jetstream/Dropdown'
 import JetDropdownLink from './../Jetstream/DropdownLink'
@@ -144,7 +140,6 @@ import JetResponsiveNavLink from './../Jetstream/ResponsiveNavLink'
 
 export default {
         components: {
-            JetApplicationLogo,
             JetApplicationMark,
             JetDropdown,
             JetDropdownLink,

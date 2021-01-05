@@ -5,24 +5,19 @@
         <li class="flex items-center justify-between" v-for="item in tasks"
             :key="item.id">
             <div>
-                <div class="flex items-center">
-                    <span class="ml-4">{{ item.name }}</span>
-                </div>
-                <div class="flex items-center">
-                    <!-- Edit task -->
-                    <jet-button>
-                        <a :href="route('courses.tasks.edit', {'course':courseId, 'task':item.id})">Editar</a>
-                    </jet-button>
+                <!-- Edit task -->
+                <jet-button>
+                    <a :href="route('courses.tasks.edit', {'course':courseId, 'task':item.id})">{{ item.name }}</a>
+                </jet-button>
 
-                    <!-- Remove Task -->
-                    <danger-button
-                            @click="">
-                        Eliminar
-                    </danger-button>
-                </div>
+                <!-- Remove Task -->
+                <danger-button
+                    @click="">
+                    Eliminar
+                </danger-button>
             </div>
+            <jet-section-border />
             <nested-draggable :tasks="item.tasks" :courseId="courseId"></nested-draggable>
-
         </li>
     </draggable>
 </template>
@@ -30,10 +25,11 @@
     import Draggable from 'vuedraggable'
     import JetButton from "../Jetstream/Button";
     import DangerButton from "../Jetstream/DangerButton";
+    import JetSectionBorder from "../Jetstream/SectionBorder";
 
     export default {
         name: 'nested-draggable',
-        components: {Draggable, JetButton, DangerButton},
+        components: {Draggable, JetButton, DangerButton, JetSectionBorder,},
         props: {
             tasks: {},
             courseId: Number,

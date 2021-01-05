@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="grid grid-cols-3 gap-4">
         <!-- Degree  -->
-        <div class="col-span-6">
+        <div>
             <jet-label for="degree" value="Grado al que pertenece el curso"/>
 
             <jet-input id="degree"
@@ -13,7 +13,7 @@
         </div>
 
         <!-- Semester -->
-        <div class="col-span-6 sm:col-span-4">
+        <div >
             <jet-label for="semester" value="Semestre en que se imparte"/>
 
             <jet-input id="semester"
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Pic -->
-        <div class="col-span-6 sm:col-span-4">
+        <div>
             <jet-label for="pic" value="Imagen para el curso"/>
 
             <jet-input id="pic"

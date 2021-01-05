@@ -8,7 +8,6 @@
                 </template>
 
                 <template #description>
-                    Añadir un alumno a este curso
                 </template>
 
                 <template #form>
@@ -73,13 +72,12 @@
             <jet-section-border />
 
             <!-- Manage Team Members -->
-            <jet-action-section class="mt-10 sm:mt-0">
+            <jet-action-section class="">
                 <template #title>
                     Alumnos registrados
                 </template>
 
                 <template #description>
-                    todos los alumnos registrados en el curso
                 </template>
 
                 <!-- Team Member List -->
@@ -109,18 +107,15 @@
                                     {{ displayableRole(user.membership.role) }}
                                 </div>-->
 
-                                <!-- Leave Team -->
-                                <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                    @click="confirmLeavingTeam"
-                                                    v-if="$page.user.id === user.id">
+                                <!-- abandonar curso -->
+                                <jet-button @click="confirmLeavingTeam" v-if="$page.user.id === user.id">
                                     Abandonar curso
-                                </button>
+                                </jet-button>
 
-                                <!-- Remove Team Member -->
-                                <button class="cursor-pointer ml-6 text-sm text-red-500 focus:outline-none"
-                                                    @click="confirmTeamMemberRemoval(user.id)">
+                                <!-- Eliminar alumno del curso -->
+                                <danger-button @click="confirmTeamMemberRemoval(user.id)">
                                     Eliminar
-                                </button>
+                                </danger-button>
                             </div>
                         </div>
                     </div>
@@ -231,9 +226,11 @@
     import JetLabel from './../../Jetstream/Label'
     import JetSecondaryButton from './../../Jetstream/SecondaryButton'
     import JetSectionBorder from './../../Jetstream/SectionBorder'
+    import DangerButton from "../../Jetstream/DangerButton";
 
     export default {
         components: {
+            DangerButton,
             JetActionMessage,
             JetActionSection,
             JetButton,

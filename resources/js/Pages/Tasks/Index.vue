@@ -9,18 +9,22 @@
                 </template>
 
                 <template #description>
-                    todas las tareas dadas de alta para este curso
                 </template>
 
                 <!-- Team Member List -->
                 <template #content>
-
                     <nested-draggable :tasks="tasks" :courseId="courseId"/>
+                </template>
+                <template #actions>
                     <jet-button @click.native="persistContentPositions">
                         Guardar este orden
                     </jet-button>
+                    <jet-button>
+                        <a :href="route('courses.tasks.create', {'course':courseId})">Añadir Nueva Tarea</a>
+                    </jet-button>
                 </template>
             </jet-action-section>
+
         </div>
         <!-- Remove Team Member Confirmation Modal -->
         <jet-confirmation-modal :show="teamMemberBeingRemoved" @close="teamMemberBeingRemoved = null">
@@ -44,23 +48,6 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
-        <jet-section-border/>
-        <jet-action-section class="mt-10 sm:mt-0">
-            <template #title>
-                Añadir nuevas tareas
-            </template>
-
-            <template #description>
-                Las tareas pueden ser de 4 tipos
-            </template>
-
-            <!-- Team Member List -->
-            <template #content>
-                <jet-button>
-                    <a :href="route('courses.tasks.create', {'course':courseId})">Añadir</a>
-                </jet-button>
-            </template>
-        </jet-action-section>
     </div>
 </template>
 
