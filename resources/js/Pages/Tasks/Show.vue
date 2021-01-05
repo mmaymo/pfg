@@ -12,8 +12,8 @@
 
 <script>
 import AppLayout from '../../Layouts/AppLayout'
-import CourseSidebar from "../../Jetstream/CourseSidebar";
-import Task from "../../Jetstream/Task"
+import CourseSidebar from "../../Components/CourseSidebar";
+import Task from "../../Components/Task"
 
 export default {
     components: {

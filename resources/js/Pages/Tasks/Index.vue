@@ -127,7 +127,7 @@
     import JetSecondaryButton from "../../Jetstream/SecondaryButton";
     import JetSectionBorder from "../../Jetstream/SectionBorder";
     import JetActionSection from "../../Jetstream/ActionSection";
-    import NestedDraggable from "./NestedDraggable";
+    import NestedDraggable from "../../Components/NestedDraggable";
 
 
     export default {

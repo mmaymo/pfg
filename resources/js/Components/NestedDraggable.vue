@@ -29,7 +29,7 @@
 </template>
 <script>
     import Draggable from 'vuedraggable'
-    import JetButton from "../../Jetstream/Button";
+    import JetButton from "../Jetstream/Button";
 
     export default {
         name: 'nested-draggable',
