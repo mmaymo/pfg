@@ -19,7 +19,7 @@
                                             <li class="flex items-center">
                                                 <span class="ml-4">{{course.name}}</span>
                                                 <jet-button><a :href="route('courses.show', {'course':course.id})">Editar</a></jet-button>
-                                                <jet-button><a :href="route('courses.tasks.show', {'course':course.id, 'task':Object.keys(course.positionArray)[0]})">Ver</a></jet-button>
+                                                <jet-button v-if="course.positionArray.length > 0"><a :href="route('courses.tasks.show', {'course':course.id, 'task':Object.keys(course.positionArray)[0]})">Ver</a></jet-button>
                                             </li>
 
                                         </ul>
