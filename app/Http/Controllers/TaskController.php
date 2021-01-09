@@ -114,7 +114,7 @@ class TaskController extends Controller
         }
         $course = Course::find($course);
         $task = Task::find($taskId);
-        $chapters = $course->chapters;
+        $chapters = $course->tasks;
         $availableTypes = self::AVAILABLE_TASK_TYPES;
 
         return Inertia::render('Tasks/Edit', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes, 'task'=>$task]);
