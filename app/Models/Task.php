@@ -19,7 +19,6 @@ class Task extends Model
         'course_id',
         'chapter_id',
         'type',
-        'position',
         'points',
         'properties'
     ];
