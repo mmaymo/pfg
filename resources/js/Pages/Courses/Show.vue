@@ -1,7 +1,7 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight px-8 py-4">
+            <h2 class="font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4">
                 Editar Curso
             </h2>
         </template>

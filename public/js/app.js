@@ -41148,6 +41148,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
+/* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
 //
 //
 //
@@ -41187,12 +41189,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"]
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {};
@@ -41217,7 +41250,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
 /* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
-//
 //
 //
 //
@@ -41573,6 +41605,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_ConfirmsPassword__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/ConfirmsPassword */ "./resources/js/Jetstream/ConfirmsPassword.vue");
 /* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+//
 //
 //
 //
@@ -82641,6 +82674,8 @@ var render = function() {
           _c(
             "div",
             [
+              _c("span", [_vm._v(_vm._s(item.name))]),
+              _vm._v(" "),
               _c("jet-button", [
                 _c(
                   "a",
@@ -82652,7 +82687,7 @@ var render = function() {
                       })
                     }
                   },
-                  [_vm._v(_vm._s(item.name))]
+                  [_vm._v("Editar")]
                 )
               ]),
               _vm._v(" "),
@@ -82662,8 +82697,6 @@ var render = function() {
             ],
             1
           ),
-          _vm._v(" "),
-          _c("jet-section-border"),
           _vm._v(" "),
           _c("nested-draggable", {
             attrs: { tasks: item.tasks, courseId: _vm.courseId }
@@ -83167,7 +83200,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "inline-flex items-center px-4 py-2 bg-green-300 border border-transparent rounded-md font-semibold text-xs text-green-800 hover:text-white uppercase tracking-widest hover:bg-green-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
+        "inline-flex items-center mx-2 px-4 py-2 bg-green-300 border border-transparent rounded-md font-semibold text-xs text-green-800 hover:text-white uppercase tracking-widest hover:bg-green-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
       attrs: { type: _vm.type }
     },
     [_vm._t("default")],
@@ -86250,7 +86283,7 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
+                    "font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
                 },
                 [_vm._v("\n            Editar Curso\n        ")]
               )
@@ -86422,7 +86455,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "grid grid-cols-3 gap-4",
+                staticClass: "grid grid-cols-1 gap-4",
                 attrs: { id: "mainContent" }
               },
               [
@@ -86430,69 +86463,168 @@ var render = function() {
                   ? _c(
                       "div",
                       [
-                        _vm._l(_vm.$page.ownedCourses, function(course) {
-                          return _c("ul", [
-                            _c(
-                              "li",
-                              [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(course.name) +
-                                    "\n                                "
-                                ),
-                                _c("jet-button", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: _vm.route("courses.show", {
-                                          course: course.id
-                                        })
-                                      }
-                                    },
-                                    [_vm._v("Editar")]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("jet-button", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        href: _vm.route("courses.tasks.show", {
-                                          course: course.id,
-                                          task: Object.keys(
-                                            course.positionArray
-                                          )[0]
-                                        })
-                                      }
-                                    },
-                                    [_vm._v("Ver")]
-                                  )
-                                ])
-                              ],
-                              1
-                            )
-                          ])
+                        _c("jet-action-section", {
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "title",
+                                fn: function() {
+                                  return [
+                                    _vm._v(
+                                      "\n                                Tus cursos\n                            "
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              },
+                              {
+                                key: "description",
+                                fn: function() {
+                                  return undefined
+                                },
+                                proxy: true
+                              },
+                              {
+                                key: "content",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "div",
+                                      { staticClass: "space-y-6" },
+                                      _vm._l(_vm.$page.ownedCourses, function(
+                                        course
+                                      ) {
+                                        return _c(
+                                          "ul",
+                                          {
+                                            staticClass:
+                                              "flex items-center justify-between"
+                                          },
+                                          [
+                                            _c(
+                                              "li",
+                                              {
+                                                staticClass: "flex items-center"
+                                              },
+                                              [
+                                                _c(
+                                                  "span",
+                                                  { staticClass: "ml-4" },
+                                                  [_vm._v(_vm._s(course.name))]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("jet-button", [
+                                                  _c(
+                                                    "a",
+                                                    {
+                                                      attrs: {
+                                                        href: _vm.route(
+                                                          "courses.show",
+                                                          { course: course.id }
+                                                        )
+                                                      }
+                                                    },
+                                                    [_vm._v("Editar")]
+                                                  )
+                                                ]),
+                                                _vm._v(" "),
+                                                _c("jet-button", [
+                                                  _c(
+                                                    "a",
+                                                    {
+                                                      attrs: {
+                                                        href: _vm.route(
+                                                          "courses.tasks.show",
+                                                          {
+                                                            course: course.id,
+                                                            task: Object.keys(
+                                                              course.positionArray
+                                                            )[0]
+                                                          }
+                                                        )
+                                                      }
+                                                    },
+                                                    [_vm._v("Ver")]
+                                                  )
+                                                ])
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        )
+                                      }),
+                                      0
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            4096324963
+                          )
                         }),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          [
-                            _c("jet-button", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: _vm.route("courses.create") }
+                        _c("jet-section-border"),
+                        _vm._v(" "),
+                        _c("jet-action-section", {
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "title",
+                                fn: function() {
+                                  return [
+                                    _vm._v(
+                                      "\n                                Crea un nuevo curso\n                            "
+                                    )
+                                  ]
                                 },
-                                [_vm._v("Crear Curso")]
-                              )
-                            ])
-                          ],
-                          1
-                        )
+                                proxy: true
+                              },
+                              {
+                                key: "description",
+                                fn: function() {
+                                  return undefined
+                                },
+                                proxy: true
+                              },
+                              {
+                                key: "content",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "div",
+                                      { staticClass: "space-y-6" },
+                                      [
+                                        _c("jet-button", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: {
+                                                href: _vm.route(
+                                                  "courses.create"
+                                                )
+                                              }
+                                            },
+                                            [_vm._v("Crear Curso")]
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            1163283644
+                          )
+                        })
                       ],
-                      2
+                      1
                     )
                   : _vm.$page.isEnrolled
                   ? _c(
@@ -86572,14 +86704,14 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Delete Account\n    ")]
+          return [_vm._v("\n        Borrar cuenta\n    ")]
         },
         proxy: true
       },
       {
         key: "description",
         fn: function() {
-          return [_vm._v("\n        Permanently delete your account.\n    ")]
+          return [_vm._v("\n        Borrar cuenta definitivamente.\n    ")]
         },
         proxy: true
       },
@@ -86589,7 +86721,7 @@ var render = function() {
           return [
             _c("div", { staticClass: "max-w-xl text-sm text-gray-600" }, [
               _vm._v(
-                "\n            Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.\n        "
+                "\n            Una vez una cuenta es eliminada, se borrarán tambien todos los recursos asociados. Antes de borrarla, asegúrese de haber descargado cualquier información que quiera conservar.\n        "
               )
             ]),
             _vm._v(" "),
@@ -86606,7 +86738,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                Delete Account\n            ")]
+                  [_vm._v("\n                Borrar cuenta\n            ")]
                 )
               ],
               1
@@ -86624,7 +86756,7 @@ var render = function() {
                   key: "title",
                   fn: function() {
                     return [
-                      _vm._v("\n                Delete Account\n            ")
+                      _vm._v("\n                Borrar cuenta\n            ")
                     ]
                   },
                   proxy: true
@@ -86634,7 +86766,7 @@ var render = function() {
                   fn: function() {
                     return [
                       _vm._v(
-                        "\n                Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.\n\n                "
+                        "\n                ¿Está seguro de que quiere borrar esta cuenta? Una vez una cuenta es eliminada, se borrarán tambien todos los recursos asociados. Por favor introduzca su contraseña para confirmar que quiere borrar definitivamente esta cuenta.\n                "
                       ),
                       _c(
                         "div",
@@ -86699,7 +86831,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Nevermind\n                "
+                            "\n                    Cerrar sin borrar\n                "
                           )
                         ]
                       ),
@@ -86718,7 +86850,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Delete Account\n                "
+                            "\n                    Eliminar cuenta\n                "
                           )
                         ]
                       )
@@ -86762,7 +86894,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Browser Sessions\n    ")]
+          return [_vm._v("\n        Sesiones\n    ")]
         },
         proxy: true
       },
@@ -86771,7 +86903,7 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Manage and logout your active sessions on other browsers and devices.\n    "
+              "\n        Gestione y abandone sus sesiones activas en otros navegadores y dispositivos.\n    "
             )
           ]
         },
@@ -86783,7 +86915,7 @@ var render = function() {
           return [
             _c("div", { staticClass: "max-w-xl text-sm text-gray-600" }, [
               _vm._v(
-                "\n            If necessary, you may logout of all of your other browser sessions across all of your devices. If you feel your account has been compromised, you should also update your password.\n        "
+                "\n            Si es necesario, puede salir de sus sesiones en otros navegadores en todos sus dispositivos. Si piensa que su cuenta ha sido comprometida debería además actualizar su contraseña.\n        "
               )
             ]),
             _vm._v(" "),
@@ -86875,11 +87007,11 @@ var render = function() {
                                   {
                                     staticClass: "text-green-500 font-semibold"
                                   },
-                                  [_vm._v("This device")]
+                                  [_vm._v("Este dispositivo")]
                                 )
                               : _c("span", [
                                   _vm._v(
-                                    "Last active " + _vm._s(session.last_active)
+                                    "Última vez " + _vm._s(session.last_active)
                                   )
                                 ])
                           ])
@@ -86906,7 +87038,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                Logout Other Browser Sessions\n            "
+                      "\n                Salir de la sesión en otros navegadores\n            "
                     )
                   ]
                 ),
@@ -86917,7 +87049,7 @@ var render = function() {
                     staticClass: "ml-3",
                     attrs: { on: _vm.form.recentlySuccessful }
                   },
-                  [_vm._v("\n                Done.\n            ")]
+                  [_vm._v("\n                Hecho.\n            ")]
                 )
               ],
               1
@@ -86936,7 +87068,7 @@ var render = function() {
                   fn: function() {
                     return [
                       _vm._v(
-                        "\n                Logout Other Browser Sessions\n            "
+                        "\n                Salir de la sesión en otros navegadores\n            "
                       )
                     ]
                   },
@@ -86947,7 +87079,7 @@ var render = function() {
                   fn: function() {
                     return [
                       _vm._v(
-                        "\n                Please enter your password to confirm you would like to logout of your other browser sessions across all of your devices.\n\n                "
+                        "\n                Por favor, introduzca su contraseña para confirmar que quiere salir de todas las sesiones en todos sus dispositivos.\n\n                "
                       ),
                       _c(
                         "div",
@@ -87012,7 +87144,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Nevermind\n                "
+                            "\n                    Cerrar sin salir de las sesiones\n                "
                           )
                         ]
                       ),
@@ -87031,7 +87163,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    Logout Other Browser Sessions\n                "
+                            "\n                    Salir de las sesiones\n                "
                           )
                         ]
                       )
@@ -87084,7 +87216,7 @@ var render = function() {
                   staticClass:
                     "font-semibold text-xl text-gray-800 leading-tight"
                 },
-                [_vm._v("\n            Profile\n        ")]
+                [_vm._v("\n            Perfil\n        ")]
               )
             ]
           },
@@ -87165,7 +87297,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Two Factor Authentication\n    ")]
+          return [_vm._v("\n        Autenticación de dos factores\n    ")]
         },
         proxy: true
       },
@@ -87174,7 +87306,7 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Add additional security to your account using two factor authentication.\n    "
+              "\n        Añada más seguridad a su cuenta con la autenticación de dos factores\n    "
             )
           ]
         },
@@ -87187,19 +87319,19 @@ var render = function() {
             _vm.twoFactorEnabled
               ? _c("h3", { staticClass: "text-lg font-medium text-gray-900" }, [
                   _vm._v(
-                    "\n            You have enabled two factor authentication.\n        "
+                    "\n            You have enabled two factor authentication.\n            Ha habilitado la autenticación de dos factores.\n        "
                   )
                 ])
               : _c("h3", { staticClass: "text-lg font-medium text-gray-900" }, [
                   _vm._v(
-                    "\n            You have not enabled two factor authentication.\n        "
+                    "\n            Usted NO ha habilitado la autenticación de dos factores.\n        "
                   )
                 ]),
             _vm._v(" "),
             _c("div", { staticClass: "mt-3 max-w-xl text-sm text-gray-600" }, [
               _c("p", [
                 _vm._v(
-                  "\n                When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.\n            "
+                  "\n                Cuando la autenticación está habilitada, se le pedirá un token aleatorio seguro durante la autenticación. Puede obtener este token desde su teléfono a través de la aplicación de autenticación de Google.\n            "
                 )
               ])
             ]),
@@ -87216,7 +87348,7 @@ var render = function() {
                           [
                             _c("p", { staticClass: "font-semibold" }, [
                               _vm._v(
-                                "\n                        Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application.\n                    "
+                                "\n                        La autenticación de dos factores está ahora habilitada. Escanee el siguiente código QR con la aplicación de autenticación de su teléfono.\n                    "
                               )
                             ])
                           ]
@@ -87239,7 +87371,7 @@ var render = function() {
                           [
                             _c("p", { staticClass: "font-semibold" }, [
                               _vm._v(
-                                "\n                        Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.\n                    "
+                                "\n                        Guarde estos códigos de recuperación en un gestor de contraseñas. Pueden ser necesarios para recuperar el acceso a su cuenta si el dispositivo de autenticación se pierde.\n                    "
                               )
                             ])
                           ]
@@ -87286,7 +87418,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Enable\n                    "
+                                "\n                        Activa\n                    "
                               )
                             ]
                           )
@@ -87309,7 +87441,7 @@ var render = function() {
                                 { staticClass: "mr-3" },
                                 [
                                   _vm._v(
-                                    "\n                        Regenerate Recovery Codes\n                    "
+                                    "\n                        Regenera los códigos de recuperación\n                    "
                                   )
                                 ]
                               )
@@ -87328,7 +87460,7 @@ var render = function() {
                                 { staticClass: "mr-3" },
                                 [
                                   _vm._v(
-                                    "\n                        Show Recovery Codes\n                    "
+                                    "\n                        Muestra códigos de recuperación\n                    "
                                   )
                                 ]
                               )
@@ -87351,7 +87483,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                        Disable\n                    "
+                                "\n                        Desactiva\n                    "
                               )
                             ]
                           )
@@ -87397,7 +87529,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Update Password\n    ")]
+          return [_vm._v("\n        Actualizar contraseña\n    ")]
         },
         proxy: true
       },
@@ -87406,7 +87538,7 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Ensure your account is using a long, random password to stay secure.\n    "
+              "\n        Asegure su cuenta con una contraseña larga y aleatoria.\n    "
             )
           ]
         },
@@ -87421,7 +87553,7 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "current_password", value: "Current Password" }
+                  attrs: { for: "current_password", value: "Contraseña Actual" }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -87454,7 +87586,7 @@ var render = function() {
               { staticClass: "col-span-6 sm:col-span-4" },
               [
                 _c("jet-label", {
-                  attrs: { for: "password", value: "New Password" }
+                  attrs: { for: "password", value: "Nueva Contraseña" }
                 }),
                 _vm._v(" "),
                 _c("jet-input", {
@@ -87488,7 +87620,7 @@ var render = function() {
                 _c("jet-label", {
                   attrs: {
                     for: "password_confirmation",
-                    value: "Confirm Password"
+                    value: "Confirmar Contraseña"
                   }
                 }),
                 _vm._v(" "),
@@ -87529,7 +87661,7 @@ var render = function() {
                 staticClass: "mr-3",
                 attrs: { on: _vm.form.recentlySuccessful }
               },
-              [_vm._v("\n            Saved.\n        ")]
+              [_vm._v("\n            Guardado.\n        ")]
             ),
             _vm._v(" "),
             _c(
@@ -87538,7 +87670,7 @@ var render = function() {
                 class: { "opacity-25": _vm.form.processing },
                 attrs: { disabled: _vm.form.processing }
               },
-              [_vm._v("\n            Save\n        ")]
+              [_vm._v("\n            Guardar\n        ")]
             )
           ]
         },
@@ -87575,7 +87707,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Profile Information\n    ")]
+          return [_vm._v("\n        Perfil\n    ")]
         },
         proxy: true
       },
@@ -87584,7 +87716,7 @@ var render = function() {
         fn: function() {
           return [
             _vm._v(
-              "\n        Update your account's profile information and email address.\n    "
+              "\n        Actualiza la información de tu perfil y tu correo electrónico.\n    "
             )
           ]
         },
@@ -87607,7 +87739,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("jet-label", {
-                      attrs: { for: "photo", value: "Photo" }
+                      attrs: { for: "photo", value: "Imagen" }
                     }),
                     _vm._v(" "),
                     _c(
@@ -87672,7 +87804,7 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                Select A New Photo\n            "
+                          "\n                Selecciona una nueva imagen\n            "
                         )
                       ]
                     ),
@@ -87692,7 +87824,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                Remove Photo\n            "
+                              "\n                Elimina imagen\n            "
                             )
                           ]
                         )
@@ -87711,7 +87843,7 @@ var render = function() {
               "div",
               { staticClass: "col-span-6 sm:col-span-4" },
               [
-                _c("jet-label", { attrs: { for: "name", value: "Name" } }),
+                _c("jet-label", { attrs: { for: "name", value: "Nombre" } }),
                 _vm._v(" "),
                 _c("jet-input", {
                   staticClass: "mt-1 block w-full",
@@ -87737,7 +87869,9 @@ var render = function() {
               "div",
               { staticClass: "col-span-6 sm:col-span-4" },
               [
-                _c("jet-label", { attrs: { for: "email", value: "Email" } }),
+                _c("jet-label", {
+                  attrs: { for: "email", value: "Correo Electrónico" }
+                }),
                 _vm._v(" "),
                 _c("jet-input", {
                   staticClass: "mt-1 block w-full",
@@ -87772,7 +87906,7 @@ var render = function() {
                 staticClass: "mr-3",
                 attrs: { on: _vm.form.recentlySuccessful }
               },
-              [_vm._v("\n            Saved.\n        ")]
+              [_vm._v("\n            Guardado.\n        ")]
             ),
             _vm._v(" "),
             _c(
@@ -87781,7 +87915,7 @@ var render = function() {
                 class: { "opacity-25": _vm.form.processing },
                 attrs: { disabled: _vm.form.processing }
               },
-              [_vm._v("\n            Save\n        ")]
+              [_vm._v("\n            Guardar\n        ")]
             )
           ]
         },
