@@ -38347,9 +38347,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -40655,8 +40652,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -42048,9 +42043,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -42292,6 +42284,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
 /* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
 /* harmony import */ var _Components_NestedDraggable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Components/NestedDraggable */ "./resources/js/Components/NestedDraggable.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -82124,9 +82131,7 @@ var render = function() {
                 }),
                 0
               )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("jet-button", [_vm._v("\n            Editar sección\n        ")])
+            : _vm._e()
         ],
         1
       ),
@@ -84205,7 +84210,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "min-h-screen bg-gray-100" },
+    { staticClass: "min-h-screen" },
     [
       _c(
         "nav",
@@ -85771,7 +85776,7 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight"
+                    "font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
                 },
                 [_vm._v("\n            Crear curso\n        ")]
               )
@@ -85783,14 +85788,12 @@ var render = function() {
     },
     [
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "div",
-          { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
-          [_c("create-course-form")],
-          1
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
+        [_c("create-course-form")],
+        1
+      )
     ]
   )
 }
@@ -86533,25 +86536,28 @@ var render = function() {
                                                   )
                                                 ]),
                                                 _vm._v(" "),
-                                                _c("jet-button", [
-                                                  _c(
-                                                    "a",
-                                                    {
-                                                      attrs: {
-                                                        href: _vm.route(
-                                                          "courses.tasks.show",
-                                                          {
-                                                            course: course.id,
-                                                            task: Object.keys(
-                                                              course.positionArray
-                                                            )[0]
+                                                course.positionArray.length > 0
+                                                  ? _c("jet-button", [
+                                                      _c(
+                                                        "a",
+                                                        {
+                                                          attrs: {
+                                                            href: _vm.route(
+                                                              "courses.tasks.show",
+                                                              {
+                                                                course:
+                                                                  course.id,
+                                                                task: Object.keys(
+                                                                  course.positionArray
+                                                                )[0]
+                                                              }
+                                                            )
                                                           }
-                                                        )
-                                                      }
-                                                    },
-                                                    [_vm._v("Ver")]
-                                                  )
-                                                ])
+                                                        },
+                                                        [_vm._v("Ver")]
+                                                      )
+                                                    ])
+                                                  : _vm._e()
                                               ],
                                               1
                                             )
@@ -86567,7 +86573,7 @@ var render = function() {
                             ],
                             null,
                             false,
-                            4096324963
+                            1480305331
                           )
                         }),
                         _vm._v(" "),
@@ -87963,7 +87969,7 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight"
+                    "font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
                 },
                 [
                   _vm._v(
@@ -87981,22 +87987,20 @@ var render = function() {
     },
     [
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "div",
-          {},
-          [
-            _c("document-task-form", {
-              attrs: {
-                courseId: _vm.courseId,
-                chapters: _vm.chapters,
-                availableTypes: _vm.availableTypes
-              }
-            })
-          ],
-          1
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
+        [
+          _c("document-task-form", {
+            attrs: {
+              courseId: _vm.courseId,
+              chapters: _vm.chapters,
+              availableTypes: _vm.availableTypes
+            }
+          })
+        ],
+        1
+      )
     ]
   )
 }
@@ -88510,11 +88514,11 @@ var render = function() {
                 "h2",
                 {
                   staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight"
+                    "font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
                 },
                 [
                   _vm._v(
-                    "\n            Crear tarea para " +
+                    "\n            Editar tarea para " +
                       _vm._s(_vm.courseName) +
                       "\n        "
                   )
@@ -88658,7 +88662,56 @@ var render = function() {
             ],
             1
           )
-        : _vm._e(),
+        : _c(
+            "div",
+            [
+              _c("jet-section-border"),
+              _vm._v(" "),
+              _c("jet-action-section", {
+                staticClass: "mt-10 sm:mt-0",
+                scopedSlots: _vm._u([
+                  {
+                    key: "title",
+                    fn: function() {
+                      return [
+                        _vm._v("\n                Añadir tarea\n            ")
+                      ]
+                    },
+                    proxy: true
+                  },
+                  {
+                    key: "description",
+                    fn: function() {
+                      return undefined
+                    },
+                    proxy: true
+                  },
+                  {
+                    key: "content",
+                    fn: function() {
+                      return [
+                        _c("jet-button", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: _vm.route("courses.tasks.create", {
+                                  course: _vm.courseId
+                                })
+                              }
+                            },
+                            [_vm._v("Añadir Nueva Tarea")]
+                          )
+                        ])
+                      ]
+                    },
+                    proxy: true
+                  }
+                ])
+              })
+            ],
+            1
+          ),
       _vm._v(" "),
       _c("jet-confirmation-modal", {
         attrs: { show: _vm.teamMemberBeingRemoved },
@@ -88805,7 +88858,9 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Tarea tipo Documento\n    ")]
+          return [
+            _vm._v("\n        Tarea tipo " + _vm._s(_vm.form.type) + "\n    ")
+          ]
         },
         proxy: true
       },
@@ -88833,8 +88888,6 @@ var render = function() {
                 }
               }
             }),
-            _vm._v(" "),
-            _c("h2", [_vm._v("Tipo tarea: " + _vm._s(_vm.form.type))]),
             _vm._v(" "),
             _vm.form.type == "code"
               ? _c(

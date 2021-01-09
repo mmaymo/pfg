@@ -2,7 +2,7 @@
     <div>
         <div v-if="tasks.length > 0">
             <jet-section-border/>
-            <!-- Manage Team Members -->
+
             <jet-action-section class="mt-10 sm:mt-0">
                 <template #title>
                     Tareas del curso
@@ -11,7 +11,6 @@
                 <template #description>
                 </template>
 
-                <!-- Team Member List -->
                 <template #content>
                     <nested-draggable :tasks="tasks" :courseId="courseId"/>
                 </template>
@@ -25,6 +24,22 @@
                 </template>
             </jet-action-section>
 
+        </div>
+        <div v-else>
+            <jet-section-border/>
+            <jet-action-section class="mt-10 sm:mt-0">
+                <template #title>
+                    Añadir tarea
+                </template>
+                <template #description>
+                </template>
+                <!-- Team Member List -->
+                <template #content>
+                    <jet-button>
+                        <a :href="route('courses.tasks.create', {'course':courseId})">Añadir Nueva Tarea</a>
+                    </jet-button>
+                </template>
+            </jet-action-section>
         </div>
         <!-- Remove Team Member Confirmation Modal -->
         <jet-confirmation-modal :show="teamMemberBeingRemoved" @close="teamMemberBeingRemoved = null">
