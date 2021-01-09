@@ -8,6 +8,20 @@
                         <div v-if="$page.isTeacher">
                             <jet-action-section class="">
                                 <template #title>
+                                    Crea un nuevo curso
+                                </template>
+
+                                <template #description>
+                                </template>
+                                <template #content>
+                                    <div class="space-y-6">
+                                        <jet-button><a :href="route('courses.create')">Crear Curso</a></jet-button>
+                                    </div>
+                                </template>
+                            </jet-action-section>
+                            <jet-section-border />
+                            <jet-action-section class="">
+                                <template #title>
                                     Tus cursos
                                 </template>
 
@@ -23,20 +37,6 @@
                                             </li>
 
                                         </ul>
-                                    </div>
-                                </template>
-                            </jet-action-section>
-                            <jet-section-border />
-                            <jet-action-section class="">
-                                <template #title>
-                                    Crea un nuevo curso
-                                </template>
-
-                                <template #description>
-                                </template>
-                                <template #content>
-                                    <div class="space-y-6">
-                                        <jet-button><a :href="route('courses.create')">Crear Curso</a></jet-button>
                                     </div>
                                 </template>
                             </jet-action-section>
