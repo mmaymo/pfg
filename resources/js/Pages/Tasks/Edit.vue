@@ -1,8 +1,8 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Crear tarea para {{courseName}}
+            <h2 class="font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4">
+                Editar tarea para {{courseName}}
             </h2>
         </template>
 
