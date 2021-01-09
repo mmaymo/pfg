@@ -82669,10 +82669,15 @@ var render = function() {
     _vm._l(_vm.tasks, function(item) {
       return _c(
         "li",
-        { key: item.id, staticClass: "flex items-center justify-between" },
+        {
+          key: item.id,
+          staticClass:
+            "flex items-center justify-between bg-gray-100 border-2 border-green-300 rounded p-4"
+        },
         [
           _c(
             "div",
+            {},
             [
               _c("span", [_vm._v(_vm._s(item.name))]),
               _vm._v(" "),
@@ -83794,7 +83799,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("input", {
     ref: "input",
-    staticClass: "form-input rounded-md shadow-sm",
+    staticClass: "form-input rounded-md shadow-sm border-1 border-green-300",
     domProps: { value: _vm.value },
     on: {
       input: function($event) {

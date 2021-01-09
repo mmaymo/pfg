@@ -2,12 +2,13 @@
     <draggable tag="ul" :list="tasks" :group="{name: 'g1'}" :animation="200" ghost-class="moving-card"
                filter=".action-button"
                class="space-y-6" @change="">
-        <li class="flex items-center justify-between" v-for="item in tasks"
+        <li class="flex items-center justify-between bg-gray-100 border-2 border-green-300 rounded p-4" v-for="item in tasks"
             :key="item.id">
-            <div>
+            <div class="">
+                <span>{{ item.name }}</span>
                 <!-- Edit task -->
                 <jet-button>
-                    <a :href="route('courses.tasks.edit', {'course':courseId, 'task':item.id})">{{ item.name }}</a>
+                    <a :href="route('courses.tasks.edit', {'course':courseId, 'task':item.id})">Editar</a>
                 </jet-button>
 
                 <!-- Remove Task -->
@@ -16,7 +17,6 @@
                     Eliminar
                 </danger-button>
             </div>
-            <jet-section-border />
             <nested-draggable :tasks="item.tasks" :courseId="courseId"></nested-draggable>
         </li>
     </draggable>
