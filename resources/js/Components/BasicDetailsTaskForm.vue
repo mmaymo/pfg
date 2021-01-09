@@ -6,9 +6,6 @@
             <select v-if="chapters.length > 0" id="chapter" v-model="form.chapter_id">
                 <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
             </select>
-            <jet-button >
-                Editar sección
-            </jet-button>
         </div>
 
         <jet-section-border/>
