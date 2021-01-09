@@ -116,17 +116,6 @@
             confirmTeamMemberRemoval(teamMember) {
                 this.teamMemberBeingRemoved = teamMember
             },
-            removeTeamMember() {
-                this.removeTeamMemberForm.delete(route('courses.tasks.destroy', {
-                    'course': this.course.id,
-                    'task': this.teamMemberBeingRemoved
-                }), {
-                    preserveScroll: true,
-                    preserveState: true,
-                }).then(() => {
-                    this.teamMemberBeingRemoved = null
-                })
-            },
             showEdit(taskId) {
                 this.taskEdited = taskId
             },

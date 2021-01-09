@@ -98,4 +98,10 @@ class Course extends Model
     public function taskCount(){
         return $this->tasks()->count();
     }
+
+    public function deleteTaskFromPositions($taskId)
+    {
+        $chapters = $this->positionArray;
+        //encuentro el id y lo filtro, si es un chapter, saco de dentro ["8":[9,10], "12"]
+    }
 }

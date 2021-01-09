@@ -38658,6 +38658,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
+/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
 //
 //
 //
@@ -38681,6 +38683,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
@@ -38691,14 +38715,43 @@ __webpack_require__.r(__webpack_exports__);
     Draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a,
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
     DangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__["default"],
-    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"]
+    JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_4__["default"],
+    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
+  data: function data() {
+    return {
+      taskBeingRemoved: null,
+      deleting: false,
+      form: this.$inertia.form({//
+      }, {
+        bag: 'deleteTask'
+      })
+    };
   },
   props: {
     tasks: {},
     courseId: Number
   },
   methods: {
-    linkToEdit: function linkToEdit() {}
+    confirmTaskRemoval: function confirmTaskRemoval(teamMember) {
+      console.log(teamMember);
+      this.taskBeingRemoved = teamMember;
+    },
+    deleteTask: function deleteTask() {
+      var _this = this;
+
+      this.form["delete"](route('courses.tasks.destroy', {
+        'course': this.courseId,
+        'task': this.taskBeingRemoved
+      }), {
+        preserveScroll: true,
+        preserveState: true
+      }).then(function () {
+        _this.taskBeingRemoved = null;
+      });
+    }
   }
 });
 
@@ -42391,19 +42444,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     confirmTeamMemberRemoval: function confirmTeamMemberRemoval(teamMember) {
       this.teamMemberBeingRemoved = teamMember;
-    },
-    removeTeamMember: function removeTeamMember() {
-      var _this = this;
-
-      this.removeTeamMemberForm["delete"](route('courses.tasks.destroy', {
-        'course': this.course.id,
-        'task': this.teamMemberBeingRemoved
-      }), {
-        preserveScroll: true,
-        preserveState: true
-      }).then(function () {
-        _this.teamMemberBeingRemoved = null;
-      });
     },
     showEdit: function showEdit(taskId) {
       this.taskEdited = taskId;
@@ -82681,9 +82721,96 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("danger-button", { on: { click: function($event) {} } }, [
-                _vm._v("\n                Eliminar\n            ")
-              ])
+              _c(
+                "danger-button",
+                {
+                  nativeOn: {
+                    click: function($event) {
+                      return _vm.confirmTaskRemoval(item.id)
+                    }
+                  }
+                },
+                [_vm._v("\n                Eliminar\n            ")]
+              ),
+              _vm._v(" "),
+              _c("jet-confirmation-modal", {
+                attrs: { show: _vm.taskBeingRemoved },
+                on: {
+                  close: function($event) {
+                    _vm.taskBeingRemoved = null
+                  }
+                },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "title",
+                      fn: function() {
+                        return [
+                          _vm._v(
+                            "\n                    Borrar Tarea\n                "
+                          )
+                        ]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "content",
+                      fn: function() {
+                        return [
+                          _vm._v(
+                            "\n                    ¿Está seguro de querer borrar esta tarea?\n                "
+                          )
+                        ]
+                      },
+                      proxy: true
+                    },
+                    {
+                      key: "footer",
+                      fn: function() {
+                        return [
+                          _c(
+                            "jet-secondary-button",
+                            {
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.taskBeingRemoved = null
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Cerrar sin borrar\n                    "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "jet-danger-button",
+                            {
+                              staticClass: "ml-2",
+                              class: { "opacity-25": _vm.form.processing },
+                              attrs: { disabled: _vm.form.processing },
+                              nativeOn: {
+                                click: function($event) {
+                                  return _vm.deleteTask($event)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Borrar tarea\n                    "
+                              )
+                            ]
+                          )
+                        ]
+                      },
+                      proxy: true
+                    }
+                  ],
+                  null,
+                  true
+                )
+              })
             ],
             1
           ),

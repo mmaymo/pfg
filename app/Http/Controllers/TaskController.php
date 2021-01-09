@@ -188,21 +188,21 @@ class TaskController extends Controller
      * Delete the given task.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int                      $teamId
+     * @param int                      $courseId
      * @param                          $taskId
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request, $teamId, $taskId)
+    public function destroy(Request $request, $courseId, $taskId)
     {
         if (! $request->user()->can('edit courses')) {
             abort(403);
         }
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
-
-        app(ValidateTeamDeletion::class)->validate($request->user(), $team);
 
         $task = Task::find($taskId);
+        //delete from positions
+        $course = Course::find($courseId);
+        $course->deleteTaskFromPositions($taskId);
         $task->delete();
 
         return back();
