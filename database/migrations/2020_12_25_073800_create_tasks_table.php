@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->foreignId('chapter_id')->constrained('tasks', 'id')->nullable();
             $table->string('type');
             $table->integer('points')->default(0);
             $table->json('properties')->nullable();
