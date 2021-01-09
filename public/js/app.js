@@ -38344,9 +38344,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -40652,6 +40649,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -41025,6 +41023,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -41145,8 +41144,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
-//
-//
 //
 //
 //
@@ -42238,7 +42235,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/SectionBorder */ "./resources/js/Jetstream/SectionBorder.vue");
 /* harmony import */ var _UpdateTaskForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./UpdateTaskForm */ "./resources/js/Pages/Tasks/UpdateTaskForm.vue");
-//
 //
 //
 //
@@ -82078,63 +82074,47 @@ var render = function() {
     "div",
     { staticClass: "col-span-1 sm:col-span-6" },
     [
-      _c(
-        "div",
-        { staticClass: "col-span-3 sm:col-span-2" },
-        [
-          _c("h2", [_vm._v("Sección")]),
-          _vm._v(" "),
-          _c("jet-label", {
-            attrs: {
-              for: "chapter",
-              value: "Sección en la que añadir esta tarea"
-            }
-          }),
-          _vm._v(" "),
-          _vm.chapters.length > 0
-            ? _c(
-                "select",
+      _c("h2", [_vm._v("Sección a la que añadir esta tarea")]),
+      _vm._v(" "),
+      _vm.chapters.length > 0
+        ? _c(
+            "select",
+            {
+              directives: [
                 {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.form.chapter_id,
-                      expression: "form.chapter_id"
-                    }
-                  ],
-                  attrs: { id: "chapter" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.form,
-                        "chapter_id",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
-                  }
-                },
-                _vm._l(_vm.chapters, function(chapter) {
-                  return _c("option", { domProps: { value: chapter.id } }, [
-                    _vm._v(_vm._s(chapter.name))
-                  ])
-                }),
-                0
-              )
-            : _vm._e()
-        ],
-        1
-      ),
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.chapter_id,
+                  expression: "form.chapter_id"
+                }
+              ],
+              attrs: { id: "chapter" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "chapter_id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            _vm._l(_vm.chapters, function(chapter) {
+              return _c("option", { domProps: { value: chapter.id } }, [
+                _vm._v(_vm._s(chapter.name))
+              ])
+            }),
+            0
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("jet-section-border"),
       _vm._v(" "),
@@ -85771,16 +85751,7 @@ var render = function() {
         {
           key: "header",
           fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
-                },
-                [_vm._v("\n            Crear curso\n        ")]
-              )
-            ]
+            return undefined
           },
           proxy: true
         }
@@ -85791,7 +85762,17 @@ var render = function() {
       _c(
         "div",
         { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
-        [_c("create-course-form")],
+        [
+          _c(
+            "h2",
+            {
+              staticClass: "font-semibold text-xl text-gray-800 leading-tight"
+            },
+            [_vm._v("\n            Crear curso\n        ")]
+          ),
+          _vm._v(" "),
+          _c("create-course-form")
+        ],
         1
       )
     ]
@@ -86286,16 +86267,7 @@ var render = function() {
         {
           key: "header",
           fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
-                },
-                [_vm._v("\n            Editar Curso\n        ")]
-              )
-            ]
+            return undefined
           },
           proxy: true
         }
@@ -86308,6 +86280,15 @@ var render = function() {
           "div",
           { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
           [
+            _c(
+              "h2",
+              {
+                staticClass:
+                  "font-sans font-semibold text-xl text-gray-800 leading-tight"
+              },
+              [_vm._v("\n                Editar Curso\n            ")]
+            ),
+            _vm._v(" "),
             _c("jet-section-title", {
               scopedSlots: _vm._u([
                 {
@@ -86479,6 +86460,64 @@ var render = function() {
                                 fn: function() {
                                   return [
                                     _vm._v(
+                                      "\n                                Crea un nuevo curso\n                            "
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              },
+                              {
+                                key: "description",
+                                fn: function() {
+                                  return undefined
+                                },
+                                proxy: true
+                              },
+                              {
+                                key: "content",
+                                fn: function() {
+                                  return [
+                                    _c(
+                                      "div",
+                                      { staticClass: "space-y-6" },
+                                      [
+                                        _c("jet-button", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: {
+                                                href: _vm.route(
+                                                  "courses.create"
+                                                )
+                                              }
+                                            },
+                                            [_vm._v("Crear Curso")]
+                                          )
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ]
+                                },
+                                proxy: true
+                              }
+                            ],
+                            null,
+                            false,
+                            1163283644
+                          )
+                        }),
+                        _vm._v(" "),
+                        _c("jet-section-border"),
+                        _vm._v(" "),
+                        _c("jet-action-section", {
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "title",
+                                fn: function() {
+                                  return [
+                                    _vm._v(
                                       "\n                                Tus cursos\n                            "
                                     )
                                   ]
@@ -86536,7 +86575,9 @@ var render = function() {
                                                   )
                                                 ]),
                                                 _vm._v(" "),
-                                                course.positionArray.length > 0
+                                                Object.keys(
+                                                  course.positionArray
+                                                ).length > 0
                                                   ? _c("jet-button", [
                                                       _c(
                                                         "a",
@@ -86573,65 +86614,7 @@ var render = function() {
                             ],
                             null,
                             false,
-                            1480305331
-                          )
-                        }),
-                        _vm._v(" "),
-                        _c("jet-section-border"),
-                        _vm._v(" "),
-                        _c("jet-action-section", {
-                          scopedSlots: _vm._u(
-                            [
-                              {
-                                key: "title",
-                                fn: function() {
-                                  return [
-                                    _vm._v(
-                                      "\n                                Crea un nuevo curso\n                            "
-                                    )
-                                  ]
-                                },
-                                proxy: true
-                              },
-                              {
-                                key: "description",
-                                fn: function() {
-                                  return undefined
-                                },
-                                proxy: true
-                              },
-                              {
-                                key: "content",
-                                fn: function() {
-                                  return [
-                                    _c(
-                                      "div",
-                                      { staticClass: "space-y-6" },
-                                      [
-                                        _c("jet-button", [
-                                          _c(
-                                            "a",
-                                            {
-                                              attrs: {
-                                                href: _vm.route(
-                                                  "courses.create"
-                                                )
-                                              }
-                                            },
-                                            [_vm._v("Crear Curso")]
-                                          )
-                                        ])
-                                      ],
-                                      1
-                                    )
-                                  ]
-                                },
-                                proxy: true
-                              }
-                            ],
-                            null,
-                            false,
-                            1163283644
+                            1189037709
                           )
                         })
                       ],
@@ -88509,22 +88492,7 @@ var render = function() {
         {
           key: "header",
           fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
-                },
-                [
-                  _vm._v(
-                    "\n            Editar tarea para " +
-                      _vm._s(_vm.courseName) +
-                      "\n        "
-                  )
-                ]
-              )
-            ]
+            return undefined
           },
           proxy: true
         }
@@ -88532,23 +88500,36 @@ var render = function() {
     },
     [
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "div",
-          {},
-          [
-            _c("update-task-form", {
-              attrs: {
-                courseId: _vm.courseId,
-                chapters: _vm.chapters,
-                availableTypes: _vm.availableTypes,
-                task: _vm.task
-              }
-            })
-          ],
-          1
-        )
-      ])
+      _c(
+        "div",
+        { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
+        [
+          _c(
+            "h2",
+            {
+              staticClass:
+                "font-sans font-semibold text-xl text-gray-800 leading-tight"
+            },
+            [
+              _vm._v(
+                "\n            Editar tarea para " +
+                  _vm._s(_vm.courseName) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("update-task-form", {
+            attrs: {
+              courseId: _vm.courseId,
+              chapters: _vm.chapters,
+              availableTypes: _vm.availableTypes,
+              task: _vm.task
+            }
+          })
+        ],
+        1
+      )
     ]
   )
 }

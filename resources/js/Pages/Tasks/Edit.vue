@@ -1,16 +1,15 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4">
+
+        </template>
+        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <h2 class="font-sans font-semibold text-xl text-gray-800 leading-tight">
                 Editar tarea para {{courseName}}
             </h2>
-        </template>
-
-        <div>
-            <div class="">
-                <update-task-form :courseId="courseId" :chapters="chapters" :availableTypes="availableTypes" :task="task"/>
-            </div>
+            <update-task-form :courseId="courseId" :chapters="chapters" :availableTypes="availableTypes" :task="task"/>
         </div>
+
     </app-layout>
 </template>
 

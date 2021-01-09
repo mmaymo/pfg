@@ -1,13 +1,10 @@
 <template>
     <div class="col-span-1 sm:col-span-6">
-        <div class="col-span-3 sm:col-span-2">
-            <h2>Sección</h2>
-            <jet-label for="chapter" value="Sección en la que añadir esta tarea"/>
-            <select v-if="chapters.length > 0" id="chapter" v-model="form.chapter_id">
-                <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
-            </select>
-        </div>
+        <h2>Sección a la que añadir esta tarea</h2>
 
+        <select v-if="chapters.length > 0" id="chapter" v-model="form.chapter_id">
+            <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
+        </select>
         <jet-section-border/>
         <jet-form-section @submitted="addChapter">
             <template #title>
