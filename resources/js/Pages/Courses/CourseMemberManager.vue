@@ -20,7 +20,9 @@
                     <!-- Member Email -->
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="email" value="Email" />
-                        <jet-input id="email" type="text" class="mt-1 block w-full" v-model="addTeamMemberForm.email" />
+                        <select class="mt-1 block w-full" v-if="userList.length > 0" id="email" v-model="addTeamMemberForm.email">
+                            <option v-for="user in userList" :value="user.email">{{user.name}}</option>
+                        </select>
                         <jet-input-error :message="addTeamMemberForm.error('email')" class="mt-2" />
                     </div>
                 </template>
@@ -75,6 +77,9 @@
                                 <danger-button @click="confirmTeamMemberRemoval(user.id)">
                                     Eliminar
                                 </danger-button>
+                                <danger-button @click="confirmResetValues(user.id)">
+                                    Resetear valores
+                                </danger-button>
                             </div>
                         </div>
                     </div>
@@ -123,6 +128,25 @@
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
+        <jet-confirmation-modal :show="resetingValues" @close="resetingValues = null">
+            <template #title>
+                Eliminar alumno
+            </template>
+
+            <template #content>
+                ¿Está seguro de que quiere eliminar a este alumno del curso?
+            </template>
+
+            <template #footer>
+                <jet-secondary-button @click.native="resetingValues = null">
+                    Cerrar sin guardar
+                </jet-secondary-button>
+
+                <jet-danger-button class="ml-2" @click.native="resetValues" :class="{ 'opacity-25': resetValuesForm.processing }" :disabled="resetValuesForm.processing">
+                    Eliminar
+                </jet-danger-button>
+            </template>
+        </jet-confirmation-modal>
     </div>
 </template>
 
@@ -160,7 +184,8 @@
 
         props: [
             'students',
-            'courseId'
+            'courseId',
+            'userList'
         ],
 
         data() {
@@ -191,11 +216,17 @@
                 }, {
                     bag: 'removeTeamMember',
                 }),
+                resetValuesForm: this.$inertia.form({
+                    resetValues:true
+                }, {
+                    bag: 'resetValues',
+                }),
 
                 currentlyManagingRole: false,
                 managingRoleFor: null,
                 confirmingLeavingTeam: false,
                 teamMemberBeingRemoved: null,
+                resetingValues: null,
             }
         },
 
@@ -217,6 +248,9 @@
             confirmTeamMemberRemoval(teamMember) {
                 this.teamMemberBeingRemoved = teamMember
             },
+            confirmResetValues(teamMember) {
+                this.resetingValues = teamMember
+            },
 
             removeTeamMember() {
                 this.removeTeamMemberForm.delete(route('courses.users.destroy', [this.courseId, this.teamMemberBeingRemoved]), {
@@ -224,6 +258,14 @@
                     preserveState: true,
                 }).then(() => {
                     this.teamMemberBeingRemoved = null
+                })
+            },
+            resetValues() {
+                this.resetValuesForm.put(route('courses.users.update', [this.courseId, this.resetingValues]), {
+                    preserveScroll: true,
+                    preserveState: true,
+                }).then(() => {
+                    this.resetingValues = null
                 })
             },
 

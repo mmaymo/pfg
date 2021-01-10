@@ -21,6 +21,9 @@ trait HasCourseDetails
     public function courses(){
         return $this->hasMany('App\Models\Course');
     }
+    public function tasks(){
+        return $this->belongsToMany('App\Models\Course', 'task_user');
+    }
 
     public function completedTasks($courseId){
         return DB::table('task_user')->where(

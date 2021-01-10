@@ -104,4 +104,12 @@ class Course extends Model
         $chapters = $this->positionArray;
         //encuentro el id y lo filtro, si es un chapter, saco de dentro ["8":[9,10], "12"]
     }
+
+    public function deleteAllTasks(){
+        Task::where('course_id', $this->id)->delete();
+    }
+
+    public function deleteAllMembers(){
+        $this->users()->detach();
+    }
 }

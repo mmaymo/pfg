@@ -17,7 +17,7 @@
                 <task-index  :tasks="course.tasks" :courseId="course.courseDetails.id"/>
                 <jet-section-border />
                 <course-member-manager class="mt-10 sm:mt-0"
-                            :students="course.students" :courseId="course.courseDetails.id"/>
+                            :students="course.students" :courseId="course.courseDetails.id" :userList="course.userList"/>
                 <template>
                     <jet-section-border />
 

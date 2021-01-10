@@ -48,8 +48,12 @@ class MembersController extends Controller
      * @param  int  $courseId
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $courseId)
+    public function update(Request $request, $courseId, $userId)
     {
+        $user = User::find($userId);
+        $user->coursesEnrolled()->updateExistingPivot($courseId, ['points' => 0]);
+        $user->tasks->whereIn('course_id',$courseId)->delete();
+
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -64,12 +65,14 @@ class CourseController extends Controller
     {
 
         $course = Course::find($courseId);
+        $userList = User::all();
         $students = $course->getMembersDetails();
         $itinerary = $course->getOrderedChaptersWithTasks();
         $course = [
             'courseDetails' => ['id'=>$course->id, 'name'=>$course->name, 'degree'=>$course->degree, 'semester'=>$course->semester, 'pic'=>$course->pic],
             'students'=>$students,
             'tasks'=>$itinerary,
+            'userList'=>$userList
         ];
 
        /* if (! $request->user()->belongsToTeam($team)) {
@@ -141,7 +144,6 @@ class CourseController extends Controller
     public function update(Request $request, $courseId)
     {
         $course = Course::find($courseId);
-        //Gate::forUser($request->user())->authorize('update', $course);
 
         $validated = Validator::make($request->all(), [
             'name' => ['string', 'max:255'],
@@ -206,6 +208,20 @@ class CourseController extends Controller
             }
         }
         $course->insertPositions($newOrder);
+
+        return back(303);
+    }
+
+    public function deleteAllTasks($courseId){
+        $course = Course::find($courseId);
+        $course->deleteAllTasks;
+
+        return back(303);
+    }
+
+    public function deleteAllMembers($courseId){
+        $course = Course::find($courseId);
+        $course->deleteAllMembers;
 
         return back(303);
     }

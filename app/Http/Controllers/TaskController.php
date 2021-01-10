@@ -229,7 +229,8 @@ class TaskController extends Controller
 
             $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
             if ($correctAnswer == $validated['userAnswer']) {
-                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $task->points]);
+                $previousPoints = Auth::user()->coursePoints($courseId);
+                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' =>$previousPoints + $task->points]);
             }
 
             $this->markTaskAsDone($courseId, $taskId);

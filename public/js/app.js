@@ -40420,6 +40420,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -40449,7 +40473,7 @@ __webpack_require__.r(__webpack_exports__);
     JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_10__["default"],
     JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_11__["default"]
   },
-  props: ['students', 'courseId'],
+  props: ['students', 'courseId', 'userList'],
   data: function data() {
     return {
       addTeamMemberForm: this.$inertia.form({
@@ -40473,10 +40497,16 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         bag: 'removeTeamMember'
       }),
+      resetValuesForm: this.$inertia.form({
+        resetValues: true
+      }, {
+        bag: 'resetValues'
+      }),
       currentlyManagingRole: false,
       managingRoleFor: null,
       confirmingLeavingTeam: false,
-      teamMemberBeingRemoved: null
+      teamMemberBeingRemoved: null,
+      resetingValues: null
     };
   },
   methods: {
@@ -40494,6 +40524,9 @@ __webpack_require__.r(__webpack_exports__);
     confirmTeamMemberRemoval: function confirmTeamMemberRemoval(teamMember) {
       this.teamMemberBeingRemoved = teamMember;
     },
+    confirmResetValues: function confirmResetValues(teamMember) {
+      this.resetingValues = teamMember;
+    },
     removeTeamMember: function removeTeamMember() {
       var _this = this;
 
@@ -40502,6 +40535,16 @@ __webpack_require__.r(__webpack_exports__);
         preserveState: true
       }).then(function () {
         _this.teamMemberBeingRemoved = null;
+      });
+    },
+    resetValues: function resetValues() {
+      var _this2 = this;
+
+      this.resetValuesForm.put(route('courses.users.update', [this.courseId, this.resetingValues]), {
+        preserveScroll: true,
+        preserveState: true
+      }).then(function () {
+        _this2.resetingValues = null;
       });
     },
     displayableRole: function displayableRole(role) {
@@ -85366,17 +85409,51 @@ var render = function() {
                           attrs: { for: "email", value: "Email" }
                         }),
                         _vm._v(" "),
-                        _c("jet-input", {
-                          staticClass: "mt-1 block w-full",
-                          attrs: { id: "email", type: "text" },
-                          model: {
-                            value: _vm.addTeamMemberForm.email,
-                            callback: function($$v) {
-                              _vm.$set(_vm.addTeamMemberForm, "email", $$v)
-                            },
-                            expression: "addTeamMemberForm.email"
-                          }
-                        }),
+                        _vm.userList.length > 0
+                          ? _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.addTeamMemberForm.email,
+                                    expression: "addTeamMemberForm.email"
+                                  }
+                                ],
+                                staticClass: "mt-1 block w-full",
+                                attrs: { id: "email" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.addTeamMemberForm,
+                                      "email",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              _vm._l(_vm.userList, function(user) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: user.email } },
+                                  [_vm._v(_vm._s(user.name))]
+                                )
+                              }),
+                              0
+                            )
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("jet-input-error", {
                           staticClass: "mt-2",
@@ -85541,6 +85618,24 @@ var render = function() {
                                             "\n                                Eliminar\n                            "
                                           )
                                         ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "danger-button",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.confirmResetValues(
+                                                user.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                Resetear valores\n                            "
+                                          )
+                                        ]
                                       )
                                     ],
                                     1
@@ -85557,7 +85652,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  2516662441
+                  474651045
                 )
               })
             ],
@@ -85681,6 +85776,69 @@ var render = function() {
                     nativeOn: {
                       click: function($event) {
                         return _vm.removeTeamMember($event)
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Eliminar\n            ")]
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c("jet-confirmation-modal", {
+        attrs: { show: _vm.resetingValues },
+        on: {
+          close: function($event) {
+            _vm.resetingValues = null
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "title",
+            fn: function() {
+              return [_vm._v("\n            Eliminar alumno\n        ")]
+            },
+            proxy: true
+          },
+          {
+            key: "content",
+            fn: function() {
+              return [
+                _vm._v(
+                  "\n            ¿Está seguro de que quiere eliminar a este alumno del curso?\n        "
+                )
+              ]
+            },
+            proxy: true
+          },
+          {
+            key: "footer",
+            fn: function() {
+              return [
+                _c(
+                  "jet-secondary-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        _vm.resetingValues = null
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Cerrar sin guardar\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "jet-danger-button",
+                  {
+                    staticClass: "ml-2",
+                    class: { "opacity-25": _vm.resetValuesForm.processing },
+                    attrs: { disabled: _vm.resetValuesForm.processing },
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.resetValues($event)
                       }
                     }
                   },
@@ -86350,7 +86508,8 @@ var render = function() {
               staticClass: "mt-10 sm:mt-0",
               attrs: {
                 students: _vm.course.students,
-                courseId: _vm.course.courseDetails.id
+                courseId: _vm.course.courseDetails.id,
+                userList: _vm.course.userList
               }
             }),
             _vm._v(" "),

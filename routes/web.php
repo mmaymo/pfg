@@ -42,5 +42,7 @@ Route::resource('courses.users', MembersController::class)->scoped(
     ]
 )->middleware('permission:edit courses');
 
-Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent');
+Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent')->middleware('permission:edit courses');
+Route::delete('courses/{course}/deleteAllTasks', [CourseController::class, 'deleteAllTasks'])->name('deleteAllTasks')->middleware('permission:edit courses');
+Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'deleteAllMembers'])->name('deleteAllMembers')->middleware('permission:edit courses');
 Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask');
