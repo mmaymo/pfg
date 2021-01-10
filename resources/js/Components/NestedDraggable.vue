@@ -73,7 +73,6 @@
         methods:{
 
             confirmTaskRemoval(teamMember) {
-                console.log(teamMember)
                 this.taskBeingRemoved = teamMember
             },
 

@@ -38736,7 +38736,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     confirmTaskRemoval: function confirmTaskRemoval(teamMember) {
-      console.log(teamMember);
       this.taskBeingRemoved = teamMember;
     },
     deleteTask: function deleteTask() {
@@ -40421,93 +40420,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -40573,20 +40485,6 @@ __webpack_require__.r(__webpack_exports__);
         preserveScroll: true
       });
     },
-    manageRole: function manageRole(teamMember) {
-      this.managingRoleFor = teamMember;
-      this.updateRoleForm.role = teamMember.membership.role;
-      this.currentlyManagingRole = true;
-    },
-    updateRole: function updateRole() {
-      var _this = this;
-
-      this.updateRoleForm.put(route('team-members.update', [this.team, this.managingRoleFor]), {
-        preserveScroll: true
-      }).then(function () {
-        _this.currentlyManagingRole = false;
-      });
-    },
     confirmLeavingTeam: function confirmLeavingTeam() {
       this.confirmingLeavingTeam = true;
     },
@@ -40597,13 +40495,13 @@ __webpack_require__.r(__webpack_exports__);
       this.teamMemberBeingRemoved = teamMember;
     },
     removeTeamMember: function removeTeamMember() {
-      var _this2 = this;
+      var _this = this;
 
       this.removeTeamMemberForm["delete"](route('courses.users.destroy', [this.courseId, this.teamMemberBeingRemoved]), {
         preserveScroll: true,
         preserveState: true
       }).then(function () {
-        _this2.teamMemberBeingRemoved = null;
+        _this.teamMemberBeingRemoved = null;
       });
     },
     displayableRole: function displayableRole(role) {

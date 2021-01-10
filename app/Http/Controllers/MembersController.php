@@ -16,6 +16,7 @@ use Laravel\Jetstream\Jetstream;
 
 class MembersController extends Controller
 {
+    const ALUMNO = 'alumno';
 
     /**
      * Add a new member to the course.
@@ -34,6 +35,7 @@ class MembersController extends Controller
         $newCourseMember = Jetstream::findUserByEmailOrFail($validated['email']);
 
         $course->users()->attach($newCourseMember,['points'=>0]);
+        $newCourseMember->assignRole(self::ALUMNO);
 
 
         return back(303);
