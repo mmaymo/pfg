@@ -38622,8 +38622,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -38638,7 +38636,7 @@ __webpack_require__.r(__webpack_exports__);
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
-    getMarkdown: function getMarkdown() {
+    onEditorChange: function onEditorChange() {
       var md = this.$refs.toastuiEditor.invoke('getMarkdown');
       this.$emit('update:properties', md);
     }
@@ -82620,10 +82618,9 @@ var render = function() {
     [
       _c("editor", {
         ref: "toastuiEditor",
-        attrs: { initialValue: _vm.properties, height: "500px" }
-      }),
-      _vm._v(" "),
-      _c("jet-button", { on: { click: _vm.getMarkdown } }, [_vm._v("Guardar")])
+        attrs: { initialValue: _vm.properties, height: "500px" },
+        on: { change: _vm.onEditorChange }
+      })
     ],
     1
   )

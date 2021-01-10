@@ -1,8 +1,6 @@
 <template>
     <div class="col-span-1 sm:col-span-6">
-
-        <editor :initialValue="properties" ref="toastuiEditor" height="500px"></editor>
-        <jet-button @click="getMarkdown">Guardar</jet-button>
+        <editor :initialValue="properties" ref="toastuiEditor" height="500px" @change="onEditorChange"></editor>
     </div>
 
 </template>
@@ -26,7 +24,7 @@ import JetButton from "../Jetstream/Button";
             JetButton,
         },
         methods: {
-            getMarkdown() {
+            onEditorChange() {
                 let md = this.$refs.toastuiEditor.invoke('getMarkdown');
                 this.$emit('update:properties', md)
             }
