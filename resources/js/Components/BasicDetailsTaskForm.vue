@@ -1,39 +1,42 @@
 <template>
     <div class="col-span-1 sm:col-span-6">
-        <h2>Sección a la que añadir esta tarea</h2>
+        <div v-if="form.type !== 'chapter'">
+            <h2>Sección a la que añadir esta tarea</h2>
 
-        <select v-if="chapters.length > 0" id="chapter" v-model="form.chapter_id">
-            <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
-        </select>
-        <jet-section-border/>
-        <jet-form-section @submitted="addChapter">
-            <template #title>
-                Crear nueva sección
-            </template>
+            <select v-if="chapters.length > 0" id="chapter" v-model="form.chapter_id">
+                <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
+            </select>
+            <jet-section-border/>
+            <jet-form-section @submitted="addChapter">
+                <template #title>
+                    Crear nueva sección
+                </template>
 
-            <template #description>
+                <template #description>
 
-            </template>
+                </template>
 
-            <template #form>
-                <div class="col-span-6 sm:col-span-4">
-                    <jet-label for="chapterName" value="Nombre de la sección"/>
-                    <jet-input id="chapterName" type="text" class="mt-1 block w-full" v-model="formChapter.name"/>
-                    <jet-input-error :message="formChapter.error('name')" class="mt-2"/>
-                </div>
-            </template>
+                <template #form>
+                    <div class="col-span-6 sm:col-span-4">
+                        <jet-label for="chapterName" value="Nombre de la sección"/>
+                        <jet-input id="chapterName" type="text" class="mt-1 block w-full" v-model="formChapter.name"/>
+                        <jet-input-error :message="formChapter.error('name')" class="mt-2"/>
+                    </div>
+                </template>
 
-            <template #actions>
-                <jet-action-message :on="formChapter.recentlySuccessful" class="mr-3">
-                    Guardado.
-                </jet-action-message>
+                <template #actions>
+                    <jet-action-message :on="formChapter.recentlySuccessful" class="mr-3">
+                        Guardado.
+                    </jet-action-message>
 
-                <jet-button :class="{ 'opacity-25': formChapter.processing }" :disabled="formChapter.processing">
-                    Guardar
-                </jet-button>
-            </template>
-        </jet-form-section>
-        <jet-section-border/>
+                    <jet-button :class="{ 'opacity-25': formChapter.processing }" :disabled="formChapter.processing">
+                        Guardar
+                    </jet-button>
+                </template>
+            </jet-form-section>
+            <jet-section-border/>
+        </div>
+
 
         <div class="col-span-6 sm:col-span-4">
             <jet-label for="name" value="Titulo de la tarea"/>

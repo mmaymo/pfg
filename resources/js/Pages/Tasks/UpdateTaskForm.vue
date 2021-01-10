@@ -105,7 +105,7 @@
 
         props: ['courseName', 'courseId', 'chapters', 'availableTypes', 'task'],
 
-        data() {
+         data() {
             return {
                 form: this.$inertia.form({
                     name:this.task.name,
@@ -113,24 +113,7 @@
                     chapter_id:this.task.chapter_id,
                     points:this.task.points,
                     properties:
-                        {
-                            content: this.task.properties.content,
-                            code_url: this.task.properties.code_url,
-                            quiz: {
-                                question: this.task.properties.quiz.question,
-                                responses: {
-                                    t1: this.task.properties.quiz.responses.t1,
-                                    t2: this.task.properties.quiz.responses.t2,
-                                    t3: this.task.properties.quiz.responses.t3,
-                                    t4: this.task.properties.quiz.responses.t4
-                                },
-                                correctAnswer: this.task.properties.quiz.correctAnswer
-                            },
-                            card: {
-                                front: this.task.properties.card.front,
-                                back: this.task.properties.card.back
-                            }
-                        }
+                        this.getProperties()
                 }, {
                     bag: 'updateTask',
                     resetOnSuccess: false,
@@ -143,6 +126,31 @@
                 this.form.put(route('courses.tasks.update', {'course': this.courseId, 'task': this.task.id}), {
                     preserveScroll: true
                 });
+            },
+            getProperties(){
+                if(this.task.type !== 'chapter'){
+                    return {
+                        content: this.task.properties ? this.task.properties.content : false,
+                        code_url: this.task.properties.code_url,
+                        quiz: {
+                            question: this.task.properties.quiz.question,
+                            responses: {
+                                t1: this.task.properties.quiz.responses.t1,
+                                t2: this.task.properties.quiz.responses.t2,
+                                t3: this.task.properties.quiz.responses.t3,
+                                t4: this.task.properties.quiz.responses.t4
+                            },
+                            correctAnswer: this.task.properties.quiz.correctAnswer
+                        },
+                        card: {
+                            front: this.task.properties.card.front,
+                            back: this.task.properties.card.back
+                        }
+                    };
+                }else {
+                    return false;
+                }
+
             },
         },
     }

@@ -20,7 +20,7 @@ use function PHPUnit\Framework\isEmpty;
 
 class TaskController extends Controller
 {
-    const AVAILABLE_TASK_TYPES = ['document', 'quiz', 'card', 'code', 'introCourse'];
+    const AVAILABLE_TASK_TYPES = ['document', 'quiz', 'card', 'code', 'introCourse', 'chapter'];
 
     /**
      * Show the task contents.
