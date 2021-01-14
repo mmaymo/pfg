@@ -1,44 +1,40 @@
 <template>
     <div id="sidebar"
-         class="fixed inset-0 h-full bg-white z-90 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5 hidden pt-16">
-        <div id="navWrapper"
-             class="h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:relative lg:sticky lg:bg-transparent overflow-hidden lg:top-16 bg-white">
-            <div class="w-full text-right mt-8 pr-4 font-bold">{{ this.courseName }}</div>
-            <div class="w-full text-right mb-4 pr-4 font-light">{{ this.teacher }}</div>
-            <div class="w-full text-right mb-4 pr-4 font-light">{{ this.coursePoints }}</div>
-            <div class="w-full text-right mb-4 pr-4 font-light">{{ this.courseProgress }}</div>
+         class="flex flex-col w-full md:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0">
+        <div class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between">
+            <a href="#" class="w-full text-lg text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.courseName }}</a>
 
-            <nav id="nav"
-                 class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)">
-                <ul v-for="task in this.itinerary" class="mb-10" >
-                    <a v-if="disableLink(task.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
-                        <base-svg :icon-name=task.type :width=20 :height=20
-                                  :d=iconType(task.type)></base-svg>
-                        <span class="ml-3">{{ task.name }}</span>
-                    </a>
-                    <a v-else href="javascript:" class="flex items-center px-2 -mx-2 py-1 font-medium text-gray-700">
-                        <base-svg :icon-name=subtask.type :width=20 :height=20
-                                  :d=iconType(subtask.type)></base-svg>
-                        <span class="ml-3">{{ subtask.name }}</span>
-                    </a>
-                    <a @click="toggleMenu(task.id)" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
-                       <>
-                    </a>
-                    <li  v-for="subtask in task.tasks" v-show="menuOpen === task.id">
-                        <a v-if="disableLink(subtask.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})" class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700">
-                            <base-svg :icon-name=subtask.type :width=20 :height=20
-                                      :d=iconType(subtask.type)></base-svg>
-                            <span class="ml-3">{{ subtask.name }}</span>
-                        </a>
-                        <a v-else href="javascript:" class="flex items-center px-2 -mx-2 py-1 font-medium text-gray-700">
-                            <base-svg :icon-name=subtask.type :width=20 :height=20
-                                      :d=iconType(subtask.type)></base-svg>
-                            <span class="ml-3">{{ subtask.name }}</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <button class="rounded-lg md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+                <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                    <path v-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path v-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
         </div>
+
+        <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
+            <div class="w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.teacher }}</div>
+            <div class="w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.coursePoints }}</div>
+            <div class="w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.courseProgress }}</div>
+            <ul v-for="task in this.itinerary" class="" >
+                <li class="">
+                    <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})"
+                       class="block px-4 py-2 mt-2 text-sm text-right text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+
+                        <span class="font-bold inline">{{ task.name }}</span><base-svg class="inline" :icon-name=task.type :width=20 :height=20
+                                                                                       :d=iconType(task.type)></base-svg></a>
+                    <ul>
+                        <li  v-for="subtask in task.tasks" class="text-right" >
+                            <a :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})"   class="items-center block px-4 py-2 mt-2 text-sm text-right text-green-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-green-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-green-300 focus:bg-green-300 focus:outline-none focus:shadow-outline">
+                               <span class="inline">{{ subtask.name }}</span>
+                                <base-svg class="inline" :icon-name=subtask.type :width=20 :height=20
+                                          :d=iconType(subtask.type)></base-svg>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -89,6 +85,7 @@
             iconType(type) {
                 switch (type) {
                     case "document":
+                    case "chapter":
                         return "M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z";
                     case "quiz":
                         return "M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z";
@@ -108,6 +105,7 @@
         data() {
             return {
                 menuOpen: false,
+                open: false
 
             }
         },
