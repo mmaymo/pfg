@@ -78,7 +78,7 @@
             </div>
 
             <!-- Responsive Navigation Menu -->
-            <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
+            <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden bg-white">
                 <div class="pt-2 pb-3 space-y-1">
                     <jet-responsive-nav-link :href="route('dashboard')" :active="$page.currentRouteName == 'dashboard'">
                         Cursos
@@ -121,7 +121,7 @@
 
 
         <!-- Page Content -->
-        <main class="mt-16 p-2 relative bg-white">
+        <main class="mt-16 p-2bg-white">
                 <slot name="header"></slot>
                 <slot></slot>
         </main>
