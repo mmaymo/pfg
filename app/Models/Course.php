@@ -102,7 +102,22 @@ class Course extends Model
     public function deleteTaskFromPositions($taskId)
     {
         $chapters = $this->positionArray;
-        //encuentro el id y lo filtro, si es un chapter, saco de dentro ["8":[9,10], "12"]
+        if(array_key_exists($taskId, $chapters)){
+            $children = $chapters[$taskId];
+            unset($chapters[$taskId]);
+            foreach($children as $child){
+                $chapters[$child]= [];
+            }
+        }
+        else{
+            foreach($chapters as $key =>$subtasks){
+                $chapters[$key] = array_filter($subtasks, function($tasks) use($taskId){
+                    return $tasks != $taskId;
+                });
+            }
+        }
+        $this->positionArray = $chapters;
+        $this->save();
     }
 
     public function deleteAllTasks(){
