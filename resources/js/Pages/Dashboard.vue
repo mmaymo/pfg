@@ -4,7 +4,7 @@
             <div class="lg:flex -mx-6">
                 <div id="mainContentWrap"
                      class="min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 z-0 mt-16">
-                    <div id="mainContent" class="grid grid-cols-1 gap-4">
+                    <div id="mainContent" class="grid grid-cols-1 gap-4 px-8">
                         <div v-if="$page.isTeacher">
                             <jet-action-section class="">
                                 <template #title>
