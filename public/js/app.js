@@ -38414,6 +38414,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38765,11 +38767,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-//
-//
-//
-//
-//
 //
 //
 //
@@ -82292,50 +82289,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex" }, [
+  return _c("section", { staticClass: "container bg-gray-200 " }, [
+    _c("div", { staticClass: "p-4 text-center font-bold font-xl" }, [
+      _c("p", [_vm._v(_vm._s(_vm.textContent.card.front))])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "p-4 bg-white grid grid-cols-4 shadow" },
+      [
+        _c(
+          "jet-button",
+          {
+            staticClass: "col-start-2 col-span-2",
+            nativeOn: {
+              click: function($event) {
+                return _vm.answer($event)
+              }
+            }
+          },
+          [_vm._v("Muestra respuesta")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
     _c(
       "div",
       {
-        staticClass:
-          "px-6 xl:px-12 w-full max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-3/4"
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showAnswer,
+            expression: "showAnswer"
+          }
+        ],
+        staticClass: "p-4"
       },
       [
-        _c(
-          "div",
-          { staticClass: "mt-0  overflow-hidden relative" },
-          [
-            _c("h2", [_vm._v(_vm._s(_vm.textContent.card.front))]),
-            _vm._v(" "),
-            _c(
-              "jet-button",
-              {
-                nativeOn: {
-                  click: function($event) {
-                    return _vm.answer($event)
-                  }
-                }
-              },
-              [_vm._v("Muestra respuesta")]
-            )
-          ],
-          1
-        ),
+        _c("h2", { staticClass: "uppercase my-2" }, [
+          _vm._v("Una Respuesta Correcta")
+        ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.showAnswer,
-                expression: "showAnswer"
-              }
-            ],
-            staticClass: "mt-0  overflow-hidden relative"
-          },
-          [_c("h2", [_vm._v(_vm._s(_vm.textContent.card.back))])]
-        )
+        _c("hr"),
+        _vm._v(" "),
+        _c("p", { staticClass: "p-2 text-justify" }, [
+          _vm._v(_vm._s(_vm.textContent.card.back))
+        ])
       ]
     )
   ])

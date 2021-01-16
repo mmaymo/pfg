@@ -1,13 +1,10 @@
 <template>
-
     <section class="container bg-gray-200 ">
         <div class="p-4 text-center font-bold font-xl">
             <p>{{quiz.question}}</p>
         </div>
-
         <form id="quizForm" @submit="getAnswer">
             <div class="p-4 bg-white grid grid-cols-4 shadow">
-
                 <p class="col-span-3">Elige la respuesta correcta</p>
                 <jet-button type="submit" id="answerButton">Enviar Respuesta</jet-button>
             </div>
@@ -19,11 +16,9 @@
                     <label :for="answerIndex">{{response}}</label>
                 </li>
             </ul>
-
         </form>
         <div class="p-4 m-4 rounded border-2 border-current" v-if="message">{{message}}</div>
     </section>
-
 </template>
 
 <script>
