@@ -38944,25 +38944,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   props: {
     textContent: {
       type: Object,
       "default": {}
     }
-  },
-  data: function data() {
-    return {};
-  },
-  methods: {
-    computeAnswer: function computeAnswer() {}
   }
 });
 
@@ -83088,23 +83075,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex" }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "px-6 xl:px-12 w-full max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-3/4"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "mt-0  overflow-hidden relative" },
-          [_c("VueShowdown", { attrs: { markdown: _vm.textContent.content } })],
-          1
-        )
-      ]
-    )
-  ])
+  return _c("VueShowdown", {
+    staticClass: "p-4 font-justify",
+    attrs: { markdown: _vm.textContent.content }
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
