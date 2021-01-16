@@ -16,6 +16,7 @@
                         </div>
                     <jet-button type="submit" id="answerButton">Enviar Respuesta</jet-button>
                 </form>
+                <div v-if="message">{{message}}</div>
             </section>
         </div>
     </div>
@@ -34,6 +35,7 @@
                 picked:null,
                 isSubmitted:false,
                 correctAnswer: null,
+                message:null,
             }
         },
         methods: {
@@ -52,6 +54,7 @@
                     userAnswer:this.picked
                 }).then(response => {
                     currentObj.correctAnswer = response.data.index;
+                    currentObj.message = response.data.message;
                     currentObj.isSubmitted = true;
                     currentObj.computeAnswer();
                 }).catch(function (error) {
