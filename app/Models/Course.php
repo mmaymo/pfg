@@ -92,7 +92,7 @@ class Course extends Model
     }
 
     public function insertPositions(array $positions){
-        $this->chaptersPositionArray = $positions;
+        $this->positionArray = $positions;
         $this->save();
     }
     public function taskCount(){
