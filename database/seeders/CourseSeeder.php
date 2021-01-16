@@ -34,7 +34,7 @@ class CourseSeeder extends Seeder
 
         $course = Course::factory()->count(1)->create();
         //todo tasks from json
-        
+
 
     }
 }
