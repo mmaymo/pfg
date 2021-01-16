@@ -1,9 +1,9 @@
 <template>
     <div>
-        <div v-if="textContent.content" class="mt-0  overflow-hidden relative">
+        <div v-if="textContent.content" class="p-4 text-justify">
             <VueShowdown :markdown="textContent.content"/>
         </div>
-        <div id="my-element-1"
+        <div class="p-4" id="my-element-1"
              data-katacoda-env="ubuntu"
              data-katacoda-layout="editor-terminal"
              data-katacoda-port="3000"

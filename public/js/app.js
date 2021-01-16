@@ -82367,13 +82367,14 @@ var render = function() {
     _vm.textContent.content
       ? _c(
           "div",
-          { staticClass: "mt-0  overflow-hidden relative" },
+          { staticClass: "p-4 text-justify" },
           [_c("VueShowdown", { attrs: { markdown: _vm.textContent.content } })],
           1
         )
       : _vm._e(),
     _vm._v(" "),
     _c("div", {
+      staticClass: "p-4",
       staticStyle: { height: "600px", "padding-top": "20px" },
       attrs: {
         id: "my-element-1",
