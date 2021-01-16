@@ -1,14 +1,11 @@
 <template>
     <div id="mainContentWrap"
-         class="min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 z-0 mt-16">
+         class="min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 z-0">
         <div id="mainContent">
-            <div id="task" class="flex">
-                <div class="pb-4 w-full pt-8 lg:pt-8">
-                    <div
-                        class="max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 ">
-                        <h1 class="group flex whitespace-pre-wrap relative capitalize">
-                            {{ this.task.name }}</h1>
-                    </div>
+            <div id="task" class="grid grid-column-1">
+                <h1 class="capitalize font-bold text-left px-8 py-4">
+                    {{ this.task.name }}</h1>
+
                     <quiz-task v-if="this.task.type == 'quiz'" :quiz="this.task.contents.quiz" :courseId="this.courseId" :taskId="this.task.id"/>
                     <code-task v-if="this.task.type == 'code'" :textContent="this.task.contents"/>
                     <card-task v-if="this.task.type == 'card'" :textContent="this.task.contents"/>
@@ -40,7 +37,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+
     </div>
 </template>
 

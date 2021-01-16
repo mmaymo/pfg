@@ -1,25 +1,29 @@
 <template>
-    <div>
-        <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-            <section class="container" >
-                <form id="myForm" @submit="getAnswer">
-                        <div class="px-4 py-5 bg-white sm:p-6">
-                            <div class="grid ">
-                                <ul>
-                                    <p>{{quiz.question}}</p>
-                                    <li v-for="(response, answerIndex) in quiz.responses">
-                                        <input type="radio" :id="answerIndex"  :value="answerIndex" v-model="picked" ref="answer">
-                                        <label :for="answerIndex">{{response}}</label>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    <jet-button type="submit" id="answerButton">Enviar Respuesta</jet-button>
-                </form>
-                <div v-if="message">{{message}}</div>
-            </section>
+
+    <section class="container bg-gray-200 ">
+        <div class="p-4 text-center font-bold font-xl">
+            <p>{{quiz.question}}</p>
         </div>
-    </div>
+
+        <form id="quizForm" @submit="getAnswer">
+            <div class="p-4 bg-white grid grid-cols-4 shadow">
+
+                <p class="col-span-3">Elige la respuesta correcta</p>
+                <jet-button type="submit" id="answerButton">Enviar Respuesta</jet-button>
+            </div>
+            <h2 class="uppercase my-2 p-4">Tu Respuesta</h2>
+            <hr>
+            <ul class="p-4">
+                <li class="mt-2" v-for="(response, answerIndex) in quiz.responses">
+                    <input type="radio" :id="answerIndex" :value="answerIndex" v-model="picked" ref="answer">
+                    <label :for="answerIndex">{{response}}</label>
+                </li>
+            </ul>
+
+        </form>
+        <div class="p-4 m-4 rounded border-2 border-current" v-if="message">{{message}}</div>
+    </section>
+
 </template>
 
 <script>

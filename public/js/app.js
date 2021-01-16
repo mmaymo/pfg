@@ -38523,10 +38523,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38571,12 +38567,13 @@ __webpack_require__.r(__webpack_exports__);
     iconType: function iconType(type) {
       switch (type) {
         case "document":
+        case "chapter":
           return "M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z";
 
-        case "quiz":
+        case "code":
           return "M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z";
 
-        case "code":
+        case "quiz":
           return "M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z";
 
         case "card":
@@ -38592,7 +38589,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      menuOpen: false
+      menuOpen: false,
+      open: false
     };
   }
 });
@@ -38790,6 +38788,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38800,7 +38803,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       picked: null,
       isSubmitted: false,
-      correctAnswer: null
+      correctAnswer: null,
+      message: null
     };
   },
   methods: {
@@ -38821,6 +38825,7 @@ __webpack_require__.r(__webpack_exports__);
         userAnswer: this.picked
       }).then(function (response) {
         currentObj.correctAnswer = response.data.index;
+        currentObj.message = response.data.message;
         currentObj.isSubmitted = true;
         currentObj.computeAnswer();
       })["catch"](function (error) {
@@ -38846,12 +38851,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CodeTask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CodeTask */ "./resources/js/Components/CodeTask.vue");
 /* harmony import */ var _CardTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./CardTask */ "./resources/js/Components/CardTask.vue");
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -82307,9 +82306,17 @@ var render = function() {
           [
             _c("h2", [_vm._v(_vm._s(_vm.textContent.card.front))]),
             _vm._v(" "),
-            _c("jet-button", { on: { click: _vm.answer } }, [
-              _vm._v("Muestra respuesta")
-            ])
+            _c(
+              "jet-button",
+              {
+                nativeOn: {
+                  click: function($event) {
+                    return _vm.answer($event)
+                  }
+                }
+              },
+              [_vm._v("Muestra respuesta")]
+            )
           ],
           1
         ),
@@ -82403,7 +82410,7 @@ var render = function() {
     "div",
     {
       staticClass:
-        "fixed inset-0 h-full bg-white z-90 w-full border-b -mb-16 lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-1/4 lg:block lg:border-0 xl:w-1/5 hidden pt-16",
+        "flex flex-col w-full md:w-64 text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 flex-shrink-0",
       attrs: { id: "sidebar" }
     },
     [
@@ -82411,181 +82418,194 @@ var render = function() {
         "div",
         {
           staticClass:
-            "h-full overflow-y-auto scrolling-touch lg:h-auto lg:block lg:relative lg:sticky lg:bg-transparent overflow-hidden lg:top-16 bg-white",
-          attrs: { id: "navWrapper" }
+            "flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between"
         },
         [
-          _c("div", { staticClass: "w-full text-right mt-8 pr-4 font-bold" }, [
-            _vm._v(_vm._s(this.courseName))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full text-right mb-4 pr-4 font-light" }, [
-            _vm._v(_vm._s(this.teacher))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full text-right mb-4 pr-4 font-light" }, [
-            _vm._v(_vm._s(this.coursePoints))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full text-right mb-4 pr-4 font-light" }, [
-            _vm._v(_vm._s(this.courseProgress))
-          ]),
-          _vm._v(" "),
           _c(
-            "nav",
+            "a",
             {
               staticClass:
-                "px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)",
-              attrs: { id: "nav" }
+                "w-full text-lg text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline",
+              attrs: { href: "#" }
             },
-            _vm._l(this.itinerary, function(task) {
-              return _c(
-                "ul",
-                { staticClass: "mb-10" },
+            [_vm._v(_vm._s(this.courseName))]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "rounded-lg md:hidden rounded-lg focus:outline-none focus:shadow-outline",
+              on: {
+                click: function($event) {
+                  _vm.open = !_vm.open
+                }
+              }
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "w-6 h-6",
+                  attrs: { fill: "currentColor", viewBox: "0 0 20 20" }
+                },
                 [
-                  _vm.disableLink(task.id)
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
-                          attrs: {
-                            href: _vm.route("courses.tasks.show", {
-                              course: _vm.courseId,
-                              task: task.id
-                            })
-                          }
-                        },
-                        [
-                          _c("base-svg", {
-                            attrs: {
-                              "icon-name": task.type,
-                              width: 20,
-                              height: 20,
-                              d: _vm.iconType(task.type)
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "ml-3" }, [
-                            _vm._v(_vm._s(task.name))
-                          ])
-                        ],
-                        1
-                      )
-                    : _c(
-                        "a",
-                        {
-                          staticClass:
-                            "flex items-center px-2 -mx-2 py-1 font-medium text-gray-700",
-                          attrs: { href: "javascript:" }
-                        },
-                        [
-                          _c("base-svg", {
-                            attrs: {
-                              "icon-name": _vm.subtask.type,
-                              width: 20,
-                              height: 20,
-                              d: _vm.iconType(_vm.subtask.type)
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "ml-3" }, [
-                            _vm._v(_vm._s(_vm.subtask.name))
-                          ])
-                        ],
-                        1
-                      ),
+                  _c("path", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.open,
+                        expression: "!open"
+                      }
+                    ],
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z",
+                      "clip-rule": "evenodd"
+                    }
+                  }),
                   _vm._v(" "),
+                  _c("path", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.open,
+                        expression: "open"
+                      }
+                    ],
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                      "clip-rule": "evenodd"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "nav",
+        {
+          staticClass:
+            "flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto",
+          class: { block: _vm.open, hidden: !_vm.open }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
+            },
+            [_vm._v(_vm._s(this.teacher))]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
+            },
+            [_vm._v(_vm._s(this.coursePoints) + " puntos")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
+            },
+            [_vm._v(_vm._s(this.courseProgress) + "%")]
+          ),
+          _vm._v(" "),
+          _vm._l(this.itinerary, function(task) {
+            return _c("ul", {}, [
+              _c(
+                "li",
+                {
+                  staticClass:
+                    "group border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent rounded-lg"
+                },
+                [
                   _c(
                     "a",
                     {
                       staticClass:
-                        "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
-                      on: {
-                        click: function($event) {
-                          return _vm.toggleMenu(task.id)
-                        }
+                        "block px-4 py-2 mt-2 text-sm text-right text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline",
+                      attrs: {
+                        href: _vm.route("courses.tasks.show", {
+                          course: _vm.courseId,
+                          task: task.id
+                        })
                       }
                     },
-                    [_vm._v("\n                   <>\n                ")]
+                    [
+                      _c("span", { staticClass: "font-bold inline" }, [
+                        _vm._v(_vm._s(task.name))
+                      ]),
+                      _c("base-svg", {
+                        staticClass: "inline",
+                        attrs: {
+                          "icon-name": task.type,
+                          width: 20,
+                          height: 20,
+                          d: _vm.iconType(task.type)
+                        }
+                      })
+                    ],
+                    1
                   ),
                   _vm._v(" "),
-                  _vm._l(task.tasks, function(subtask) {
-                    return _c(
-                      "li",
-                      {
-                        directives: [
+                  _c(
+                    "ul",
+                    _vm._l(task.tasks, function(subtask) {
+                      return _c("li", { staticClass: "text-right" }, [
+                        _c(
+                          "a",
                           {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.menuOpen === task.id,
-                            expression: "menuOpen === task.id"
-                          }
-                        ]
-                      },
-                      [
-                        _vm.disableLink(subtask.id)
-                          ? _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-green-700",
-                                attrs: {
-                                  href: _vm.route("courses.tasks.show", {
-                                    course: _vm.courseId,
-                                    task: subtask.id
-                                  })
-                                }
-                              },
-                              [
-                                _c("base-svg", {
-                                  attrs: {
-                                    "icon-name": subtask.type,
-                                    width: 20,
-                                    height: 20,
-                                    d: _vm.iconType(subtask.type)
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "ml-3" }, [
-                                  _vm._v(_vm._s(subtask.name))
-                                ])
-                              ],
-                              1
-                            )
-                          : _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "flex items-center px-2 -mx-2 py-1 font-medium text-gray-700",
-                                attrs: { href: "javascript:" }
-                              },
-                              [
-                                _c("base-svg", {
-                                  attrs: {
-                                    "icon-name": subtask.type,
-                                    width: 20,
-                                    height: 20,
-                                    d: _vm.iconType(subtask.type)
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "ml-3" }, [
-                                  _vm._v(_vm._s(subtask.name))
-                                ])
-                              ],
-                              1
-                            )
-                      ]
-                    )
-                  })
-                ],
-                2
+                            staticClass:
+                              "items-center block px-4 py-2 mt-2 text-sm text-right text-green-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-green-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-green-300 focus:bg-green-300 focus:outline-none focus:shadow-outline",
+                            attrs: {
+                              href: _vm.route("courses.tasks.show", {
+                                course: _vm.courseId,
+                                task: subtask.id
+                              })
+                            }
+                          },
+                          [
+                            _c("span", { staticClass: "inline" }, [
+                              _vm._v(_vm._s(subtask.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("base-svg", {
+                              staticClass: "inline",
+                              attrs: {
+                                "icon-name": subtask.type,
+                                width: 20,
+                                height: 20,
+                                d: _vm.iconType(subtask.type)
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ]
               )
-            }),
-            0
-          )
-        ]
+            ])
+          })
+        ],
+        2
       )
     ]
   )
@@ -82817,73 +82837,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "p-6 sm:px-20 bg-white border-b border-gray-200" },
-      [
-        _c("section", { staticClass: "container" }, [
-          _c(
-            "form",
-            { attrs: { id: "myForm" }, on: { submit: _vm.getAnswer } },
-            [
-              _c("div", { staticClass: "px-4 py-5 bg-white sm:p-6" }, [
-                _c("div", { staticClass: "grid " }, [
-                  _c(
-                    "ul",
-                    [
-                      _c("p", [_vm._v(_vm._s(_vm.quiz.question))]),
-                      _vm._v(" "),
-                      _vm._l(_vm.quiz.responses, function(
-                        response,
-                        answerIndex
-                      ) {
-                        return _c("li", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.picked,
-                                expression: "picked"
-                              }
-                            ],
-                            ref: "answer",
-                            refInFor: true,
-                            attrs: { type: "radio", id: answerIndex },
-                            domProps: {
-                              value: answerIndex,
-                              checked: _vm._q(_vm.picked, answerIndex)
-                            },
-                            on: {
-                              change: function($event) {
-                                _vm.picked = answerIndex
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { attrs: { for: answerIndex } }, [
-                            _vm._v(_vm._s(response))
-                          ])
-                        ])
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "jet-button",
-                { attrs: { type: "submit", id: "answerButton" } },
-                [_vm._v("Enviar Respuesta")]
-              )
-            ],
-            1
-          )
+  return _c("section", { staticClass: "container bg-gray-200 " }, [
+    _c("div", { staticClass: "p-4 text-center font-bold font-xl" }, [
+      _c("p", [_vm._v(_vm._s(_vm.quiz.question))])
+    ]),
+    _vm._v(" "),
+    _c("form", { attrs: { id: "quizForm" }, on: { submit: _vm.getAnswer } }, [
+      _c(
+        "div",
+        { staticClass: "p-4 bg-white grid grid-cols-4 shadow" },
+        [
+          _c("p", { staticClass: "col-span-3" }, [
+            _vm._v("Elige la respuesta correcta")
+          ]),
+          _vm._v(" "),
+          _c("jet-button", { attrs: { type: "submit", id: "answerButton" } }, [
+            _vm._v("Enviar Respuesta")
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("h2", { staticClass: "uppercase my-2 p-4" }, [_vm._v("Tu Respuesta")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "p-4" },
+        _vm._l(_vm.quiz.responses, function(response, answerIndex) {
+          return _c("li", { staticClass: "mt-2" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.picked,
+                  expression: "picked"
+                }
+              ],
+              ref: "answer",
+              refInFor: true,
+              attrs: { type: "radio", id: answerIndex },
+              domProps: {
+                value: answerIndex,
+                checked: _vm._q(_vm.picked, answerIndex)
+              },
+              on: {
+                change: function($event) {
+                  _vm.picked = answerIndex
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: answerIndex } }, [
+              _vm._v(_vm._s(response))
+            ])
+          ])
+        }),
+        0
+      )
+    ]),
+    _vm._v(" "),
+    _vm.message
+      ? _c("div", { staticClass: "p-4 m-4 rounded border-2 border-current" }, [
+          _vm._v(_vm._s(_vm.message))
         ])
-      ]
-    )
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -82912,137 +82932,123 @@ var render = function() {
     "div",
     {
       staticClass:
-        "min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 z-0 mt-16",
+        "min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 z-0",
       attrs: { id: "mainContentWrap" }
     },
     [
       _c("div", { attrs: { id: "mainContent" } }, [
-        _c("div", { staticClass: "flex", attrs: { id: "task" } }, [
-          _c(
-            "div",
-            { staticClass: "pb-4 w-full pt-8 lg:pt-8" },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "max-w-3xl mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:px-12 xl:w-3/4 "
-                },
-                [
-                  _c(
-                    "h1",
-                    {
-                      staticClass:
-                        "group flex whitespace-pre-wrap relative capitalize"
-                    },
-                    [
-                      _vm._v(
-                        "\n                        " + _vm._s(this.task.name)
+        _c(
+          "div",
+          { staticClass: "grid grid-column-1", attrs: { id: "task" } },
+          [
+            _c(
+              "h1",
+              { staticClass: "capitalize font-bold text-left px-8 py-4" },
+              [_vm._v("\n                " + _vm._s(this.task.name))]
+            ),
+            _vm._v(" "),
+            this.task.type == "quiz"
+              ? _c("quiz-task", {
+                  attrs: {
+                    quiz: this.task.contents.quiz,
+                    courseId: this.courseId,
+                    taskId: this.task.id
+                  }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            this.task.type == "code"
+              ? _c("code-task", { attrs: { textContent: this.task.contents } })
+              : _vm._e(),
+            _vm._v(" "),
+            this.task.type == "card"
+              ? _c("card-task", { attrs: { textContent: this.task.contents } })
+              : _vm._e(),
+            _vm._v(" "),
+            this.task.type == "document"
+              ? _c("text-task", { attrs: { textContent: this.task.contents } })
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "flex border-b border-gray-300 p-8 pt-16",
+                attrs: { id: "bottomTaskButtons" }
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "w-2/4" },
+                  [
+                    _c("jet-button", [
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: _vm.route("courses.tasks.show", {
+                              course: _vm.courseId,
+                              task: _vm.task.previousId
+                            })
+                          }
+                        },
+                        [_vm._v("Anterior")]
                       )
-                    ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("quiz-task", {
-                attrs: {
-                  quiz: this.task.contents.quiz,
-                  courseId: this.courseId,
-                  taskId: this.task.id
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded",
-                  on: { click: _vm.addPoints }
-                },
-                [_vm._v("\n                    Completada\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "flex border-b border-gray-300 p-8 pt-16",
-                  attrs: { id: "bottomTaskButtons" }
-                },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "w-2/4" },
-                    [
-                      _c("jet-button", [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: _vm.route("courses.tasks.show", {
-                                course: _vm.courseId,
-                                task: _vm.task.previousId
-                              })
-                            }
-                          },
-                          [_vm._v("Anterior")]
-                        )
-                      ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-2/4 text-right" }, [
-                    this.taskCompleted
-                      ? _c(
-                          "div",
-                          [
-                            _c("jet-button", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: _vm.route("courses.tasks.show", {
-                                      course: _vm.courseId,
-                                      task: _vm.task.nextId
-                                    })
-                                  }
-                                },
-                                [_vm._v("Siguiente")]
-                              )
-                            ])
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "pt-8", attrs: { id: "footer" } }, [
-                _c("div", { staticClass: "text-right w-full pr-8" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: {
-                        href: this.mailLink,
-                        target: "_blank",
-                        rel: "noopener noreferrer"
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "Informa de\n                        un problema en la tarea"
-                      )
-                    ]
-                  )
-                ]),
+                    ])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
-                _vm._m(0)
-              ])
-            ],
-            1
-          )
-        ])
+                _c("div", { staticClass: "w-2/4 text-right" }, [
+                  this.taskCompleted
+                    ? _c(
+                        "div",
+                        [
+                          _c("jet-button", [
+                            _c(
+                              "a",
+                              {
+                                attrs: {
+                                  href: _vm.route("courses.tasks.show", {
+                                    course: _vm.courseId,
+                                    task: _vm.task.nextId
+                                  })
+                                }
+                              },
+                              [_vm._v("Siguiente")]
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "pt-8", attrs: { id: "footer" } }, [
+              _c("div", { staticClass: "text-right w-full pr-8" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: this.mailLink,
+                      target: "_blank",
+                      rel: "noopener noreferrer"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "Informa de\n                        un problema en la tarea"
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ],
+          1
+        )
       ])
     ]
   )
@@ -84543,7 +84549,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "sm:hidden",
+              staticClass: "sm:hidden bg-white",
               class: {
                 block: _vm.showingNavigationDropdown,
                 hidden: !_vm.showingNavigationDropdown
@@ -84667,7 +84673,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "main",
-        { staticClass: "mt-16 p-2 relative bg-white" },
+        { staticClass: "mt-16 p-2bg-white" },
         [_vm._t("header"), _vm._v(" "), _vm._t("default")],
         2
       ),
@@ -86657,7 +86663,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass: "grid grid-cols-1 gap-4",
+                staticClass: "grid grid-cols-1 gap-4 px-8",
                 attrs: { id: "mainContent" }
               },
               [
