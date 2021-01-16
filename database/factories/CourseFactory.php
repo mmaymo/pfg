@@ -24,19 +24,14 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
-        $user = User::find(1);
-
-        $team = $user->ownedTeams()->create(
-            [
-                'name'=>$this->faker->sentence,
-                'personal_team'=>false
-            ]
-        );
+        //todo update positionArray
         return [
-            'team_id' => $team->id,
+            'user_id'=>1,
+            'name'=>'Diseño y Administración de Sistemas Operativos',
             'degree'=> 'Ingeniería Informática',
-            'semester'=>$this->faker->boolean,
-            'pic'=>'/images/unedDefault.jpg'
+            'semester'=>0,
+            'pic'=>'/images/unedDefault.jpg',
+            'positionArray'=>[]
         ];
     }
 }
