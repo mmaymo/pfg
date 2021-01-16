@@ -224,13 +224,12 @@ class TaskController extends Controller
         ]);
 
         $message = "La tarea ya estaba completada";
-        if(!$this->isDone($courseId, $taskId)){
-            $task =Task::find($taskId);
-
-            $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
+        $task = Task::find($taskId);
+        $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
+        if (!$this->isDone($courseId, $taskId)) {
             if ($correctAnswer == $validated['userAnswer']) {
                 $previousPoints = Auth::user()->coursePoints($courseId);
-                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' =>$previousPoints + $task->points]);
+                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
             }
 
             $this->markTaskAsDone($courseId, $taskId);
@@ -251,6 +250,6 @@ class TaskController extends Controller
 
     private function isDone($courseId, $taskId)
     {
-        return Auth::user()->isCompletedTask($courseId, $taskId);
+        return Auth::user()->isTaskCompleted($courseId, $taskId);
     }
 }
