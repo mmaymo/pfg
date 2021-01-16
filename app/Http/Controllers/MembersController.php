@@ -52,9 +52,11 @@ class MembersController extends Controller
     {
         $user = User::find($userId);
         $user->coursesEnrolled()->updateExistingPivot($courseId, ['points' => 0]);
-        $user->tasks->whereIn('course_id',$courseId)->delete();
+        $completed = $user->completedTasks($courseId);
+        $ids = $completed->pluck('task_id');
+        $user->tasks()->detach($ids);
 
-
+        return back(303);
     }
 
     /**

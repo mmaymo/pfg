@@ -22,7 +22,7 @@ trait HasCourseDetails
         return $this->hasMany('App\Models\Course');
     }
     public function tasks(){
-        return $this->belongsToMany('App\Models\Course', 'task_user');
+        return $this->belongsToMany('App\Models\Task', 'task_user', 'user_id', 'task_id')->withPivot('course_id');
     }
 
     public function completedTasks($courseId){

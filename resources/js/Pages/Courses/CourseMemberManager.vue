@@ -74,10 +74,10 @@
                                 </jet-button>
 
                                 <!-- Eliminar alumno del curso -->
-                                <danger-button @click="confirmTeamMemberRemoval(user.id)">
+                                <danger-button @click.native="confirmTeamMemberRemoval(user.id)">
                                     Eliminar
                                 </danger-button>
-                                <danger-button @click="confirmResetValues(user.id)">
+                               <danger-button @click.native="confirmResetValues(user.id)">
                                     Resetear valores
                                 </danger-button>
                             </div>
@@ -130,11 +130,11 @@
         </jet-confirmation-modal>
         <jet-confirmation-modal :show="resetingValues" @close="resetingValues = null">
             <template #title>
-                Eliminar alumno
+                Resetear valores
             </template>
 
             <template #content>
-                ¿Está seguro de que quiere eliminar a este alumno del curso?
+                ¿Está seguro de que quiere borrar los puntos y el progreso de este alumno?
             </template>
 
             <template #footer>
@@ -246,9 +246,11 @@
             },
 
             confirmTeamMemberRemoval(teamMember) {
+                console.log('elimina')
                 this.teamMemberBeingRemoved = teamMember
             },
             confirmResetValues(teamMember) {
+                console.log('reset')
                 this.resetingValues = teamMember
             },
 

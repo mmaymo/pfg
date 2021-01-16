@@ -40506,9 +40506,11 @@ __webpack_require__.r(__webpack_exports__);
       this.leaveTeamForm["delete"](route('courses.users.destroy', [this.courseId, this.$page.user.id]));
     },
     confirmTeamMemberRemoval: function confirmTeamMemberRemoval(teamMember) {
+      console.log('elimina');
       this.teamMemberBeingRemoved = teamMember;
     },
     confirmResetValues: function confirmResetValues(teamMember) {
+      console.log('reset');
       this.resetingValues = teamMember;
     },
     removeTeamMember: function removeTeamMember() {
@@ -85721,7 +85723,7 @@ var render = function() {
                                       _c(
                                         "danger-button",
                                         {
-                                          on: {
+                                          nativeOn: {
                                             click: function($event) {
                                               return _vm.confirmTeamMemberRemoval(
                                                 user.id
@@ -85739,7 +85741,7 @@ var render = function() {
                                       _c(
                                         "danger-button",
                                         {
-                                          on: {
+                                          nativeOn: {
                                             click: function($event) {
                                               return _vm.confirmResetValues(
                                                 user.id
@@ -85768,7 +85770,7 @@ var render = function() {
                   ],
                   null,
                   false,
-                  474651045
+                  1182162949
                 )
               })
             ],
@@ -85915,7 +85917,7 @@ var render = function() {
           {
             key: "title",
             fn: function() {
-              return [_vm._v("\n            Eliminar alumno\n        ")]
+              return [_vm._v("\n            Resetear valores\n        ")]
             },
             proxy: true
           },
@@ -85924,7 +85926,7 @@ var render = function() {
             fn: function() {
               return [
                 _vm._v(
-                  "\n            ¿Está seguro de que quiere eliminar a este alumno del curso?\n        "
+                  "\n            ¿Está seguro de que quiere borrar los puntos y el progreso de este alumno?\n        "
                 )
               ]
             },
