@@ -40724,6 +40724,103 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../Jetstream/ActionSection */ "./resources/js/Jetstream/ActionSection.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../../Jetstream/ConfirmationModal */ "./resources/js/Jetstream/ConfirmationModal.vue");
+/* harmony import */ var _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../Jetstream/DangerButton */ "./resources/js/Jetstream/DangerButton.vue");
+/* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['courseId'],
+  components: {
+    JetActionSection: _Jetstream_ActionSection__WEBPACK_IMPORTED_MODULE_0__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
+    JetConfirmationModal: _Jetstream_ConfirmationModal__WEBPACK_IMPORTED_MODULE_2__["default"],
+    JetDangerButton: _Jetstream_DangerButton__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  data: function data() {
+    return {
+      confirmingTeamDeletion: false,
+      deleting: false,
+      form: this.$inertia.form({//
+      }, {
+        bag: 'deleteCourse'
+      })
+    };
+  },
+  methods: {
+    confirmTeamDeletion: function confirmTeamDeletion() {
+      this.confirmingTeamDeletion = true;
+    },
+    deleteTeam: function deleteTeam() {
+      this.form["delete"](route('deleteAllMembers', this.courseId), {
+        preserveScroll: true
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/DeleteTeamForm.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/DeleteTeamForm.vue?vue&type=script&lang=js& ***!
@@ -40972,6 +41069,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Ui_PageSeparator_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Ui/PageSeparator.vue */ "./resources/js/Ui/PageSeparator.vue");
 /* harmony import */ var _Tasks_Index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Tasks/Index */ "./resources/js/Pages/Tasks/Index.vue");
 /* harmony import */ var _Jetstream_SectionTitle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Jetstream/SectionTitle */ "./resources/js/Jetstream/SectionTitle.vue");
+/* harmony import */ var _DeleteAllMembersForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./DeleteAllMembersForm */ "./resources/js/Pages/Courses/DeleteAllMembersForm.vue");
 //
 //
 //
@@ -41002,6 +41100,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -41013,6 +41115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['course'],
   components: {
+    DeleteAllMembersForm: _DeleteAllMembersForm__WEBPACK_IMPORTED_MODULE_8__["default"],
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
     DeleteTeamForm: _DeleteTeamForm__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetSectionBorder: _Jetstream_SectionBorder__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -86059,6 +86162,160 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("jet-action-section", {
+    scopedSlots: _vm._u([
+      {
+        key: "title",
+        fn: function() {
+          return [_vm._v("\n        Eliminar todos los alumnos\n    ")]
+        },
+        proxy: true
+      },
+      {
+        key: "description",
+        fn: function() {
+          return [
+            _vm._v("\n        Borre definitivamente a todos los alumnos.\n    ")
+          ]
+        },
+        proxy: true
+      },
+      {
+        key: "content",
+        fn: function() {
+          return [
+            _c("div", { staticClass: "max-w-xl text-sm text-gray-600" }, [
+              _vm._v(
+                "\n            Esta acción no puede revertirse. Asegúrese de haber descargado cualquier información que quiera conservar.\n        "
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "mt-5" },
+              [
+                _c(
+                  "jet-danger-button",
+                  {
+                    nativeOn: {
+                      click: function($event) {
+                        return _vm.confirmTeamDeletion($event)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                Borrar todos los alumnos\n            "
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("jet-confirmation-modal", {
+              attrs: { show: _vm.confirmingTeamDeletion },
+              on: {
+                close: function($event) {
+                  _vm.confirmingTeamDeletion = false
+                }
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "title",
+                  fn: function() {
+                    return [
+                      _vm._v(
+                        "\n                Borrar todos los alumnos\n            "
+                      )
+                    ]
+                  },
+                  proxy: true
+                },
+                {
+                  key: "content",
+                  fn: function() {
+                    return [
+                      _vm._v(
+                        "\n                ¿Está seguro de querer borrar a todos los alumnos?.\n            "
+                      )
+                    ]
+                  },
+                  proxy: true
+                },
+                {
+                  key: "footer",
+                  fn: function() {
+                    return [
+                      _c(
+                        "jet-secondary-button",
+                        {
+                          nativeOn: {
+                            click: function($event) {
+                              _vm.confirmingTeamDeletion = false
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Cerrar sin borrar\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "jet-danger-button",
+                        {
+                          staticClass: "ml-2",
+                          class: { "opacity-25": _vm.form.processing },
+                          attrs: { disabled: _vm.form.processing },
+                          nativeOn: {
+                            click: function($event) {
+                              return _vm.deleteTeam($event)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Borrar todos los alumnos\n                "
+                          )
+                        ]
+                      )
+                    ]
+                  },
+                  proxy: true
+                }
+              ])
+            })
+          ]
+        },
+        proxy: true
+      }
+    ])
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/DeleteTeamForm.vue?vue&type=template&id=846d6b68&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Courses/DeleteTeamForm.vue?vue&type=template&id=846d6b68& ***!
@@ -86527,6 +86784,13 @@ var render = function() {
             }),
             _vm._v(" "),
             [
+              _c("jet-section-border"),
+              _vm._v(" "),
+              _c("delete-all-members-form", {
+                staticClass: "mt-10 sm:mt-0",
+                attrs: { courseId: _vm.course.courseDetails.id }
+              }),
+              _vm._v(" "),
               _c("jet-section-border"),
               _vm._v(" "),
               _c("delete-team-form", {
@@ -107559,6 +107823,8 @@ var map = {
 	"./Courses/Create.vue": "./resources/js/Pages/Courses/Create.vue",
 	"./Courses/CreateCourseForm": "./resources/js/Pages/Courses/CreateCourseForm.vue",
 	"./Courses/CreateCourseForm.vue": "./resources/js/Pages/Courses/CreateCourseForm.vue",
+	"./Courses/DeleteAllMembersForm": "./resources/js/Pages/Courses/DeleteAllMembersForm.vue",
+	"./Courses/DeleteAllMembersForm.vue": "./resources/js/Pages/Courses/DeleteAllMembersForm.vue",
 	"./Courses/DeleteTeamForm": "./resources/js/Pages/Courses/DeleteTeamForm.vue",
 	"./Courses/DeleteTeamForm.vue": "./resources/js/Pages/Courses/DeleteTeamForm.vue",
 	"./Courses/DetailsCourseFields": "./resources/js/Pages/Courses/DetailsCourseFields.vue",
@@ -108040,6 +108306,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCourseForm_vue_vue_type_template_id_547cb2db___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCourseForm_vue_vue_type_template_id_547cb2db___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Courses/DeleteAllMembersForm.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/Pages/Courses/DeleteAllMembersForm.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteAllMembersForm_vue_vue_type_template_id_20bc5ae7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7& */ "./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7&");
+/* harmony import */ var _DeleteAllMembersForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteAllMembersForm.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteAllMembersForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteAllMembersForm_vue_vue_type_template_id_20bc5ae7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteAllMembersForm_vue_vue_type_template_id_20bc5ae7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Courses/DeleteAllMembersForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteAllMembersForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteAllMembersForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteAllMembersForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteAllMembersForm_vue_vue_type_template_id_20bc5ae7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Courses/DeleteAllMembersForm.vue?vue&type=template&id=20bc5ae7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteAllMembersForm_vue_vue_type_template_id_20bc5ae7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteAllMembersForm_vue_vue_type_template_id_20bc5ae7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

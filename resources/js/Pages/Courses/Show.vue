@@ -21,6 +21,9 @@
                 <template>
                     <jet-section-border />
 
+                    <delete-all-members-form class="mt-10 sm:mt-0" :courseId="course.courseDetails.id" />
+                    <jet-section-border />
+
                     <delete-team-form class="mt-10 sm:mt-0" :courseId="course.courseDetails.id" />
                 </template>
             </div>
@@ -37,6 +40,7 @@
     import PageSeparator from '../../Ui/PageSeparator.vue'
     import TaskIndex from "../Tasks/Index";
     import JetSectionTitle from "../../Jetstream/SectionTitle";
+    import DeleteAllMembersForm from "./DeleteAllMembersForm";
 
     export default {
         props: [
@@ -44,6 +48,7 @@
         ],
 
         components: {
+            DeleteAllMembersForm,
             AppLayout,
             DeleteTeamForm,
             JetSectionBorder,

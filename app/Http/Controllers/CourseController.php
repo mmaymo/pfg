@@ -214,14 +214,14 @@ class CourseController extends Controller
 
     public function deleteAllTasks($courseId){
         $course = Course::find($courseId);
-        $course->deleteAllTasks;
+        $course->deleteAllTasks();
 
         return back(303);
     }
 
     public function deleteAllMembers($courseId){
         $course = Course::find($courseId);
-        $course->deleteAllMembers;
+        $course->deleteAllMembers();
 
         return back(303);
     }
