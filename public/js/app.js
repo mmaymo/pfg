@@ -41539,6 +41539,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -87398,16 +87399,7 @@ var render = function() {
         {
           key: "header",
           fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight"
-                },
-                [_vm._v("\n            Perfil\n        ")]
-              )
-            ]
+            return undefined
           },
           proxy: true
         }
@@ -87420,6 +87412,15 @@ var render = function() {
           "div",
           { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
           [
+            _c(
+              "h2",
+              {
+                staticClass:
+                  "font-sans font-semibold text-xl text-gray-800 leading-tight"
+              },
+              [_vm._v("\n                Perfil\n            ")]
+            ),
+            _vm._v(" "),
             _c("update-profile-information-form", {
               attrs: { name: _vm.$page.user.name, email: _vm.$page.user.email }
             }),
@@ -87896,7 +87897,7 @@ var render = function() {
       {
         key: "title",
         fn: function() {
-          return [_vm._v("\n        Perfil\n    ")]
+          return undefined
         },
         proxy: true
       },
