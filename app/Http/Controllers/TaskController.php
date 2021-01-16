@@ -163,7 +163,7 @@ class TaskController extends Controller
      * @param  int $task
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $task)
+    public function update(Request $request,$courseId, $taskId)
     {
         if (! $request->user()->can('edit courses')) {
             abort(403);
@@ -178,7 +178,7 @@ class TaskController extends Controller
             'properties' => 'required'
 
         ])->validateWithBag('updateTask');
-        $task = Task::find($task);
+        $task = Task::find($taskId);
         $task->update($validated);
 
         return back(303);
