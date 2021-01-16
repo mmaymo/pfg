@@ -17,7 +17,7 @@
             <div class="w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.coursePoints }} puntos</div>
             <div class="w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.courseProgress }}%</div>
             <ul v-for="task in this.itinerary" class="" >
-                <li class="">
+                <li class="group border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent rounded-lg">
                     <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})"
                        class="block px-4 py-2 mt-2 text-sm text-right text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
 
