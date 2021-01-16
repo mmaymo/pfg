@@ -1,11 +1,12 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4">
-                Crear tarea para {{courseName}}
-            </h2>
+
         </template>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <h2 class="font-sans font-semibold text-xl text-gray-800 leading-tight">
+                Crear tarea para {{courseName}}
+            </h2>
             <document-task-form :courseId="courseId" :chapters="chapters" :availableTypes="availableTypes"/>
         </div>
     </app-layout>

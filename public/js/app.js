@@ -42019,6 +42019,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -88143,22 +88144,7 @@ var render = function() {
         {
           key: "header",
           fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-sans font-semibold text-xl text-gray-800 leading-tight px-8 py-4"
-                },
-                [
-                  _vm._v(
-                    "\n            Crear tarea para " +
-                      _vm._s(_vm.courseName) +
-                      "\n        "
-                  )
-                ]
-              )
-            ]
+            return undefined
           },
           proxy: true
         }
@@ -88170,6 +88156,21 @@ var render = function() {
         "div",
         { staticClass: "max-w-7xl mx-auto py-10 sm:px-6 lg:px-8" },
         [
+          _c(
+            "h2",
+            {
+              staticClass:
+                "font-sans font-semibold text-xl text-gray-800 leading-tight"
+            },
+            [
+              _vm._v(
+                "\n            Crear tarea para " +
+                  _vm._s(_vm.courseName) +
+                  "\n        "
+              )
+            ]
+          ),
+          _vm._v(" "),
           _c("document-task-form", {
             attrs: {
               courseId: _vm.courseId,
@@ -88242,7 +88243,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col-span-3 sm:col-span-2" },
+              { staticClass: " sm:col-span-4" },
               [
                 _c("jet-label", {
                   attrs: { for: "availableTypes", value: "Tipo de tarea" }
@@ -88322,10 +88323,10 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.form.type == "quiz"
-              ? _c("div", [
+              ? _c("div", { staticClass: "col-span-3 sm:col-span-4" }, [
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: {
@@ -88356,7 +88357,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: { for: "answer1", value: "Respuesta 1" }
@@ -88388,7 +88389,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: { for: "answer2", value: "Respuesta 2" }
@@ -88420,7 +88421,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: { for: "answer3", value: "Respuesta 3" }
@@ -88452,7 +88453,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: { for: "answer4", value: "Respuesta 4" }
@@ -88484,7 +88485,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: {
@@ -88555,10 +88556,10 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _vm.form.type == "card"
-              ? _c("div", [
+              ? _c("div", { staticClass: "col-span-3 sm:col-span-4" }, [
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "col-span-4 sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: {
@@ -88589,7 +88590,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "col-span-6 sm:col-span-4" },
+                    { staticClass: "col-span-4 sm:col-span-4" },
                     [
                       _c("jet-label", {
                         attrs: { for: "answer", value: "Respuesta" }
