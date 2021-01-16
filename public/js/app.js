@@ -83271,7 +83271,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "inline-flex items-center mx-2 px-4 py-2 bg-green-300 border border-transparent rounded-md font-semibold text-xs text-green-800 hover:text-white uppercase tracking-widest hover:bg-green-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
+        "inline-flex items-center mx-0.5 px-4 py-2 bg-green-300 border border-transparent rounded-md font-semibold text-xs text-green-800 hover:text-white uppercase tracking-widest hover:bg-green-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray transition ease-in-out duration-150",
       attrs: { type: _vm.type }
     },
     [_vm._t("default")],
@@ -83539,7 +83539,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150",
+        "inline-flex items-center justify-center mx-0.5 px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-600 transition ease-in-out duration-150",
       attrs: { type: _vm.type }
     },
     [_vm._t("default")],
