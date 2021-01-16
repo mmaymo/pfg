@@ -9,14 +9,11 @@
                         <h1 class="group flex whitespace-pre-wrap relative capitalize">
                             {{ this.task.name }}</h1>
                     </div>
-                    <quiz-task :quiz="this.task.contents.quiz" :courseId="this.courseId" :taskId="this.task.id"/>
-                    <!--<code-task :textContent="this.task.contents"/>-->
-                    <!--<card-task :textContent="this.task.contents"/>-->
-                   <!--<text-task :textContent="this.task.contents"></text-task>-->
-                    <button v-on:click="addPoints"
-                        class="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded">
-                        Completada
-                    </button>
+                    <quiz-task v-if="this.task.type == 'quiz'" :quiz="this.task.contents.quiz" :courseId="this.courseId" :taskId="this.task.id"/>
+                    <code-task v-if="this.task.type == 'code'" :textContent="this.task.contents"/>
+                    <card-task v-if="this.task.type == 'card'" :textContent="this.task.contents"/>
+                   <text-task v-if="this.task.type == 'document'" :textContent="this.task.contents"></text-task>
+
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">
                         <div class="w-2/4">
