@@ -18,23 +18,29 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
-        $teacher = User::factory()->count(1)->create();
-        $student = User::factory()->count(1)->create();
-        $role = Role::create(['name' => 'profesor']);
-        $permission = Permission::create(['name' => 'edit courses']);
-        $role->syncPermissions($permission);
-        $permission->syncRoles($role);
-        $role = Role::create(['name' => 'alumno']);
-        $permission = Permission::create(['name' => 'view courses']);
-        $role->syncPermissions($permission);
-        $permission->syncRoles($role);
+        $teacher = User::create([
+            'name'=>'Profesor Test',
+            'email'=>'test@test.com',
+            'password'=>bcrypt('admin')
+        ]);
+        $student = User::create([
+            'name'=>'Alumno Test',
+            'email'=>'test1@test.com',
+            'password'=>bcrypt('admin')
+        ]);
+        $teacherRole = Role::create(['name' => 'profesor']);
+        $editPermission = Permission::create(['name' => 'edit courses']);
+        $teacherRole->syncPermissions($editPermission);
+        $editPermission->syncRoles($teacherRole);
+        $studentRole = Role::create(['name' => 'alumno']);
+        $viewPermission = Permission::create(['name' => 'view courses']);
+        $studentRole->syncPermissions($viewPermission);
+        $viewPermission->syncRoles($studentRole);
+        $teacherRole->syncPermissions($viewPermission);
 
         $teacher->assignRole('profesor');
 
 
-        $course = Course::factory()->count(1)->create();
-        //todo tasks from json
-
-
+        Course::factory()->count(1)->create();
     }
 }
