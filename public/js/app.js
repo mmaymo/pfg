@@ -39908,13 +39908,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    switchToTeam: function switchToTeam(team) {
-      this.$inertia.put(route('current-team.update'), {
-        'team_id': team.id
-      }, {
-        preserveState: false
-      });
-    },
     logout: function logout() {
       axios.post(route('logout').url()).then(function (response) {
         window.location = '/';

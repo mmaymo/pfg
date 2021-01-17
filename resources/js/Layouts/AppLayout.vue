@@ -154,13 +154,6 @@ export default {
         },
 
         methods: {
-            switchToTeam(team) {
-                this.$inertia.put(route('current-team.update'), {
-                    'team_id': team.id
-                }, {
-                    preserveState: false
-                })
-            },
 
             logout() {
                 axios.post(route('logout').url()).then(response => {
