@@ -24,14 +24,17 @@ class CourseFactory extends Factory
      */
     public function definition()
     {
-        //todo update positionArray
+        $positionArray = [];
+        for($i = 1; $i<=272; $i++){
+            $positionArray[$i]= [];
+        }
         return [
             'user_id'=>1,
             'name'=>'Diseño y Administración de Sistemas Operativos',
             'degree'=> 'Ingeniería Informática',
             'semester'=>0,
             'pic'=>'/images/unedDefault.jpg',
-            'positionArray'=>[]
+            'positionArray'=>$positionArray
         ];
     }
 }
