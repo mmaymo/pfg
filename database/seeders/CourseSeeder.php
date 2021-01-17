@@ -30,13 +30,13 @@ class CourseSeeder extends Seeder
         ]);
         $teacherRole = Role::create(['name' => 'profesor']);
         $editPermission = Permission::create(['name' => 'edit courses']);
-        $teacherRole->syncPermissions($editPermission);
+
         $editPermission->syncRoles($teacherRole);
         $studentRole = Role::create(['name' => 'alumno']);
         $viewPermission = Permission::create(['name' => 'view courses']);
         $studentRole->syncPermissions($viewPermission);
-        $viewPermission->syncRoles($studentRole);
-        $teacherRole->syncPermissions($viewPermission);
+        $viewPermission->syncRoles([$teacherRole, $studentRole]);
+        $teacherRole->syncPermissions([$editPermission ,$viewPermission]);
 
         $teacher->assignRole('profesor');
 
