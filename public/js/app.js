@@ -38524,7 +38524,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -82591,16 +82590,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
-            },
-            [_vm._v(_vm._s(this.teacher))]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
+                "w-full px-4 text-sm text-right font-semibold tracking-widest text-green-400 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
             },
             [_vm._v(_vm._s(this.coursePoints) + " puntos")]
           ),
@@ -82609,9 +82599,9 @@ var render = function() {
             "div",
             {
               staticClass:
-                "w-full text-sm text-right font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
+                "w-full px-4 text-sm text-right font-semibold tracking-widest text-green-400 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
             },
-            [_vm._v(_vm._s(this.courseProgress) + "%")]
+            [_vm._v(_vm._s(this.courseProgress.toFixed(1)) + "%")]
           ),
           _vm._v(" "),
           _vm._l(this.itinerary, function(task) {
@@ -82783,7 +82773,7 @@ var render = function() {
             "div",
             {},
             [
-              _c("span", [_vm._v(_vm._s(item.name))]),
+              _c("div", { staticClass: "mb-2" }, [_vm._v(_vm._s(item.name))]),
               _vm._v(" "),
               _c("jet-button", [
                 _c(
