@@ -6,10 +6,10 @@
                 <h1 class="capitalize font-bold text-left px-8 py-4">
                     {{ this.task.name }}</h1>
 
-                    <quiz-task v-if="this.task.type == 'quiz'" :quiz="this.task.contents.quiz" :courseId="this.courseId" :taskId="this.task.id"/>
-                    <code-task v-if="this.task.type == 'code'" :textContent="this.task.contents"/>
-                    <card-task v-if="this.task.type == 'card'" :textContent="this.task.contents"/>
-                   <text-task v-if="this.task.type == 'document'" :textContent="this.task.contents"></text-task>
+                    <quiz-task v-if="this.task.type === 'quiz'" :quiz="this.task.contents.quiz" :courseId="this.courseId" :taskId="this.task.id"/>
+                    <code-task v-if="this.task.type === 'code'" :textContent="this.task.contents" :courseId="this.courseId" :taskId="this.task.id"/>
+                    <card-task v-if="this.task.type === 'card'" :textContent="this.task.contents"/>
+                   <text-task v-if="this.task.type === 'document'" :textContent="this.task.contents"></text-task>
 
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">

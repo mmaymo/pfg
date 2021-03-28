@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CodeTestController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\TaskController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +48,4 @@ Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderCo
 Route::delete('courses/{course}/deleteAllTasks', [CourseController::class, 'deleteAllTasks'])->name('deleteAllTasks')->middleware('permission:edit courses');
 Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'deleteAllMembers'])->name('deleteAllMembers')->middleware('permission:edit courses');
 Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask');
+Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class, 'testCodeTask'])->name('testCodeTask');

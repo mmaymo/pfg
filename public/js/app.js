@@ -38450,6 +38450,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 //
 //
 //
@@ -38459,18 +38460,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
-  props: ['textContent'],
+  components: {
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: ['textContent', 'courseId', 'taskId'],
   data: function data() {
     return {};
   },
-  methods: {}
+  methods: {
+    testCode: function testCode() {
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      axios.post(route('testCodeTask', {
+        'course': this.courseId,
+        'task': this.taskId
+      }), {
+        userAnswer: "touch '/var/log/test.log'"
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -38827,6 +38840,16 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         currentObj.correctAnswer = error;
       });
+    },
+    shuffleResponsesArray: function shuffleResponsesArray(responsesArray) {
+      for (var i = responsesArray.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var _ref = [responsesArray[j], responsesArray[i]];
+        responsesArray[i] = _ref[0];
+        responsesArray[j] = _ref[1];
+      }
+
+      return responsesArray;
     }
   }
 });
@@ -82449,28 +82472,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.textContent.content
-      ? _c(
-          "div",
-          { staticClass: "p-4 text-justify" },
-          [_c("VueShowdown", { attrs: { markdown: _vm.textContent.content } })],
-          1
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", {
-      staticClass: "p-4",
-      staticStyle: { height: "600px", "padding-top": "20px" },
-      attrs: {
-        id: "my-element-1",
-        "data-katacoda-env": "ubuntu",
-        "data-katacoda-layout": "editor-terminal",
-        "data-katacoda-port": "3000",
-        "data-katacoda-filename": "code.c"
-      }
-    })
-  ])
+  return _c(
+    "div",
+    [
+      _vm.textContent.content
+        ? _c(
+            "div",
+            { staticClass: "p-4 text-justify" },
+            [
+              _c("VueShowdown", {
+                attrs: { markdown: _vm.textContent.content }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "jet-button",
+        {
+          staticClass: "col-start-2 col-span-2",
+          nativeOn: {
+            click: function($event) {
+              return _vm.testCode($event)
+            }
+          }
+        },
+        [_vm._v("Muestra respuesta")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -82944,7 +82976,10 @@ var render = function() {
       _c(
         "ul",
         { staticClass: "p-4" },
-        _vm._l(_vm.quiz.responses, function(response, answerIndex) {
+        _vm._l(_vm.shuffleResponsesArray(_vm.quiz.responses), function(
+          response,
+          answerIndex
+        ) {
           return _c("li", { staticClass: "mt-2" }, [
             _c("input", {
               directives: [
@@ -83026,7 +83061,7 @@ var render = function() {
               [_vm._v("\n                " + _vm._s(this.task.name))]
             ),
             _vm._v(" "),
-            this.task.type == "quiz"
+            this.task.type === "quiz"
               ? _c("quiz-task", {
                   attrs: {
                     quiz: this.task.contents.quiz,
@@ -83036,15 +83071,21 @@ var render = function() {
                 })
               : _vm._e(),
             _vm._v(" "),
-            this.task.type == "code"
-              ? _c("code-task", { attrs: { textContent: this.task.contents } })
+            this.task.type === "code"
+              ? _c("code-task", {
+                  attrs: {
+                    textContent: this.task.contents,
+                    courseId: this.courseId,
+                    taskId: this.task.id
+                  }
+                })
               : _vm._e(),
             _vm._v(" "),
-            this.task.type == "card"
+            this.task.type === "card"
               ? _c("card-task", { attrs: { textContent: this.task.contents } })
               : _vm._e(),
             _vm._v(" "),
-            this.task.type == "document"
+            this.task.type === "document"
               ? _c("text-task", { attrs: { textContent: this.task.contents } })
               : _vm._e(),
             _vm._v(" "),
@@ -110195,8 +110236,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfgUned/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfgUned/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfg/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/carmenmaymo/Code/pfg/pfg/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
