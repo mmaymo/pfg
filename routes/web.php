@@ -46,3 +46,5 @@ Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderCo
 Route::delete('courses/{course}/deleteAllTasks', [CourseController::class, 'deleteAllTasks'])->name('deleteAllTasks')->middleware('permission:edit courses');
 Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'deleteAllMembers'])->name('deleteAllMembers')->middleware('permission:edit courses');
 Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask');
+Route::post('courses/{course}/tasks/{task}/solveMultiple', [TaskController::class, 'solveTaskMultiple'])->name('solveTaskMultiple');
+
