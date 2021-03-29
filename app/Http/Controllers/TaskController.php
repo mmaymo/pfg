@@ -258,7 +258,6 @@ class TaskController extends Controller
         $task = Task::find($taskId);
         $correctAnswers = $task->properties['quiz']['correctAnswer'];
         if (!$this->isDone($courseId, $taskId)) {
-            //tengo un array de correctas y un array de respuestas
             sort($correctAnswers);
             sort($validated['userAnswer']);
             if ($correctAnswers === $validated['userAnswer']) {
