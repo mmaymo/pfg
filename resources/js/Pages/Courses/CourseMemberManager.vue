@@ -1,6 +1,38 @@
 <template>
     <div>
         <div>
+            <!-- Register Member -->
+            <jet-form-section @submitted="registerMail">
+                <template #title>
+                    Registrar alumno
+                </template>
+
+                <template #description>
+                </template>
+
+                <template #form>
+                    <div class="col-span-6">
+                        <div class="max-w-xl text-sm text-gray-600">
+                            Introduzca el email de la persona que desee añadir.
+                        </div>
+                    </div>
+                    <div class="col-span-6 sm:col-span-4">
+                        <jet-label for="register" value="Registrar email" />
+                        <jet-input id="register" type="text" class="mt-1 block w-full" v-model="registerMailForm.email" autofocus/>
+                        <jet-input-error :message="registerMailForm.error('email')" class="mt-2"/>
+                    </div>
+                </template>
+
+                <template #actions>
+                    <jet-action-message :on="registerMailForm.recentlySuccessful" class="mr-3">
+                        Añadido.
+                    </jet-action-message>
+
+                    <jet-button :class="{ 'opacity-25': registerMailForm.processing }" :disabled="registerMailForm.processing">
+                        Añadir
+                    </jet-button>
+                </template>
+            </jet-form-section>
             <!-- Add Team Member -->
             <jet-form-section @submitted="addTeamMember">
                 <template #title>
@@ -13,15 +45,14 @@
                 <template #form>
                     <div class="col-span-6">
                         <div class="max-w-xl text-sm text-gray-600">
-                            Introduzca el email de la persona que desee añadir. El email debe estar ya asociado a una cuenta.
+                            Seleccione entre los usuarios dados de alta.
                         </div>
                     </div>
-
                     <!-- Member Email -->
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="email" value="Email" />
                         <select class="mt-1 block w-full" v-if="userList.length > 0" id="email" v-model="addTeamMemberForm.email">
-                            <option v-for="user in userList" :value="user.email">{{user.name}}</option>
+                            <option v-for="user in userList" :value="user.email">{{user.email}} - - {{user.name}}</option>
                         </select>
                         <jet-input-error :message="addTeamMemberForm.error('email')" class="mt-2" />
                     </div>
@@ -190,6 +221,12 @@
 
         data() {
             return {
+                registerMailForm: this.$inertia.form({
+                    email: ''
+                }, {
+                    bag: 'addCourseMember',
+                    resetOnSuccess: true,
+                }),
                 addTeamMemberForm: this.$inertia.form({
                     email: '',
                     role: null,
@@ -231,6 +268,11 @@
         },
 
         methods: {
+            registerMail() {
+                this.registerMailForm.post(route('courses.users.store', this.courseId), {
+                    preserveScroll: true
+                });
+            },
             addTeamMember() {
                 this.addTeamMemberForm.post(route('courses.users.store', this.courseId), {
                     preserveScroll: true

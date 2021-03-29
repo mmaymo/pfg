@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Inertia\Inertia;
-use Laravel\Jetstream\Actions\ValidateTeamDeletion;
-use Laravel\Jetstream\Contracts\CreatesTeams;
-use Laravel\Jetstream\Contracts\DeletesTeams;
 use Laravel\Jetstream\Jetstream;
 
 class MembersController extends Controller
@@ -32,7 +27,24 @@ class MembersController extends Controller
             'email' => ['string', 'max:255']
         ])->validateWithBag('addCourseMember');
 
-        $newCourseMember = Jetstream::findUserByEmailOrFail($validated['email']);
+        if($course->users()->where('email', $validated['email'])->exists()){
+            return back(303);
+        }
+        if(User::where('email',$validated['email'])->exists()){
+            $newCourseMember = User::where('email',$validated['email'])->get();
+        }else{
+            $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
+            $password = substr($random, 0, 10);
+
+            $hashed_random_password = Hash::make($password);
+            $newCourseMember = User::Create(
+                [
+                    "name" => "edita nombre",
+                    "email" => $validated['email'],
+                    "password" => $hashed_random_password
+                ]
+            );
+        }
 
         $course->users()->attach($newCourseMember,['points'=>0]);
         $newCourseMember->assignRole(self::ALUMNO);
