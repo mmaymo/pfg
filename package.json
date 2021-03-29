@@ -28,6 +28,7 @@
     "dependencies": {
         "@toast-ui/vue-editor": "^2.5.1",
         "vue-showdown": "^2.4.1",
-        "vuedraggable": "^2.24.3"
+        "vuedraggable": "^2.24.3",
+        "xterm": "^4.10.0"
     }
 }
