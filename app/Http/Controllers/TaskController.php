@@ -239,6 +239,39 @@ class TaskController extends Controller
 
         return response()->json(["index"=>$correctAnswer, "message"=>$message]);
     }
+    /**
+     * Solve the given task.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     * @param                          $taskId
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function solveTaskMultiple(Request $request, $courseId, $taskId)
+    {
+        $validated = $request->validate([
+                                            'userAnswer' => ['required'],
+                                        ]);
+
+        $message = "La tarea ya estaba completada";
+        $task = Task::find($taskId);
+        $correctAnswers = $task->properties['quiz']['correctAnswer'];
+        if (!$this->isDone($courseId, $taskId)) {
+            sort($correctAnswers);
+            sort($validated['userAnswer']);
+            if ($correctAnswers === $validated['userAnswer']) {
+                $previousPoints = Auth::user()->coursePoints($courseId);
+                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
+            }
+
+            $this->markTaskAsDone($courseId, $taskId);
+            //catch error saving in db
+            $message = "Tarea completada";
+        }
+
+        return response()->json(["index"=>$correctAnswers, "message"=>$message]);
+    }
 
     private function markTaskAsDone(int $courseId, $taskId)
     {
