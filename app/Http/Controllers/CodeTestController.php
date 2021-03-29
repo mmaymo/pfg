@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,17 +21,16 @@ class CodeTestController extends Controller
      */
     public function testCodeTask(Request $request, $courseId, $taskId)
     {
+        $userId = Auth::user()->id;
         $validated = $request->validate([
                                             'userAnswer' => ['required'],
                                         ]);
 
-
-        //ahora busco el test asociado a esta tarea que esta en una carpeta que tengo que montar como volumen
-
         $studentCommands = $validated['userAnswer'];
-        $testAssert = "assert [ -e '/var/log/test.log'";
-        $testContent = "@test 'I can use an assert() from helper bats-assert' {{$studentCommands} {$testAssert} ]}";
-        //Storage::disk('local')->put("codetest/{$courseId}/{$taskId}/testcode.bats", $testContent);
+        $testContent=Storage::get("codetest/{$courseId}/{$taskId}/testcode.bats");
+        $testContent=str_replace('studentCommand', $studentCommands,$testContent);
+
+        Storage::disk('local')->put("codetest/{$courseId}/{$taskId}/{$userId}/testcode.bats", $testContent);
         $createContainer = $this->dockerApiCall(
             'post',
             'http://dummy/containers/create',
@@ -39,9 +39,10 @@ class CodeTestController extends Controller
                 "Cmd" => [
                     "/my-test"
                 ],
+                "Tty"=>true,
                 "Volume"=>["my-test"],
                 "HostConfig" => [
-                    "Binds"=>["/Users/carmenmaymo/Code/pfg/pfg/storage/app/codetest/{$courseId}/{$taskId}:/my-test"],
+                    "Binds"=>["/Users/carmenmaymo/Code/pfg/pfg/storage/app/codetest/{$courseId}/{$taskId}/{$userId}:/my-test"],
                 ]
             ]
         );
@@ -55,18 +56,14 @@ class CodeTestController extends Controller
             'post',
             "http://dummy/containers/{$containerId}/attach?stream=1&stdout=1"
         );
-         $stopContainer = $this->dockerApiCall(
-             'post',
-             "http://dummy/containers/{$containerId}/stop"
-         );
 
          $removeContainer = $this->dockerApiCall(
              'delete',
              "http://dummy/containers/{$containerId}"
          );
+
          $pipelineSuccess = $createContainer->successful() &&
              $startContainer->successful()
-             && $stopContainer->successful()
              && $removeContainer->successful();
          if($pipelineSuccess){
              return $logResult->body();

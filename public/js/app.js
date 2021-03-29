@@ -38460,6 +38460,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -38467,10 +38468,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['textContent', 'courseId', 'taskId'],
   data: function data() {
-    return {};
+    return {
+      testResult: ""
+    };
   },
   methods: {
     testCode: function testCode() {
+      var currentObj = this;
       axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
       axios.post(route('testCodeTask', {
         'course': this.courseId,
@@ -38479,6 +38483,7 @@ __webpack_require__.r(__webpack_exports__);
         userAnswer: "touch '/var/log/test.log'"
       }).then(function (response) {
         console.log(response);
+        currentObj.testResult = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -82499,7 +82504,9 @@ var render = function() {
           }
         },
         [_vm._v("Muestra respuesta")]
-      )
+      ),
+      _vm._v(" "),
+      _c("div", [_vm._v(_vm._s(_vm.testResult))])
     ],
     1
   )
