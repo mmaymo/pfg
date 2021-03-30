@@ -32,23 +32,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard',['isTeacher'=>$isTeacher, 'isEnrolled'=>$isEnrolled, 'ownedCourses'=>$ownedCourses, 'enrolledCourses'=>$enrolledCourses]);
 })->name('dashboard');
 
-Route::resource('courses', CourseController::class)->middleware('permission:edit courses');
+Route::resource('courses', CourseController::class)->middleware(['auth','permission:edit courses']);
 Route::resource('courses.tasks', TaskController::class)->scoped(
     [
         'task' => 'name',
     ]
-);
+)->middleware(['auth','permission:view courses', 'permission:edit courses']);
 Route::resource('courses.users', MembersController::class)->scoped(
     [
         'user' => 'id',
     ]
-)->middleware('permission:edit courses');
+)->middleware(['auth','permission:edit courses']);
 
-Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent')->middleware('permission:edit courses');
-Route::delete('courses/{course}/deleteAllTasks', [CourseController::class, 'deleteAllTasks'])->name('deleteAllTasks')->middleware('permission:edit courses');
-Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'deleteAllMembers'])->name('deleteAllMembers')->middleware('permission:edit courses');
-Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask');
-Route::post('courses/{course}/tasks/{task}/solveMultiple', [TaskController::class, 'solveTaskMultiple'])->name('solveTaskMultiple');
-
-Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class, 'testCodeTask'])->name('testCodeTask');
-Route::get('courses/{course}/flash', [TaskController::class, 'flashCardsShuffle'])->name('flashCardsShuffle');
+Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent')->middleware(['auth','permission:edit courses']);
+Route::delete('courses/{course}/deleteAllTasks', [CourseController::class, 'deleteAllTasks'])->name('deleteAllTasks')->middleware(['auth','permission:edit courses']);
+Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'deleteAllMembers'])->name('deleteAllMembers')->middleware(['auth','permission:edit courses']);
+Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+Route::post('courses/{course}/tasks/{task}/solveMultiple', [TaskController::class, 'solveTaskMultiple'])->name('solveTaskMultiple')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class, 'testCodeTask'])->name('testCodeTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+Route::get('courses/{course}/flash', [TaskController::class, 'flashCardsShuffle'])->name('flashCardsShuffle')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
