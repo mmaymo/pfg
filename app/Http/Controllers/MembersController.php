@@ -31,7 +31,7 @@ class MembersController extends Controller
             return back(303);
         }
         if(User::where('email',$validated['email'])->exists()){
-            $newCourseMember = User::where('email',$validated['email'])->get();
+            $newCourseMember = User::where('email',$validated['email'])->first();
         }else{
             $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
             $password = substr($random, 0, 10);
