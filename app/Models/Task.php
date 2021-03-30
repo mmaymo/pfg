@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Task extends Model
 {
@@ -58,4 +59,32 @@ class Task extends Model
         return $cleanTask;
 
      }
+    public function completedTasks($userId, $courseId){
+        return DB::table('task_user')->where(
+            [['task_id', '=', $this->id], ['user_id', '=', $userId], ['course_id', '=', $courseId]]
+        )->exists();
+    }
+
+     public function isAllowed($userId, $courseId){
+        return $this->emptyParent() || $this->isCompleted($userId, $courseId) || $this->parentIsCompleted($userId, $courseId);
+     }
+
+     public function emptyParent(){
+        return $this->parent_id == null;
+     }
+
+    public function isCompleted($userId, $courseId)
+    {
+        return $this->completedTasks($userId, $courseId);
+    }
+
+    public function parentIsCompleted($userId, $courseId)
+    {
+        if($this->parent_id == null){
+            return true;
+        }
+        $parent = Task::find($this->parent_id);
+
+        return $parent->isCompleted($userId, $courseId);
+    }
 }

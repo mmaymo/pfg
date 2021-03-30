@@ -4,6 +4,7 @@
 namespace App\Traits;
 
 use App\Models\Course;
+use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 
 trait HasCourseDetails
@@ -58,18 +59,19 @@ trait HasCourseDetails
 
     public function canSeeTask($courseId, $taskId)
     {
-        //todo probably move to task somewhere
-        $course = Course::find($courseId);//2
-        $courseProgress = $this->courseProgress($courseId);//16
+        $completedTasks = $this->completedTasks($courseId);
+        $isDone = $completedTasks->contains('task_id', $taskId);
+        if($isDone){
+            return true;
+        }
 
-        $tasks = $course->tasks;
-        $ids = $tasks->pluck('id');//12,8,13,11
-        $positions = $tasks->pluck('position');//8, 16, 34, 71
+        $task = Task::find($taskId);
+        if($task->emptyParent()){
+            return true;
+        }
 
-        $keyToCheck = $ids->search($taskId);//1
-        $lastKeyAllowed = $positions->search($courseProgress);//1
-
-        if ($keyToCheck <= $lastKeyAllowed) {
+        $parentIsDone = $completedTasks->contains('task_id', $task->parent_id);
+        if($parentIsDone){
             return true;
         }
         return false;

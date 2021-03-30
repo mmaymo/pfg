@@ -38,9 +38,10 @@ class TaskController extends Controller
         if (! $request->user()->can('view courses')) {
             abort(403);
         }
-        /*if (! $request->user()->canSeeTask($courseId, $taskId)) {
+
+        if (! $request->user()->canSeeTask($courseId, $taskId)) {
             return back();
-        }*/
+        }
 
         $teacher = User::find($course->user_id)->name;
         $itinerary = $course->getOrderedChaptersWithTasks();
@@ -49,7 +50,10 @@ class TaskController extends Controller
 
         $coursePoints = Auth::user()->coursePoints($courseId);
         $courseProgress = Auth::user()->courseProgress($courseId);
-        $allowedIds = Auth::user()->completedTasks($courseId)->pluck('task_id');
+        $allowedIds = Task::all()->filter(function ($task) use($courseId){
+            return $task->isAllowed(Auth::user()->id, $courseId);
+        })->pluck('id');
+
         $flatItineray = $course->orderedTaskIdsFlat();
         $tasksLenght = $course->taskCount();
         $currentTaskPositionIndex = array_search($taskId, $flatItineray);

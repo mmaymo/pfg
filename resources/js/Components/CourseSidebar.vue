@@ -24,12 +24,19 @@
                                                                                        :d=iconType(task.type)></base-svg></a>
                     <ul>
                         <li  v-for="subtask in task.tasks" class="text-right" >
-                            <a :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})"   class="items-center block px-4 py-2 mt-2 text-sm text-right text-green-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-green-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-green-300 focus:bg-green-300 focus:outline-none focus:shadow-outline">
-                               <span class="inline">{{ subtask.name }}</span>
+
+                            <a v-if="disableLink(subtask.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})" class="items-center block px-4 py-2 mt-2 text-sm text-right text-green-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-green-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-green-300 focus:bg-green-300 focus:outline-none focus:shadow-outline">
+                                <span class="inline">{{ subtask.name }}</span>
+                                <base-svg class="inline" :icon-name=subtask.type :width=20 :height=20
+                                          :d=iconType(subtask.type)></base-svg>
+                            </a>
+                            <a v-else href="javascript:" class="items-center block px-4 py-2 mt-2 text-sm text-right text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-300 focus:outline-none focus:shadow-outline">
+                                <span class="inline">{{ subtask.name }}</span>
                                 <base-svg class="inline" :icon-name=subtask.type :width=20 :height=20
                                           :d=iconType(subtask.type)></base-svg>
                             </a>
                         </li>
+
                     </ul>
                 </li>
             </ul>
@@ -77,8 +84,7 @@
         },
         methods: {
             disableLink(taskId){
-                return true;
-                //return this.allowedIds.includes(taskId);
+                return this.allowedIds.includes(taskId);
             },
 
             iconType(type) {
