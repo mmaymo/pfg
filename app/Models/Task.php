@@ -18,6 +18,7 @@ class Task extends Model
         'name',
         'course_id',
         'chapter_id',
+        'parent_id',
         'type',
         'points',
         'properties'
