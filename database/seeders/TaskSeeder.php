@@ -24,6 +24,7 @@ class TaskSeeder extends Seeder
                 'name' => $task->name,
                 'type' => $task->type,
                 'chapter_id'=>$task->chapter_id,
+                'parent_id'=>null,
                 'course_id'=>$task->course_id,
                 'points' => $task->points,
                 'properties' => $task->properties
