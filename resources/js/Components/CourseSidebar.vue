@@ -15,6 +15,8 @@
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
             <div class="w-full px-4 text-sm text-right font-semibold tracking-widest text-green-400 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.coursePoints }} puntos</div>
             <div class="w-full px-4 text-sm text-right font-semibold tracking-widest text-green-400 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">{{ this.courseProgress.toFixed(1) }}%</div>
+            <div class="w-full px-4 text-sm text-right font-semibold tracking-widest text-green-400 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"><a :href="route('flashCardsShuffle', {'course':courseId})">Tarjetas de estudio</a></div>
+
             <ul v-for="task in this.itinerary" class="" >
                 <li class="group border-indigo-500 hover:bg-white hover:shadow-lg hover:border-transparent rounded-lg">
                     <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.id})"
@@ -110,8 +112,8 @@
         },
         data() {
             return {
-                menuOpen: false,
-                open: false
+                menuOpen: true,
+                open: true
 
             }
         },

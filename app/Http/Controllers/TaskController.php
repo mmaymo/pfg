@@ -86,6 +86,51 @@ class TaskController extends Controller
     }
 
     /**
+     * Show the task contents.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     *
+     * @return \Inertia\Response |\Illuminate\Http\RedirectResponse
+     */
+    public function flashCardsShuffle(Request $request, $courseId)
+    {
+        $course = Course::find($courseId);
+
+        if (! $request->user()->can('view courses')) {
+            abort(403);
+        }
+
+        $teacher = User::find($course->user_id)->name;
+        $itinerary = $course->getOrderedChaptersWithTasks();
+
+        $flashTasks = Task::where('type', 'card')->get();
+
+        $coursePoints = Auth::user()->coursePoints($courseId);
+        $courseProgress = Auth::user()->courseProgress($courseId);
+        $allowedIds = Task::all()->filter(function ($task) use($courseId){
+            return $task->isAllowed(Auth::user()->id, $courseId);
+        })->pluck('id');
+
+
+
+        return Jetstream::inertia()->render($request, 'Tasks/Flashcard', [
+            'courseDetails' => [
+                'id'=>$course->id,
+                'name'=>$course->name,
+                'degree'=>$course->degree,
+                'semester'=>$course->semester,
+                'pic'=>$course->pic,
+                'teacher'=>$teacher],
+            'tasks'=>$itinerary,
+            'allowedIds'=>$allowedIds,
+            'cards'=>$flashTasks,
+            'coursePoints'=>$coursePoints,
+            'courseProgress'=>$courseProgress,
+        ]);
+    }
+
+    /**
      * Show the task creation screen.
      *
      * @param \Illuminate\Http\Request $request
