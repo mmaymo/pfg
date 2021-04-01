@@ -111,6 +111,7 @@
                     name:this.task.name,
                     type:this.task.type,
                     chapter_id:this.task.chapter_id,
+                    parent_id:this.task.parent_id,
                     points:this.task.points,
                     properties:
                         this.getProperties()

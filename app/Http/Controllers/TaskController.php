@@ -217,15 +217,14 @@ class TaskController extends Controller
         if (! $request->user()->can('edit courses')) {
             abort(403);
         }
-        //Gate::forUser($request->user())->authorize('update', $teamAuth);
 
         $validated = Validator::make($request->all(), [
             'name' => 'required',
             'type' => 'required',
-            'chapter_id' => 'required',
+            'chapter_id' => 'nullable',
             'points' => 'required',
-            'properties' => 'required'
-
+            'properties' => 'required',
+            'parent_id'=>'nullable'
         ])->validateWithBag('updateTask');
         $task = Task::find($taskId);
         $task->update($validated);

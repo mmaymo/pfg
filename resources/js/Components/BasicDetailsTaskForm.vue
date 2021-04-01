@@ -48,7 +48,13 @@
             <jet-input id="points" type="number" class="mt-1 block w-full" v-model="form.points"/>
             <jet-input-error :message="form.error('points')" class="mt-2"/>
         </div>
-
+        <div >
+            <h2>Esta tarea depende de otra</h2>
+            <select v-if="chapters.length > 0" id="parent" v-model="form.parent_id">
+                <option  :value="null">No Asociar con ninguna tarea</option>
+                <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
+            </select>
+        </div>
     </div>
 </template>
 
