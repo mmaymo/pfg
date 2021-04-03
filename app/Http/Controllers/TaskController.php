@@ -5,18 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\Task;
-use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
-use Laravel\Jetstream\Actions\ValidateTeamDeletion;
-use Laravel\Jetstream\Contracts\CreatesTeams;
-use Laravel\Jetstream\Contracts\DeletesTeams;
 use Laravel\Jetstream\Jetstream;
-use function PHPUnit\Framework\isEmpty;
 
 class TaskController extends Controller
 {
@@ -53,6 +47,7 @@ class TaskController extends Controller
         $allowedIds = Task::all()->filter(function ($task) use($courseId){
             return $task->isAllowed(Auth::user()->id, $courseId);
         })->pluck('id');
+        $taskDone = $this->isDone($courseId, $taskId);
 
         $flatItineray = $course->orderedTaskIdsFlat();
         $tasksLenght = $course->taskCount();
@@ -77,6 +72,7 @@ class TaskController extends Controller
                 'name'=>$task->name,
                 'type'=>$task->type,
                 'contents'=>$task->properties,
+                'isDone'=>$taskDone,
                 'previousId'=>$previous,
                 'nextId'=>$next
             ],
@@ -255,6 +251,36 @@ class TaskController extends Controller
         $task->delete();
 
         return back();
+    }
+    /**
+     * Solve the given task.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     * @param                          $taskId
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addDone(Request $request, $courseId, $taskId)
+    {
+
+        $validated = $request->validate(
+            [
+                'nextId' => ['required'],
+                'taskId' => ['required']
+            ]
+        );
+        $taskId = $validated['taskId'];
+        $task = Task::find($taskId);
+
+        if (!$this->isDone($courseId, $taskId)) {
+            $previousPoints = Auth::user()->coursePoints($courseId);
+            Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
+            $this->markTaskAsDone($courseId, $taskId);
+
+        }
+
+        return redirect()->route('courses.tasks.show', ['course'=>$courseId, 'task'=>$validated['nextId']]);
     }
 
     /**

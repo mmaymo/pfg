@@ -47,9 +47,12 @@ Route::resource('courses.users', MembersController::class)->scoped(
 Route::post('course/{course}/addOrder', [CourseController::class, 'updateOrderContent'])->name('updateOrderContent')->middleware(['auth','permission:edit courses']);
 Route::delete('courses/{course}/deleteAllTasks', [CourseController::class, 'deleteAllTasks'])->name('deleteAllTasks')->middleware(['auth','permission:edit courses']);
 Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'deleteAllMembers'])->name('deleteAllMembers')->middleware(['auth','permission:edit courses']);
-Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
-Route::post('courses/{course}/tasks/{task}/solveMultiple', [TaskController::class, 'solveTaskMultiple'])->name('solveTaskMultiple')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
-Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class, 'testCodeTask'])->name('testCodeTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
-Route::post('courses/{course}/tasks/{task}/upload', [CodeTestController::class, 'upload'])->name('uploadTest')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);
 
-Route::get('courses/{course}/flash', [TaskController::class, 'flashCardsShuffle'])->name('flashCardsShuffle')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+Route::post('courses/{course}/{task}/addDone', [TaskController::class, 'addDone'])->name('addDone')->middleware(['auth','permission:view courses', 'permission:edit courses']);
+
+Route::post('courses/{course}/tasks/{task}/solveMultiple', [TaskController::class, 'solveTaskMultiple'])->name('solveTaskMultiple')->middleware(['auth','permission:view courses', 'permission:edit courses']);
+Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class, 'testCodeTask'])->name('testCodeTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);
+Route::post('courses/{course}/tasks/{task}/upload', [CodeTestController::class, 'upload'])->name('uploadTest')->middleware(['auth','permission:view courses', 'permission:edit courses']);
+
+Route::get('courses/{course}/flash', [TaskController::class, 'flashCardsShuffle'])->name('flashCardsShuffle')->middleware(['auth','permission:view courses', 'permission:edit courses']);

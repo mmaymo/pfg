@@ -69,6 +69,8 @@ export default {
                     currentObj.message = response.data.message;
                     currentObj.isSubmitted = true;
                     currentObj.computeAnswer();
+                    //añadir task.isDone true
+                    currentObj.taskCompleted.isDone = true
                 }).catch(function (error) {
                     currentObj.correctAnswer = error;
                 });

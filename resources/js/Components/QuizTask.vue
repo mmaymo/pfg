@@ -11,7 +11,7 @@
             <h2 class="uppercase my-2 p-4">Tu Respuesta</h2>
             <hr>
             <ul class="p-4">
-                <li class="mt-2" v-for="(response, answerIndex) in shuffleResponsesArray(quiz.responses)">
+                <li class="mt-2" v-for="(response, answerIndex) in quiz.responses">
                     <input type="radio" :id="answerIndex" :value="answerIndex" v-model="picked" ref="answer">
                     <label :for="answerIndex">{{response}}</label>
                 </li>

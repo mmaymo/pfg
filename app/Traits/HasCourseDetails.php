@@ -34,7 +34,7 @@ trait HasCourseDetails
     public function isTaskCompleted($courseId, $taskId){
         return DB::table('task_user')->where(
             [['user_id', '=', $this->id], ['course_id', '=', $courseId], ['task_id', '=', $taskId]]
-        )->first();
+        )->exists();
     }
 
     public function completedTasksCount($courseId){

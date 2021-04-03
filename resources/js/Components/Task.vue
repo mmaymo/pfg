@@ -18,18 +18,23 @@
 
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">
+
                         <div class="w-2/4">
                             <jet-button>
                                 <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.previousId})">Anterior</a>
                             </jet-button>
                         </div>
+                        <div v-if="message">{{message}}</div>
                         <div class="w-2/4 text-right">
-                            <div v-if="this.taskCompleted">
-                                <jet-button>
-                                    <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
-                                </jet-button>
-                            </div>
 
+                            <jet-button v-if="!taskCompleted" @click.native="addPoints">
+
+                                Suma y Sigue
+
+                            </jet-button>
+                            <jet-button v-if="taskCompleted">
+                                <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
+                            </jet-button>
                         </div>
 
                     </div>
@@ -77,17 +82,24 @@ export default {
     },
     methods: {
         addPoints(){
-//boton que envia a post puntos y recibe un ok
-        this.taskCompleted = true;
-
+            this.message = 'Para poder avanzar debes completar antes la tarea'
+            if (this.task.type === 'document' || this.task.type === 'card' || this.task.type === 'chapter') {
+                this.form.post('addDone', this.courseId);
+                this.message = '';
+            }
         },
 
     },
     data() {
         return {
-//esto tiene que venir de arriba, si ya esta en allowed entonces esto está a true
-            taskCompleted: true,
-            mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat("tareaID")
+            form: this.$inertia.form({
+                nextId: this.task.nextId, taskId: this.task.id
+            }, {
+                bag: 'default',
+            }),
+            message: '',
+            taskCompleted: this.task.isDone,
+            mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat(this.task.id)
 
         }
     },
