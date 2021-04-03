@@ -97,5 +97,12 @@ class CodeTestController extends Controller
             );
     }
 
+    public function upload(Request $request,$courseId, $taskId){
+        $request->testCode->store("codetest/{$courseId}/{$taskId}");
+
+        return back();
+    }
+
+
 
 }

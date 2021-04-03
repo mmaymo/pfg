@@ -49,7 +49,7 @@
             <jet-input-error :message="form.error('points')" class="mt-2"/>
         </div>
         <div >
-            <h2>Esta tarea depende de otra</h2>
+            <jet-label for="parent" value="Esta tarea depende de otra"/>
             <select v-if="chapters.length > 0" id="parent" v-model="form.parent_id">
                 <option  :value="null">No Asociar con ninguna tarea</option>
                 <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>

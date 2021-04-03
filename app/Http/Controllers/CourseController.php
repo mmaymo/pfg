@@ -89,8 +89,6 @@ class CourseController extends Controller
 
         $course->save();
 
-        //Course::create($validated);
-
         return redirect()->route('courses.show',[$course]);
     }
 

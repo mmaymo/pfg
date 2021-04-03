@@ -50,4 +50,6 @@ Route::delete('courses/{course}/deleteAllMembers', [CourseController::class, 'de
 Route::post('courses/{course}/tasks/{task}/solve', [TaskController::class, 'solveTask'])->name('solveTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
 Route::post('courses/{course}/tasks/{task}/solveMultiple', [TaskController::class, 'solveTaskMultiple'])->name('solveTaskMultiple')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
 Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class, 'testCodeTask'])->name('testCodeTask')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+Route::post('courses/{course}/tasks/{task}/upload', [CodeTestController::class, 'upload'])->name('uploadTest')->middleware(['auth','permission:view courses', 'permission:edit courses']);;
+
 Route::get('courses/{course}/flash', [TaskController::class, 'flashCardsShuffle'])->name('flashCardsShuffle')->middleware(['auth','permission:view courses', 'permission:edit courses']);;

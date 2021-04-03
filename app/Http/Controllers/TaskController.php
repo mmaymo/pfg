@@ -227,6 +227,7 @@ class TaskController extends Controller
             'parent_id'=>'nullable'
         ])->validateWithBag('updateTask');
         $task = Task::find($taskId);
+
         $task->update($validated);
 
         return back(303);
