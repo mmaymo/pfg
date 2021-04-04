@@ -12,7 +12,7 @@
                                     :quiz="this.task.contents.quiz" :courseId="this.courseId"
                                     :taskId="this.task.id"/>
 
-                <code-task v-if="this.task.type === 'code'" :textContent="this.task.contents" :courseId="this.courseId" :taskId="this.task.id"/>
+                <code-task v-if="this.task.type === 'code'" :textContent="this.task.contents" :courseId="this.courseId" :task="this.task"/>
                 <card-task v-if="this.task.type === 'card'" :textContent="this.task.contents"/>
                 <text-task v-if="this.task.type === 'document'" :textContent="this.task.contents"></text-task>
 
@@ -27,12 +27,12 @@
                         <div v-if="message">{{message}}</div>
                         <div class="w-2/4 text-right">
 
-                            <jet-button v-if="!taskCompleted" @click.native="addPoints">
+                            <jet-button v-if="!this.task.isDone" @click.native="addPoints">
 
                                 Suma y Sigue
 
                             </jet-button>
-                            <jet-button v-if="taskCompleted">
+                            <jet-button v-if="this.task.isDone">
                                 <a :href="route('courses.tasks.show', {'course':courseId, 'task':task.nextId})">Siguiente</a>
                             </jet-button>
                         </div>
@@ -98,7 +98,6 @@ export default {
                 bag: 'default',
             }),
             message: '',
-            taskCompleted: this.task.isDone,
             mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat(this.task.id)
 
         }

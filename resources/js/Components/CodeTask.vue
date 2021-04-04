@@ -11,7 +11,7 @@
             <jet-button class="mb-8" @click.native="testCode">Muestra respuesta</jet-button>
 
         </div>
-        <div class="flex justify-center">{{ testResult }}</div>
+        <div v-if="testResult" class="flex justify-center"><pre> {{testResult}}</pre></div>
 
     </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     components: {
         JetButton,
     },
-    props: ['textContent', 'courseId', 'taskId', 'buffer', 'title', 'textContent'],
+    props: ['textContent', 'courseId', 'task', 'buffer', 'title', 'textContent'],
     data() {
         return {
             testResult: "",
@@ -75,10 +75,11 @@ export default {
         testCode() {
             let currentObj = this;
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            axios.post(route('testCodeTask', {'course': this.courseId, 'task': this.taskId}), {
+            axios.post(route('testCodeTask', {'course': this.courseId, 'task': this.task.id}), {
                 userAnswer: currentObj.studentCommand
             }).then(response => {
                 currentObj.testResult = response.data
+                currentObj.task.isDone = true
             }).catch(function (error) {
                 console.log(error)
             });

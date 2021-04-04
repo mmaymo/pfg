@@ -261,7 +261,7 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addDone(Request $request, $courseId, $taskId)
+    public function addDone(Request $request, $courseId)
     {
 
         $validated = $request->validate(
@@ -276,8 +276,7 @@ class TaskController extends Controller
         if (!$this->isDone($courseId, $taskId)) {
             $previousPoints = Auth::user()->coursePoints($courseId);
             Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
-            $this->markTaskAsDone($courseId, $taskId);
-
+            $this->markTaskAsDone($courseId, $task);
         }
 
         return redirect()->route('courses.tasks.show', ['course'=>$courseId, 'task'=>$validated['nextId']]);
@@ -307,7 +306,7 @@ class TaskController extends Controller
                 Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
             }
 
-            $this->markTaskAsDone($courseId, $taskId);
+            $this->markTaskAsDone($courseId, $task);
             //catch error saving in db
             $message = "Tarea completada";
         }
@@ -340,7 +339,7 @@ class TaskController extends Controller
                 Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
             }
 
-            $this->markTaskAsDone($courseId, $taskId);
+            $this->markTaskAsDone($courseId, $task);
             //catch error saving in db
             $message = "Tarea completada";
         }
@@ -348,9 +347,8 @@ class TaskController extends Controller
         return response()->json(["index"=>$correctAnswers, "message"=>$message]);
     }
 
-    private function markTaskAsDone(int $courseId, $taskId)
+    private function markTaskAsDone(int $courseId, $task)
     {
-        $task =Task::find($taskId);
         $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId]);
 
         return true;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -66,7 +67,10 @@ class CodeTestController extends Controller
              $startContainer->successful()
              && $removeContainer->successful();
          if($pipelineSuccess){
-             return $logResult->body();
+             $isCorrect = $this->isCorrect($logResult->body());
+             $parsedResult = $this->parseResult($logResult->body());
+             $this->addPoints($isCorrect,$courseId, $taskId);
+             return  $parsedResult;
          }
         return 'error que no he podido hacer la operación';
     }
@@ -103,6 +107,29 @@ class CodeTestController extends Controller
         return back();
     }
 
+    protected function addPoints($isCorrect,$courseId, $taskId)
+    {
+        $task =Task::find($taskId);
+        $isDone = Auth::user()->isTaskCompleted($courseId, $taskId);
+        if(!$isDone){
+            if($isCorrect){
+                $previousPoints = Auth::user()->coursePoints($courseId);
+                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
+            }
+            $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId]);
+        }
+    }
 
+    private function isCorrect($body)
+    {
+        $isFailed = str_contains($body, 'failed');
 
+        return !$isFailed;
+    }
+    private function parseResult($body)
+    {
+        $body = str_replace("#", "\n", $body);
+        return str_replace("\n\n", "\n", $body);
+
+    }
 }
