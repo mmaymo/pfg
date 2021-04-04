@@ -31,7 +31,7 @@ export default {
         components: {
             JetButton,
         },
-        props: ['quiz', 'courseId', 'taskId'],
+        props: ['quiz', 'courseId', 'task'],
         data() {
             return {
                 picked:[],
@@ -61,16 +61,15 @@ export default {
                 e.preventDefault();
                 let currentObj = this;
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                axios.post(route('solveTaskMultiple', {'course':this.courseId, 'task':this.taskId}), {
+                axios.post(route('solveTaskMultiple', {'course':this.courseId, 'task':this.task.id}), {
                     userAnswer:this.picked
                 }).then(response => {
                     console.log(response.data)
                     currentObj.correctAnswer = response.data.index
                     currentObj.message = response.data.message;
                     currentObj.isSubmitted = true;
+                    currentObj.task.isDone = true;
                     currentObj.computeAnswer();
-                    //añadir task.isDone true
-                    currentObj.taskCompleted.isDone = true
                 }).catch(function (error) {
                     currentObj.correctAnswer = error;
                 });

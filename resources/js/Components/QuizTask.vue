@@ -28,7 +28,7 @@
         components: {
             JetButton,
         },
-        props: ['quiz', 'courseId', 'taskId'],
+        props: ['quiz', 'courseId', 'task'],
         data() {
             return {
                 picked:null,
@@ -49,12 +49,13 @@
                 e.preventDefault();
                 let currentObj = this;
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                axios.post(route('solveTask', {'course':this.courseId, 'task':this.taskId}), {
+                axios.post(route('solveTask', {'course':this.courseId, 'task':this.task.id}), {
                     userAnswer:this.picked
                 }).then(response => {
                     currentObj.correctAnswer = response.data.index;
                     currentObj.message = response.data.message;
                     currentObj.isSubmitted = true;
+                    currentObj.task.isDone = true;
                     currentObj.computeAnswer();
                 }).catch(function (error) {
                     currentObj.correctAnswer = error;

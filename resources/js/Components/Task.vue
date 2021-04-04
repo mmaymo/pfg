@@ -7,10 +7,10 @@
                     {{ this.task.name }}</h1>
 
                 <quiz-task v-if="this.task.type === 'quiz'" :quiz="this.task.contents.quiz"
-                           :courseId="this.courseId" :taskId="this.task.id"/>
+                           :courseId="this.courseId" :task="this.task"/>
                 <multiple-quiz-task v-if="this.task.type === 'multipleQuiz'"
                                     :quiz="this.task.contents.quiz" :courseId="this.courseId"
-                                    :taskId="this.task.id"/>
+                                    :task="this.task"/>
 
                 <code-task v-if="this.task.type === 'code'" :textContent="this.task.contents" :courseId="this.courseId" :task="this.task"/>
                 <card-task v-if="this.task.type === 'card'" :textContent="this.task.contents"/>
@@ -84,6 +84,7 @@ export default {
         addPoints(){
             this.message = 'Para poder avanzar debes completar antes la tarea'
             if (this.task.type === 'document' || this.task.type === 'card' || this.task.type === 'chapter') {
+                console.log('aui')
                 this.form.post('addDone', this.courseId);
                 this.message = '';
             }
