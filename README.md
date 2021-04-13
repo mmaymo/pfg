@@ -30,6 +30,15 @@ And to create the databases with the initial seed:
 ```
 docker-compose exec app php artisan migrate --seed
 ```
+Now we need to fix permissions for the docker socket:
+```
+docker-compose exec  -u root app chown carmen /var/run/docker.sock
+```
+And make sure to have available the test image:
+```
+docker run dduportal/bats
+```
+
 The tool is now ready to visit in `http://192.168.1.88:8000/`
 
 ## Usage
