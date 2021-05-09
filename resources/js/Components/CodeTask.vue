@@ -11,7 +11,9 @@
             <jet-button class="mb-8" @click.native="testCode">Muestra respuesta</jet-button>
 
         </div>
-        <div v-if="testResult" class="flex justify-center"><pre> {{testResult}}</pre></div>
+        <div v-if="testResult" class="flex justify-center">
+            <pre> {{ testResult }}</pre>
+        </div>
 
     </div>
 </template>
@@ -20,6 +22,7 @@
 import JetButton from "../Jetstream/Button";
 import 'xterm/css/xterm.css'
 import {Terminal} from "xterm";
+import {AttachAddon} from 'xterm-addon-attach';
 
 export default {
     components: {
@@ -40,38 +43,41 @@ export default {
         }
     },
 
-    mounted(){
-
-        let term = new Terminal(this.options)
-        term.open(document.getElementById('terminal'))
-        term.writeln('Puede escribir su código a continuación');
-        term.prompt = () => {
-            term.write('\r\n$ ')
-        }
-        term.prompt()
-        let currentObj = this;
-        term.onKey((e) => {
-            const ev = e.domEvent;
-            const printable = !ev.altKey && !ev.ctrlKey && !ev.metaKey;
-
-            if (ev.keyCode === 13) {
-                console.log('intro')
-                term.prompt();
-                currentObj.studentCommand = currentObj.studentCommand.concat(e.key)
-            } else if (ev.keyCode === 8) {
-                // Do not delete the prompt
-                if (term._core.buffer.x > 2) {
-                    term.write('\b \b');
-                    currentObj.studentCommand = currentObj.studentCommand.slice(0, -1)
-                }
-            } else if (printable) {
-                term.write(e.key);
-                currentObj.studentCommand = currentObj.studentCommand.concat(e.key)
-            }
-        });
-
+    mounted() {
+        this.getTerminalPid()
     },
     methods: {
+        getTerminalPid(){
+            console.log('en get terminal pid')
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            axios.post('http://0.0.0.0:8999/terminals', {
+            }).then(response => {
+                const pid = response.data
+                this.startTerminal(pid)
+            }).catch(function (error) {
+                console.warn(error)
+            });
+        },
+        startTerminal(pid){
+            let term = new Terminal(this.options)
+            const socket = new WebSocket('ws://0.0.0.0:8999/terminals/'+ pid)
+            //TODO pillo el id del user creo su carpeta si no existe y entro en ella
+            const user = 2
+            let data = `mkdir alumno${user} \n cd alumno${user} \n`
+            this.preparationScript(pid, data)
+            //TODO pillo data del objeto task code
+            data = 'mkdir prueba2 \n'
+            this.preparationScript(pid, data)
+            const attachAddon = new AttachAddon(socket)
+            term.loadAddon(attachAddon)
+            term.open(document.getElementById('terminal'))
+            term.focus();
+            term.writeln('Puede escribir su código a continuación');
+            term.prompt = () => {
+                term.write('\r\n$ ')
+            }
+            term.prompt()
+        },
         testCode() {
             let currentObj = this;
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -81,10 +87,20 @@ export default {
                 currentObj.testResult = response.data
                 currentObj.task.isDone = true
             }).catch(function (error) {
-                console.log(error)
+                console.warn(error)
             });
         },
 
+        preparationScript(pid, data) {
+            axios.post('http://0.0.0.0:8999/terminals/'+ pid+'/data', {
+                pid:pid,
+                data: data
+            }).then(response => {
+
+            }).catch(function (error) {
+                console.warn(error)
+            });
+        }
     },
 }
 </script>

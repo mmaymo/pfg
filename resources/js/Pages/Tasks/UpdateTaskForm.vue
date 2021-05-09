@@ -27,10 +27,8 @@
                         <jet-button> Guardar archivo</jet-button>
                     </form>
                 </div>
-                <div>
 
-                </div>
-                <div v-if="form.type == 'quiz'">
+                <div v-if="form.type == 'quiz' || form.type == 'multipleQuiz'">
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="question" value="Texto de la pregunta"/>
                         <jet-input id="question" type="text" class="mt-1 block w-full"
@@ -63,7 +61,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="correctAnswer" value="Respuesta Correcta"/>
-                        <select name="type" id="correctAnswer"
+                        <select multiple name="type" id="correctAnswer"
                                 v-model="form.properties.quiz.correctAnswer">
                             <option value="1">Respuesta 1</option>
                             <option value="2">Respuesta 2</option>
@@ -198,7 +196,7 @@ export default {
                                 t3: this.task.properties.quiz.responses.t3,
                                 t4: this.task.properties.quiz.responses.t4
                             },
-                            correctAnswer: this.task.properties.quiz.correctAnswer
+                            correctAnswer: [this.task.properties.quiz.correctAnswer]
                         },
                         card: {
                             front: this.task.properties.card.front,

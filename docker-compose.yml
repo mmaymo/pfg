@@ -6,7 +6,7 @@ services:
         user: carmen
         uid: 1000
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: docker-compose/laravel/Dockerfile
     image: pfguned
     container_name: pfguned-app
     restart: unless-stopped
@@ -46,6 +46,22 @@ services:
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - pfguned
+
+  websocketbash:
+    build:
+      args:
+        user: carmen
+        uid: 1000
+      context: ./
+      dockerfile: docker-compose/websocket/Dockerfile
+    image: websocketbash
+    container_name: pfguned-websocket
+    ports:
+      - 8999:8999
+    restart: unless-stopped
+    working_dir: /var/www/
     networks:
       - pfguned
 

@@ -1,0 +1,19 @@
+{
+    "name": "websocket",
+    "version": "1.0.0",
+    "description": "Node.js on Docker",
+    "author": "First Last <first.last@example.com>",
+    "main": "server.js",
+    "scripts": {
+        "start": " node/server.js"
+    },
+    "dependencies": {
+        "express": "^4.16.1",
+        "express-ws": "^4.0.0",
+        "node-pty": "^0.10.1",
+        "ws": "^5.2.2"
+    },
+    "devDependencies": {
+        "cors": "^2.8.5"
+    }
+}
