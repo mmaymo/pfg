@@ -4,7 +4,7 @@
             <div class="lg:flex -mx-6">
                 <course-sidebar :courseId="this.courseDetails.id" :courseName="this.courseDetails.name" :teacher="this.courseDetails.teacher"
                                 :itinerary="this.tasks" :allowedIds="this.allowedIds" :coursePoints="coursePoints" :courseProgress="courseProgress"></course-sidebar>
-                <task :courseId="this.courseDetails.id" :task="this.task" ></task>
+                <task :courseId="this.courseDetails.id" :task="this.task" :allowed="this.allowed"></task>
             </div>
         </div>
     </app-layout>
@@ -22,6 +22,7 @@ export default {
         CourseSidebar
     },
     props: [
+        'allowed',
         'courseDetails',
         'tasks',
         'allowedIds',

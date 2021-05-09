@@ -3,18 +3,17 @@
          class="min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible lg:w-3/4 xl:w-4/5 z-0">
         <div id="mainContent">
             <div id="task" class="grid grid-column-1">
-                <h1 class="capitalize font-bold text-left px-8 py-4">
-                    {{ this.task.name }}</h1>
+                <h1 class="capitalize font-bold text-left px-8 py-4">{{ this.task.name }}</h1>
+                <div v-if="this.allowed">
+                    <quiz-task v-if="this.task.type === 'quiz'" :quiz="this.task.contents.quiz"
+                               :courseId="this.courseId" :task="this.task"/>
+                    <multiple-quiz-task v-if="this.task.type === 'multipleQuiz'"
+                                        :quiz="this.task.contents.quiz" :courseId="this.courseId"
+                                        :task="this.task"/>
 
-                <quiz-task v-if="this.task.type === 'quiz'" :quiz="this.task.contents.quiz"
-                           :courseId="this.courseId" :task="this.task"/>
-                <multiple-quiz-task v-if="this.task.type === 'multipleQuiz'"
-                                    :quiz="this.task.contents.quiz" :courseId="this.courseId"
-                                    :task="this.task"/>
-
-                <code-task v-if="this.task.type === 'code'" :textContent="this.task.contents" :courseId="this.courseId" :task="this.task"/>
-                <card-task v-if="this.task.type === 'card'" :textContent="this.task.contents"/>
-                <text-task v-if="this.task.type === 'document'" :textContent="this.task.contents"></text-task>
+                    <code-task v-if="this.task.type === 'code'" :textContent="this.task.contents" :courseId="this.courseId" :task="this.task"/>
+                    <card-task v-if="this.task.type === 'card'" :textContent="this.task.contents"/>
+                    <text-task v-if="this.task.type === 'document'" :textContent="this.task.contents"></text-task>
 
                     <div id="bottomTaskButtons"
                          class="flex border-b border-gray-300 p-8 pt-16">
@@ -46,8 +45,13 @@
                                                                target="_blank">Dudas</a></div>
                     </div>
                 </div>
-            </div>
+                <div v-else>
+                    <p>No puede ver esta tarea hasta que no haya completado las anteriores</p>
+                </div>
 
+
+            </div>
+        </div>
     </div>
 </template>
 
@@ -71,6 +75,10 @@ export default {
         JetButton,
     },
     props: {
+        allowed:{
+            type: Boolean,
+            default: true,
+        },
         courseId: {
             type: Number,
             default: '',

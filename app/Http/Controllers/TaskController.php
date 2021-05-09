@@ -28,27 +28,39 @@ class TaskController extends Controller
     public function show(Request $request, $courseId, $taskId)
     {
         $course = Course::find($courseId);
-
+        $teacher = User::find($course->user_id)->name;
         if (! $request->user()->can('view courses')) {
             abort(403);
         }
-
-        if (! $request->user()->canSeeTask($courseId, $taskId)) {
-            return back();
-        }
-
-        $teacher = User::find($course->user_id)->name;
         $itinerary = $course->getOrderedChaptersWithTasks();
-
-        $task = Task::find($taskId);
-
-        $coursePoints = Auth::user()->coursePoints($courseId);
-        $courseProgress = Auth::user()->courseProgress($courseId);
         $allowedIds = Task::all()->filter(function ($task) use($courseId){
             return $task->isAllowed(Auth::user()->id, $courseId);
         })->pluck('id');
+        $coursePoints = Auth::user()->coursePoints($courseId);
+        $courseProgress = Auth::user()->courseProgress($courseId);
+        $task = Task::find($taskId);
+        if (! $request->user()->canSeeTask($courseId, $taskId)) {
+            return Jetstream::inertia()->render($request, 'Tasks/Show', [
+                'allowed'=>false,
+                'courseDetails' => [
+                'id'=>$course->id,
+                'name'=>$course->name,
+                'degree'=>$course->degree,
+                'semester'=>$course->semester,
+                'pic'=>$course->pic,
+                'teacher'=>$teacher],
+                'tasks'=>$itinerary,
+                'allowedIds'=>$allowedIds,
+                'task'=>[
+                    'id'=>$task->id,
+                    'name'=>$task->name,
+                    'type'=>$task->type
+                ],
+                'coursePoints'=>$coursePoints,
+                'courseProgress'=>$courseProgress,
+            ]);
+        }
         $taskDone = $this->isDone($courseId, $taskId);
-
         $flatItineray = $course->orderedTaskIdsFlat();
         $tasksLenght = $course->taskCount();
         $currentTaskPositionIndex = array_search($taskId, $flatItineray);
@@ -58,6 +70,7 @@ class TaskController extends Controller
         $previous = $flatItineray[$previousIndex];
 
         return Jetstream::inertia()->render($request, 'Tasks/Show', [
+            'allowed'=>true,
             'courseDetails' => [
                 'id'=>$course->id,
                 'name'=>$course->name,
