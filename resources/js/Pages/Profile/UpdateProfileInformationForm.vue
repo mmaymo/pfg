@@ -5,7 +5,7 @@
         </template>
 
         <template #description>
-            Actualiza la información de tu perfil y tu correo electrónico.
+            Comprueba la información de tu perfil, si algo no es correcto ponte en contacto con tu tutor
         </template>
 
         <template #form>
@@ -44,15 +44,13 @@
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="name" value="Nombre" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
-                <jet-input-error :message="form.error('name')" class="mt-2" />
+                {{name}}
             </div>
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="email" value="Correo Electrónico" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
-                <jet-input-error :message="form.error('email')" class="mt-2" />
+               {{email}}
             </div>
         </template>
 
