@@ -33,6 +33,7 @@ export default {
         return {
             testResult: "",
             studentCommand:"",
+            pid:'',
             options: {
                 cursorBlink: true,
                 theme: {
@@ -48,12 +49,12 @@ export default {
     },
     methods: {
         getTerminalPid(){
-            console.log('en get terminal pid')
+            let currentObj = this;
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             axios.post('http://0.0.0.0:8999/terminals', {
             }).then(response => {
-                const pid = response.data
-                this.startTerminal(pid)
+                currentObj.pid = response.data
+                this.startTerminal(response.data)
             }).catch(function (error) {
                 console.warn(error)
             });
@@ -65,8 +66,7 @@ export default {
             const user = 2
             let data = `mkdir alumno${user} \n cd alumno${user} \n`
             this.preparationScript(pid, data)
-            //TODO pillo data del objeto task code
-            data = 'mkdir prueba2 \n'
+            data = this.task.contents.scriptPrevious
             this.preparationScript(pid, data)
             const attachAddon = new AttachAddon(socket)
             term.loadAddon(attachAddon)
@@ -80,6 +80,12 @@ export default {
         },
         testCode() {
             let currentObj = this;
+            //TODO Alumnos registradostengo que recoger el test del objeto
+            const data = this.task.contents.scriptAfter
+            this.preparationScript(this.pid, data)
+
+            //tengo que recoger lo que devuelve y mostrarlo
+            //tengo que llamar al backend para sumar o no los puntos y poner la tarea a hecho
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             axios.post(route('testCodeTask', {'course': this.courseId, 'task': this.task.id}), {
                 userAnswer: currentObj.studentCommand
@@ -98,7 +104,7 @@ export default {
             }).then(response => {
 
             }).catch(function (error) {
-                console.warn(error)
+                console.log(error)
             });
         }
     },

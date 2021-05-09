@@ -16,18 +16,6 @@
                                          :availableTypes="availableTypes"
                                          :courseId="courseId"></basic-details-task-form>
 
-                <div v-if="form.type == 'code'" class="col-span-6 sm:col-span-4">
-                    <form
-                        @submit.prevent="uploadCodeTest"
-                        method="post"
-                        enctype="multipart/form-data">
-                        <jet-label for="file" value="Archivo testcode.bats para evaluar la prueba"/>
-                        <input type="file" ref="testCode" class="mt-1 block w-full" @change="updateTestFile"/>
-                        <br/>
-                        <jet-button> Guardar archivo</jet-button>
-                    </form>
-                </div>
-
                 <div v-if="form.type == 'quiz' || form.type == 'multipleQuiz'">
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="question" value="Texto de la pregunta"/>
@@ -86,8 +74,19 @@
                     </div>
                 </div>
 
-                <markdown-editor-section v-if="form.type === 'document' || form.type === 'code'"
-                                         :properties.sync="form.properties.content"></markdown-editor-section>
+                <div class="col-span-6 sm:col-span-4" v-if="form.type === 'document' || form.type === 'code'">
+                    <jet-label  value="Descripción de la tarea"/>
+                    <markdown-editor-section :properties.sync="form.properties.content"></markdown-editor-section>
+                </div >
+
+                <div class="col-span-6 sm:col-span-4" v-if="form.type === 'code'">
+                    <jet-label  value="Código ejecutable previo"/>
+                    <markdown-editor-section :properties.sync="form.properties.scriptPrevious"></markdown-editor-section>
+                </div >
+                <div class="col-span-6 sm:col-span-4" v-if="form.type === 'code'">
+                    <jet-label  value="Código ejecutable después"/>
+                    <markdown-editor-section :properties.sync="form.properties.scriptAfter"></markdown-editor-section>
+                </div >
             </template>
 
 
@@ -188,6 +187,8 @@ export default {
                     return {
                         content: this.task.properties ? this.task.properties.content : false,
                         code_url: this.task.properties.code_url,
+                        scriptPrevious: this.task.properties.previous? this.task.properties.scriptPrevious:'',
+                        scriptAfter: this.task.properties.previous? this.task.properties.scriptAfter:'',
                         quiz: {
                             question: this.task.properties.quiz.question,
                             responses: {

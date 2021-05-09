@@ -1,5 +1,5 @@
 <template>
-    <div class="col-span-1 sm:col-span-6">
+    <div class=" ">
         <editor :initialValue="properties" ref="toastuiEditor" height="500px" @change="onEditorChange"></editor>
     </div>
 
