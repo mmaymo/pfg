@@ -5,6 +5,7 @@
         <li class="flex items-center justify-between bg-gray-100 border-2 border-green-300 rounded p-4" v-for="item in tasks"
             :key="item.id">
             <div class="">
+                <div class="mb-2">{{ item.type }}</div>
                 <div class="mb-2">{{ item.name }}</div>
                 <!-- Edit task -->
                 <jet-button>
