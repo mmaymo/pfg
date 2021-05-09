@@ -87,8 +87,10 @@
                     <div class="space-y-6">
                         <div class="flex items-center justify-between" v-for="user in students" :key="user.id">
                             <div class="flex items-center">
-
                                 <div class="ml-4">{{ user.name }}</div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="ml-4">{{ user.email }}</div>
                             </div>
                             <div class="flex items-center">
                                 <div class="ml-4">{{ user.points }} Puntos</div>

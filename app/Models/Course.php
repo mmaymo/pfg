@@ -47,7 +47,7 @@ class Course extends Model
         $users = $this->users;
         $members = [];
         foreach ($users as $user){
-            $members[] = ['id'=>$user->id, 'name'=>$user->name, 'points'=>$user->pivot->points, 'profile_photo_url'=>$user->profile_photo_path, 'progress'=>$user->courseProgress($this->id)];
+            $members[] = ['id'=>$user->id, 'email'=>$user->email, 'name'=>$user->name, 'points'=>$user->pivot->points, 'profile_photo_url'=>$user->profile_photo_path, 'progress'=>$user->courseProgress($this->id)];
         }
         return $members;
     }
