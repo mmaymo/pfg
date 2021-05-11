@@ -68,6 +68,36 @@
                     </jet-button>
                 </template>
             </jet-form-section>
+            <jet-form-section @submitted="addTeamMemberBatch">
+                <template #title>
+                    Añadir Alumnos en bloque
+                </template>
+
+                <template #description>
+                </template>
+
+                <template #form>
+                    <div class="col-span-6">
+                        <div class="max-w-xl text-sm text-gray-600">
+                            Seleccione entre los usuarios dados de alta.
+                        </div>
+                    </div>
+                    <!-- Members File -->
+                    <div class="col-span-6 sm:col-span-4">
+                        <jet-label for="studentsFile" value="Archivo de alumnos" />
+                        <form
+                            @submit.prevent="addTeamMemberBatch"
+                            method="post"
+                            enctype="multipart/form-data">
+                            <jet-label for="file" value="Archivo testcode.bats para evaluar la prueba"/>
+                            <input type="file" ref="studentFile" class="mt-1 block w-full" @change="updateTestFile"/>
+                            <br/>
+                            <jet-button> Guardar archivo</jet-button>
+                        </form>
+                    </div>
+                </template>
+
+            </jet-form-section>
         </div>
 
         <div v-if="students.length > 0">
@@ -223,6 +253,12 @@
 
         data() {
             return {
+                registerStudents: this.$inertia.form({
+                    file: ''
+                }, {
+                    bag: 'addCourseMember',
+                    resetOnSuccess: true,
+                }),
                 registerMailForm: this.$inertia.form({
                     email: ''
                 }, {
@@ -266,10 +302,21 @@
                 confirmingLeavingTeam: false,
                 teamMemberBeingRemoved: null,
                 resetingValues: null,
+                studentFile:null
             }
         },
 
         methods: {
+            updateTestFile() {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.studentFile = e.target.result;
+
+                };
+
+                reader.readAsDataURL(this.$refs.studentFile.files[0]);
+            },
             registerMail() {
                 this.registerMailForm.post(route('courses.users.store', this.courseId), {
                     preserveScroll: true
@@ -277,6 +324,14 @@
             },
             addTeamMember() {
                 this.addTeamMemberForm.post(route('courses.users.store', this.courseId), {
+                    preserveScroll: true
+                });
+            },
+            addTeamMemberBatch() {
+                if (this.$refs.studentFile) {
+                    this.registerStudents.file = this.$refs.studentFile.files[0]
+                }
+                this.registerStudents.post(route('courses.users.store', this.courseId), {
                     preserveScroll: true
                 });
             },

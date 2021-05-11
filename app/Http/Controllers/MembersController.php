@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
 
@@ -23,9 +24,29 @@ class MembersController extends Controller
     public function store(Request $request, $courseId)
     {
         $course = Course::find($courseId);
+
         $validated = Validator::make($request->all(), [
+            'file'=>[],
             'email' => ['string', 'max:255']
         ])->validateWithBag('addCourseMember');
+
+        if($validated['file']){
+            $fileName = time().'_'.$request->file('file')->getClientOriginalName();
+            $request->file('file')->storeAs("studentsBatch/", $fileName);
+            $csv = fopen("../storage/app/studentsBatch/{$fileName}", 'r');
+            while (($row = fgetcsv($csv, 0, ",")) !== FALSE) {
+                if(User::where('email',$row[2])->exists()){
+                    $newCourseMember = User::where('email',$row[2])->first();
+                }else{
+                    $name = "{$row[0]} {$row[1]}";
+                    $newCourseMember = $this->addNewMember($row[2], $name);
+                }
+
+                $this->addMemberRoleAndPoints($course, $newCourseMember);
+            }
+            return back(303);
+
+        }
 
         if($course->users()->where('email', $validated['email'])->exists()){
             return back(303);
@@ -33,22 +54,10 @@ class MembersController extends Controller
         if(User::where('email',$validated['email'])->exists()){
             $newCourseMember = User::where('email',$validated['email'])->first();
         }else{
-            $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
-            $password = substr($random, 0, 10);
-
-            $hashed_random_password = Hash::make($password);
-            $newCourseMember = User::Create(
-                [
-                    "name" => "edita nombre",
-                    "email" => $validated['email'],
-                    "password" => $hashed_random_password
-                ]
-            );
+            $newCourseMember = $this->addNewMember($validated['email']);
         }
 
-        $course->users()->attach($newCourseMember,['points'=>0]);
-        $newCourseMember->assignRole(self::ALUMNO);
-
+        $this->addMemberRoleAndPoints($course, $newCourseMember);
 
         return back(303);
     }
@@ -85,5 +94,38 @@ class MembersController extends Controller
         $course->users()->detach($userId);
 
         return back(303);
+    }
+
+    /**
+     * @param string $mail
+     * @param string $name
+     *
+     * @return mixed
+     */
+    protected function addNewMember($mail, $name = 'Jane Doe')
+    {
+        $random = str_shuffle(
+            'abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&'
+        );
+        $password = substr($random, 0, 10);
+
+        $hashed_random_password = Hash::make($password);
+        return User::Create(
+            [
+                "name" => $name,
+                "email" => $mail,
+                "password" => $hashed_random_password
+            ]
+        );
+}
+
+    /**
+     * @param $course
+     * @param $newCourseMember
+     */
+    protected function addMemberRoleAndPoints($course, $newCourseMember): void
+    {
+        $course->users()->attach($newCourseMember, ['points' => 0]);
+        $newCourseMember->assignRole(self::ALUMNO);
     }
 }
