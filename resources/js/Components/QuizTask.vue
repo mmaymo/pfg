@@ -17,7 +17,7 @@
                 </li>
             </ul>
         </form>
-        <div class="p-4 m-4 rounded border-2 border-current" v-if="message">{{message}}</div>
+        <div id="answerMessage" class="p-4 m-4 rounded border-2 border-current" v-if="message">{{message}}</div>
     </section>
 </template>
 
@@ -39,11 +39,21 @@
         },
         methods: {
             computeAnswer(){
+                if(this.correctAnswer === this.picked){
+                    let messageDiv = this.$refs.answer[0].parentNode.parentNode
+                    messageDiv.insertAdjacentHTML("afterend",'<p class="border-2 border-green-500">Esta es la respuesta correcta</p>')
+                }
+                if(this.correctAnswer !== this.picked){
+                    let messageDiv = this.$refs.answer[0].parentNode.parentNode
+                    messageDiv.insertAdjacentHTML("afterend",'<p class="border-2 border-red-500">Esta respuesta no es correcta, la respuesta correcta está recuadrada en verde</p>')
+                }
                 let greenAnswer = this.$refs.answer[this.correctAnswer].parentNode;
-                greenAnswer.classList.add("bg-green-500");
+                greenAnswer.classList.add("border-2");
+                greenAnswer.classList.add("border-green-500");
 
                 let userAnswer = this.$refs.answer[this.picked].parentNode;
-                userAnswer.classList.add("bg-red-500");
+                userAnswer.classList.add("border-2");
+                userAnswer.classList.add("border-red-500");
             },
             getAnswer(e) {
                 e.preventDefault();
