@@ -17,7 +17,9 @@
                             <base-svg :icon-name=task.type :width=20 :height=20 :d=iconType(task.type)></base-svg>
                             <span class="ml-3">{{ task.name }}</span>
                         </a>
-                        <p><a @click="toggleMenu(task.id)" class="">ABRE SUBTAREAS</a></p>
+                        <p><a @click="toggleMenu(task.id)" class=""><svg width=30 height=30 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg></a></p>
                     </li>
                     <li v-else class="items-center block px-4 py-2 mt-2 text-sm text-right text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-300 focus:outline-none focus:shadow-outline">
                         <a  href="javascript:">
@@ -27,17 +29,19 @@
                             </svg>
                             <span class="ml-3">{{ task.name }}</span>
                         </a>
-                        <p><a @click="toggleMenu(task.id)" class="">ABRE SUBTAREAS</a></p>
+                        <p ><a @click="toggleMenu(task.id)" class=""><svg width=30 height=30 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M15.707 4.293a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L10 8.586l4.293-4.293a1 1 0 011.414 0zm0 6a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-5-5a1 1 0 111.414-1.414L10 14.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg></a></p>
                     </li>
                     <li  v-for="subtask in task.tasks" v-show="menuOpen === task.id" class="text-right">
                         <a v-if="disableLink(subtask.id)" :href="route('courses.tasks.show', {'course':courseId, 'task':subtask.id})" class="items-center block px-4 py-2 mt-2 text-sm text-right text-green-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-green-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-green-300 focus:bg-green-300 focus:outline-none focus:shadow-outline">
-                            <span class="font-bold inline">{{ subtask.name }}</span><base-svg class="inline" :icon-name=task.type :width=20 :height=20 :d=iconType(task.type)></base-svg></a>
+                            <span class="font-bold inline">{{ subtask.name }}</span><base-svg class="inline" :icon-name=subtask.type :width=20 :height=20 :d=iconType(subtask.type)></base-svg></a>
                         <a v-else href="javascript:" class="items-center block px-4 py-2 mt-2 text-sm text-right text-gray-900 bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-300 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-300 focus:bg-gray-300 focus:outline-none focus:shadow-outline">
 
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
                             <span class="font-bold inline">{{ subtask.name }}</span>
-                            <base-svg class="inline" :icon-name=task.type :width=20 :height=20 :d=iconType(task.type)></base-svg>
+                            <base-svg class="inline" :icon-name=subtask.type :width=20 :height=20 :d=iconType(subtask.type)></base-svg>
 
                         </a>
                     </li>
@@ -107,14 +111,19 @@
 
             },
             toggleMenu: function(id) {
+                if(id === this.menuOpen){
+                    this.menuOpen = false
 
-                this.menuOpen = id;
+                }else{
+                    this.menuOpen = id;
+                }
+
             }
 
         },
         data() {
             return {
-                menuOpen: '',
+                menuOpen: false,
                 open: true
 
             }
