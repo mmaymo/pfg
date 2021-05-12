@@ -289,7 +289,7 @@ class TaskController extends Controller
         if (!$this->isDone($courseId, $taskId)) {
             $previousPoints = Auth::user()->coursePoints($courseId);
             Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
-            $this->markTaskAsDone($courseId, $task);
+            $this->markTaskAsDone($courseId, $task, $task->points);
         }
 
         return redirect()->route('courses.tasks.show', ['course'=>$courseId, 'task'=>$validated['nextId']]);
@@ -313,13 +313,15 @@ class TaskController extends Controller
         $message = "La tarea ya estaba completada";
         $task = Task::find($taskId);
         $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
+        $points = 0;
         if (!$this->isDone($courseId, $taskId)) {
             if ($correctAnswer == $validated['userAnswer']) {
                 $previousPoints = Auth::user()->coursePoints($courseId);
+                $points = $task->points;
                 Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
             }
 
-            $this->markTaskAsDone($courseId, $task);
+            $this->markTaskAsDone($courseId, $task, $points);
             //catch error saving in db
             $message = "Tarea completada";
         }
@@ -347,12 +349,14 @@ class TaskController extends Controller
         if (!$this->isDone($courseId, $taskId)) {
             sort($correctAnswers);
             sort($validated['userAnswer']);
+            $points = 0;
             if ($correctAnswers === $validated['userAnswer']) {
+                $points = $task->points;
                 $previousPoints = Auth::user()->coursePoints($courseId);
                 Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
             }
 
-            $this->markTaskAsDone($courseId, $task);
+            $this->markTaskAsDone($courseId, $task, $points);
             //catch error saving in db
             $message = "Tarea completada";
         }
@@ -360,9 +364,9 @@ class TaskController extends Controller
         return response()->json(["index"=>$correctAnswers, "message"=>$message]);
     }
 
-    private function markTaskAsDone(int $courseId, $task)
+    private function markTaskAsDone(int $courseId, $task, $points)
     {
-        $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId]);
+        $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId, 'points'=>$points]);
 
         return true;
     }
