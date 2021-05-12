@@ -11,7 +11,6 @@
     }
 },
     {
-
         "course_id": 1,
         "points": 0,
         "chapter_id": "1",
@@ -185,7 +184,8 @@
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Proceso y núcleo son:",
-            "responses":[                         "Un proceso es una instancia de un programa en ejecución. El núcleo administra a los procesos y suministra varios servicios para ellos, y define la interfaz de programación del sistema. El sistema operativo UNIX incluye tanto el núcleo como otros programas y utilidades.",
+            "responses":[
+                "Un proceso es una instancia de un programa en ejecución. El núcleo administra a los procesos y suministra varios servicios para ellos, y define la interfaz de programación del sistema. El sistema operativo UNIX incluye tanto el núcleo como otros programas y utilidades.",
                 "El núcleo es una instancia de un programa en ejecución. Un proceso administra al núcleo y le suministra varios, y define la interfaz de programación del sistema. El sistema operativo UNIX incluye tanto el núcleo como otros programas y utilidades.",
                 "El núcleo está en el nivel más interno de la computadora. Un proceso está escrito en C y genera programas ejecutables por el usuario.",
                 "Un proceso es el encargado de hacer las llamadas al sistema, el núcleo suministra servicios para los programas"
@@ -193,158 +193,168 @@
             "correctAnswer":0              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Principales características del sistema UNIX.",
-            "responses":[                         "Están escritas en C, interfaz de usuario sencilla, sistema de ficheros jerarquizado, formato consistente para los archivos, contiene un interfaz simple y consistente para los periféricos, es un sistema multiusuario y multiproceso, y oculta la arquitectura de la máquina al usuario.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Están escritas en C, sistema de ficheros jerarquizado, formato consistente para los archivos, es un sistema multiusuario y monoproceso, y oculta la arquitectura de la máquina al usuario.",
+                "Están escritas en C, sistema de ficheros jerarquizado, formato consistente para los archivos, contiene un interfaz simple y consistente para los periféricos, es un sistema multiusuario y multiproceso, y oculta la arquitectura de la máquina al usuario.",
+                "Están escritas en C++, sistema de ficheros en grafo, formato consistente para los archivos, contiene un interfaz simple y consistente para los periféricos, es un sistema multiusuario y multiproceso, y oculta la arquitectura de la máquina al usuario.",
+                "Están escritas en C++, sistema de ficheros jerarquizado, formato consistente para los archivos, contiene un interfaz simple y consistente para los periféricos, es un sistema multiusuario y monpproceso, y oculta la arquitectura de la máquina al usuario."
             ],
             "correctAnswer":1              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Niveles en los que se divide la arquitectura del sistema operativo UNIX.",
-            "responses":[                         "La arquitectura del sistema operativo UNIX se puede dividir en cuatro niveles o etapas: hardware, núcleo, programas estándar y ejecutables, que interactúan con el núcleo mediante las llamadas al sistema, y aplicaciones.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Tiene tres niveles o etapas: hardware, núcleo y ejecutables, que interactúan con el núcleo mediante las llamadas al sistema.",
+                "Tiene cuatro niveles: hardware, núcleo, programas sistema, que interactúan con el núcleo mediante las llamadas al sistema, y apps.",
+                "Tiene tres niveles: hardware, núcleo y apps.",
+                "Tiene cuatro niveles: hardware, núcleo, programas estándar y ejecutables, que interactúan con el núcleo mediante las llamadas al sistema, y aplicaciones."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":3              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Principales servicios realizados por el núcleo.",
-            "responses":[                         "Los principales servicios realizados por el núcleo son: control de la ejecución de los procesos, planificación de los procesos para su ejecución en la CPU, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del acceso de los procesos a los dispositivos periféricos, administración de archivos y dispositivos, tratamiento de interrupciones y excepciones.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Control de la ejecución de los procesos, planificación de los procesos para su ejecución en la CPU, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del acceso de los procesos a los dispositivos periféricos, administración de archivos y dispositivos.",
+                "Control de la ejecución de los procesos, planificación de los procesos para su ejecución en la CPU, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del reloj del sistema, regulación del acceso de los procesos a los dispositivos periféricos, administración de archivos y dispositivos.",
+                "Control de la ejecución de los procesos, planificación de los procesos para su ejecución en la CPU, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del acceso de los procesos a los dispositivos periféricos, administración de alarmas, administración de archivos y dispositivos, tratamiento de interrupciones y excepciones.",
+                "Control de la ejecución de los procesos, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, planificación de los procesos para su ejecución en la CPU, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del acceso de los procesos a los dispositivos periféricos, administración de archivos y dispositivos, tratamiento de interrupciones y excepciones."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":3              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"¿Cuáles son los modos de ejecución de los procesos de un sistema UNIX?.",
-            "responses":[                         "La ejecución de los procesos en un sistema UNIX está dividida en dos modos de ejecución: modo núcleo o supervisor, y modo usuario.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "La ejecución de los procesos en un sistema UNIX está dividida en dos modos de ejecución: modo núcleo, y modo usuario.",
+                "La ejecución de los procesos en un sistema UNIX está dividida en tres modos de ejecución: modo núcleo, supervisor, y modo usuario.",
+                "La ejecución de los procesos en un sistema UNIX está dividida en tres modos de ejecución: modo núcleo, modo demonio y modo usuario.",
+                "La ejecución de los procesos en un sistema UNIX está dividida en dos modos de ejecución: modo hardware y modo usuario."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":0             } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Tipos de procesos en el sistema UNIX.",
-            "responses":[                         "Los procesos en el sistema UNIX puede ser de tres tipos: procesos de usuario, procesos demonio, y procesos del núcleo.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Los procesos en el sistema UNIX puede ser de tres tipos: procesos de usuario, procesos demonio, y procesos del núcleo.",
+                "Los procesos en el sistema UNIX puede ser de dos tipos: procesos de usuario y procesos del núcleo.",
+                "Los procesos en el sistema UNIX puede ser de tres tipos: procesos de usuario, procesos de excepciones y procesos del sistema.",
+                "Los procesos en el sistema UNIX puede ser de tres tipos: procesos de usuario, procesos demonio, y procesos de sistema."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":0              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"En qué consiste una interrupción, y tipos.",
-            "responses":[                         "Mientras se ejecuta un proceso, los periféricos de E/S, el reloj del sistema, y los terminales pueden interrumpir a la CPU. El mecanismo de interrupciones notifica al núcleo una operación completada o un cambio de estado. Existe tres tipos de interrupciones: hardware, software o traps, y excepciones.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Mientras se ejecuta un proceso, diversos sistemas pueden interrumpir a la CPU. El mecanismo de interrupciones notifica al núcleo una operación completada o un cambio de estado. Existe dos tipos de interrupciones: hardware y software.",
+                "Los terminales pueden interrumpir a la CPU. Consiste en un sistema de notificaciones. Existe dos tipos de interrupciones: traps y excepciones.",
+                "El reloj del sistema, y los terminales pueden interrumpir a la CPU. Las interrupciones notifican al núcleo sobre una operación completada. Existe tres tipos de interrupciones: nucleo, software, y excepciones.",
+                "Mientras se ejecuta un proceso, los periféricos de E/S, el reloj del sistema, y los terminales pueden interrumpir a la CPU. El mecanismo de interrupciones notifica al núcleo una operación completada o un cambio de estado. Existe tres tipos de interrupciones: hardware, software, y excepciones."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":3              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Señala los niveles en la estructura del sistema UNIX.",
-            "responses":[                         "En la estructura del sistema operativo UNIX se distinguen tres niveles: nivel de usuario, nivel de núcleo, y nivel de hardware. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al sistema, y su invocación se puede realizar mediante el uso de librerías y de forma directa. En el núcleo se encuentra el subsistema de ficheros y el subsistema de control de procesos. El nivel de núcleo se comunica con el nivel de hardware a través de su módulo de control del hardware.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Nivel de usuario, nivel de núcleo, y nivel de sistema. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al nucleo. En el núcleo se encuentra el subsistema de ficheros y el subsistema de control de procesos.",
+                "Nivel de usuario, nivel de núcleo, y nivel de hardware. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al sistema, y su invocación se puede realizar mediante el uso de librerías y de forma directa. En el núcleo se encuentra el subsistema de ficheros y el subsistema de control de procesos. El nivel de núcleo se comunica con el nivel de hardware a través de su módulo de control del hardware.",
+                "Nivel de kernel, nivel de núcleo, y nivel de usuario. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al kernel, y su invocación se puede realizar mediante el uso de librerías y de forma directa. El nivel de núcleo se comunica con el nivel de hardware a través de su módulo de control del hardware.",
+                "Nivel de usuario, nivel de núcleo, y nivel de hardware. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al sistema, y su invocación se puede realizar mediante el uso de librerías. En el núcleo se encuentra el subsistema de ficheros y el subsistema de control de procesos. El nivel de núcleo se comunica con el nivel de hardware a través de su módulo de sistemas."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":2             } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Describe la interfaz de usuario para el sistema de ficheros.",
-            "responses":[                         "Un fichero es un contenedor permanente de datos, y el núcleo suministra al usuario varias operaciones de control sobre estos ficheros. UNIX organiza los ficheros en un árbol de directorios. La entrada de un fichero en un directorio constituye un enlace duro para el fichero.\n",
-                null,
-                null,
-                null
+            "responses":[
+                "Un fichero es un contenedor permanente de datos, y el núcleo suministra al usuario varias operaciones de control sobre estos ficheros. UNIX organiza los ficheros en un árbol de directorios. La entrada de un fichero en un directorio constituye un enlace duro para el fichero.",
+                "Un fichero es una lista enlazada de datos donde el núcleo suministra al usuario las suficientes operaciones de control para controlarlos. UNIX organiza los ficheros en un árbol de directorios acíclico.",
+                "Un fichero es una lista enlazada de datos accesible por el usuario y por el núcleo. UNIX organiza los ficheros en un árbol de directorios. Una entrada de fichero va asociada a una máscara de modo",
+                "Un fichero es un contenedor permanente de datos accesible por el usuario y por el núcleo. UNIX organiza los ficheros en un árbol de directorios. Una entrada de fichero va asociada a una máscara de modo"
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":0              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Señala los tipos de atributos de ficheros, y dónde se almacenan.",
-            "responses":[                         "El sistema de ficheros mantiene un conjunto de atributos (tipo de fichero, permisos e indicadores de modo, número de enlaces duros, tamaño del fichero, identificador del dispositivo, número de nodo-i, identificador de usuario real (uid) y del grupo real (gid), e información asociada al tiempo para cada fichero). Los atributos se almacenan en una estructura del disco conocida como nodo índice (nodo-i).1K ¿Qué es la máscara de modo de fichero? ¿Qué indica cada bit o conjunto de bits?\nCada fichero en UNIX tiene asociada una máscara de 16 bits conocida como máscara de modo del fichero.\nLos bits 15-12 indican el tipo de fichero. El bit 11 es el bit _ISUID. Bit 10: _ISGID. Bit 9: _ISVTX, y los bits 8-0 son los bits de acceso al fichero, que indican el tipo de permiso de acceso (lectura, escritura, y ejecución). De estos 16, el propietario del fichero puede modificar únicamente los valores de los bits 11 a 0, que se agrupa en cuatro dígitos octales M3M2M1M0.",
-                null,
-                null,
-                null
+            "responses":[
+                "Tipo de fichero, permisos e indicadores de modo, tamaño del fichero, identificador del dispositivo, identificador de usuario real (uid) y del grupo real (gid), e información asociada al tiempo para cada fichero. Los atributos se almacenan en el nodo índice (nodo-i)",
+                "Tipo de fichero, número de enlaces duros, tamaño del fichero, identificador del dispositivo, permisos e indicadores de modo, número de nodo-i, identificador de usuario real (uid) y del grupo real (gid), e información asociada al tiempo para cada fichero. Los atributos se almacenan en el nodo índice (nodo-i)",
+                "Tipo de fichero, permisos e indicadores de modo, número de enlaces activos, tamaño del fichero, identificador del dispositivo, número de nodo-i, número de nodo-c, identificador de usuario real (uid) y del grupo real (gid), e información asociada al tiempo para cada fichero. Los atributos se almacenan en el nodo índice (nodo-i)",
+                "Tipo de fichero,  número de enlaces duros, tamaño del fichero, identificador del dispositivo, permisos e indicadores de modo e información asociada al tiempo para cada fichero. Los atributos se almacenan en el nodo índice (nodo-i)"
             ],
             "correctAnswer":1              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
-            "question":"¿Qué es la máscara de modo de fichero? ¿Qué indica cada bit o conjunto\n                    de bits?",
-            "responses":[                         "El núcleo, cuando un usuario invoca a la llamada al sistema open para abrir un fichero, creo en memoria principal una estructura de datos asociada al fichero abierto que se llama objeto de fichero abierto. Cada objeto de fichero abierto se almacena en una entrada en una estructura global de núcleo denominada tabla de ficheros. También, el núcleo asigna un descriptor de fichero, un número entero positivo que sirve de identificador del objeto de fichero abierto.\n",
-                null,
-                null,
-                null
+            "question":"¿Qué es la máscara de modo de fichero? ¿Qué indica cada bit o conjunto de bits?",
+            "responses":[
+                "La máscara de modo de fichero indica los permisos sobre el archivo con prioridad sobre otras estructuras. Cada bit indica un tipo de permiso",
+                "La máscara de modo de fichero indica las modificaciones que se pueden realizar sobre el archivo. Cada bit indica qué tipo de usuario puede modificarlo",
+                "La máscara de modo informa, por orden, de los permisos para el propietario, los miembros del grupo al que pertenece el propietario del fichero y otros usuarios.",
+                "La máscara de modo informa de los listados de acceso del fichero, el grupo de permisos asociados y la capacidad de cada usuario"
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":2              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "quiz",
         "name": "Autoevaluación. Comprueba lo que has aprendido",
         "properties": {"card": {"back": null, "front": null},"quiz": {
             "question":"Define objeto de fichero abierto, tabla de ficheros, y descriptores de ficheros. 1M) Señala las operaciones de E/S sobre un fichero",
-            "responses":[                         "Las operaciones de E/S sobre un fichero son: apertura y cierre de un fichero (creat, open, close), lectura y escritura (read, write), y acceso aleatorio (lseek). En el último apartado se estudia pormenorizadamente estas funciones.10.2 Respuestas del TEMA 2\n",
-                null,
-                null,
-                null
+            "responses":["Las operaciones de E/S sobre un fichero son: creación y cierre de un fichero, lectura y escritura, y acceso aleatorio.\n",
+                "Las operaciones de E/S sobre un fichero son: apertura, compresión de un fichero y acceso aleatorio (lseek).\n",
+                "Las operaciones de E/S sobre un fichero son: apertura y cierre de un fichero (creat, open, close), lectura y escritura (read, write).\n",
+                "Las operaciones de E/S sobre un fichero son: apertura y cierre de un fichero (creat, open, close), lectura y escritura (read, write), y acceso aleatorio (lseek).\n"
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":3} ,"code_url":null, "content":""}
     },
 {
 
