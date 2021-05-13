@@ -26,11 +26,11 @@ class MembersController extends Controller
         $course = Course::find($courseId);
 
         $validated = Validator::make($request->all(), [
-            'file'=>[],
+            'file'=>['mimes:csv, txt'],
             'email' => ['string', 'max:255']
         ])->validateWithBag('addCourseMember');
 
-        if($validated['file']){
+        if(isset($validated['file'])){
             $fileName = time().'_'.$request->file('file')->getClientOriginalName();
             $request->file('file')->storeAs("studentsBatch/", $fileName);
             $csv = fopen("../storage/app/studentsBatch/{$fileName}", 'r');
