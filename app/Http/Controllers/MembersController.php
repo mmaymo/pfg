@@ -125,6 +125,7 @@ class MembersController extends Controller
      */
     protected function addMemberRoleAndPoints($course, $newCourseMember): void
     {
+        Storage::disk('local')->makeDirectory("codetest/{$newCourseMember->id}");
         $course->users()->attach($newCourseMember, ['points' => 0]);
         $newCourseMember->assignRole(self::ALUMNO);
     }
