@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Laravel\Jetstream\Jetstream;
@@ -27,6 +28,7 @@ class TaskController extends Controller
      */
     public function show(Request $request, $courseId, $taskId)
     {
+        Log::debug('Show task method', [$request->all(), $courseId, $taskId]);
         $course = Course::find($courseId);
         $teacher = User::find($course->user_id)->name;
         if (! $request->user()->can('view courses')) {
@@ -87,7 +89,8 @@ class TaskController extends Controller
                 'contents'=>$task->properties,
                 'isDone'=>$taskDone,
                 'previousId'=>$previous,
-                'nextId'=>$next
+                'nextId'=>$next,
+                'user'=>Auth::user()->getAuthIdentifier()
             ],
             'coursePoints'=>$coursePoints,
             'courseProgress'=>$courseProgress,
@@ -270,7 +273,7 @@ class TaskController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $courseId
-     * @param                          $taskId
+     *
      *
      * @return \Illuminate\Http\RedirectResponse
      */

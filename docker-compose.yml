@@ -62,6 +62,8 @@ services:
       - 8999:8999
     restart: unless-stopped
     working_dir: /var/www/
+    volumes:
+        - ./storage/app/codetest:/var/www/codetest
     networks:
       - pfguned
 

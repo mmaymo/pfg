@@ -187,8 +187,8 @@ export default {
                     return {
                         content: this.task.properties ? this.task.properties.content : false,
                         code_url: this.task.properties.code_url,
-                        scriptPrevious: this.task.properties.previous? this.task.properties.scriptPrevious:'',
-                        scriptAfter: this.task.properties.previous? this.task.properties.scriptAfter:'',
+                        scriptPrevious: this.task.properties.scriptPrevious? this.task.properties.scriptPrevious:false,
+                        scriptAfter: this.task.properties.scriptAfter? this.task.properties.scriptAfter:false,
                         quiz: {
                             question: this.task.properties.quiz.question,
                             responses: {

@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -39,6 +40,8 @@ class CourseSeeder extends Seeder
         $teacherRole->syncPermissions([$editPermission ,$viewPermission]);
 
         $teacher->assignRole('profesor');
+        Storage::disk('local')->makeDirectory("codetest/{$teacher->id}");
+        Storage::disk('local')->makeDirectory("codetest/{$student->id}");
 
 
         Course::factory()->count(1)->create();

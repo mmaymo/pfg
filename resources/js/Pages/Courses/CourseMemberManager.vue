@@ -126,7 +126,7 @@
                                 <div class="ml-4">{{ user.points }} Puntos</div>
                             </div>
                             <div class="flex items-center">
-                                <div class="ml-4">Progreso: {{ user.progress }}%</div>
+                                <div class="ml-4">Progreso: {{ user.progress.toFixed(1) }}%</div>
                             </div>
 
                             <div class="flex items-center">

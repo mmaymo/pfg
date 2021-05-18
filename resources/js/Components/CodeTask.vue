@@ -12,7 +12,7 @@
 
         </div>
         <div v-if="testResult" class="flex justify-center">
-            <pre> {{ testResult }}</pre>
+            <pre> {{ showResult }}</pre>
         </div>
 
     </div>
@@ -34,6 +34,8 @@ export default {
             testResult: "",
             studentCommand:"",
             pid:'',
+            readyToTest:false,
+            showResult:"",
             options: {
                 cursorBlink: true,
                 theme: {
@@ -62,41 +64,50 @@ export default {
         startTerminal(pid){
             let term = new Terminal(this.options)
             const socket = new WebSocket('ws://0.0.0.0:8999/terminals/'+ pid)
-            //TODO pillo el id del user creo su carpeta si no existe y entro en ella
-            const user = 2
-            let data = `mkdir alumno${user} \n cd alumno${user} \n`
-            this.preparationScript(pid, data)
-            data = this.task.contents.scriptPrevious
-            this.preparationScript(pid, data)
+            const user = this.task.user
             const attachAddon = new AttachAddon(socket)
             term.loadAddon(attachAddon)
             term.open(document.getElementById('terminal'))
             term.focus();
-            term.writeln('Puede escribir su código a continuación');
-            term.prompt = () => {
-                term.write('\r\n$ ')
+            term.writeln('Puede escribir su código a continuación')
+            let data = `cd codetest/${user} \n`
+            this.preparationScript(pid, data)
+            data = this.task.contents.scriptPrevious
+            this.preparationScript(pid, data)
+            let currentObj = this;
+            socket.onmessage = function(evt){
+                currentObj.testResult += evt.data
+                currentObj.checkAnswer()
             }
-            term.prompt()
+        },
+        checkAnswer(){
+            let countTrue = (this.testResult.match(/true/g) || []).length;
+            let countFalse = (this.testResult.match(/false/g) || []).length;
+            if(countTrue === 0 && countFalse === 0){return}
+            if(countFalse === 2){
+                this.showResult = "La respuesta es incorrecta, puede seguir adelante :)"
+                this.addPoints(false)
+            }
+            if(countTrue === 2){
+                this.showResult = "Excelente, puede seguir adelante :)"
+                this.addPoints(true)
+            }
         },
         testCode() {
-            let currentObj = this;
-            //TODO Alumnos registradostengo que recoger el test del objeto
             const data = this.task.contents.scriptAfter
-            this.preparationScript(this.pid, data)
-
-            //tengo que recoger lo que devuelve y mostrarlo
-            //tengo que llamar al backend para sumar o no los puntos y poner la tarea a hecho
+            this.testScript(this.pid, data)
+        },
+        addPoints(passed){
+            let currentObj = this;
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             axios.post(route('testCodeTask', {'course': this.courseId, 'task': this.task.id}), {
-                userAnswer: currentObj.studentCommand
+                userAnswer: passed
             }).then(response => {
-                currentObj.testResult = response.data
-                currentObj.task.isDone = true
+                currentObj.task.isDone = true;
             }).catch(function (error) {
                 console.warn(error)
             });
         },
-
         preparationScript(pid, data) {
             axios.post('http://0.0.0.0:8999/terminals/'+ pid+'/data', {
                 pid:pid,
@@ -106,7 +117,17 @@ export default {
             }).catch(function (error) {
                 console.log(error)
             });
-        }
+        },
+        testScript(pid, data) {
+            axios.post('http://0.0.0.0:8999/terminals/'+ pid+'/data', {
+                pid:pid,
+                data: data
+            }).then(response => {
+                this.readyToTest = true
+            }).catch(function (error) {
+                console.log(error)
+            });
+        },
     },
 }
 </script>

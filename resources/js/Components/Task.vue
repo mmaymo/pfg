@@ -92,25 +92,26 @@ export default {
         addPoints(){
             this.message = 'Para poder avanzar debes completar antes la tarea'
             if (this.task.type === 'document' || this.task.type === 'card' || this.task.type === 'chapter') {
-                console.log('aui')
+                this.form.nextId = this.task.nextId
+                this.form.taskId = this.task.id
                 this.form.post('addDone', this.courseId);
                 this.message = '';
             }
         },
 
     },
-    updated(){
-        this.form.nextId = this.task.nextId
-        this.form.taskId = this.task.id
-    },
+
     data() {
         return {
             form: this.$inertia.form({
-                nextId: this.task.nextId, taskId: this.task.id
-            }, {
-                bag: 'default',
-                resetOnSuccess: true,
-            }),
+                    nextId: this.task.nextId,
+                    taskId: this.task.id,
+                }, {
+                    bag: 'default',
+                    preserveState: true,
+                    resetOnSuccess: true
+                }
+            ),
             message: '',
             mailLink: "mailto:test@test.com?subject=Error%20en%20la%20tarea%20".concat(this.task.id)
 

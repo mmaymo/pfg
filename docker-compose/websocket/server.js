@@ -44,7 +44,11 @@ function startServer() {
         console.log('Sending data to terminal ' + term.pid);
         console.log('The data ' + req.body.data);
         term.write(req.body.data)
-
+        term.on('data', function(data) {
+            logs[term.pid] += data;
+        });
+        res.send(req.body.data)
+        res.end()
     });
 
     app.post('/terminals/:pid/size', (req, res) => {
