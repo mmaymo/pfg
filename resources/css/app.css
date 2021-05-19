@@ -7,3 +7,26 @@
         @apply opacity-50 bg-gray-100 border border-blue-500;
     }
 }
+@layer base{
+    h1 {
+        @apply text-2xl mt-4 font-bold;
+    }
+    h2 {
+        @apply text-xl mt-4 font-bold;
+    }
+    code {
+        @apply bg-black text-white
+    }
+    pre {
+        @apply bg-black text-white
+    }
+    blockquote {
+        @apply border-l-4 border-green-400 bg-gray-200 p-4 m-8
+    }
+    ul{
+        @apply pl-4
+    }
+    img{
+        @apply m-8
+    }
+}
