@@ -24,7 +24,7 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": "1",
         "type": "document",
         "name": "Arquitectura del sistema operativo UNIX",
@@ -35,7 +35,7 @@
     },
     {
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "Servicios realizados por el núcleo",
@@ -48,7 +48,7 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "Modos de ejecución",
@@ -61,7 +61,7 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "Estructura del sistema operativo UNIX",
@@ -73,7 +73,7 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "La interfaz de usuario para el sistema de ficheros ",
@@ -85,18 +85,21 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "code",
         "name": "La interfaz de usuario para el sistema de ficheros 2",
         "properties":
-        {"card": {"back": null, "front": null},"quiz": {"question": null, "responses": [null, null, null, null], "correctAnswer": 0},	"content": "include <unistd.h> #include <sys/types.h> #include <sys/stat.h> #include <fcntl.h> int main(void)\n{\nint id;\nid=open(\"fichero\",O_WRONLY|O_APPEND|O_CREAT,0777);\nclose(id); }\n\n\n\nSi el programa se compila con el nombre programa, al ejecutarlo creará un archivo de nombre fichero [1] pasando como modo el valor 0777 lo que indica que los permisos serán “como máximo” de lectura, escritura y ejecución para el propietario, el grupo y otros.\n¿Qué permisos tendrá el fichero creado? Depende del usuario que lo ejecute.\nUn usuario normal suele tiene una máscara umask=0002 que puede comprobar del siguiente modo:\n$umask 0002\nSupongamos que ese usuario ejecuta el programa, entocnes los permisos del fichero creado son los siguientes:\n$./programa\n$ ls -l fichero\n-rwxrwxr-x 1 sistemas sistemas 0 nov 29 19:09 ficheroEsto es, los permisos son 0775 (~0002 & 0777 = 0775). Para verlo con mayor claridad es conveniente pasarlo a binario:\nUmask = 000 000 010 Modo = 111 111 111 Modo efectivo = 111 111 101\nDe este modo, el 1 en el bit asociado a los permisos de escritura para otros usuarios de umask, impide que establezcan permisos de escritura para el fichero recién creado.\nEl usuario root, por otra parte tiene un valor de umask más restrictivo:\n#umask 0022\nDe tal modo que si ejecuta él dicho programa no se establecen permisos de escritura ni para el grupo ni para otros usuarios:\n# ./programa\n# ls -l fichero\n-rwxr-xr-x 1 root root 0",
-            "code_url": "Ejemplo_1-4.c"     }
+        {"card": {"back": null, "front": null}, "quiz": {"question": null, "responses": [], "correctAnswer": [[0]]},
+            "content": "Hemos copiado un archivo en c llamado ```ejemplo_4.c``` en su carpeta.\nSi el programa se compila con el nombre programa ```gcc ejemplo_4.c -o programa```, al ejecutarlo \n```\n$ ./programa\n```\ncreará un archivo de nombre ```fichero``` pasando como modo el valor 0777 lo que indica que los permisos serán “como máximo” de lectura, escritura y ejecución para el propietario, el grupo y otros.\n¿Qué permisos tendrá el fichero creado? Depende del usuario que lo ejecute.\nUn usuario normal suele tiene una máscara ```umask=0002``` que puede comprobar del siguiente modo:\n```\n$ umask\n0002\n```\nSupongamos que ese usuario ejecuta el programa, entonces los permisos del fichero creado son los siguientes:\n\n```\n$ ls -l fichero\n-rwxrwxr-x 1 sistemas sistemas 0 nov 29 19:09 fichero\n```\nEsto es, los permisos son ```0775 (~0002 & 0777 = 0775)```. Para verlo con mayor claridad es conveniente pasarlo a binario:\n```\nUmask = 000 000 010 \nModo = 111 111 111 \nModo efectivo = 111 111 101 \n```\nDe este modo, el 1 en el bit asociado a los permisos de escritura para otros usuarios de ```umask```, impide que establezcan permisos de escritura para el fichero recién creado. El usuario ```root```, por otra parte tiene un valor de umask más restrictivo: \n```\n$ umask\n0022\n```\nDe tal modo que si ejecuta él dicho programa no se establecen permisos de escritura ni para el grupo ni para otros usuarios: \n```\n$ ./programa\nls -l fichero\n-rwxr-xr-x 1 root root 0\n```",
+
+
+            "code_url": "Ejemplo_1-4.c", "scriptAfter": "ls | grep -q fichero  && echo true || echo false\n", "scriptPrevious": "cp ../ejemplos_c/ejemplo_4.c ejemplo_4.c\n"}
     },
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "La interfaz de usuario para el sistema de ficheros 3",
@@ -108,20 +111,17 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "code",
         "name": "La interfaz de usuario para el sistema de ficheros 4",
         "properties":
-        {"card": {"back": null, "front": null},"quiz": {"question": null, "responses": [null, null, null, null], "correctAnswer": 0},
-            "content": "",
-
-            "code_url": "Ejemplo_1-5.c"     }
+        {"card": {"back": null, "front": null}, "quiz": {"question": null, "responses": [], "correctAnswer": [[[0]]]}, "content": "Hemos copiado un archivo en c llamado ```ejemplo_4.c``` en su carpeta.\nSi el programa se compila con el nombre programa ```gcc ejemplo_4.c -o programa```, al ejecutarlo \n```\n$ ./programa\n```\ncreará un archivo de nombre ```fichero``` pasando como modo el valor 0777 lo que indica que los permisos serán “como máximo” de lectura, escritura y ejecución para el propietario, el grupo y otros.\n¿Qué permisos tendrá el fichero creado? Depende del usuario que lo ejecute.\nUn usuario normal suele tiene una máscara ```umask=0002``` que puede comprobar del siguiente modo:\n```\n$ umask\n0002\n```\nSupongamos que ese usuario ejecuta el programa, entonces los permisos del fichero creado son los siguientes:\n\n```\n$ ls -l fichero\n-rwxrwxr-x 1 sistemas sistemas 0 nov 29 19:09 fichero\n```\nEsto es, los permisos son ```0775 (~0002 & 0777 = 0775)```. Para verlo con mayor claridad es conveniente pasarlo a binario:\n```\nUmask = 000 000 010 \nModo = 111 111 111 \nModo efectivo = 111 111 101 \n```\nDe este modo, el 1 en el bit asociado a los permisos de escritura para otros usuarios de ```umask```, impide que establezcan permisos de escritura para el fichero recién creado. El usuario ```root```, por otra parte tiene un valor de umask más restrictivo: \n```\n$ umask\n0022\n```\nDe tal modo que si ejecuta él dicho programa no se establecen permisos de escritura ni para el grupo ni para otros usuarios: \n```\n$ ./programa\nls -l fichero\n-rwxr-xr-x 1 root root 0\n```", "code_url": "ejemplo_4.c", "scriptAfter": "ls | grep -q fichero  && echo true || echo false", "scriptPrevious": "cp ../ejemplos_c/ejemplo_4.c ejemplo_4.c"}
     },
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "La interfaz de usuario para el sistema de ficheros 5",
@@ -134,19 +134,15 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 10,
         "chapter_id": null,
         "type": "code",
-        "name": "La interfaz de usuario para el sistema de ficheros 5",
+        "name": "La interfaz de usuario para el sistema de ficheros 6",
         "properties":
-        {
-            "type": "code",
-            "content": "",
-            "code_url": "Ejemplo_1-6.c"     }
-    },
+        {"card": {"back": null, "front": null}, "quiz": {"question": null, "responses": [], "correctAnswer": [[[[0]]]]}, "content": "UNIX permite realizar tanto accesos secuenciales como accesos aleatorios a un fichero. El patrón de acceso por defecto es secuencial. El núcleo mantiene un puntero de lectura/escritura al fichero, que es inicializado a cero cuando un proceso abre por primera vez un fichero. La llamada al sistema `lseek` permite realizar accesos aleatorios mediante la configuración del puntero de lectura/escritura a un valor especifico. Su sintaxis es:\n    \n```\nresultado=lseek(fd,offset,origen);\n```\ndonde `fd` es el descriptor del fichero, `offset` es el número de bytes que se va desplazar el puntero y origen es la posición desde donde se va desplazar el puntero, que puede tomar los siguientes valores constantes definidos en el fichero de cabecera `<stdio.h>:`\n**SEEK_SET**. El puntero avanza offset bytes con respecto al inicio del fichero. El valor de esta constante es 0.\n**SEEK_CUR.** El puntero avanza offset bytes con respecto a su posición actual. El valor de esta constante es 1.\n**SEEK_END**. El puntero avanza offset bytes con respecto al final del fichero. El valor de esta constante es 2.\nSi `offset` es un número positivo, los avances deben entenderse en su sentido natural; es decir, desde el inicio del fichero hacia el final del mismo. Sin embargo, también se puede conseguir que el puntero retroceda pasándole a `lseek` un desplazamiento negativo.\nSi la llamada se ejecuta con éxito en `resultado` se almacena la posición que ha tomado el puntero de lectura/escritura, medida en bytes, con respecto al inicio del fichero. En caso de error en `resultado` se almacena el valor -1.\n\nConsidérese el siguiente programa escrito en C que permite visualizar una determinada línea de un fichero supuesto que la longitud de las líneas de ese fichero es de 41 caracteres.\n```\n#include <stdio.h>\n#include <stdlib.h>\n#include <fcntl.h>\n#include <unistd.h>\n#define LL 41\nint main(int np, char* a[])\n   {\n   int b, id, h;\n   char alm[LL+1];\n   if\n(np==3)\n{\nb=atoi(a[2]);\nid=open(a[1],O_RDWR);\nif ( (id!=-1) && (lseek(id,(b-1)*LL,0)!=-1)\n              && (read(id,alm,LL)>0) )\n{\nprintf(\"\\n\");\nfor(h=0;h<LL;h=h+1) printf(\"%c\",alm[h]);\n printf(\"\\n\");\n}\nelse\n           printf(\"\\nError\\n\");\n} else\nexit(1);\n```\nSupóngase que el ejecutable que resulta de compilar este programa se llama exlseek y que es invocado desde la línea de órdenes del terminal de la siguiente forma:\n     \n```\n$ exlseek errores.dat 3\n```\n\nPuesto que la definición hecha de main permite pasar parámetros al ejecutable, en primer lugar [1] se comprueba que la invocación del programa se ha realizado con tres parámetros (recordar que el nombre del ejecutable se considera un parámetro más). En caso negativo se invoca [9] a la llamada al sistema `exit` para terminar el programa.\nEn caso positivo, en primer lugar [2] se ejecuta la función de librería `atoi` para convertir el número de línea 3 introducido como parámetro de main de tipo carácter a tipo entero. A continuación se invoca [3] a la llamada al sistema open para abrir con permisos de lectura y escritura el fichero errores.dat pasado como argumento de `main`. Acto seguido [4], se comprueba si la llamada `open` se ha ejecutado con éxito. Recuérdese que en dicho caso en la variable `id` se almacena el descriptor del fichero que es un número entero distinto de -1. También se invoca a la llamada al sistema `lseek` para posicionar el puntero de lectura/escritura al principio de la tercera línea del fichero. Asimismo se comprueba si durante la ejecución de `lseek` se ha producido algún error. Además se invoca a la llamada al sistema read para leer dicha línea del fichero y almacenarla en la variable alm. También se comprueba si dicha llamada ha logrado leer la línea pedida. Si alguna de las comprobaciones anteriores da un resultado negativo entonces [8] se imprime por pantalla el mensaje\n```\nError\n```\ny el programa finaliza.\nSi las tres comprobaciones realizadas en [4] son positivas se muestra por pantalla: un salto de línea [5], la línea pedida escribiéndola carácter a carácter a través de un bucle for [6] y otro salto de línea [7]. Luego en pantalla aparece\n     \n```\nMensaje C: Violación del segmento.......\n```\ny el programa finaliza.", "code_url": "ejemplo_4.c", "scriptAfter": null, "scriptPrevious": "cp ../ejemplos/exlseek.c exlseek.c"}    },
     {
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "Librería estándar de funciones de entrada/salida",
@@ -159,7 +155,7 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "Origen del término proceso demonio",
@@ -172,7 +168,7 @@
     {
 
         "course_id": 1,
-        "points": 0,
+        "points": 1,
         "chapter_id": null,
         "type": "document",
         "name": "Resumen: ¿Qué hemos aprendido?",
