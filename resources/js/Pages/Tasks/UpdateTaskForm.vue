@@ -15,7 +15,17 @@
                 <basic-details-task-form :form.sync="form" :chapters="chapters"
                                          :availableTypes="availableTypes"
                                          :courseId="courseId"></basic-details-task-form>
-
+                <div v-if="form.type == 'code'" class="col-span-6 sm:col-span-4">
+                    <form
+                        @submit.prevent="uploadCodeTest"
+                        method="post"
+                        enctype="multipart/form-data">
+                        <jet-label for="file" value="Suba los archivos necesarios para realizar la prueba"/>
+                        <input type="file" ref="testCode" class="mt-1 block w-full" @change="updateTestFile"/>
+                        <br/>
+                        <jet-button> Guardar archivo</jet-button>
+                    </form>
+                </div>
                 <div v-if="form.type == 'quiz' || form.type == 'multipleQuiz'">
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="question" value="Texto de la pregunta"/>
@@ -80,13 +90,15 @@
                 </div >
 
                 <div class="col-span-6 sm:col-span-4" v-if="form.type === 'code'">
-                    <jet-label  value="Código ejecutable previo"/>
+                    <jet-label  value="Comandos que deben ejecutarse antes de realizar la prueba"/>
                     <markdown-editor-section :properties.sync="form.properties.scriptPrevious"></markdown-editor-section>
                 </div >
                 <div class="col-span-6 sm:col-span-4" v-if="form.type === 'code'">
-                    <jet-label  value="Código ejecutable después"/>
+                    <jet-label  value="Código ejecutable para testar la prueba"/>
                     <markdown-editor-section :properties.sync="form.properties.scriptAfter"></markdown-editor-section>
                 </div >
+
+
             </template>
 
 
@@ -173,11 +185,6 @@ export default {
                 });
             },
             updateTask() {
-                if (this.$refs.testCode) {
-
-                    this.form.properties['code_url'] = this.$refs.testCode.files[0].name
-                }
-
                 this.form.put(route('courses.tasks.update', {'course': this.courseId, 'task': this.task.id}), {
                     preserveScroll: true
                 });
