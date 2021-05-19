@@ -75,18 +75,34 @@
         {"card": {"back": null, "front": null}, "quiz": {"question": null, "responses": [], "correctAnswer": [0]}, "content": "## Ficheros y directorios\nUn fichero es un contenedor permanente de datos. Un fichero permite tanto el acceso secuencial como el acceso aleatorio a sus datos. El núcleo suministra al usuario varias operaciones de control para nombrar, organizar y controlar el acceso a los ficheros. El núcleo no interpreta el contenido o la estructura de los ficheros, simplemente considera que un fichero es una colección de bytes. Además posibilita el acceso a los contenidos del fichero mediante flujos de bytes.", "code_url": null, "scriptAfter": false, "scriptPrevious": false}
     },
     {
-
         "course_id": 1,
         "points": 10,
         "chapter_id": null,
         "type": "code",
         "name": "La interfaz de usuario para el sistema de ficheros 2",
-        "properties":
-        {"card": {"back": null, "front": null}, "quiz": {"question": null, "responses": [], "correctAnswer": [[0]]},
-            "content": "Hemos copiado un archivo en c llamado ```ejemplo_4.c``` en su carpeta.\nSi el programa se compila con el nombre programa ```gcc ejemplo_4.c -o programa```, al ejecutarlo \n```\n$ ./programa\n```\ncreará un archivo de nombre ```fichero``` pasando como modo el valor 0777 lo que indica que los permisos serán “como máximo” de lectura, escritura y ejecución para el propietario, el grupo y otros.\n¿Qué permisos tendrá el fichero creado? Depende del usuario que lo ejecute.\nUn usuario normal suele tiene una máscara ```umask=0002``` que puede comprobar del siguiente modo:\n```\n$ umask\n0002\n```\nSupongamos que ese usuario ejecuta el programa, entonces los permisos del fichero creado son los siguientes:\n\n```\n$ ls -l fichero\n-rwxrwxr-x 1 sistemas sistemas 0 nov 29 19:09 fichero\n```\nEsto es, los permisos son ```0775 (~0002 & 0777 = 0775)```. Para verlo con mayor claridad es conveniente pasarlo a binario:\n```\nUmask = 000 000 010 \nModo = 111 111 111 \nModo efectivo = 111 111 101 \n```\nDe este modo, el 1 en el bit asociado a los permisos de escritura para otros usuarios de ```umask```, impide que establezcan permisos de escritura para el fichero recién creado. El usuario ```root```, por otra parte tiene un valor de umask más restrictivo: \n```\n$ umask\n0022\n```\nDe tal modo que si ejecuta él dicho programa no se establecen permisos de escritura ni para el grupo ni para otros usuarios: \n```\n$ ./programa\nls -l fichero\n-rwxr-xr-x 1 root root 0\n```",
-
-
-            "code_url": "Ejemplo_1-4.c", "scriptAfter": "ls | grep -q fichero  && echo true || echo false\n", "scriptPrevious": "cp ../ejemplos_c/ejemplo_4.c ejemplo_4.c\n"}
+        "properties": {
+            "card": {
+                "back": null,
+                "front": null
+            },
+            "quiz": {
+                "question": null,
+                "responses": [],
+                "correctAnswer": [
+                    [
+                        [
+                            [
+                                0
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "content": "Sea un archivo en c llamado ```ejemplo_4.c``` en su carpeta.\nSi el programa se compila con el nombre programa ```gcc ejemplo_4.c -o programa```, al ejecutarlo \n```\n$ ./programa\n```\ncreará un archivo de nombre ```fichero``` pasando como modo el valor 0777 lo que indica que los permisos serán “como máximo” de lectura, escritura y ejecución para el propietario, el grupo y otros.\n¿Qué permisos tendrá el fichero creado? Depende del usuario que lo ejecute.\nUn usuario normal suele tiene una máscara ```umask=0002``` que puede comprobar del siguiente modo:\n```\n$ umask\n0002\n```\nSupongamos que ese usuario ejecuta el programa, entonces los permisos del fichero creado son los siguientes:\n\n```\n$ ls -l fichero\n-rwxrwxr-x 1 sistemas sistemas 0 nov 29 19:09 fichero\n```\nEsto es, los permisos son ```0775 (~0002 & 0777 = 0775)```. Para verlo con mayor claridad es conveniente pasarlo a binario:\n```\nUmask = 000 000 010 \nModo = 111 111 111 \nModo efectivo = 111 111 101 \n```\nDe este modo, el 1 en el bit asociado a los permisos de escritura para otros usuarios de ```umask```, impide que establezcan permisos de escritura para el fichero recién creado. El usuario ```root```, por otra parte tiene un valor de umask más restrictivo: \n```\n$ umask\n0022\n```\nDe tal modo que si ejecuta él dicho programa no se establecen permisos de escritura ni para el grupo ni para otros usuarios: \n```\n$ ./programa\nls -l fichero\n-rwxr-xr-x 1 root root 0\n```",
+            "code_url": "Ejemplo_1-4.c",
+            "scriptAfter": "ls | grep -q fichero  && echo true || echo false",
+            "scriptPrevious": "cp ../ejemplos/ejemplo_4.c ejemplo_4.c"
+        }
     },
     {
 
