@@ -34,6 +34,11 @@ function startServer() {
         term.on('data', function(data) {
             logs[term.pid] += data;
         });
+        const createUserCommand = `useradd -m -d /var/www/codetest/${req.body.id} -U alumno${req.body.id}\n`
+        term.write(createUserCommand)
+
+        const changeToUserCommand = `su - alumno${req.body.id}\n`
+        term.write(changeToUserCommand)
 
         res.send(term.pid.toString());
         res.end();

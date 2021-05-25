@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div v-if="textContent.content" class="p-4 text-justify">
             <VueShowdown :markdown="textContent.content"/>
         </div>
@@ -54,6 +55,7 @@ export default {
             let currentObj = this;
             axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             axios.post('http://0.0.0.0:8999/terminals', {
+                id:this.task.user
             }).then(response => {
                 currentObj.pid = response.data
                 this.startTerminal(response.data)
@@ -70,9 +72,7 @@ export default {
             term.open(document.getElementById('terminal'))
             term.focus();
             term.writeln('Puede escribir su código a continuación')
-            let data = `cd codetest/${user} \n`
-            this.preparationScript(pid, data)
-            data = this.task.contents.scriptPrevious
+            let data = this.task.contents.scriptPrevious
             this.preparationScript(pid, data)
             let currentObj = this;
             socket.onmessage = function(evt){
