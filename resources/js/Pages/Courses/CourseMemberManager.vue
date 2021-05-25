@@ -33,6 +33,37 @@
                     </jet-button>
                 </template>
             </jet-form-section>
+            <jet-form-section @submitted="registerMailTeacher">
+                <template #title>
+                    Registrar profesor
+                </template>
+
+                <template #description>
+                </template>
+
+                <template #form>
+                    <div class="col-span-6">
+                        <div class="max-w-xl text-sm text-gray-600">
+                            Introduzca el email de la persona que desee añadir.
+                        </div>
+                    </div>
+                    <div class="col-span-6 sm:col-span-4">
+                        <jet-label for="registerTeacher" value="Registrar email" />
+                        <jet-input id="registerTeacher" type="text" class="mt-1 block w-full" v-model="registerMailTeacherForm.email" autofocus/>
+                        <jet-input-error :message="registerMailTeacherForm.error('email')" class="mt-2"/>
+                    </div>
+                </template>
+
+                <template #actions>
+                    <jet-action-message :on="registerMailTeacherForm.recentlySuccessful" class="mr-3">
+                        Añadido.
+                    </jet-action-message>
+
+                    <jet-button :class="{ 'opacity-25': registerMailTeacherForm.processing }" :disabled="registerMailTeacherForm.processing">
+                        Añadir
+                    </jet-button>
+                </template>
+            </jet-form-section>
             <!-- Add Team Member -->
             <jet-form-section @submitted="addTeamMember">
                 <template #title>
@@ -77,19 +108,13 @@
                 </template>
 
                 <template #form>
-                    <div class="col-span-6">
-                        <div class="max-w-xl text-sm text-gray-600">
-                            Seleccione entre los usuarios dados de alta.
-                        </div>
-                    </div>
-                    <!-- Members File -->
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="studentsFile" value="Archivo de alumnos" />
                         <form
                             @submit.prevent="addTeamMemberBatch"
                             method="post"
                             enctype="multipart/form-data">
-                            <jet-label for="file" value="Archivo testcode.bats para evaluar la prueba"/>
+                            <jet-label for="file" value="El archivo tiene que ser de tipo csv y con nombre, apellido, mail"/>
                             <input type="file" ref="studentFile" class="mt-1 block w-full" @change="updateTestFile"/>
                             <br/>
                             <jet-button> Guardar archivo</jet-button>
@@ -265,6 +290,12 @@
                     bag: 'addCourseMember',
                     resetOnSuccess: true,
                 }),
+                registerMailTeacherForm: this.$inertia.form({
+                    email: ''
+                }, {
+                    bag: 'addCourseTeacherMember',
+                    resetOnSuccess: true,
+                }),
                 addTeamMemberForm: this.$inertia.form({
                     email: '',
                     role: null,
@@ -319,6 +350,11 @@
             },
             registerMail() {
                 this.registerMailForm.post(route('courses.users.store', this.courseId), {
+                    preserveScroll: true
+                });
+            },
+            registerMailTeacher() {
+                this.registerMailTeacherForm.post(route('addTeacher', this.courseId), {
                     preserveScroll: true
                 });
             },
