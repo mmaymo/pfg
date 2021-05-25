@@ -56,3 +56,4 @@ Route::post('courses/{course}/tasks/{task}/codetest', [CodeTestController::class
 Route::post('courses/{course}/tasks/{task}/upload', [CodeTestController::class, 'upload'])->name('uploadTest')->middleware(['auth','permission:view courses', 'permission:edit courses']);
 
 Route::get('courses/{course}/flash', [TaskController::class, 'flashCardsShuffle'])->name('flashCardsShuffle')->middleware(['auth','permission:view courses', 'permission:edit courses']);
+Route::post('users/teachers', [MembersController::class, 'addTeacher'])->name('addTeacher')->middleware(['auth', 'permission:edit courses']);

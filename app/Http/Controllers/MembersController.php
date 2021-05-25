@@ -13,6 +13,7 @@ use Laravel\Jetstream\Jetstream;
 class MembersController extends Controller
 {
     const ALUMNO = 'alumno';
+    const TEACHER = 'profesor';
 
     /**
      * Add a new member to the course.
@@ -26,10 +27,9 @@ class MembersController extends Controller
         $course = Course::find($courseId);
 
         $validated = Validator::make($request->all(), [
-            'file'=>['mimes:csv, txt'],
+            'file'=>[],
             'email' => ['string', 'max:255']
         ])->validateWithBag('addCourseMember');
-
         if(isset($validated['file'])){
             $fileName = time().'_'.$request->file('file')->getClientOriginalName();
             $request->file('file')->storeAs("studentsBatch/", $fileName);
@@ -58,6 +58,30 @@ class MembersController extends Controller
         }
 
         $this->addMemberRoleAndPoints($course, $newCourseMember);
+
+        return back(303);
+    }
+
+    /**
+     * Add a new member to the course.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param $courseId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addTeacher(Request $request)
+    {
+        $validated = Validator::make($request->all(), [
+            'email' => ['string', 'max:255']
+        ])->validateWithBag('addCourseTeacherMember');
+
+        if(User::where('email',$validated['email'])->exists()){
+            $newCourseMember = User::where('email',$validated['email'])->first();
+        }else{
+            $newCourseMember = $this->addNewMember($validated['email']);
+        }
+
+        $this->addTeacherRole($newCourseMember);
 
         return back(303);
     }
@@ -128,5 +152,10 @@ class MembersController extends Controller
         Storage::disk('local')->makeDirectory("codetest/{$newCourseMember->id}");
         $course->users()->attach($newCourseMember, ['points' => 0]);
         $newCourseMember->assignRole(self::ALUMNO);
+    }
+
+    protected function addTeacherRole($newCourseMember)
+    {
+        $newCourseMember->assignRole(self::TEACHER);
     }
 }
