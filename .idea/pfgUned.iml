@@ -90,9 +90,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/type" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/version" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/docker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-permission" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/macroable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/css-selector" />
@@ -127,6 +125,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/dusk" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-webdriver/webdriver" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

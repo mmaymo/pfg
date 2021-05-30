@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
+    libzip-dev \
+    wget \
+    gnupg2 \
     zip \
     unzip
 
@@ -21,7 +24,13 @@ RUN apt-get update && apt-get install -y docker.io
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+# Set the Chrome repo.
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+# Install Chrome.
+RUN apt-get update && apt-get -y install google-chrome-stable
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
