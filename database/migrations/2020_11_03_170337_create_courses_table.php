@@ -20,7 +20,7 @@ class CreateCoursesTable extends Migration
             $table->string('degree')->default('Ingeniería Informática');
             $table->boolean('semester')->default(false);
             $table->string('pic')->default('/images/unedDefault.jpg');
-            $table->json('positionArray');
+            $table->text('positionArray');
             $table->timestamps();
         });
     }

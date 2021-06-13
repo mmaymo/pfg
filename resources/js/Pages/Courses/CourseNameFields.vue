@@ -2,7 +2,7 @@
     <div>
         <div>
             <jet-label for="name" value="Nombre del curso *"/>
-            <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus/>
+            <jet-input id="name" name="name" type="text" class="mt-1 block w-full" v-model="form.name" autofocus/>
             <jet-input-error :message="form.error('name')" class="mt-2"/>
         </div>
     </div>

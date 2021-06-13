@@ -31,27 +31,18 @@ class CodeTestController extends Controller
         $this->addPoints($validated['userAnswer'], $courseId, $taskId);
     }
 
-    public function upload(Request $request,$courseId, $taskId){
+    protected function addPoints($isCorrect, $courseId, $taskId)
+    {
+        $task = Task::find($taskId);
+        $isDone = Auth::user()->isTaskCompleted($courseId, $taskId);
+        $task->maybeAddPoints($isDone, $isCorrect, $courseId);
+    }
+
+    public function upload(Request $request, $courseId, $taskId)
+    {
         $fileName = $request->testCode->getClientOriginalName();
         $request->testCode->storeAs("codetest/ejemplos/", $fileName);
 
         return back();
-    }
-
-    protected function addPoints($isCorrect,$courseId, $taskId)
-    {
-        $task =Task::find($taskId);
-        $isDone = Auth::user()->isTaskCompleted($courseId, $taskId);
-        Log::debug('$isDone', [$isDone]);
-        if(!$isDone){
-            if($isCorrect){
-                Log::debug('$task->points', [$task->points]);
-                $previousPoints = Auth::user()->coursePoints($courseId);
-                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
-                $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId, 'points'=>$task->points]);
-            }else{
-                $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId, 'points'=>0]);
-            }
-        }
     }
 }

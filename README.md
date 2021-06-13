@@ -36,6 +36,11 @@ docker-compose exec app php artisan migrate --seed
 
 The tool is now ready to visit in `http://192.168.1.88:8000/`
 
+Execute integration test with Dusk
+```
+docker-compose exec app php artisan serve --env=dusk.local
+```
+
 ## Usage
 ### Rol profesor
 #### Manual para introducir nuevos contenidos

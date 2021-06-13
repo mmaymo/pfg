@@ -58,11 +58,13 @@
             getAnswer(e) {
                 e.preventDefault();
                 let currentObj = this;
+                console.log('para solve task multiple')
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                axios.post(route('solveTask', {'course':this.courseId, 'task':this.task.id}), {
-                    userAnswer:this.picked
+                axios.post(route('solveTaskMultiple', {'course':this.courseId, 'task':this.task.id}), {
+                    userAnswer:[this.picked]
                 }).then(response => {
-                    currentObj.correctAnswer = response.data.index;
+                    console.log(response.data)
+                    currentObj.correctAnswer = response.data.index[0];
                     currentObj.message = response.data.message;
                     currentObj.isSubmitted = true;
                     currentObj.task.isDone = true;
@@ -70,13 +72,6 @@
                 }).catch(function (error) {
                     currentObj.correctAnswer = error;
                 });
-            },
-            shuffleResponsesArray(responsesArray) {
-                for (let i = responsesArray.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [responsesArray[i], responsesArray[j]] = [responsesArray[j], responsesArray[i]];
-                }
-                return responsesArray;
             }
         },
     }

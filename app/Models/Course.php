@@ -20,7 +20,8 @@ class Course extends Model
             'name',
             'degree',
             'semester',
-            'pic'
+            'pic',
+            'positionArray'
         ];
     /**
      * The attributes that should be cast to native types.
@@ -31,11 +32,6 @@ class Course extends Model
         'positionArray' => 'array',
     ];
 
-    public function team()
-    {
-        return $this->belongsTo('App\Models\Team', 'team_id');
-    }
-
     public function users()
     {
         return $this->belongsToMany('App\Models\User', 'users_course_progress')
@@ -43,7 +39,7 @@ class Course extends Model
     }
 
 
-    public function getMembersDetails(){
+    public function getCourseMembersDetails(){
         $users = $this->users;
         $members = [];
         foreach ($users as $user){
@@ -126,5 +122,48 @@ class Course extends Model
 
     public function deleteAllMembers(){
         $this->users()->detach();
+    }
+
+    /**
+     * Get course details to show on edit page
+     * @param $course
+     *
+     * @return array
+     */
+    public function courseDetailsEditPage($course): array
+    {
+        $userList = User::all();
+        $students = $course->getCourseMembersDetails();
+        $itinerary = $course->getOrderedChaptersWithTasks();
+        return [
+            'courseDetails' => [
+                'id' => $course->id,
+                'name' => $course->name,
+                'degree' => $course->degree,
+                'semester' => $course->semester,
+                'pic' => $course->pic
+            ],
+            'students' => $students,
+            'tasks' => $itinerary,
+            'userList' => $userList
+        ];
+    }
+
+    /**
+     * @param $orderedContentIds
+     *
+     * @return array
+     */
+    public function reorderTasks($orderedContentIds): array
+    {
+        $wholeObject = $orderedContentIds;
+        $newOrder = [];
+        foreach ($wholeObject as $content) {
+            $newOrder[$content['id']] = [];
+            foreach ($content['tasks'] as $task) {
+                array_push($newOrder[$content['id']], $task['id']);
+            }
+        }
+        return $newOrder;
     }
 }

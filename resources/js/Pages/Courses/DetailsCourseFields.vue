@@ -5,6 +5,7 @@
             <jet-label for="degree" value="Grado al que pertenece el curso"/>
 
             <jet-input id="degree"
+                       name="degree"
                        type="text"
                        class="mt-1 block w-full"
                        v-model="form.degree"/>
@@ -16,7 +17,7 @@
         <div >
             <jet-label for="semester" value="Semestre en que se imparte"/>
 
-            <jet-input id="semester"
+            <jet-input id="semester" name="semester"
                        type="text"
                        class="mt-1 block w-full"
                        v-model="form.semester"/>
@@ -29,6 +30,7 @@
             <jet-label for="pic" value="Imagen para el curso"/>
 
             <jet-input id="pic"
+                       name="pic"
                        type="text"
                        class="mt-1 block w-full"
                        v-model="form.pic"/>

@@ -61,10 +61,10 @@
                         <jet-label for="correctAnswer" value="Respuesta Correcta"/>
                         <select multiple name="type" id="correctAnswer"
                                 v-model="form.properties.quiz.correctAnswer">
-                            <option value="1">Respuesta 1</option>
-                            <option value="2">Respuesta 2</option>
-                            <option value="3">Respuesta 3</option>
-                            <option value="4">Respuesta 4</option>
+                            <option value="0">Respuesta 1</option>
+                            <option value="1">Respuesta 2</option>
+                            <option value="2">Respuesta 3</option>
+                            <option value="3">Respuesta 4</option>
                         </select>
                         <jet-input-error :message="form.error('correctAnswer')" class="mt-2"/>
                     </div>
@@ -199,12 +199,12 @@ export default {
                         quiz: {
                             question: this.task.properties.quiz.question,
                             responses: {
-                                t1: this.task.properties.quiz.responses.t1,
-                                t2: this.task.properties.quiz.responses.t2,
-                                t3: this.task.properties.quiz.responses.t3,
-                                t4: this.task.properties.quiz.responses.t4
+                                t1: this.task.properties.quiz.responses[0],
+                                t2: this.task.properties.quiz.responses[1],
+                                t3: this.task.properties.quiz.responses[2],
+                                t4: this.task.properties.quiz.responses[3]
                             },
-                            correctAnswer: [this.task.properties.quiz.correctAnswer]
+                            correctAnswer: this.task.properties.quiz.correctAnswer
                         },
                         card: {
                             front: this.task.properties.card.front,

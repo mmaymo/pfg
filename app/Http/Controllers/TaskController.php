@@ -11,11 +11,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
-use Laravel\Jetstream\Jetstream;
 
 class TaskController extends Controller
 {
-    const AVAILABLE_TASK_TYPES = ['document', 'quiz', 'multipleQuiz', 'card', 'code', 'introCourse', 'chapter'];
+    const AVAILABLE_TASK_TYPES
+        = [
+            'document',
+            'quiz',
+            'multipleQuiz',
+            'card',
+            'code',
+            'introCourse',
+            'chapter'
+        ];
 
     /**
      * Show the task contents.
@@ -31,70 +39,17 @@ class TaskController extends Controller
         Log::debug('Show task method', [$request->all(), $courseId, $taskId]);
         $course = Course::find($courseId);
         $teacher = User::find($course->user_id)->name;
-        if (! $request->user()->can('view courses')) {
+        if (!$request->user()->can('view courses')) {
             abort(403);
         }
-        $itinerary = $course->getOrderedChaptersWithTasks();
-        $allowedIds = Task::all()->filter(function ($task) use($courseId){
-            return $task->isAllowed(Auth::user()->id, $courseId);
-        })->pluck('id');
-        $coursePoints = Auth::user()->coursePoints($courseId);
-        $courseProgress = Auth::user()->courseProgress($courseId);
-        $task = Task::find($taskId);
-        if (! $request->user()->canSeeTask($courseId, $taskId)) {
-            return Jetstream::inertia()->render($request, 'Tasks/Show', [
-                'allowed'=>false,
-                'courseDetails' => [
-                'id'=>$course->id,
-                'name'=>$course->name,
-                'degree'=>$course->degree,
-                'semester'=>$course->semester,
-                'pic'=>$course->pic,
-                'teacher'=>$teacher],
-                'tasks'=>$itinerary,
-                'allowedIds'=>$allowedIds,
-                'task'=>[
-                    'id'=>$task->id,
-                    'name'=>$task->name,
-                    'type'=>$task->type
-                ],
-                'coursePoints'=>$coursePoints,
-                'courseProgress'=>$courseProgress,
-            ]);
-        }
-        $taskDone = $this->isDone($courseId, $taskId);
-        $flatItineray = $course->orderedTaskIdsFlat();
-        $tasksLenght = $course->taskCount();
-        $currentTaskPositionIndex = array_search($taskId, $flatItineray);
-        $nextIndex = ($currentTaskPositionIndex + 1)< $tasksLenght?$currentTaskPositionIndex + 1:$currentTaskPositionIndex;
-        $next = $flatItineray[$nextIndex];
-        $previousIndex = ($currentTaskPositionIndex -1)>=0?$currentTaskPositionIndex - 1:$currentTaskPositionIndex;
-        $previous = $flatItineray[$previousIndex];
 
-        return Jetstream::inertia()->render($request, 'Tasks/Show', [
-            'allowed'=>true,
-            'courseDetails' => [
-                'id'=>$course->id,
-                'name'=>$course->name,
-                'degree'=>$course->degree,
-                'semester'=>$course->semester,
-                'pic'=>$course->pic,
-                'teacher'=>$teacher],
-            'tasks'=>$itinerary,
-            'allowedIds'=>$allowedIds,
-            'task'=>[
-                'id'=>$task->id,
-                'name'=>$task->name,
-                'type'=>$task->type,
-                'contents'=>$task->properties,
-                'isDone'=>$taskDone,
-                'previousId'=>$previous,
-                'nextId'=>$next,
-                'user'=>Auth::user()->getAuthIdentifier()
-            ],
-            'coursePoints'=>$coursePoints,
-            'courseProgress'=>$courseProgress,
-        ]);
+        return Auth::user()->getTaskCourseDetails(
+            $course,
+            $courseId,
+            $taskId,
+            $request,
+            $teacher
+        );
     }
 
     /**
@@ -107,70 +62,55 @@ class TaskController extends Controller
      */
     public function flashCardsShuffle(Request $request, $courseId)
     {
-        $course = Course::find($courseId);
-
-        if (! $request->user()->can('view courses')) {
+        if (!$request->user()->can('view courses')) {
             abort(403);
         }
 
-        $teacher = User::find($course->user_id)->name;
-        $itinerary = $course->getOrderedChaptersWithTasks();
-
-        $flashTasks = Task::where('type', 'card')->get();
-
-        $coursePoints = Auth::user()->coursePoints($courseId);
-        $courseProgress = Auth::user()->courseProgress($courseId);
-        $allowedIds = Task::all()->filter(function ($task) use($courseId){
-            return $task->isAllowed(Auth::user()->id, $courseId);
-        })->pluck('id');
-
-
-
-        return Jetstream::inertia()->render($request, 'Tasks/Flashcard', [
-            'courseDetails' => [
-                'id'=>$course->id,
-                'name'=>$course->name,
-                'degree'=>$course->degree,
-                'semester'=>$course->semester,
-                'pic'=>$course->pic,
-                'teacher'=>$teacher],
-            'tasks'=>$itinerary,
-            'allowedIds'=>$allowedIds,
-            'cards'=>$flashTasks,
-            'coursePoints'=>$coursePoints,
-            'courseProgress'=>$courseProgress,
-        ]);
+        return Auth::user()->getFlashCardTaskCourseDetails(
+            $courseId,
+            $request
+        );
     }
 
     /**
      * Show the task creation screen.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $course
+     * @param int                      $course
+     *
      * @return \Inertia\Response
      */
     public function create(Request $request, $course)
     {
-        if (! $request->user()->can('edit courses')) {
+        if (!$request->user()->can('edit courses')) {
             abort(403);
         }
         $course = Course::find($course);
         $chapters = $course->tasks;
-
         $availableTypes = self::AVAILABLE_TASK_TYPES;
 
-        return Inertia::render('Tasks/Create', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes]);
+        return Inertia::render(
+            'Tasks/Create',
+            [
+                'courseName' => $course->name,
+                'courseId' => $course->id,
+                'chapters' => $chapters,
+                'availableTypes' => $availableTypes
+            ]
+        );
     }
+
     /**
      * Show the task edit screen.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $course
+     * @param int                      $course
+     *
      * @return \Inertia\Response
      */
     public function edit(Request $request, $course, $taskId)
     {
-        if (! $request->user()->can('edit courses')) {
+        if (!$request->user()->can('edit courses')) {
             abort(403);
         }
         $course = Course::find($course);
@@ -178,66 +118,83 @@ class TaskController extends Controller
         $chapters = $course->tasks;
         $availableTypes = self::AVAILABLE_TASK_TYPES;
 
-        return Inertia::render('Tasks/Edit', ['courseName'=>$course->name, 'courseId'=>$course->id, 'chapters'=>$chapters, 'availableTypes'=>$availableTypes, 'task'=>$task]);
+        return Inertia::render(
+            'Tasks/Edit',
+            [
+                'courseName' => $course->name,
+                'courseId' => $course->id,
+                'chapters' => $chapters,
+                'availableTypes' => $availableTypes,
+                'task' => $task
+            ]
+        );
     }
 
     /**
      * Create a new task.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, $course)
     {
-        if (! $request->user()->can('edit courses')) {
+        if (!$request->user()->can('edit courses')) {
             abort(403);
         }
-        $validated = $request->validate([
-            'name' => 'required',
-            'type' => 'required',
-            'chapter_id'=>'',
-            'points' => '',
-            'properties' => ''
-        ]);
+        $validated = $request->validate(
+            [
+                'name' => 'required',
+                'type' => 'required',
+                'chapter_id' => '',
+                'points' => '',
+                'properties' => ''
+            ]
+        );
         $validated['course_id'] = $course;
 
         $task = Task::create($validated);
         $course = Course::find($course);
         $positions = $course->positionArray;
-        $chapter_id = isset($validated['chapter_id'])? $validated['chapter_id']: false;
-        if($chapter_id){
+        $chapter_id = isset($validated['chapter_id']) ? $validated['chapter_id']
+            : false;
+        if ($chapter_id) {
             array_push($positions[$chapter_id], $task->id);
-        }else{
+        } else {
             $positions[$task->id] = [];
         }
 
         $course->positionArray = $positions;
         $course->save();
 
-        return redirect()->route('courses.show',[$course]);
+        return redirect()->route('courses.show', [$course]);
     }
 
     /**
      * Update the given task.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  int $task
+     * @param int                      $task
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,$courseId, $taskId)
+    public function update(Request $request, $courseId, $taskId)
     {
-        if (! $request->user()->can('edit courses')) {
+        if (!$request->user()->can('edit courses')) {
             abort(403);
         }
 
-        $validated = Validator::make($request->all(), [
-            'name' => 'required',
-            'type' => 'required',
-            'chapter_id' => 'nullable',
-            'points' => 'required',
-            'properties' => 'required',
-            'parent_id'=>'nullable'
-        ])->validateWithBag('updateTask');
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required',
+                'type' => 'required',
+                'chapter_id' => 'nullable',
+                'points' => 'required',
+                'properties' => 'required',
+                'parent_id' => 'nullable'
+            ]
+        )->validateWithBag('updateTask');
         $task = Task::find($taskId);
 
         $task->update($validated);
@@ -256,18 +213,18 @@ class TaskController extends Controller
      */
     public function destroy(Request $request, $courseId, $taskId)
     {
-        if (! $request->user()->can('edit courses')) {
+        if (!$request->user()->can('edit courses')) {
             abort(403);
         }
 
         $task = Task::find($taskId);
-        //delete from positions
         $course = Course::find($courseId);
         $course->deleteTaskFromPositions($taskId);
         $task->delete();
 
         return back();
     }
+
     /**
      * Solve the given task.
      *
@@ -277,9 +234,8 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addDone(Request $request, $courseId)
+    public function addDone(Request $request, int $courseId)
     {
-
         $validated = $request->validate(
             [
                 'nextId' => ['required'],
@@ -287,50 +243,18 @@ class TaskController extends Controller
             ]
         );
         $taskId = $validated['taskId'];
-        $task = Task::find($taskId);
 
-        if (!$this->isDone($courseId, $taskId)) {
-            $previousPoints = Auth::user()->coursePoints($courseId);
-            Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
-            $this->markTaskAsDone($courseId, $task, $task->points);
-        }
+        Auth::user()->processTaskForUser($courseId, $taskId);
 
-        return redirect()->route('courses.tasks.show', ['course'=>$courseId, 'task'=>$validated['nextId']]);
+        return redirect()->route(
+            'courses.tasks.show',
+            [
+                'course' => $courseId,
+                'task' => $validated['nextId']
+            ]
+        );
     }
 
-    /**
-     * Solve the given task.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $courseId
-     * @param                          $taskId
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function solveTask(Request $request, $courseId, $taskId)
-    {
-        $validated = $request->validate([
-            'userAnswer' => ['required'],
-        ]);
-
-        $message = "La tarea ya estaba completada";
-        $task = Task::find($taskId);
-        $correctAnswer = (int)$task->properties['quiz']['correctAnswer'];
-        $points = 0;
-        if (!$this->isDone($courseId, $taskId)) {
-            if ($correctAnswer == $validated['userAnswer']) {
-                $previousPoints = Auth::user()->coursePoints($courseId);
-                $points = $task->points;
-                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
-            }
-
-            $this->markTaskAsDone($courseId, $task, $points);
-            //catch error saving in db
-            $message = "Tarea completada";
-        }
-
-        return response()->json(["index"=>$correctAnswer, "message"=>$message]);
-    }
     /**
      * Solve the given task.
      *
@@ -342,40 +266,22 @@ class TaskController extends Controller
      */
     public function solveTaskMultiple(Request $request, $courseId, $taskId)
     {
-        $validated = $request->validate([
-                                            'userAnswer' => ['required'],
-                                        ]);
 
-        $message = "La tarea ya estaba completada";
-        $task = Task::find($taskId);
-        $correctAnswers = $task->properties['quiz']['correctAnswer'];
-        if (!$this->isDone($courseId, $taskId)) {
-            sort($correctAnswers);
-            sort($validated['userAnswer']);
-            $points = 0;
-            if ($correctAnswers === $validated['userAnswer']) {
-                $points = $task->points;
-                $previousPoints = Auth::user()->coursePoints($courseId);
-                Auth::user()->coursesEnrolled()->updateExistingPivot($courseId, ['points' => $previousPoints + $task->points]);
-            }
+        $validated = $request->validate(
+            [
+                'userAnswer' => ['required'],
+            ]
+        );
 
-            $this->markTaskAsDone($courseId, $task, $points);
-            //catch error saving in db
-            $message = "Tarea completada";
-        }
-
-        return response()->json(["index"=>$correctAnswers, "message"=>$message]);
+        list($message, $correctAnswers) = Auth::user()->processQuizTaskForUser(
+            $taskId,
+            $courseId,
+            $validated['userAnswer']
+        );
+        return response()->json(
+            ["index" => $correctAnswers, "message" => $message]
+        );
     }
 
-    private function markTaskAsDone(int $courseId, $task, $points)
-    {
-        $task->userTasksCompleted()->attach(Auth::user()->id,['course_id'=>$courseId, 'points'=>$points]);
 
-        return true;
-    }
-
-    private function isDone($courseId, $taskId)
-    {
-        return Auth::user()->isTaskCompleted($courseId, $taskId);
-    }
 }

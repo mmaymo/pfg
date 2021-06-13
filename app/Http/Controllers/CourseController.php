@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,37 +16,29 @@ class CourseController extends Controller
     /**
      * Show the course contents management screen.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $courseId
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     *
      * @return \Inertia\Response
      */
     public function show(Request $request, $courseId)
     {
-
         $course = Course::find($courseId);
-        $userList = User::all();
-        $students = $course->getMembersDetails();
-        $itinerary = $course->getOrderedChaptersWithTasks();
-        $course = [
-            'courseDetails' => ['id'=>$course->id, 'name'=>$course->name, 'degree'=>$course->degree, 'semester'=>$course->semester, 'pic'=>$course->pic],
-            'students'=>$students,
-            'tasks'=>$itinerary,
-            'userList'=>$userList
-        ];
 
-       /* if (! $request->user()->belongsToTeam($team)) {
-            abort(403);
-        }*/
-
-        return Jetstream::inertia()->render($request, 'Courses/Show', [
-            'course'=> $course,
-        ]);
+        return Jetstream::inertia()->render(
+            $request,
+            'Courses/Show',
+            [
+                'course' => $course->courseDetailsEditPage($course),
+            ]
+        );
     }
 
     /**
-     * Show the team creation screen.
+     * Show the course creation screen.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Inertia\Response
      */
     public function create(Request $request)
@@ -58,59 +49,57 @@ class CourseController extends Controller
     /**
      * Create a new course.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'name' => ['string', 'max:255'],
+                'degree' => ['nullable', 'string', 'max:255'],
+                'semester' => ['nullable', 'boolean'],
+                'pic' => ['nullable', 'string']
+            ]
+        )->validateWithBag('createCourse');
 
-        $validated = Validator::make($request->all(), [
-            'name' => ['string', 'max:255'],
-            'degree' => ['nullable','string', 'max:255'],
-            'semester' => ['nullable','boolean'],
-            'pic' => ['nullable','string']
-        ])->validateWithBag('createCourse');
+        $course = Course::create([
+                                     'user_id' => Auth::user()->id,
+                                     'name' =>  $validated['name'],
+                                     'degree' => $validated['degree']?:'',
+                                     'semester' => $validated['semester']?:false,
+                                     'pic' => $validated['pic']?:'',
+                                     'positionArray' => []
+                                 ]);
 
-        $validated['positionArray'] = [];
-
-        $course = new Course();
-        $course->name = $validated['name'];
-        $course->user_id = Auth::user()->id;
-        $course->positionArray = $validated['positionArray'];
-        if($validated['degree']){
-            $course->degree = $validated['degree'];
-        }
-        if($validated['semester']){
-            $course->semester = $validated['semester'];
-        }
-        if($validated['pic']){
-            $course->pic = $validated['pic'];
-        }
-
-        $course->save();
-
-        return redirect()->route('courses.show',[$course]);
+        return redirect()->route('courses.show', [$course]);
     }
 
     /**
-     * Update the given team's name.
+     * Update the given course's details.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $courseId
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $courseId)
+    public function update(Request $request, int $courseId)
     {
         $course = Course::find($courseId);
 
-        $validated = Validator::make($request->all(), [
-            'name' => ['string', 'max:255'],
-            'degree' => ['nullable','string', 'max:255'],
-            'semester' => ['nullable','boolean'],
-            'pic' => ['nullable','string']
-        ])->validateWithBag('updateCourseMain');
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'name' => ['string', 'max:255'],
+                'degree' => ['nullable', 'string', 'max:255'],
+                'semester' => ['nullable', 'boolean'],
+                'pic' => ['nullable', 'string']
+            ]
+        )->validateWithBag('updateCourseMain');
 
-        $response = $course->update(
+        $course->update(
             [
                 'name' => $validated['name'],
                 'degree' => $validated['degree'],
@@ -123,61 +112,73 @@ class CourseController extends Controller
     }
 
     /**
-     * Delete the given team.
+     * Delete the given course.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $courseId
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, $courseId)
     {
         $course = Course::find($courseId);
 
-        //app(ValidateTeamDeletion::class)->validate($request->user(), $course);
-
-        DB::transaction(function () use ($course) {
-            $course->users()->detach();
-            $course->delete();
-        });
+        DB::transaction(
+            function () use ($course) {
+                $course->users()->detach();
+                $course->delete();
+            }
+        );
 
         return redirect(config('fortify.home'));
     }
 
     /**
-     * updateOrderContent.
+     * Update course's tasks order.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $courseId
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $courseId
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateOrderContent(Request $request, $courseId)
+    public function updateCourseTasksOrder(Request $request, $courseId)
     {
         $course = Course::find($courseId);
 
-        $validated = Validator::make($request->all(), [
-            'orderedContentIds' => ['array'],
-        ])->validateWithBag('updateOrder');
-        $wholeObject = $validated['orderedContentIds'];
-        $newOrder = [];
-        foreach ($wholeObject as $content){
-            $newOrder[$content['id']]= [];
-            foreach ($content['tasks'] as $task){
-                array_push($newOrder[$content['id']], $task['id']);
-            }
-        }
+        $validated = Validator::make(
+            $request->all(),
+            [
+                'orderedContentIds' => ['array'],
+            ]
+        )->validateWithBag('updateOrder');
+        $newOrder = $course->reorderTasks($validated['orderedContentIds']);
         $course->insertPositions($newOrder);
 
         return back(303);
     }
 
-    public function deleteAllTasks($courseId){
+    /**
+     * Delete all tasks in the course
+     * @param $courseId
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteAllTasks($courseId)
+    {
         $course = Course::find($courseId);
         $course->deleteAllTasks();
 
         return back(303);
     }
 
-    public function deleteAllMembers($courseId){
+    /**
+     * Delete all enrolled members
+     * @param $courseId
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteAllMembers($courseId)
+    {
         $course = Course::find($courseId);
         $course->deleteAllMembers();
 
