@@ -237,17 +237,17 @@ trait HasCourseDetails
      *
      * @return array
      */
-    protected function processQuizTaskForUser(
+    public function processQuizTaskForUser(
         $taskId,
         int $courseId,
         $userAnswer
     ): array {
         $message = "La tarea ya estaba completada";
         $task = Task::find($taskId);
-        $correctAnswers = $task->properties['quiz']['correctAnswer'];
+        $correctAnswers =  $task->properties['quiz']['correctAnswer'];
         if (!$this->isDone($courseId, $taskId)) {
             sort($correctAnswers);
-            sort($validated['userAnswer']);
+            sort($userAnswer);
             $points = 0;
             if ($correctAnswers == $userAnswer) {
                 $previousPoints = $this->coursePoints($courseId);
@@ -259,11 +259,11 @@ trait HasCourseDetails
                     ]
                 );
             }
-
             $task->markTaskAsDone($courseId, $points);
             $message = "Tarea completada";
         }
-        return array($message, $correctAnswers);
+
+        return ["index" => $correctAnswers, "message" => $message];
     }
 
     /**
@@ -282,7 +282,7 @@ trait HasCourseDetails
     }
 
 
-    private function isDone($courseId, $taskId)
+    public function isDone($courseId, $taskId)
     {
         return $this->isTaskCompleted($courseId, $taskId);
     }

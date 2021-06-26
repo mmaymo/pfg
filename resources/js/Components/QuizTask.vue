@@ -58,7 +58,6 @@
             getAnswer(e) {
                 e.preventDefault();
                 let currentObj = this;
-                console.log('para solve task multiple')
                 axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                 axios.post(route('solveTaskMultiple', {'course':this.courseId, 'task':this.task.id}), {
                     userAnswer:[this.picked]

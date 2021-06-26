@@ -273,14 +273,13 @@ class TaskController extends Controller
             ]
         );
 
-        list($message, $correctAnswers) = Auth::user()->processQuizTaskForUser(
+       $result = Auth::user()->processQuizTaskForUser(
             $taskId,
             $courseId,
             $validated['userAnswer']
         );
-        return response()->json(
-            ["index" => $correctAnswers, "message" => $message]
-        );
+
+       return response()->json($result);
     }
 
 
