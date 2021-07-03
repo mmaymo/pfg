@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 class Course extends Model
 {
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable
      *
      * @var array
      */
@@ -24,7 +27,7 @@ class Course extends Model
             'positionArray'
         ];
     /**
-     * The attributes that should be cast to native types.
+     * The attributes that should be cast to native types
      *
      * @var array
      */
@@ -32,27 +35,53 @@ class Course extends Model
         'positionArray' => 'array',
     ];
 
-    public function users()
+    /**
+     * The users that are enrolled in this course
+     *
+     */
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\User', 'users_course_progress')
             ->withPivot('points');
     }
 
-
-    public function getCourseMembersDetails(){
+    /**
+     * The array holding details for the members enrolled in the course
+     *
+     * @return array
+     */
+    public function getCourseMembersDetails(): array
+    {
         $users = $this->users;
         $members = [];
-        foreach ($users as $user){
-            $members[] = ['id'=>$user->id, 'email'=>$user->email, 'name'=>$user->name, 'points'=>$user->pivot->points, 'profile_photo_url'=>$user->profile_photo_path, 'progress'=>$user->courseProgress($this->id)];
+        foreach ($users as $user) {
+            $members[] = [
+                'id' => $user->id,
+                'email' => $user->email,
+                'name' => $user->name,
+                'points' => $this->getUserPoints($user),
+                'profile_photo_url' => $user->profile_photo_path,
+                'progress' => $this->getUserCourseProgress($user)
+            ];
         }
         return $members;
     }
-    public function tasks()
+
+    /**
+     * The tasks that belong to the course
+     *
+     */
+    public function tasks(): HasMany
     {
         return $this->hasMany('App\Models\Task', 'course_id');
     }
 
-    public function orderedTaskIdsFlat(){
+    /**
+     * A flat array with the ordered tasks
+     *
+     */
+    public function orderedTaskIdsFlat(): array
+    {
         $positions = $this->positionArray;
         $keysChapters = array_keys ($positions );
         $flattenArray = array();
@@ -65,18 +94,25 @@ class Course extends Model
         return $flattenArray;
     }
 
-
-    public function getOrderedChaptersWithTasks()
+    /**
+     * A collection with the ordered tasks nested in their chapters
+     *
+     */
+    public function getOrderedChaptersWithTasks(): Collection
     {
         $chapters = $this->positionArray;
         $orderedChapters = collect();
 
+        if(!is_array($chapters) || empty($chapters)){
+            return $orderedChapters;
+        }
         foreach ($chapters as $chapter => $value){
-            $selectedTask = Task::find($chapter);
+            $selectedTask = $this->findTask($chapter);
             $selectedTask->tasks = collect();
+
             if(!empty($value)){
                 foreach ($value as $taskId){
-                    $task = Task::find($taskId);
+                    $task = $this->findTask($taskId);
                     $task = $task->clean_task;
                     $selectedTask->tasks->push($task);
                 }
@@ -87,14 +123,30 @@ class Course extends Model
         return $orderedChapters;
     }
 
+    /**
+     * Save the order of the tasks passed as parameter
+     *
+     * @var array
+     */
     public function insertPositions(array $positions){
         $this->positionArray = $positions;
-        $this->save();
+        $this->saveCourse();
     }
-    public function taskCount(){
+
+    /**
+     * Returns the number of tasks assigned to this course
+     *
+     */
+    public function taskCount(): int
+    {
         return $this->tasks()->count();
     }
 
+    /**
+     * Removes the task given from the positions array
+     *
+     * @var int
+     */
     public function deleteTaskFromPositions($taskId)
     {
         $chapters = $this->positionArray;
@@ -113,13 +165,21 @@ class Course extends Model
             }
         }
         $this->positionArray = $chapters;
-        $this->save();
+        $this->saveCourse();
     }
 
+    /**
+     * Delete all tasks from the course
+     *
+     */
     public function deleteAllTasks(){
         Task::where('course_id', $this->id)->delete();
     }
 
+    /**
+     * Delete all members of the course
+     *
+     */
     public function deleteAllMembers(){
         $this->users()->detach();
     }
@@ -150,6 +210,8 @@ class Course extends Model
     }
 
     /**
+     * Returns a new ordered array of tasks
+     *
      * @param $orderedContentIds
      *
      * @return array
@@ -165,5 +227,40 @@ class Course extends Model
             }
         }
         return $newOrder;
+    }
+
+    /**
+     * @param $taskId
+     *
+     * @return mixed
+     */
+    protected function findTask($taskId)
+    {
+        return Task::find($taskId);
+    }
+
+    /**
+     * @param $user
+     *
+     * @return mixed
+     */
+    protected function getUserPoints($user)
+    {
+        return $user->pivot->points;
+}
+
+    /**
+     * @param $user
+     *
+     * @return mixed
+     */
+    protected function getUserCourseProgress($user)
+    {
+        return $user->courseProgress($this->id);
+}
+
+    protected function saveCourse(): void
+    {
+        $this->save();
     }
 }

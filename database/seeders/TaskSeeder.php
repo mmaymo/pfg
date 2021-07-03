@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class TaskSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database task seeds.
      *
      * @return void
      */

@@ -53,7 +53,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the task contents.
+     * Show the flashcards contents.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $courseId
@@ -226,7 +226,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Solve the given task.
+     * Mark as done task.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $courseId
@@ -256,7 +256,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Solve the given task.
+     * Solve the given quiz task.
      *
      * @param \Illuminate\Http\Request $request
      * @param int                      $courseId

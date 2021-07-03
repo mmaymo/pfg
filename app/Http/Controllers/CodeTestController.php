@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Class CodeTestController
+ *
+ * @package App\Http\Controllers
+ */
 class CodeTestController extends Controller
 {
 
@@ -31,6 +36,13 @@ class CodeTestController extends Controller
         $this->addPoints($validated['userAnswer'], $courseId, $taskId);
     }
 
+    /**
+     * Add points to user for a given task
+     *
+     * @param $isCorrect
+     * @param $courseId
+     * @param $taskId
+     */
     protected function addPoints($isCorrect, $courseId, $taskId)
     {
         $task = Task::find($taskId);
@@ -38,6 +50,15 @@ class CodeTestController extends Controller
         $task->maybeAddPoints($isDone, $isCorrect, $courseId);
     }
 
+    /**
+     * Upload file for code test
+     *
+     * @param Request $request
+     * @param         $courseId
+     * @param         $taskId
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function upload(Request $request, $courseId, $taskId)
     {
         $fileName = $request->testCode->getClientOriginalName();

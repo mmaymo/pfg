@@ -13,7 +13,7 @@ use Spatie\Permission\Models\Role;
 class CourseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database course seeds.
      *
      * @return void
      */

@@ -67,6 +67,8 @@ class MembersController extends Controller
     }
 
     /**
+     * Add a new member with just the email
+     *
      * @param string $mail
      * @param string $name
      *
@@ -90,6 +92,8 @@ class MembersController extends Controller
     }
 
     /**
+     * Initiates the new member to the course, adds the folder for code tests and initial points
+     *
      * @param $course
      * @param $newCourseMember
      */
@@ -103,7 +107,7 @@ class MembersController extends Controller
     }
 
     /**
-     * Add a new member to the course.
+     * Add a new teacher to the course.
      *
      * @param \Illuminate\Http\Request $request
      * @param                          $courseId
@@ -131,6 +135,12 @@ class MembersController extends Controller
         return back(303);
     }
 
+
+    /**
+     * Assigns the role teacher to the given member
+     *
+     * @param $newCourseMember
+     */
     protected function addTeacherRole($newCourseMember)
     {
         $newCourseMember->assignRole(self::TEACHER);
