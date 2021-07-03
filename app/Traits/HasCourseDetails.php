@@ -28,17 +28,6 @@ trait HasCourseDetails
     }
 
     /**
-     * Returns the courses this user is enrolled in with points
-     *
-     * @return BelongsToMany
-     */
-    public function coursesEnrolledWithPoints(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Course', 'users_course_progress')
-            ->withPivot('points');
-    }
-
-    /**
      * Returns the courses this user is enrolled in
      *
      * @return HasMany
@@ -179,74 +168,46 @@ trait HasCourseDetails
         Request $request,
         $teacher
     ): Response {
-        $itinerary = $course->getOrderedChaptersWithTasks();
         $coursePoints = Auth::user()->coursePoints($courseId);
         $courseProgress = Auth::user()->courseProgress($courseId);
         $allowedIds = Auth::user()->getAllowedTasksIdsCollection($courseId);
-        $task = Task::find($taskId);
-        $task = $task->getCleanTaskAttribute();
+        $task = $this->getCleanedTask($taskId);
         if (!$request->user()->canSeeTask($courseId, $taskId)) {
             return Jetstream::inertia()->render(
                 $request,
                 'Tasks/Show',
                 [
                     'allowed' => false,
-                    'courseDetails' => [
-                        'id' => $course->id,
-                        'name' => $course->name,
-                        'degree' => $course->degree,
-                        'semester' => $course->semester,
-                        'pic' => $course->pic,
-                        'teacher' => $teacher
-                    ],
-                    'tasks' => $itinerary,
+                    'courseDetails' => $this->getCourseDetails(
+                        $course,
+                        $teacher
+                    ),
+                    'tasks' => $this->getOrderedCourseTasks($course),
                     'allowedIds' => $allowedIds,
-                    'task' => [
-                        'id' => $task->id,
-                        'name' => $task->name,
-                        'type' => $task->type
-                    ],
+                    'task' => $this->notAllowedUserTaskDetails($task),
                     'coursePoints' => $coursePoints,
                     'courseProgress' => $courseProgress,
                 ]
             );
         }
         $taskDone = $this->isDone($courseId, $taskId);
-        $flatItineray = $course->orderedTaskIdsFlat();
-        $tasksLenght = $course->taskCount();
-        $currentTaskPositionIndex = array_search($taskId, $flatItineray);
-        $nextIndex = ($currentTaskPositionIndex + 1) < $tasksLenght
-            ? $currentTaskPositionIndex + 1 : $currentTaskPositionIndex;
-        $next = $flatItineray[$nextIndex];
-        $previousIndex = ($currentTaskPositionIndex - 1) >= 0
-            ? $currentTaskPositionIndex - 1 : $currentTaskPositionIndex;
-        $previous = $flatItineray[$previousIndex];
 
         return Jetstream::inertia()->render(
             $request,
             'Tasks/Show',
             [
                 'allowed' => true,
-                'courseDetails' => [
-                    'id' => $course->id,
-                    'name' => $course->name,
-                    'degree' => $course->degree,
-                    'semester' => $course->semester,
-                    'pic' => $course->pic,
-                    'teacher' => $teacher
-                ],
-                'tasks' => $itinerary,
+                'courseDetails' => $this->getCourseDetails(
+                    $course,
+                    $teacher
+                ),
+                'tasks' => $this->getOrderedCourseTasks($course),
                 'allowedIds' => $allowedIds,
-                'task' => [
-                    'id' => $task['id'],
-                    'name' => $task['name'],
-                    'type' => $task['type'],
-                    'contents' => $task['properties'],
-                    'isDone' => $taskDone,
-                    'previousId' => $previous,
-                    'nextId' => $next,
-                    'user' => Auth::user()->getAuthIdentifier()
-                ],
+                'task' => $this->allowedUserTaskDetails(
+                    $course,
+                    $task,
+                    $taskDone
+                ),
                 'coursePoints' => $coursePoints,
                 'courseProgress' => $courseProgress,
             ]
@@ -267,7 +228,6 @@ trait HasCourseDetails
     ): Response {
         $course = Course::find($courseId);
         $teacher = User::find($course->user_id)->name;
-        $itinerary = $course->getOrderedChaptersWithTasks();
         $coursePoints = Auth::user()->coursePoints($courseId);
         $courseProgress = Auth::user()->courseProgress($courseId);
         $allowedIds = $this->getAllowedTasksIdsCollection($courseId);
@@ -277,15 +237,11 @@ trait HasCourseDetails
             $request,
             'Tasks/Flashcard',
             [
-                'courseDetails' => [
-                    'id' => $course->id,
-                    'name' => $course->name,
-                    'degree' => $course->degree,
-                    'semester' => $course->semester,
-                    'pic' => $course->pic,
-                    'teacher' => $teacher
-                ],
-                'tasks' => $itinerary,
+                'courseDetails' => $this->getCourseDetails(
+                    $course,
+                    $teacher
+                ),
+                'tasks' => $this->getOrderedCourseTasks($course),
                 'allowedIds' => $allowedIds,
                 'cards' => $flashTasks,
                 'coursePoints' => $coursePoints,
@@ -384,6 +340,109 @@ trait HasCourseDetails
     public function isDone($courseId, $taskId)
     {
         return $this->isTaskCompleted($courseId, $taskId);
+    }
+
+    /**
+     * @param $course
+     * @param $teacher
+     *
+     * @return array
+     */
+    protected function getCourseDetails($course, $teacher): array
+    {
+        return [
+            'id' => $course->id,
+            'name' => $course->name,
+            'degree' => $course->degree,
+            'semester' => $course->semester,
+            'pic' => $course->pic,
+            'teacher' => $teacher
+        ];
+    }
+
+    /**
+     * @param $course
+     *
+     * @return mixed
+     */
+    protected function getOrderedCourseTasks($course)
+    {
+        return $course->getOrderedChaptersWithTasks();
+    }
+
+    /**
+     * @param     $course
+     * @param int $taskId
+     *
+     * @return array
+     */
+    protected function calculatePreviousAndNextTask($course, int $taskId): array
+    {
+        $flatItineray = $course->orderedTaskIdsFlat();
+        $tasksLenght = $course->taskCount();
+        $currentTaskPositionIndex = array_search($taskId, $flatItineray);
+        $nextIndex = ($currentTaskPositionIndex + 1) < $tasksLenght
+            ? $currentTaskPositionIndex + 1 : $currentTaskPositionIndex;
+        $next = $flatItineray[$nextIndex];
+        $previousIndex = ($currentTaskPositionIndex - 1) >= 0
+            ? $currentTaskPositionIndex - 1 : $currentTaskPositionIndex;
+        $previous = $flatItineray[$previousIndex];
+        return array($next, $previous);
+    }
+
+    /**
+     * @param      $task
+     * @param bool $taskDone
+     * @param      $previous
+     * @param      $next
+     *
+     * @return array
+     */
+    protected function allowedUserTaskDetails(
+        $course,
+        $task,
+        bool $taskDone
+    ): array {
+        list($next, $previous) = $this->calculatePreviousAndNextTask(
+            $course,
+            $task['id']
+        );
+        return [
+            'id' => $task['id'],
+            'name' => $task['name'],
+            'type' => $task['type'],
+            'contents' => $task['properties'],
+            'isDone' => $taskDone,
+            'previousId' => $previous,
+            'nextId' => $next,
+            'user' => Auth::user()->getAuthIdentifier()
+        ];
+    }
+
+    /**
+     * @param int $taskId
+     *
+     * @return mixed
+     */
+    protected function getCleanedTask(int $taskId)
+    {
+        $task = Task::find($taskId);
+        $task = $task->getCleanTaskAttribute();
+        return $task;
+    }
+
+    /**
+     * @param $task
+     *
+     * @return array
+     */
+    protected function notAllowedUserTaskDetails($task): array
+    {
+        return [
+            'id' => $task->id,
+            'name' => $task->name,
+            'type' => $task->type
+        ];
     }
 
 }
