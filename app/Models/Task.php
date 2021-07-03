@@ -72,7 +72,7 @@ class Task extends Model
     public function markTaskAsDone(int $courseId, $points): bool
     {
         $this->userTasksCompleted()->attach(
-            Auth::user()->id,
+            $this->getAuthUser()->id,
             [
                 'course_id' => $courseId,
                 'points' => $points
@@ -175,7 +175,7 @@ class Task extends Model
         if ($this->parent_id == null) {
             return true;
         }
-        $parent = Task::find($this->parent_id);
+        $parent = $this->findTaskById();
 
         return $parent->isCompleted($userId, $courseId);
     }
@@ -194,15 +194,15 @@ class Task extends Model
     ): void {
         if (!$isDone) {
             if ($isCorrect) {
-                $previousPoints = Auth::user()->coursePoints($courseId);
-                Auth::user()->coursesEnrolled()->updateExistingPivot(
+                $previousPoints = $this->getAuthUser()->coursePoints($courseId);
+                $this->getAuthUser()->coursesEnrolled()->updateExistingPivot(
                     $courseId,
                     [
                         'points' => $previousPoints + $this->points
                     ]
                 );
                 $this->userTasksCompleted()->attach(
-                    Auth::user()->id,
+                    $this->getAuthUser()->id,
                     [
                         'course_id' => $courseId,
                         'points' => $this->points
@@ -210,7 +210,7 @@ class Task extends Model
                 );
             } else {
                 $this->userTasksCompleted()->attach(
-                    Auth::user()->id,
+                    $this->getAuthUser()->id,
                     [
                         'course_id' => $courseId,
                         'points' => 0
@@ -221,19 +221,27 @@ class Task extends Model
     }
 
     /**
-     * Returns the collection of allowed tasks for this user
-     *
-     * @param int $courseId
-     *
-     * @return Collection
+     * @return mixed
      */
-    protected function getAllowedTasksIdsCollection(int $courseId
-    ): Collection {
-        $allowedIds = Task::all()->filter(
-            function ($task) use ($courseId) {
-                return $task->isAllowed(Auth::user()->id, $courseId);
-            }
-        )->pluck('id');
-        return $allowedIds;
+    public function findTaskById()
+    {
+        return Task::find($this->parent_id);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    protected function getAuthUser(
+    ): ?\Illuminate\Contracts\Auth\Authenticatable
+    {
+        return Auth::user();
+    }
+
+    /**
+     * @return Task[]|\Illuminate\Database\Eloquent\Collection
+     */
+    protected function getAllTasks()
+    {
+        return Task::all();
     }
 }
