@@ -6,46 +6,107 @@ namespace App\Traits;
 use App\Models\Course;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Inertia\Response;
 use Laravel\Jetstream\Jetstream;
 
 trait HasCourseDetails
 {
-    public function coursesEnrolled()
+    /**
+     * Returns the courses this user is enrolled in with progress
+     *
+     * @return BelongsToMany
+     */
+    public function coursesEnrolled(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Course', 'users_course_progress');
     }
 
-    public function coursesEnrolledWithPoints()
+    /**
+     * Returns the courses this user is enrolled in with points
+     *
+     * @return BelongsToMany
+     */
+    public function coursesEnrolledWithPoints(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Course', 'users_course_progress')
             ->withPivot('points');
     }
-    public function courses(){
+
+    /**
+     * Returns the courses this user is enrolled in
+     *
+     * @return HasMany
+     */
+    public function courses(): HasMany
+    {
         return $this->hasMany('App\Models\Course');
     }
-    public function tasks(){
+
+    /**
+     * Returns the user tasks completed
+     *
+     * @return BelongsToMany
+     */
+    public function tasks(): BelongsToMany
+    {
         return $this->belongsToMany('App\Models\Task', 'task_user', 'user_id', 'task_id')->withPivot('course_id');
     }
 
-    public function completedTasks($courseId){
+    /**
+     * Returns the completed tasks by this user
+     *
+     * @param $courseId
+     *
+     * @return Collection
+     */
+    public function completedTasks($courseId): Collection
+    {
         return DB::table('task_user')->where(
             [['user_id', '=', $this->id], ['course_id', '=', $courseId]]
         )->get();
     }
-    public function isTaskCompleted($courseId, $taskId){
+
+    /**
+     * Check if the task is completed by this user
+     *
+     * @param $courseId
+     * @param $taskId
+     *
+     * @return bool
+     */
+    public function isTaskCompleted($courseId, $taskId): bool
+    {
         return DB::table('task_user')->where(
             [['user_id', '=', $this->id], ['course_id', '=', $courseId], ['task_id', '=', $taskId]]
         )->exists();
     }
 
-    public function completedTasksCount($courseId){
+    /**
+     * Returns the number of completed tasks
+     *
+     * @param $courseId
+     *
+     * @return int
+     */
+    public function completedTasksCount($courseId): int
+    {
         return $this->completedTasks($courseId)->count();
     }
 
-    public function coursePoints($courseId)
+    /**
+     * Returns the points of the course for this user
+     *
+     * @param $courseId
+     *
+     * @return int
+     */
+    public function coursePoints($courseId): int
     {
         $collection = DB::table('users_course_progress')->where(
             [['user_id', '=', $this->id], ['course_id', '=', $courseId]]
@@ -53,14 +114,32 @@ trait HasCourseDetails
         return $collection->first()?$collection->first()->points:0;
     }
 
+    /**
+     * Returns the progress of the course for this user
+     *
+     * @param $courseId
+     *
+     * @return float|int
+     */
     public function courseProgress($courseId){
         $course = Course::find($courseId);
         $tasksCourseCount = $course->taskCount();
+        if($tasksCourseCount == 0){
+            return 0;
+        }
         $userTasksDone =$this->completedTasksCount($courseId);
         return ($userTasksDone / $tasksCourseCount) * 100;
     }
 
 
+    /**
+     * Check if the user can see this task
+     *
+     * @param $courseId
+     * @param $taskId
+     *
+     * @return bool
+     */
     public function canSeeTask($courseId, $taskId)
     {
         $completedTasks = $this->completedTasks($courseId);
@@ -83,13 +162,15 @@ trait HasCourseDetails
 
 
     /**
+     * Show the task with course details
+     *
      * @param         $course
      * @param int     $courseId
      * @param int     $taskId
      * @param Request $request
      * @param         $teacher
      *
-     * @return \Inertia\Response
+     * @return Response
      */
     public function getTaskCourseDetails(
         $course,
@@ -97,12 +178,13 @@ trait HasCourseDetails
         int $taskId,
         Request $request,
         $teacher
-    ): \Inertia\Response {
+    ): Response {
         $itinerary = $course->getOrderedChaptersWithTasks();
         $coursePoints = Auth::user()->coursePoints($courseId);
         $courseProgress = Auth::user()->courseProgress($courseId);
         $allowedIds = Auth::user()->getAllowedTasksIdsCollection($courseId);
         $task = Task::find($taskId);
+        $task = $task->getCleanTaskAttribute();
         if (!$request->user()->canSeeTask($courseId, $taskId)) {
             return Jetstream::inertia()->render(
                 $request,
@@ -156,10 +238,10 @@ trait HasCourseDetails
                 'tasks' => $itinerary,
                 'allowedIds' => $allowedIds,
                 'task' => [
-                    'id' => $task->id,
-                    'name' => $task->name,
-                    'type' => $task->type,
-                    'contents' => $task->properties,
+                    'id' => $task['id'],
+                    'name' => $task['name'],
+                    'type' => $task['type'],
+                    'contents' => $task['properties'],
                     'isDone' => $taskDone,
                     'previousId' => $previous,
                     'nextId' => $next,
@@ -172,16 +254,17 @@ trait HasCourseDetails
     }
 
     /**
-     * @param         $course
+     * Show the flashcard task with course details
+     *
      * @param int     $courseId
      * @param Request $request
      *
-     * @return \Inertia\Response
+     * @return Response
      */
     public function getFlashCardTaskCourseDetails(
         int $courseId,
         Request $request
-    ): \Inertia\Response {
+    ): Response {
         $course = Course::find($courseId);
         $teacher = User::find($course->user_id)->name;
         $itinerary = $course->getOrderedChaptersWithTasks();
@@ -212,6 +295,8 @@ trait HasCourseDetails
     }
 
     /**
+     * Process the task to completed and adds points
+     *
      * @param int $courseId
      * @param     $taskId
      */
@@ -231,6 +316,9 @@ trait HasCourseDetails
     }
 
     /**
+     * Process the quiz task to completed, adds the points
+     * and returns the correct answer
+     *
      * @param     $taskId
      * @param int $courseId
      * @param     $userAnswer
@@ -267,12 +355,15 @@ trait HasCourseDetails
     }
 
     /**
+     * Returns the collection of Ids of the allowed tasks
+     * for the user in the given course
+     *
      * @param int $courseId
      *
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     protected function getAllowedTasksIdsCollection(int $courseId
-    ): \Illuminate\Support\Collection {
+    ): Collection {
         $allowedIds = Task::all()->filter(
             function ($task) use ($courseId) {
                 return $task->isAllowed($this->id, $courseId);
@@ -282,6 +373,14 @@ trait HasCourseDetails
     }
 
 
+    /**
+     * Check if the task is completed
+     *
+     * @param $courseId
+     * @param $taskId
+     *
+     * @return bool
+     */
     public function isDone($courseId, $taskId)
     {
         return $this->isTaskCompleted($courseId, $taskId);
