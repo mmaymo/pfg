@@ -29,37 +29,37 @@
                 <div v-if="form.type == 'quiz' || form.type == 'multipleQuiz'">
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="question" value="Texto de la pregunta"/>
-                        <jet-input id="question" type="text" class="mt-1 block w-full"
+                        <jet-input name="question" id="question" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.quiz.question"/>
                         <jet-input-error :message="form.error('question')" class="mt-2"/>
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="answer1" value="Respuesta 1"/>
-                        <jet-input id="answer1" type="text" class="mt-1 block w-full"
+                        <jet-input name="answer1" id="answer1" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.quiz.responses.t1"/>
                         <jet-input-error :message="form.error('answer1')" class="mt-2"/>
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="answer2" value="Respuesta 2"/>
-                        <jet-input id="answer2" type="text" class="mt-1 block w-full"
+                        <jet-input name="answer2" id="answer2" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.quiz.responses.t2"/>
                         <jet-input-error :message="form.error('answer2')" class="mt-2"/>
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="answer3" value="Respuesta 3"/>
-                        <jet-input id="answer3" type="text" class="mt-1 block w-full"
+                        <jet-input name="answer3" id="answer3" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.quiz.responses.t3"/>
                         <jet-input-error :message="form.error('answer3')" class="mt-2"/>
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="answer4" value="Respuesta 4"/>
-                        <jet-input id="answer4" type="text" class="mt-1 block w-full"
+                        <jet-input name="answer 4" id="answer4" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.quiz.responses.t4"/>
                         <jet-input-error :message="form.error('answer4')" class="mt-2"/>
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="correctAnswer" value="Respuesta Correcta"/>
-                        <select multiple name="type" id="correctAnswer"
+                        <select multiple name="correct answer" id="correctAnswer"
                                 v-model="form.properties.quiz.correctAnswer">
                             <option value="0">Respuesta 1</option>
                             <option value="1">Respuesta 2</option>
@@ -72,13 +72,13 @@
                 <div v-if="form.type == 'card'">
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="cardQuestion" value="Texto de la pregunta"/>
-                        <jet-input id="cardQuestion" type="text" class="mt-1 block w-full"
+                        <jet-input name="cardQuestion"  id="cardQuestion" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.card.front"/>
                         <jet-input-error :message="form.error('cardQuestion')" class="mt-2"/>
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="answer" value="Respuesta"/>
-                        <jet-input id="answer" type="text" class="mt-1 block w-full"
+                        <jet-input name="answer" id="answer" type="text" class="mt-1 block w-full"
                                    v-model="form.properties.card.back"/>
                         <jet-input-error :message="form.error('answer')" class="mt-2"/>
                     </div>
@@ -109,7 +109,7 @@
                 </jet-action-message>
 
                 <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Guardar
+                    Guardar Tarea
                 </jet-button>
             </template>
         </jet-form-section>

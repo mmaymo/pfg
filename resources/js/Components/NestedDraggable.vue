@@ -1,5 +1,5 @@
 <template>
-    <draggable tag="ul" :list="tasks" :group="{name: 'g1'}" :animation="200" ghost-class="moving-card"
+    <draggable id="taskDraggable" tag="ul" :list="tasks" :group="{name: 'g1'}" :animation="200" ghost-class="moving-card"
                filter=".action-button"
                class="space-y-6" @change="">
         <li class="flex items-center justify-between bg-gray-100 border-2 border-green-300 rounded p-4" v-for="item in tasks"
@@ -8,12 +8,12 @@
                 <div class="mb-2">{{ item.type }}</div>
                 <div class="mb-2">{{ item.name }}</div>
                 <!-- Edit task -->
-                <jet-button>
+                <jet-button class="edit">
                     <a :href="route('courses.tasks.edit', {'course':courseId, 'task':item.id})">Editar</a>
                 </jet-button>
 
                 <!-- Remove Task -->
-                <danger-button
+                <danger-button class="delete"
                     @click.native="confirmTaskRemoval(item.id)">
                     Eliminar
                 </danger-button>

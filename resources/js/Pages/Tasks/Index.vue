@@ -56,7 +56,7 @@
                     Cerrar sin borrar
                 </jet-secondary-button>
 
-                <jet-danger-button class="ml-2" @click.native="removeTeamMember"
+                <jet-danger-button id="" class="ml-2" @click.native="removeTeamMember"
                                    :class="{ 'opacity-25': removeTeamMemberForm.processing }"
                                    :disabled="removeTeamMemberForm.processing">
                     Sí, elimínala

@@ -30,7 +30,7 @@
                     </jet-action-message>
 
                     <jet-button :class="{ 'opacity-25': formChapter.processing }" :disabled="formChapter.processing">
-                        Guardar
+                        Guardar Sección
                     </jet-button>
                 </template>
             </jet-form-section>
@@ -40,17 +40,17 @@
 
         <div class="col-span-6 sm:col-span-4">
             <jet-label for="name" value="Titulo de la tarea"/>
-            <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name"/>
+            <jet-input name="name" id="name" type="text" class="mt-1 block w-full" v-model="form.name"/>
             <jet-input-error :message="form.error('name')" class="mt-2"/>
         </div>
         <div class="col-span-3 sm:col-span-2">
             <jet-label for="points" value="Puntos"/>
-            <jet-input id="points" type="number" class="mt-1 block w-full" v-model="form.points"/>
+            <jet-input name="points" id="points" type="number" class="mt-1 block w-full" v-model="form.points"/>
             <jet-input-error :message="form.error('points')" class="mt-2"/>
         </div>
         <div >
             <jet-label for="parent" value="Esta tarea depende de otra"/>
-            <select v-if="chapters.length > 0" id="parent" v-model="form.parent_id">
+            <select v-if="chapters.length > 0" name="parent" id="parent" v-model="form.parent_id">
                 <option  :value="null">No Asociar con ninguna tarea</option>
                 <option v-for="chapter in chapters" :value="chapter.id">{{chapter.name}}</option>
             </select>

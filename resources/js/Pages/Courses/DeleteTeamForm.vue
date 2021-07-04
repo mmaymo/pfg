@@ -35,7 +35,7 @@
                     </jet-secondary-button>
 
                     <jet-danger-button class="ml-2" @click.native="deleteTeam" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                        Borrar curso
+                        Borrar ahora
                     </jet-danger-button>
                 </template>
             </jet-confirmation-modal>

@@ -12,7 +12,7 @@
             <hr>
             <ul class="p-4">
                 <li class="mt-2" v-for="(response, answerIndex) in quiz.responses">
-                    <input type="radio" :id="answerIndex" :value="answerIndex" v-model="picked" ref="answer">
+                    <input type="radio" :name="'answer'+answerIndex" :id="answerIndex" :value="answerIndex" v-model="picked" ref="answer">
                     <label :for="answerIndex">{{response}}</label>
                 </li>
             </ul>

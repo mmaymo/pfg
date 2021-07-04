@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="register" value="Registrar email" />
-                        <jet-input id="register" type="text" class="mt-1 block w-full" v-model="registerMailForm.email" autofocus/>
+                        <jet-input name="registerStudent" id="register" type="text" class="mt-1 block w-full" v-model="registerMailForm.email" autofocus/>
                         <jet-input-error :message="registerMailForm.error('email')" class="mt-2"/>
                     </div>
                 </template>
@@ -29,7 +29,7 @@
                     </jet-action-message>
 
                     <jet-button :class="{ 'opacity-25': registerMailForm.processing }" :disabled="registerMailForm.processing">
-                        Añadir
+                        Añadir Alumno
                     </jet-button>
                 </template>
             </jet-form-section>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="registerTeacher" value="Registrar email" />
-                        <jet-input id="registerTeacher" type="text" class="mt-1 block w-full" v-model="registerMailTeacherForm.email" autofocus/>
+                        <jet-input name="registerTeacher" id="registerTeacher" type="text" class="mt-1 block w-full" v-model="registerMailTeacherForm.email" autofocus/>
                         <jet-input-error :message="registerMailTeacherForm.error('email')" class="mt-2"/>
                     </div>
                 </template>
@@ -60,7 +60,7 @@
                     </jet-action-message>
 
                     <jet-button :class="{ 'opacity-25': registerMailTeacherForm.processing }" :disabled="registerMailTeacherForm.processing">
-                        Añadir
+                        Añadir Profesor
                     </jet-button>
                 </template>
             </jet-form-section>
@@ -82,7 +82,7 @@
                     <!-- Member Email -->
                     <div class="col-span-6 sm:col-span-4">
                         <jet-label for="email" value="Email" />
-                        <select class="mt-1 block w-full" v-if="userList.length > 0" id="email" v-model="addTeamMemberForm.email">
+                        <select name="addRegisteredStudent" class="mt-1 block w-full" v-if="userList.length > 0" id="email" v-model="addTeamMemberForm.email">
                             <option v-for="user in userList" :value="user.email">{{user.email}} - - {{user.name}}</option>
                         </select>
                         <jet-input-error :message="addTeamMemberForm.error('email')" class="mt-2" />
@@ -95,7 +95,7 @@
                     </jet-action-message>
 
                     <jet-button :class="{ 'opacity-25': addTeamMemberForm.processing }" :disabled="addTeamMemberForm.processing">
-                        Añadir
+                        Añadir selección
                     </jet-button>
                 </template>
             </jet-form-section>
@@ -129,7 +129,7 @@
             <jet-section-border />
 
             <!-- Manage Team Members -->
-            <jet-action-section class="">
+            <jet-action-section class="registeredStudents">
                 <template #title>
                     Alumnos registrados
                 </template>
@@ -162,10 +162,10 @@
                                 </jet-button>
 
                                 <!-- Eliminar alumno del curso -->
-                                <danger-button @click.native="confirmTeamMemberRemoval(user.id)">
+                                <danger-button class="delete" @click.native="confirmTeamMemberRemoval(user.id)">
                                     Eliminar
                                 </danger-button>
-                               <danger-button @click.native="confirmResetValues(user.id)">
+                               <danger-button class="reset" @click.native="confirmResetValues(user.id)">
                                     Resetear valores
                                 </danger-button>
                             </div>
@@ -212,7 +212,7 @@
                 </jet-secondary-button>
 
                 <jet-danger-button class="ml-2" @click.native="removeTeamMember" :class="{ 'opacity-25': removeTeamMemberForm.processing }" :disabled="removeTeamMemberForm.processing">
-                    Eliminar
+                    Eliminar ahora
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
@@ -231,7 +231,7 @@
                 </jet-secondary-button>
 
                 <jet-danger-button class="ml-2" @click.native="resetValues" :class="{ 'opacity-25': resetValuesForm.processing }" :disabled="resetValuesForm.processing">
-                    Eliminar
+                    Eliminar ahora
                 </jet-danger-button>
             </template>
         </jet-confirmation-modal>
