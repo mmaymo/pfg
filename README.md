@@ -1,5 +1,9 @@
 
 
+
+
+
+
 ## Interactive tools for "Diseño y Administración de Sistemas Operativos" course
 
 This app is intended to be used to follow along the course "Diseño y administración de sistemas operativos" from UNED.
@@ -55,6 +59,20 @@ También debemos cumplimentar con los datos básicos para cada tarea. Una vez el
 También podemos decidir si esta tarea va a depender de otra, esto es, que hasta que la tarea de la que depende no aparezca como completada, el alumno no podrá acceder a esta.
 Una vez creada cada tarea puede ser dispuesta en el orden que deseemos. Esto se consigue arrastrando la tarea hasta el lugar adecuado y salvando esta disposición, que será la que se muestre en el curso.
 
+
+
+https://user-images.githubusercontent.com/45061744/124388413-2ae0e200-dce3-11eb-9c9a-495f67775313.mp4
+
+
+
+https://user-images.githubusercontent.com/45061744/124388427-33d1b380-dce3-11eb-8803-cb2b978025de.mp4
+
+
+
+https://user-images.githubusercontent.com/45061744/124388432-3a602b00-dce3-11eb-8418-dc9ed642c903.mp4
+
+
+
 **El editor de markdown**
 Las tareas de tipo chapter, code y document presentan un editor en el que podemos insertar y editar el texto que luego se mostrará en el curso. La interfaz es intuitiva y está basado en el conocido markdown.
 
@@ -65,11 +83,25 @@ Estos archivos se guardarán en el sistema y pueden ser accedidos desde "../ejem
 **Cuestionarios**
 Los cuestionarios pueden admitir una o múltiples respuestas, que pueden admitir una o múltiples respuestas que se pueden seleccionar desde el formulario.
 
+
+
+https://user-images.githubusercontent.com/45061744/124388397-13095e00-dce3-11eb-9ed5-3e7097352561.mp4
+
+
+
 #### Manual para introducir nuevos alumnos
 Podemos añadir alumnos en bloque desde un archivo en formato csv separado por comas donde los campos son ```nombre, apellido, email, otros``` Podemos también añadir al curso a aquellos alumnos que ya estén dados de alta en el sistema si seleccionamos su email en el formulario. O podemos uno a uno añadir el email del alumno, al que se asignará una contraseña aleatoria.
+
+
+
+https://user-images.githubusercontent.com/45061744/124388373-f3723580-dce2-11eb-839c-763b14e08198.mp4
+
+
 #### Manual para añadir nuevos cursos
 El proceso es similar al de añadir una tarea. En la pantalla principal, después de haber hecho el acceso con un rol de profesor, seleccionamos el botón "crear curso" que nos llevará al formulario correspondiente.
 Tras esto podremos añadir las tareas al curso.
+
+
 ### Rol estudiante
 #### entrada en el sitio, mi cuenta
 Después de haber entrado en el sitio llegamos a la página principal donde disponemos de dos opciones, visitar nuestra cuenta para comprobar que nuestros datos son correctos. Aunque se ha deshabilitado la opción de edición de estos contenidos y solo será posible ponerse en contacto con el tutor en el caso de que algo deba ser modificado.
@@ -82,6 +114,14 @@ Algunos contenidos pueden requerir que hayamos realizado otras tareas anteriorme
 Ciertas tareas son ejercicios que no nos dejarán avanzar hasta que no los hayamos realizado y comprobado el resultado.
 Cada tarea dispone de un enlace a la página de la Uned para consultar dudas o avisar de incidencias.
 Pero si no estamos dados de alta en un curso no nos va a permitir ver su contenido.
+
+https://user-images.githubusercontent.com/45061744/124388318-b6a63e80-dce2-11eb-8859-3667ac45423d.mp4
+
+
+
+https://user-images.githubusercontent.com/45061744/124388353-db021b00-dce2-11eb-8cc4-f6fc1b10912c.mp4
+
+
 
 ## License
 Copyright 2021 Carmen Maymó @mmaymo
