@@ -286,7 +286,8 @@ class CourseFactory extends Factory
             269,
             270,
             271,
-            272]];
+            272],
+            "273"=>[]];
 
         return [
             'user_id'=>1,

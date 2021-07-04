@@ -1,7 +1,7 @@
 [{
 
     "course_id": 1,
-    "points": 0,
+    "points": 5,
     "chapter_id": null,
     "type": "document",
     "name": "DISEÑO DEL SISTEMA OPERATIVO UNIX ",
@@ -13,7 +13,7 @@
 },
     {
         "course_id": 1,
-        "points": 0,
+        "points": 5,
         "chapter_id": "1",
         "type": "document",
         "name": "Historia del sistema operativo ",
@@ -198,7 +198,7 @@
                 "El núcleo está en el nivel más interno de la computadora. Un proceso está escrito en C y genera programas ejecutables por el usuario.",
                 "Un proceso es el encargado de hacer las llamadas al sistema, el núcleo suministra servicios para los programas"
             ],
-            "correctAnswer":0              } ,"code_url":null, "content":""}
+            "correctAnswer":[0]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -213,7 +213,7 @@
                 "Están escritas en C++, sistema de ficheros en grafo, formato consistente para los archivos, contiene un interfaz simple y consistente para los periféricos, es un sistema multiusuario y multiproceso, y oculta la arquitectura de la máquina al usuario.",
                 "Están escritas en C++, sistema de ficheros jerarquizado, formato consistente para los archivos, contiene un interfaz simple y consistente para los periféricos, es un sistema multiusuario y monpproceso, y oculta la arquitectura de la máquina al usuario."
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":[1]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -228,7 +228,7 @@
                 "Tiene tres niveles: hardware, núcleo y apps.",
                 "Tiene cuatro niveles: hardware, núcleo, programas estándar y ejecutables, que interactúan con el núcleo mediante las llamadas al sistema, y aplicaciones."
             ],
-            "correctAnswer":3              } ,"code_url":null, "content":""}
+            "correctAnswer":[3]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -243,7 +243,7 @@
                 "Control de la ejecución de los procesos, planificación de los procesos para su ejecución en la CPU, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del acceso de los procesos a los dispositivos periféricos, administración de alarmas, administración de archivos y dispositivos, tratamiento de interrupciones y excepciones.",
                 "Control de la ejecución de los procesos, asignación de la memoria principal, protección del espacio de direcciones de un proceso en ejecución, planificación de los procesos para su ejecución en la CPU, asignación de memoria secundaria para almacenamiento y recuperación de los datos de usuario, regulación del acceso de los procesos a los dispositivos periféricos, administración de archivos y dispositivos, tratamiento de interrupciones y excepciones."
             ],
-            "correctAnswer":3              } ,"code_url":null, "content":""}
+            "correctAnswer":[3]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -258,7 +258,7 @@
                 "La ejecución de los procesos en un sistema UNIX está dividida en tres modos de ejecución: modo núcleo, modo demonio y modo usuario.",
                 "La ejecución de los procesos en un sistema UNIX está dividida en dos modos de ejecución: modo hardware y modo usuario."
             ],
-            "correctAnswer":0             } ,"code_url":null, "content":""}
+            "correctAnswer":[0]             } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -273,7 +273,7 @@
                 "Los procesos en el sistema UNIX puede ser de tres tipos: procesos de usuario, procesos de excepciones y procesos del sistema.",
                 "Los procesos en el sistema UNIX puede ser de tres tipos: procesos de usuario, procesos demonio, y procesos de sistema."
             ],
-            "correctAnswer":0              } ,"code_url":null, "content":""}
+            "correctAnswer":[0]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -288,7 +288,7 @@
                 "El reloj del sistema, y los terminales pueden interrumpir a la CPU. Las interrupciones notifican al núcleo sobre una operación completada. Existe tres tipos de interrupciones: nucleo, software, y excepciones.",
                 "Mientras se ejecuta un proceso, los periféricos de E/S, el reloj del sistema, y los terminales pueden interrumpir a la CPU. El mecanismo de interrupciones notifica al núcleo una operación completada o un cambio de estado. Existe tres tipos de interrupciones: hardware, software, y excepciones."
             ],
-            "correctAnswer":3              } ,"code_url":null, "content":""}
+            "correctAnswer":[3]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -303,7 +303,7 @@
                 "Nivel de kernel, nivel de núcleo, y nivel de usuario. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al kernel, y su invocación se puede realizar mediante el uso de librerías y de forma directa. El nivel de núcleo se comunica con el nivel de hardware a través de su módulo de control del hardware.",
                 "Nivel de usuario, nivel de núcleo, y nivel de hardware. El nivel de usuario interacciona con el nivel de núcleo a través de las llamadas al sistema, y su invocación se puede realizar mediante el uso de librerías. En el núcleo se encuentra el subsistema de ficheros y el subsistema de control de procesos. El nivel de núcleo se comunica con el nivel de hardware a través de su módulo de sistemas."
             ],
-            "correctAnswer":2             } ,"code_url":null, "content":""}
+            "correctAnswer":[2]             } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -318,7 +318,7 @@
                 "Un fichero es una lista enlazada de datos accesible por el usuario y por el núcleo. UNIX organiza los ficheros en un árbol de directorios. Una entrada de fichero va asociada a una máscara de modo",
                 "Un fichero es un contenedor permanente de datos accesible por el usuario y por el núcleo. UNIX organiza los ficheros en un árbol de directorios. Una entrada de fichero va asociada a una máscara de modo"
             ],
-            "correctAnswer":0              } ,"code_url":null, "content":""}
+            "correctAnswer":[0]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -333,7 +333,7 @@
                 "Tipo de fichero, permisos e indicadores de modo, número de enlaces activos, tamaño del fichero, identificador del dispositivo, número de nodo-i, número de nodo-c, identificador de usuario real (uid) y del grupo real (gid), e información asociada al tiempo para cada fichero. Los atributos se almacenan en el nodo índice (nodo-i)",
                 "Tipo de fichero,  número de enlaces duros, tamaño del fichero, identificador del dispositivo, permisos e indicadores de modo e información asociada al tiempo para cada fichero. Los atributos se almacenan en el nodo índice (nodo-i)"
             ],
-            "correctAnswer":1              } ,"code_url":null, "content":""}
+            "correctAnswer":[1]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -348,7 +348,7 @@
                 "La máscara de modo informa, por orden, de los permisos para el propietario, los miembros del grupo al que pertenece el propietario del fichero y otros usuarios.",
                 "La máscara de modo informa de los listados de acceso del fichero, el grupo de permisos asociados y la capacidad de cada usuario"
             ],
-            "correctAnswer":2              } ,"code_url":null, "content":""}
+            "correctAnswer":[2]              } ,"code_url":null, "content":""}
     },
     {"course_id": 1,
         "points": 10,
@@ -362,7 +362,7 @@
                 "Las operaciones de E/S sobre un fichero son: apertura y cierre de un fichero (creat, open, close), lectura y escritura (read, write).\n",
                 "Las operaciones de E/S sobre un fichero son: apertura y cierre de un fichero (creat, open, close), lectura y escritura (read, write), y acceso aleatorio (lseek).\n"
             ],
-            "correctAnswer":3} ,"code_url":null, "content":""}
+            "correctAnswer":[3]} ,"code_url":null, "content":""}
     },
 {
 
@@ -848,7 +848,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -862,7 +862,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -876,7 +876,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -890,7 +890,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -904,7 +904,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -918,7 +918,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -932,7 +932,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -946,7 +946,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -960,7 +960,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -974,7 +974,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -988,7 +988,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1002,7 +1002,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1016,7 +1016,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1030,7 +1030,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1044,7 +1044,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1058,7 +1058,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {
 
@@ -1211,7 +1211,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1225,7 +1225,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1239,7 +1239,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1253,7 +1253,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1267,7 +1267,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1281,7 +1281,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1295,7 +1295,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1309,7 +1309,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1323,7 +1323,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1337,7 +1337,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1351,7 +1351,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1365,7 +1365,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1379,7 +1379,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1393,7 +1393,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1407,7 +1407,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1421,7 +1421,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1435,7 +1435,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1449,7 +1449,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1463,7 +1463,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1477,7 +1477,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1491,7 +1491,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1505,7 +1505,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1519,7 +1519,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1533,7 +1533,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {
 
@@ -1752,7 +1752,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1766,7 +1766,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1780,7 +1780,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1794,7 +1794,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1808,7 +1808,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1822,7 +1822,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1836,7 +1836,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1850,7 +1850,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1864,7 +1864,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1878,7 +1878,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -1892,7 +1892,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {
 
@@ -2003,7 +2003,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2017,7 +2017,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2031,7 +2031,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2045,7 +2045,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2059,7 +2059,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2073,7 +2073,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2087,7 +2087,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2101,7 +2101,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2115,7 +2115,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2129,7 +2129,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2143,7 +2143,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2157,7 +2157,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2171,7 +2171,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {
 
@@ -2428,7 +2428,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2442,7 +2442,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2456,7 +2456,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2470,7 +2470,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2484,7 +2484,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2498,7 +2498,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2512,7 +2512,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2526,7 +2526,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2540,7 +2540,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2554,7 +2554,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2568,7 +2568,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2582,7 +2582,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2596,7 +2596,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2610,7 +2610,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1        } ,"code_url":null, "content":""}
+"correctAnswer":[1]        } ,"code_url":null, "content":""}
 },
 {
 
@@ -2720,7 +2720,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2734,7 +2734,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2748,7 +2748,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2762,7 +2762,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2776,7 +2776,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2790,7 +2790,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2804,7 +2804,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -2818,7 +2818,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {
 
@@ -3009,7 +3009,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3023,7 +3023,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3037,7 +3037,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3051,7 +3051,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3065,7 +3065,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3079,7 +3079,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3093,7 +3093,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3107,7 +3107,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3121,7 +3121,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3135,7 +3135,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3149,7 +3149,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3163,7 +3163,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3177,7 +3177,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3191,7 +3191,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3205,7 +3205,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3219,7 +3219,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3233,7 +3233,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3247,7 +3247,7 @@ null,
 null,
 null
 ],
-"correctAnswer":1              } ,"code_url":null, "content":""}
+"correctAnswer":[1]              } ,"code_url":null, "content":""}
 },
 {
 
@@ -3330,7 +3330,7 @@ null
 "question":"¿Por qué los drivers son una parte separada del núcleo de UNIX?",
 "responses":[                         "Cada hardware necesita un código específico que permita controlarlo, la separación entre el subsistema de E/S y el driver permite que los fabricantes de dispositivos puedan fabricar drivers para los misos sin necesidad de que el diseñador núcleo tenga que conocer todos los detalles de cada uno de los periféricos existentes.\nAdemás, utilizar drivers hace que la utilización del hardware sea más sencilla ya que la interfaz estándar de drivers del núcleo permite gestionar la entrada/salida de forma ordenada y modular y hace más sencillo agregar dispositivos nuevos."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3341,7 +3341,7 @@ null
 "question":"¿Qué tipos de dispositivos considera UNIX?",
 "responses":[                         "Esencialmente UNIX separa los dispositivos en dispositivos modo bloque (que leen bloques de datos y los gestionan por medio de la caché de buffers de bloque del núcleo) y dispositivos modo carácter (que son más lentos al no existir un espacio intermedio de almacenamiento). El sistema mantiene dos conmutadores de dispositivos: bdevsw para dispositivos modo bloque y cdevsw para dispositivos modo carácter cuya interfaz debe implementar cada tipo de driver.\n"
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3352,7 +3352,7 @@ null
 "question":"¿Qué es un controlador de dispositivo y para qué sirve?",
 "responses":[                         "Cada dispositivo físico (disco, cinta, tarjeta de red, etc) necesita un dispositivo electrónico denominado controlador o adaptador que conecte al dispositivo con el bus del sistema. El sistema operativo se comunica con el dispositivo a través del driver que a su vez envía órdenes al controlador para manejar el dispositivo.\n"
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3363,7 +3363,7 @@ null
 "question":"¿Cuándo puede el núcleo invocar a un driver?",
 "responses":[                         "El núcleo puede invocar a un driver de dispositivo por varios motivos:\n- Configuración. El núcleo llama al driver cuando se arranca el sistema para comprobar e inicializar el dispositivo.\n- Entrada/Salida. El subsistema de E/S llama al driver para escribir o leer datos.-\n- Control. El usuario puede hacer peticiones de control tales como la apertura o cierre de un dispositivo o el rebobinado de una cinta magnética.\nInterrupciones. El dispositivo genera interrupciones una vez que se ha completado una operación de E/S o se produce algún cambio en el estado del dispositivo."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3374,7 +3374,7 @@ null
 "question":"¿Qué operación implementa la entrada d_strategy() de un driver de modo\n                    bloque?",
 "responses":[                         "d_strategy() es el punto de entrada común para peticiones de lectura o escritura a un dispositivo modo bloque, es el equivalente a d_read() y d_write() en modo carácter.\nSe llama así ya que el driver puede usar alguna estrategia para reordenar las peticiones pendientes con objeto de optimizar el rendimiento del dispositivo (por ejemplo leer los bloques del disco en orden rotacionalmente óptimo).\nd_strategy() opera asíncronamente, si el dispositivo está ocupado esta rutina simplemente coloca en una cola la petición y retorna. Cuando la operación de E/S se completa, el manipulador de la interrupción quitará de la cola la siguiente petición e iniciará la siguiente operación de E/S."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3385,7 +3385,7 @@ null
 "question":"¿qué es un pseudodispositivo?",
 "responses":[                         "Un pseudodispositivo es un driver que proporciona una funcionalidad especial sin controlar un verdadero dispositivo físico.\nEjemplos de pseudodispositivos son el driver mem, que permite a los usuarios leer o escribir en posiciones de memoria principal (típicamente usada en los depuradores) y el dispositivo null que es un sumidero de bits que absorbe todos los datos de entrada y no hace nada con ellos."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3396,7 +3396,7 @@ null
 "question":"¿En qué partes se suele dividir un driver?",
 "responses":[                         "El driver se suele dividir en dos partes:- Parte superior del driver. Contiene las rutinas síncronas. Se ejecutan en el contexto del proceso. Pueden acceder al espacio de direcciones y al área U del proceso invocador y pueden poner al proceso a dormir si fuese necesario\n- Parte inferior del driver. Contiene las rutinas asíncronas. Se ejecutan en el contexto del sistema y usualmente no tienen ninguna relación con el proceso actualmente en ejecución y en consecuencia no pueden acceder al espacio de direcciones de dicho proceso o a su área U. Además, no pueden poner a dormir a ningún proceso puesto que podrían bloquear a un proceso no relacionado."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3407,7 +3407,7 @@ null
 "question":"¿De qué se encarga el Subsistema de E/S?",
 "responses":[                         "El subsistema de E/S es la parte del núcleo que gestiona la parte independiente del dispositivo de la E/S apoyándose en los drivers. Se encarga de: Identificar los dispositivos mediante el número principal (que especifica el tipo y por tanto el driver) y el secundario que identifica la instancia, ambos se conminan en la variable dev_t.\nEl acceso a los dispositivos se realiza a través del sistema de archivos de modo que a cada dispositivo se le hace corresponder un archivo especial creado con mknod y situado en el directorio /dev, en el nodo-i correspondiente se encuentran los números principal y secundario."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3418,7 +3418,7 @@ null
 "question":"¿De forma sabe el núcleo que driver usar con un determinado dispositivo?",
 "responses":[                         "El número principal y el secundario se combinan en la variable dev_t que se encuentran en el nodo-i del archivo especial del dispositivo.\nLos bits más significativos contienen el número principal, mientras que los bits menos significativos contienen el número secundario. Las macros getmajor() y getminor() permiten extraer estos números de la variable donde están almacenados.\nPuesto que el número principal es el que identifica el driver el núcleo usa getmajor()para obtener el identificador del driver que hay que usar para acceder al dispositivo."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3429,7 +3429,7 @@ null
 "question":"¿Qué diferencia hay entre un archivo común y un archivo de dispositivo?",
 "responses":[                         "El acceso a los dispositivos se realiza a través del sistema de archivos de modo que a cada dispositivo se le hace corresponder un archivo especial.\nLos dispositivos son tratados por la interfaz del sistema de ficheros nodo-v/svf como un sistema de ficheros especial denominado specfs .\nLas diferencias fundamentales frente a un archivo ordinario es que los archivos de dispositivo sólo pueden ser creados por el superusuario usando mknod y se encuentran situados en el directorio /dev.\nAdemás el nodo-i del dispositivo no contiene una lista de bloques y atributos del archivo sino los números principal y secundario que identifican al dispositivo y al driver que maneja el mismo."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3440,7 +3440,7 @@ null
 "question":"¿qué es un nodo-s común?",
 "responses":[                         "Un nodo-s común es un mecanismo para asignar a cada dispositivo un nodo-s que centralice todas las operaciones sobre el mismo.\nDado que es posible tener varios ficheros de dispositivos, cada uno representando al mismo dispositivo existirán varios nodos-s que corresponden al mismo dispositivo, para coordinar todas las operaciones sobre el dispositivo se utiliza un nodo-s común.\nLa primera vez que un usuario abre un fichero de dispositivo para un dispositivo en particular, el núcleo crea un nodo-s y un nodo-s común asociado. Si un usuario abre otro fichero que representa al mismo dispositivo, el núcleo creará un nuevo nodo-s, que referenciará al mismo nodo-s común."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3451,7 +3451,7 @@ null
 "question":"¿Para qué sirven los streams?",
 "responses":[                         "Un stream es un procesamiento full-duplex y un camino de transferencia de datos entre un driver en el espacio del núcleo y un proceso en el espacio de usuario. El stream estructura de forma modular y en cada módulo hay una cola de lectura y otra de escritura.\nEn las versiones de UNIX modernas se usa el concepto de streams para mejorar la interfaz de los drivers, en especial las de modo carácter y los dispositivos de red y se usan además para implementar los ficheros FIFO, tuberías y los conectores (sockets) para el trabajo en red."
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3462,7 +3462,7 @@ null
 "question":"¿Qué mecanismos de comunicación usan los streams?",
 "responses":[                         "Los streams utilizan el paso de mensajes como único mecanismo de comunicación.\n"
 ],
-"correctAnswer":1              }, "code_url":null, "content":""}
+"correctAnswer":[1]              }, "code_url":null, "content":""}
 },
 {"course_id": 1,
 "points": 0,
@@ -3474,8 +3474,17 @@ null
 "question":"Qué significa que un stream esté multiplexado?",
 "responses":[                         "Los streams soportan una funcionalidad llamada multiplexión. Un driver de multiplexión puede conectar múltiples streams en lo alto o en lo bajo. Hay tres tipos de multiplexores:\n- Multiplexor superior o fan-in. Puede conectar a varios streams sobre él.\n- Multiplexor inferior o fan-out, Puede conectar múltiples streams por debajo de él.\n- Multiplexor de doble-sentido. Soporta múltiples conexiones tanto por encima como por debajo de él."
 ],
-"correctAnswer":1              },"code_url":null, "content":""}
-}
-
-
+"correctAnswer":[1]              },"code_url":null, "content":""}
+},
+    {
+        "course_id": 1,
+        "points": 5,
+        "chapter_id": null,
+        "type": "card",
+        "name": "Ejemplo de tarjeta para estudiar ",
+        "properties":
+        {"card": {"back": "La respuesta a lo que hemos preguntado", "front": "Pregunta o concepto para memorizar"},"quiz": {"question": null, "responses": [null, null, null, null], "correctAnswer": 0},"code_url":null,
+            "content":""
+        }
+    }
 ]
