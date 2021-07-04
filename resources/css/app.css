@@ -6,6 +6,16 @@
     .moving-card {
         @apply opacity-50 bg-gray-100 border border-blue-500;
     }
+    .editHeader{
+        @apply font-sans font-semibold text-xl text-gray-800 leading-tight;
+    }
+    .sidebarHeader {
+        @apply w-full px-4 text-sm text-right font-semibold tracking-widest uppercase rounded-lg;
+    }
+    .sidebarToggleItem {
+        @apply items-center block px-4 py-2 mt-2 text-sm text-right  bg-transparent rounded-lg;
+    }
+
 }
 @layer base{
     h1 {
