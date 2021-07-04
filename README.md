@@ -44,8 +44,12 @@ docker-compose exec app php artisan serve --env=dusk.local
 ## Usage
 ### Rol profesor
 #### Manual para introducir nuevos contenidos
-Una vez realizado el acceso con un usuario y contraseña que nos acredite como profesor para insertar nuevos contenidos debemos hacer click en el botón de editar del curso en cuestión.
-Una vez ahí podemos editar una tarea existente o crear una nueva en el botón "Añadir nueva tarea"
+La web tiene una pequeña presentación en su portada con un botón que nos permite entrar a los contenidos protegidos.
+Una vez realizado el acceso con un usuario y contraseña que nos acredite como profesor, llegamos al panel principal. 
+Si apretamos el botón "Crear curso", llegaremos a un formulario que nos permite realizar dicha acción.
+Si en lugar de esto elegimos editar uno de los cursos que ya hemos creado llegaremos a la pantalla de edición.
+Aquí podemos editar una tarea existente o crear una nueva en el botón "Añadir nueva tarea".
+
 Podemos incluir esta tarea como subtarea de otra, como parte de un capítulo o sección nueva o de las que ya estén dadas de alta.
 También debemos cumplimentar con los datos básicos para cada tarea. Una vez elegido el tipo de contenido se mostrarán los siguientes campos para incluir la información necesaria.
 También podemos decidir si esta tarea va a depender de otra, esto es, que hasta que la tarea de la que depende no aparezca como completada, el alumno no podrá acceder a esta.
@@ -59,9 +63,9 @@ Las tareas de tipo code tienen un campo en el formulario para subir archivos de 
 Estos archivos se guardarán en el sistema y pueden ser accedidos desde "../ejemplos/"
 
 **Cuestionarios**
-Los cuestionarios pueden admitir una o múltiples respuestas, que se pueden seleccionar desde el formulario.
+Los cuestionarios pueden admitir una o múltiples respuestas, que pueden admitir una o múltiples respuestas que se pueden seleccionar desde el formulario.
 
-#### Manual para meter nuevos alumnos
+#### Manual para introducir nuevos alumnos
 Podemos añadir alumnos en bloque desde un archivo en formato csv separado por comas donde los campos son ```nombre, apellido, email, otros``` Podemos también añadir al curso a aquellos alumnos que ya estén dados de alta en el sistema si seleccionamos su email en el formulario. O podemos uno a uno añadir el email del alumno, al que se asignará una contraseña aleatoria.
 #### Manual para añadir nuevos cursos
 El proceso es similar al de añadir una tarea. En la pantalla principal, después de haber hecho el acceso con un rol de profesor, seleccionamos el botón "crear curso" que nos llevará al formulario correspondiente.
