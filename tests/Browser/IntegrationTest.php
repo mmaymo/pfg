@@ -2,16 +2,10 @@
 
 namespace Tests\Browser;
 
-use App\Models\Course;
-use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Log;
 use Laravel\Dusk\Browser;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Tests\DuskTestCase;
 
-class LoginTest extends DuskTestCase
+class IntegrationTest extends DuskTestCase
 {
     protected $currentUrl;
     //use DatabaseMigrations;
